@@ -1,0 +1,66 @@
+@use "/assets/scss/constants.scss" as g;
+
+.container {
+  background-image: linear-gradient(60deg, #27282e 0%, #2b3159 80%);
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+  display: block;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 60% 20% 20%;
+  grid-template-rows: repeat(3, 1fr);
+
+  min-width: 0;
+  min-height: 0;
+  width: 80vw;
+  height: 70vh;
+}
+
+.credits {
+  grid-area: 1 / 1 / 4 / 4;
+  position: relative;
+  overflow: hidden;
+
+  color: g.$container-item;
+
+  height: 100%;
+
+  ul {
+    height: fit-content;
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: grid;
+  }
+
+  li {
+    height: 18vh;
+
+    display: flex;
+    justify-content: center;
+
+    font-size: g.$text-large;
+  }
+
+  .endMessage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    font-size: g.$text-large * 2;
+  }
+}
+
+.fire {
+  grid-area: 2 / 2 / 4 / 4;
+  transform: translateY(5vh) translateX(5vw) scale(1.2);
+  width: 500px;
+  height: 450px;
+}

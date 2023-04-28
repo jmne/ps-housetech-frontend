@@ -1,0 +1,105 @@
+@use "/assets/scss/constants.scss" as g;
+
+.wrapper {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  padding: g.$margin-base;
+  gap: g.$margin-base;
+
+  background-color: g.$background;
+
+  transition: background-color 0.5s ease;
+  -webkit-transition: background-color 0.5s ease;
+  -o-transition: background-color 0.5s ease;
+  -moz-transition: background-color 0.5s ease;
+}
+
+.bodyWrapper {
+  height: calc(100% - g.$icon-base - 3 * g.$margin-base);
+  max-height: calc(100% - g.$icon-base - 3 * g.$margin-base);
+
+  display: grid;
+  flex-grow: 1;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1fr 35%;
+  gap: g.$margin-base;
+}
+
+.overlayContainer {
+  z-index: 16;
+
+  position: fixed;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: auto;
+  max-width: 80vw;
+  height: auto;
+  max-height: 70vh;
+
+  padding: g.$margin-medium;
+
+  background-color: g.$container-item;
+  border-radius: g.$border-radius-base;
+
+  box-shadow: g.$shadow-outer__light;
+
+  outline: none;
+
+  .close {
+    z-index: 3;
+
+    position: absolute;
+    border: none;
+    border-radius: g.$border-radius-small;
+    background-color: transparent;
+
+    overflow: hidden;
+
+    fill: #f2f2f2;
+
+    top: 0.2rem;
+    right: 0.2rem;
+
+    cursor: pointer;
+
+    svg {
+      z-index: 2;
+
+      width: g.$icon-large;
+      height: g.$icon-large;
+    }
+  }
+}
+
+.overlayBackground {
+  z-index: 15;
+
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  inset: 0;
+  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media screen and (max-width: 992px) {
+  .wrapper {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: auto;
+  }
+
+  .bodyWrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: 50vh 50vh;
+    grid-auto-rows: 25vh;
+  }
+}
