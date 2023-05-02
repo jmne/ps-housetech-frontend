@@ -7,4 +7,3 @@ CONTRIBUTING.md @jmenne
 .eslintrc.json @jmenne
 tsconfig.json @sbiel @jmenne
 package.json @sbiel @jmenne
-jest.config.js @sbiel @jmenne
