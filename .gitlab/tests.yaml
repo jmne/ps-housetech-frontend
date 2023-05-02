@@ -4,10 +4,7 @@ run-tests:
   script:
     - echo "Running unit tests..."
     - npm run test:ci
-  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
   artifacts:
-    paths:
-      - coverage/
     when: always
     reports:
       junit:
