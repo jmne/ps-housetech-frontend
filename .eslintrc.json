@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "prettier"
+  ],
+  // Using the unused imports package to autofix unused imports
+  "plugins": [
+    "unused-imports"
+  ],
+  "globals": {
+    "JSX": "readonly"
+  },
+  "rules": {
+    "no-unused-vars": "warn"
+    // this will notify violation but not output error
+  }
+}

@@ -5,10 +5,19 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --ci",
+    "lint": "next lint --fix",
+    "format:all": "prettier --write .",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "eslint": "^8.39.0",
+    "eslint-config-next": "^13.3.4",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^8.0.3",
     "next": "latest",
+    "prettier": "^2.8.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.62.1"
