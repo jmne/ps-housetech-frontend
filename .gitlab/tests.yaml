@@ -1,0 +1,43 @@
+run-tests:
+  stage: test
+  needs: []
+  script:
+    - echo "Running unit tests..."
+    - npm run test:ci
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  artifacts:
+    paths:
+      - coverage/
+    when: always
+    reports:
+      junit:
+        - junit.xml
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - when: always
+run-coverage:
+  stage: test
+  needs: []
+  script:
+    - echo "Running test coverage..."
+    - npm run test:coverage
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  artifacts:
+    paths:
+      - coverage/
+    when: always
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - when: always
+run-linting:
+  stage: test
+  needs: []
+  script:
+    - echo "Running linting..."
+    - npm run lint
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - when: always
