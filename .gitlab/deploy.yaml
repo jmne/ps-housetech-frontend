@@ -1,8 +1,10 @@
 build:
-  image: docker:18-git
+  image: docker:23
   stage: build
+  tags:
+    - lucas
   services:
-    - docker:18-dind
+    - docker:23-dind
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
   script:
