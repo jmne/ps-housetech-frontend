@@ -1,8 +1,8 @@
 build:
-  image: docker:20.10.16
-  stage: deploy
+  image: docker:18-git
+  stage: build
   services:
-    - docker:20.10.16-dind
+    - docker:18-dind
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
   script:
