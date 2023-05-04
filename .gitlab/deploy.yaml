@@ -1,10 +1,10 @@
 deploy:
-  image: docker:20.10.16
+  image: docker:23
   stage: deploy
   before_script:
     - docker info
   services:
-    - docker:20.10.16-dind
+    - docker:23-dind
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
   script:
