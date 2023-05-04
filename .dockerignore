@@ -4,3 +4,6 @@ node_modules
 README.md
 .next
 .git
+.gitignore
+docker-compose.yml
+nginx/
