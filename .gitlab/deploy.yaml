@@ -1,5 +1,5 @@
 build:
-  image: docker:23
+  image: node:latest
   stage: build
   tags:
     - lucas
