@@ -2,8 +2,6 @@ deploy:
   image: docker:23
   stage: deploy
   before_script: []
-  services:
-    - docker:23-dind
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
   script:
