@@ -1,8 +1,7 @@
 deploy:
   image: docker:23
   stage: deploy
-  before_script:
-    - docker info
+  before_script: []
   services:
     - docker:23-dind
   variables:
