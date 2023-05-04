@@ -8,7 +8,7 @@ deploy:
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD https://zivgitlab.wwu.io/
-    - docker build -t zivgitlab.wwu.io/ml-de/teaching/ps-housetech/ps-housetech-frontend .
-    - docker push zivgitlab.wwu.io/ml-de/teaching/ps-housetech/ps-housetech-frontend
+    - docker build -t https://zivgitlab.wwu.io/ml-de/teaching/ps-housetech/ps-housetech-frontend .
+    - docker push https://zivgitlab.wwu.io/ml-de/teaching/ps-housetech/ps-housetech-frontend
   rules:
     - if: $CI_COMMIT_TAG
