@@ -1,7 +1,7 @@
-import styles from '@/pages/index.module.scss'
+import styles from '@/pages/home.module.scss';
 
 export default function Home() {
   return (
-    <p>Test: Homepage</p>
+    <p className={styles.textStyling}>Test: Homepage</p>
   )
 }
