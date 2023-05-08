@@ -1,0 +1,47 @@
+// TYPOGRAPHY
+@font-face {
+    font-family: face;
+    src: url();
+}
+
+$text-large: 47px;
+$text-medium: 29px;
+$text-base: 18px;
+$text-small: 12px;
+
+// COLORS
+$text-primary: "#15171B";
+$text-secondary: "#494E58";
+$main-primary: "#435C8B";
+$main-secondary: "#A5CF39";
+$background: "#DDDCDB";
+$container: "#EEEDED";
+$container-item: "#FAFAFA";
+$accent1: "#7C2D3A";
+$accent2: "#DDDD2B";
+$accent3: "#3FB6B5";
+$accent4: "#319143";
+
+// GAP
+$margin-large: 24px;
+$margin-medium: 16px;
+$margin-base: 8px;
+$margin-small: 4px;
+
+// IMAGES
+$icon-large: 80px;
+$icon-base: 40px;
+$icon-small: 20px;
+
+// SIZING
+$border-base: 2px;
+
+// SHADOWS
+$shadow-outer: "0px 6px 12px -2px rgba(0, 0, 0, 0.25), 0px 3px 7px -3px rgba(0, 0, 0, 0.25)";
+$shadow-inner: "inset -4px 0px 6px 2px rgba(0, 0, 0, 0.25)";
+
+
+body {
+    background-color: $background;
+    font
+}
