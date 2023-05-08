@@ -1,0 +1,9 @@
+.gitlab/ @jmenne
+LICENSE @jmenne
+CONTRIBUTING.md @jmenne
+.husky/ @jmenne
+.prettierignore @jmenne
+.prettierrc @jmenne
+.eslintrc.json @jmenne
+tsconfig.json @sbiel @jmenne
+package.json @sbiel @jmenne
