@@ -1,0 +1,76 @@
+@use "/assets/scss/constants.scss" as g;
+
+.busplan{
+    flex-grow: 1;
+
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(3,1fr);
+    gap: g.$margin-small;
+
+    margin: 0;
+    padding: 0;
+
+    .bus {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: g.$margin-small;
+
+        padding: g.$margin-base;
+
+        background: g.$container-item;
+        border-radius: g.$border-radius-base;
+        box-shadow: g.$shadow-outer;
+
+        .left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .lineWrapper{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: g.$margin-small;
+            }
+
+            .icon {
+                object-fit: contain;
+                width: g.$text-medium;
+                height: g.$text-medium;
+            }
+        }
+
+        .secondary {
+            font-size: g.$text-small;
+            font-weight: 300;
+            color: g.$text-secondary;
+        }
+
+        .time {
+            text-align: end;
+        }
+    }
+
+    .inward {
+        grid-column: 1;
+    }
+
+    .outward {
+        grid-column: 2;
+    }
+
+    .first {
+        grid-row: 1;
+    }
+
+    .second {
+        grid-row: 2;
+    }
+
+    .third {
+        grid-row: 3;
+    }
+}
