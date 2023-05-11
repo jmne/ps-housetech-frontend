@@ -16,15 +16,14 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        gap: g.$margin-small;
 
-        padding: g.$margin-base;
+        padding: g.$margin-sm;
 
         background: g.$container-item;
         border-radius: g.$border-radius-base;
         box-shadow: g.$shadow-outer;
 
-        .left {
+        .vertical {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -34,12 +33,13 @@
                 flex-direction: row;
                 align-items: center;
                 gap: g.$margin-small;
+                overflow: hidden;
             }
 
             .icon {
                 object-fit: contain;
-                width: g.$text-medium;
-                height: g.$text-medium;
+                width: g.$text-base;
+                height: g.$text-base;
             }
         }
 
@@ -51,6 +51,11 @@
 
         .time {
             text-align: end;
+            white-space: nowrap;
+        }
+
+        .delay {
+            color: g.$warning
         }
     }
 

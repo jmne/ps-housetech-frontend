@@ -17,7 +17,7 @@ interface BusProps {
     index: number
 }
 
-function getColumn(index: number){
+function getColumn(index: number) {
     switch (index) {
         case 0:
             return styles.first;
@@ -28,7 +28,7 @@ function getColumn(index: number){
     }
 }
 
-function getRow(direction: Direction){
+function getRow(direction: Direction) {
     switch (direction) {
         case "inward":
             return styles.inward;
@@ -38,24 +38,33 @@ function getRow(direction: Direction){
 }
 
 export default function Bus({ bus, direction, index }: BusProps) {
-    const column = getColumn(index)
+    const column = getColumn(index);
+    const row = getRow(direction);
+    const delayed = (bus.minutes_delay >= 5)
 
-    const row = getRow(direction)
+    const time_styling = delayed ? [styles.time, styles.delay].join(" ") : styles.time;
 
     return (
         <div className={[styles.bus, column, row].join(" ")}>
-            <div className={styles.left}>
+            <div className={styles.vertical}>
                 <div className={styles.lineWrapper}>
                     {(direction === "inward") ?
-                        <Image src={icon_inward} alt={"In"} fill={false} className={styles.icon}/> :
-                        <Image src={icon_outward} alt={"Out"} fill={false} className={styles.icon}/>
+                        <Image src={icon_inward} alt={"In"} fill={false} className={styles.icon} /> :
+                        <Image src={icon_outward} alt={"Out"} fill={false} className={styles.icon} />
                     }
                     <span className={styles.line}>{bus.line}</span>
                 </div>
                 <span className={styles.secondary}>{bus.going_to}</span>
             </div>
-
-            <span className={styles.time}>{bus.minutes_until_departure} min</span>
+            <div className={styles.vertical}>
+                {delayed ?
+                    (<>
+                        <span className={time_styling}>{bus.minutes_until_departure} min</span>
+                        <span className={[styles.time, styles.secondary].join(" ")}>+{bus.minutes_delay}</span>
+                    </>) :
+                    (<span className={time_styling}>{bus.minutes_until_departure} min</span>)
+                }
+            </div>
         </div>
     )
 }

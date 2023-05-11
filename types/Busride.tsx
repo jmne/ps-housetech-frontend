@@ -60,8 +60,8 @@ export const sample_busrides: Busride[] =
             "line": "R72",
             "going_to": "Altenberge",
             "planned_departure_time": "15:55",
-            "actual_departure_time": "15:55",
-            "minutes_delay": 0,
-            "minutes_until_departure": 22
+            "actual_departure_time": "16:00",
+            "minutes_delay": 5,
+            "minutes_until_departure": 27
         }
     ]
