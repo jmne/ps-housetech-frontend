@@ -1,0 +1,31 @@
+@use "/assets/scss/constants.scss" as g;
+
+.headlineWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1;
+}
+
+.logo {
+    padding: g.$margin-base;
+    
+  img {
+    width: auto;
+    }
+}
+
+.title {
+    font-weight: bold;
+    font-size: g.$text-medium; //smaller
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alignRight {
+   text-align: right;
+
+   img {
+   width: auto;
+   }
+}

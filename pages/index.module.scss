@@ -5,7 +5,7 @@
     height: auto;
     display: flex;
     padding: g.$margin-base;
-    gap: g.$margin-base
+    flex-direction: column;
 }
 
 .bodyWrapper {
@@ -39,3 +39,4 @@
         grid-column: span 2;
     }
 }
+

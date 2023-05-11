@@ -1,0 +1,31 @@
+@use "/assets/scss/constants.scss" as g;
+
+// the height of the component in this file?
+//font-family?
+//where to put the font-style?
+
+
+table {
+    width: 100%;
+}
+
+td {
+    border: 0;
+
+    .left {
+        align-items: left;
+    }
+
+    .center {
+        align-items: left;    
+
+    }
+
+    .right {
+        align-items: right;
+    }
+}
+
+tr {
+    height: 
+}
