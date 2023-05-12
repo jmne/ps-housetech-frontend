@@ -1,3 +1,4 @@
+// All possible options for the direction property of a Busride
 type Direction = "Einw\u00e4rts" | "Ausw\u00e4rts"
 
 export interface Busride {
@@ -11,7 +12,7 @@ export interface Busride {
     minutes_until_departure: number
 }
 
-
+// Sample data
 export const sample_busrides: Busride[] =
     [
         {

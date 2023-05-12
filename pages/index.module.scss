@@ -54,15 +54,6 @@
 
     margin-bottom: g.$margin-base;
 
-    .titleWrapper {
-        display: flex;
-        padding: g.$margin-small;
-        justify-content: center;
-        align-items: center;
-        background-color: g.$main-primary;
-        border-radius: g.$border-radius-base;
-    }
-
     h2 {
         font-size: g.$text-base;
         font-weight: 400;
