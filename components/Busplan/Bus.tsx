@@ -1,14 +1,16 @@
 // IMPORTS - BUILTINS
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
 // IMPORTS - ASSETS
 import { Busride } from "types/Busride";
 import styles from "@/components/Busplan/Bus.module.scss";
+
+// IMPORTS - ICONS
 import icon_inward from "assets/images/icon_city.svg";
 import icon_outward from "assets/images/icon_forrest.svg";
 import icon_bus from "assets/images/bus.png";
-import { useEffect, useState } from "react";
 
 type Direction = "inward" | "outward"
 
@@ -42,21 +44,72 @@ export default function Bus({ bus, direction, index }: BusProps) {
 
     const time_styling = delayed ? [styles.time, styles.delay].join(" ") : styles.time;
 
+    // Used for animation
+    const [h_halft, setHeight] = useState(0);
+    const ref = useRef<HTMLInputElement>(null)
+    const [animRunning, setAnimation] = useState(false);
+
+    // Setup of 3d transformations for rotate-animation
+    useEffect(() => {
+        if (ref.current) setHeight(ref.current.clientHeight / 2);
+    })
+
+    useEffect(() => {
+        if (h_halft > 0) {
+            document.getElementById(`busContainer${column}${row}`).style.transform = `translateZ(-${h_halft}px)`;
+            document.getElementById(`busInfo${column}${row}`).style.transform = `rotateY(0deg) translateZ(${h_halft}px)`;
+            document.getElementById(`busEasteregg${column}${row}`).style.transform = `rotateX(90deg) translateZ(${h_halft}px)`;
+
+        }
+    }, [h_halft])
+
 
     // Applies classes to the information div & hidden easteregg div to trigger the animation.
-    // After 800ms classes are removed and the easteregg is hidden again
+    // -> Chance to rotate or wiggle
     function easteregg() {
-        document.getElementById(`busEasteregg${column}${row}`)?.classList.add(styles.animateEasteregg);
-        document.getElementById(`busInfo${column}${row}`)?.classList.add(styles.animateBus);
+        // Cancel if an animation is already running
+        if (animRunning === true) return;
 
-        setTimeout(() => {
-            document.getElementById(`busEasteregg${column}${row}`)?.classList.remove(styles.animateEasteregg);
-            document.getElementById(`busInfo${column}${row}`)?.classList.remove(styles.animateBus);
-        }, 800)
+
+        // get container and apply animation
+        const elem = document.getElementById(`busContainer${column}${row}`);
+        if (!elem) return;
+        setAnimation(true);
+
+        // Wiggle snippet
+        const wiggle = (duration: number) => {
+            setTimeout(() => {
+                elem.style.transform = `translateZ(-${h_halft}px) rotateX(${10 + 5 * rand}deg)`;
+                setTimeout(() => {
+                    elem.style.transform = `translateZ(-${h_halft}px)`;
+                    setAnimation(false);
+                }, 400)
+            }, duration)
+        }
+
+        // Start animation variant based on chance
+        var hint = false;
+        const rand = Math.random()
+        if (rand > 0.3) {
+            hint = true;
+            elem.style.transform = `translateZ(-${h_halft}px) rotateX(-${10 + 30 * rand}deg)`;
+        }
+        else elem.style.transform = `translateZ(-${h_halft}px) rotateX(-${90 + 15 + 5 * rand}deg)`;
+
+        // Revert effects -> Different timing based on animation
+        if (hint) {
+            wiggle(400)
+        }
+        else {
+            setTimeout(() => {
+                elem.style.transform = `translateZ(-${h_halft}px) rotateX(-90deg)`;
+                wiggle(1000)
+            }, 400)
+        }
     }
 
     return (
-        <div className={[styles.container, column, row].join(" ")} onClick={easteregg}>
+        <div className={[styles.container, column, row].join(" ")} onClick={easteregg} id={`busContainer${column}${row}`} ref={ref}>
             {/**
              * Styling for the easteregg animation
              */}

@@ -4,11 +4,12 @@
 // Container of information element + easteregg
 .container {
     position: relative;
+    transform-style: preserve-3d;
 
-    -webkit-perspective: 13rem;
-    perspective: 13rem;
-
-    display: inline-block;
+    -webkit-transition: transform 0.4s;
+    -moz-transition: transform 0.4s;
+    -o-transition: transform 0.4s;
+    transition: transform 0.4s;
 
     // background for information element + hidden easteregg background
     .background {
@@ -38,8 +39,6 @@
     .easteregg {
         z-index: 1;
 
-        // visibility: hidden;
-
         display: flex;
         position: absolute;
         width: 100%;
@@ -52,21 +51,9 @@
 
         box-shadow: g.$shadow-outer;
 
-        -webkit-transition: all 0.4s;
-        -moz-transition: all 0.4s;
-        -o-transition: all 0.4s;
-        transition: all 0.4s;
-
-        -webkit-transform: rotateX(90deg);
-        -moz-transform: rotateX(90deg);
-        transform: rotateX(90deg);
-
-        -webkit-transform-origin: 50% 50% -50%;
-        -moz-transform-origin: 50% 50% -50%;
-        transform-origin: 50% 50% -50%;
-
-        // color: transparent;
-        // transform: rotateX(-90deg);
+        -webkit-transform: rotateX(90deg) translateZ(100px);
+        -moz-transform: rotateX(90deg) translateZ(100px);
+        transform: rotateX(90deg) translateZ(100px);
     }
 
     // Styling for the information element
@@ -82,18 +69,9 @@
 
         box-shadow: g.$shadow-outer;
 
-        -webkit-transition: all 0.4s;
-        -moz-transition: all 0.4s;
-        -o-transition: all 0.4s;
-        transition: all 0.4s;
-
-        -webkit-transform: rotateX(0deg);
-        -moz-transform: rotateX(0deg);
-        transform: rotateX(0deg);
-
-        -webkit-transform-origin: 50% 50% -1.1rem;
-        -moz-transform-origin: 50% 50% -1.1rem;
-        transform-origin: 50% 50% -1.1rem;
+        -webkit-transform: rotateY(0deg) translateZ(100px);
+        -moz-transform: rotateY(0deg) translateZ(100px);
+        transform: rotateY(0deg) translateZ(100px);
 
         .vertical {
             display: flex;
@@ -126,36 +104,6 @@
             color: g.$warning
         }
     }
-
-    .animateBus {
-        box-shadow: g.$shadow-outer;
-
-        color: transparent;
-
-        -webkit-transform: rotateX(-90deg);
-        -moz-transform: rotateX(-90deg);
-        transform: rotateX(-90deg);
-
-        // hide content when flipping
-        &:nth-child(0) {
-            visibility: hidden;
-        }
-
-        &:nth-child(1) {
-            visibility: hidden;
-        }
-    }
-
-    .animateEasteregg {
-        visibility: visible;
-
-        box-shadow: g.$shadow-outer;
-        -webkit-transform: rotateX(0deg);
-        -moz-transform: rotateX(0deg);
-        transform: rotateX(0deg);
-    }
-
-
 }
 
 // Used for positioning the items in the grid
@@ -178,4 +126,64 @@
 
 .third {
     grid-row: 3;
+}
+
+// Wiggle animation
+
+.wiggle {
+    animation-name: wiggle;
+    animation-duration: 600ms;
+    animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotateX(-2deg);
+    }
+
+    10% {
+        transform: rotateX(2deg);
+    }
+
+    20% {
+        transform: rotateX(-1deg);
+    }
+
+    30% {
+        transform: rotateX(3deg);
+    }
+
+    40% {
+        transform: rotateX(-2deg);
+    }
+
+    50% {
+        transform: rotateX(3deg);
+    }
+
+    60% {
+        transform: rotateX(0deg);
+    }
+
+    100% {
+        transform: rotateX(0deg);
+    }
+}
+
+.hint {
+    animation-name: hint;
+    animation-duration: 500ms;
+    animation-iteration-count: 1;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes hint {
+    50% {
+
+    }
+
+    100% {
+
+    }
 }
