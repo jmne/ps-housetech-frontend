@@ -56,10 +56,9 @@ export default function Bus({ bus, direction, index }: BusProps) {
 
     useEffect(() => {
         if (h_halft > 0) {
-            document.getElementById(`busContainer${column}${row}`).style.transform = `translateZ(-${h_halft}px)`;
-            document.getElementById(`busInfo${column}${row}`).style.transform = `rotateY(0deg) translateZ(${h_halft}px)`;
-            document.getElementById(`busEasteregg${column}${row}`).style.transform = `rotateX(90deg) translateZ(${h_halft}px)`;
-
+            document.getElementById(`busContainer${column}${row}`)!.style.transform = `translateZ(-${h_halft}px)`;
+            document.getElementById(`busInfo${column}${row}`)!.style.transform = `rotateY(0deg) translateZ(${h_halft}px)`;
+            document.getElementById(`busEasteregg${column}${row}`)!.style.transform = `rotateX(90deg) translateZ(${h_halft}px)`;
         }
     }, [h_halft])
 
