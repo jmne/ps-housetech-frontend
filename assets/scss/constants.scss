@@ -1,12 +1,12 @@
 // TYPOGRAPHY
-$text-large: 47px;
-$text-medium: 29px;
-$text-base: 18px;
-$text-small: 12px;
+$text-large: 2.62rem;
+$text-medium: 1.618rem;
+$text-base: 1rem;
+$text-small: 0.7rem;
 
 // COLORS
 $text-primary: #15171B;
-$text-secondary: #494E58;
+$text-secondary: #95989d;
 $main-primary: #435C8B;
 $main-secondary: #A5CF39;
 $background: #F0F0F0;
@@ -16,17 +16,20 @@ $accent1: #7C2D3A;
 $accent2: #DDDD2B;
 $accent3: #3FB6B5;
 $accent4: #319143;
+$warning: #d71a39;
+$success: #A5CF39;
 
 // GAP
-$margin-large: 24px;
-$margin-medium: 18px;
-$margin-base: 12px;
-$margin-small: 6px;
+$margin-large: 32px;
+$margin-medium: 24px;
+$margin-base: 16px;
+$margin-sm: 12px;
+$margin-small: 8px;
 
 // IMAGES
-$icon-large: 80px;
-$icon-base: 40px;
-$icon-small: 20px;
+$icon-large: 4.44rem;
+$icon-base: 2.22rem;
+$icon-small: 1.11rem;
 
 // SIZING
 $border-base: 2px;
