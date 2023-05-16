@@ -1,31 +1,35 @@
 @use "/assets/scss/constants.scss" as g;
 
-// the height of the component in this file?
-//font-family?
-//where to put the font-style?
-
-
-table {
-    width: 100%;
+.headlineWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1;
 }
 
-td {
-    border: 0;
+.logo {
+  padding: g.$margin-base;
 
-    .left {
-        align-items: left;
-    }
-
-    .center {
-        align-items: left;    
-
-    }
-
-    .right {
-        align-items: right;
-    }
+  img {
+    width: auto;
+    height: 90%;
+    padding-top: 0;
+  }
 }
 
-tr {
-    height: 
+// Styling for the centered headline text
+.title {
+  font-weight: bold;
+  font-size: g.$text-medium; //smaller
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Styling specified for the ERCIS logo on the right
+.alignRight {
+  text-align: right;
+
+  img {
+    height: 110%;
+  }
 }

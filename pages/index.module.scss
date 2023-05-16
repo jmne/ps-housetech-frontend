@@ -1,42 +1,41 @@
 @use "/assets/scss/constants.scss" as g;
 
-.wrapper{
-    width: auto;
-    height: auto;
-    display: flex;
-    padding: g.$margin-base;
-    flex-direction: column;
+.wrapper {
+  width: auto;
+  height: auto;
+  display: flex;
+  padding: g.$margin-base;
+  flex-direction: column;
 }
 
 .bodyWrapper {
-    display: grid;
-    flex-grow: 1;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(6, 1fr);
-    gap: g.$margin-base;
+  display: grid;
+  flex-grow: 1;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  gap: g.$margin-base;
 
-    div {
-        width: auto;
-        height: auto;
-        padding: g.$margin-base;
-        background-color: g.$container;
-        box-shadow: g.$shadow-outer;
-        border-radius: g.$border-radius-base;
-    }
+  div {
+    width: auto;
+    height: auto;
+    padding: g.$margin-base;
+    background-color: g.$container;
+    box-shadow: g.$shadow-outer;
+    border-radius: g.$border-radius-base;
+  }
 
-    .largeContainer {
-        grid-row: span 2;
-        grid-column: span 4;
-    }
+  .largeContainer {
+    grid-row: span 2;
+    grid-column: span 4;
+  }
 
-    .overlayContainer {
-        grid-row: span 1;
-        grid-column: span 4;
-    }
+  .overlayContainer {
+    grid-row: span 1;
+    grid-column: span 4;
+  }
 
-    .smallContainer {
-        grid-row: span 1;
-        grid-column: span 2;
-    }
+  .smallContainer {
+    grid-row: span 1;
+    grid-column: span 2;
+  }
 }
-

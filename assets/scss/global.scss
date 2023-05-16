@@ -1,21 +1,22 @@
 @use "/assets/scss/constants.scss" as g;
 
-html,body {
-    background-color: g.$background;
-    color: g.$text-primary;
-    font-size: g.$text-base;
+html,
+body {
+  background-color: g.$background;
+  color: g.$text-primary;
+  font-size: g.$text-base;
 }
 
 html,
 body,
-body>div:first-child,
+body > div:first-child,
 div#__next,
-div#__next>div {
-    margin: 0;
-    height: 100vh;
-    width: 100vw;
+div#__next > div {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
