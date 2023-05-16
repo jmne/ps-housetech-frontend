@@ -1,10 +1,8 @@
 // IMPORTS - COMPONENTS
 import Headline from "@/components/headline/headline";
 
-
 // IMPORTS - ASSETS
 import styles from "@/pages/index.module.scss";
-
 
 export default function Index() {
   return (
