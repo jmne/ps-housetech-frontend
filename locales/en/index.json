@@ -1,0 +1,11 @@
+{
+    "header": {
+        "title": "Department of Information Systems"
+    },
+    "index": {
+        "wayfinder": "Where is?",
+        "busplan": "Bus plan",
+        "cafeteria_plan": "Cafeteria plan",
+        "news": "News"
+    }
+}

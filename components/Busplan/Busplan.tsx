@@ -1,5 +1,6 @@
 // IMPORTS - BUILTINS
 import useBusplan from "hooks/useBusplan"
+import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 
 // IMPORTS - COMPONENTS
@@ -34,6 +35,8 @@ function splitBusses(busses: Busride[]) {
  * @returns Busplan showing Busses sorted by "inward" and "outward" busses
  */
 export default function Busplan() {
+    const {t} = useTranslation('index')
+
     // Retrieve data and define states for inward & outward busses
     const { data, isLoading, error } = useBusplan();
     const [busses_inward, setInward] = useState<Busride[]>([])
@@ -51,7 +54,7 @@ export default function Busplan() {
     return (
         <section className={[indexStyles.smallContainer, indexStyles.contentSection].join(" ")}>
             <div className={indexStyles.cardHeadline}>
-                <h2>Busplan</h2>
+                <h2>{t('index.busplan')}</h2>
             </div>
             <ol className={busStyles.busplan}>
                 {busses_inward.map((bus, index) => (
