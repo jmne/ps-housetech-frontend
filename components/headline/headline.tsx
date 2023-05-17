@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 // IMPORTS - ASSETS
-import styles from "components/headline/headline.module.scss";
+import styles from "@/components/Headline/Headline.module.scss";
 
 // IMPORTS - ICONS
 import logoWWU from "assets/images/wwu.svg";
