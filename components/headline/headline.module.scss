@@ -1,0 +1,35 @@
+@use "/assets/scss/constants.scss" as g;
+
+.headlineWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1;
+}
+
+.logo {
+  padding: g.$margin-base;
+
+  img {
+    width: auto;
+    height: 90%;
+    padding-top: 0;
+  }
+}
+
+// Styling for the centered headline text
+.title {
+  font-weight: bold;
+  font-size: g.$text-medium; //smaller
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Styling specified for the ERCIS logo on the right
+.alignRight {
+  text-align: right;
+
+  img {
+    height: 110%;
+  }
+}
