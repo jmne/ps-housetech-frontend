@@ -1,5 +1,5 @@
 // IMPORTS - COMPONENTS
-import Headline from "@/components/headline/headline";
+import Headline from "@/components/Headline/Headline";
 import Busplan from '@/components/Busplan/Busplan'
 
 // IMPORTS - ASSETS

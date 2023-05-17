@@ -1,4 +1,4 @@
-import Headline from "@/components/headline/headline";
+import Headline from "@/components/Headline/Headline";
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
 
