@@ -7,5 +7,6 @@ describe("Homepage", () => {
     render(<Home />);
     // Check for test string
     expect(screen.getByText("Busplan")).toBeInTheDocument();
+    expect(screen.getByText("Department of Information Systems")).toBeInTheDocument();
   });
 });
