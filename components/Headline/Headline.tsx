@@ -16,7 +16,12 @@ export default function Headline() {
   return (
     <div className={styles.headlineWrapper}>
       <div className={styles.logo}>
-        <Image src={logoWWU} alt="WWU Logo" fill={false} className={[styles.logo, styles.wwu].join(" ")} />
+        <Image
+          src={logoWWU}
+          alt="WWU Logo"
+          fill={false}
+          className={[styles.logo, styles.wwu].join(" ")}
+        />
       </div>
       <div className={styles.title}>
         <h1>Department of Information Systems</h1>
