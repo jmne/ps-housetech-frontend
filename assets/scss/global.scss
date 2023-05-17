@@ -2,21 +2,22 @@
 
 html,
 body {
-  background-color: g.$background;
-  color: g.$text-primary;
-  font-size: g.$text-base;
+    background-color: g.$background;
+    color: g.$text-primary;
+    font-size: calc(12px + 0.4vw);
 }
 
 html,
 body,
 body > div:first-child,
 div#__next,
-div#__next > div {
-  margin: 0;
-  height: 100vh;
-  width: 100vw;
+div#__next>main {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
+
