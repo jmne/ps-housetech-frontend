@@ -1,5 +1,5 @@
 // IMPORTS - COMPONENTS
-import Headline from "@/components/headline/headline";
+import Headline from "@/components/headline/Headline";
 
 // IMPORTS - ASSETS
 import styles from "@/pages/index.module.scss";
