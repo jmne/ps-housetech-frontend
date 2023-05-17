@@ -2,34 +2,32 @@
 
 .headlineWrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 1fr;
+  align-items: center;
+  margin-block-start: 0.2rem;
+  margin-block-end: 0.2rem;
 }
 
 .logo {
-  padding: g.$margin-base;
-
+  width: calc(g.$icon-xm *2);
+  height: g.$icon-xm;
   img {
-    width: auto;
-    height: 90%;
-    padding-top: 0;
+    object-fit: contain;
+  }
+  .wwu {
+    margin-inline-start: 0.3rem;
   }
 }
 
 // Styling for the centered headline text
 .title {
-  font-weight: bold;
-  font-size: g.$text-medium; //smaller
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-// Styling specified for the ERCIS logo on the right
-.alignRight {
-  text-align: right;
-
-  img {
-    height: 110%;
+  h1 {
+    font-weight: bold;
+    font-size: g.$text-medium; //smaller
+    margin: 0
   }
 }
