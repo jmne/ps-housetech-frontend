@@ -46,3 +46,23 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 
 ### 🛠️ Bugfix
 
+===============================
+
+
+## | [0.1.2] - 2023-05-17
+
+---
+
+### ❌ Breaking Change
+
+### ✨ Feature
+
+- Headline component with ERCIS & WWU logos
+	- WWU logo without text
+- Revised general styling
+	- icon-xm constant added
+
+### 🛠️ Bugfix
+
+
+
