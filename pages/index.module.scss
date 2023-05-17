@@ -1,41 +1,63 @@
 @use "/assets/scss/constants.scss" as g;
 
 .wrapper {
-  width: auto;
-  height: auto;
-  display: flex;
-  padding: g.$margin-base;
-  flex-direction: column;
+    width: auto;
+    height: 100%;
+    display: flex;
+    padding: g.$margin-base;
+    gap: g.$margin-base
 }
 
 .bodyWrapper {
-  display: grid;
-  flex-grow: 1;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: repeat(6, 1fr);
-  gap: g.$margin-base;
+    display: grid;
+    flex-grow: 1;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+    gap: g.$margin-base;
 
-  div {
-    width: auto;
-    height: auto;
-    padding: g.$margin-base;
-    background-color: g.$container;
-    box-shadow: g.$shadow-outer;
-    border-radius: g.$border-radius-base;
-  }
+    .contentSection {
+        width: auto;
+        height: auto;
+        padding: g.$margin-base;
+        background-color: g.$container;
+        box-shadow: g.$shadow-outer;
+        border-radius: g.$border-radius-base;
+    }
 
-  .largeContainer {
-    grid-row: span 2;
-    grid-column: span 4;
-  }
+    .largeContainer {
+        display: flex;
+        flex-direction: column;
+        grid-row: span 2;
+        grid-column: span 5;
+    }
 
-  .overlayContainer {
-    grid-row: span 1;
-    grid-column: span 4;
-  }
+    .overlayContainer {
+        display: flex;
+        grid-row: span 1;
+        grid-column: span 5;
+    }
 
-  .smallContainer {
-    grid-row: span 1;
-    grid-column: span 2;
-  }
+    .smallContainer {
+        flex-direction: column;
+        display: flex;
+        grid-row: span 1;
+        grid-column: span 3;
+    }
 }
+
+.cardHeadline {
+    flex-grow: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: g.$margin-base;
+
+    h2 {
+        font-size: g.$text-base;
+        font-weight: 400;
+        margin: 0;
+    }
+}
+
