@@ -2,10 +2,16 @@
     "header": {
         "title": "Institut für Wirtschaftsinformatik"
     },
-    "index": {
-        "wayfinder": "Wo ist?",
-        "busplan": "Busplan",
-        "cafeteria_plan": "Mensaplan",
-        "news": "Aktuelles"
+    "wayfinder": {
+        "title": "Wo ist?"
+    },
+    "busplan": {
+        "title": "Busplan"
+    },
+    "cafeteria_plan": {
+        "title": "Mensaplan"
+    },
+    "news": {
+        "title": "Aktuelles"
     }
 }

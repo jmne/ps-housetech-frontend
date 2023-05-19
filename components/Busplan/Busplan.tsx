@@ -54,7 +54,7 @@ export default function Busplan() {
     return (
         <section className={[indexStyles.smallContainer, indexStyles.contentSection].join(" ")}>
             <div className={indexStyles.cardHeadline}>
-                <h2>{t('index.busplan')}</h2>
+                <h2>{t('busplan.title')}</h2>
             </div>
             <ol className={busStyles.busplan}>
                 {busses_inward.map((bus, index) => (

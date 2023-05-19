@@ -18,11 +18,11 @@ export default function Index() {
     <div className={styles.wrapper}>
       <Headline />
       <div className={styles.bodyWrapper}>
-        <div className={[styles.largeContainer, styles.contentSection].join(" ")}>{t("index.wayfinder")}</div>
+        <div className={[styles.largeContainer, styles.contentSection].join(" ")}>{t("wayfinder.title")}</div>
         <Busplan />
-        <div className={[styles.smallContainer, styles.contentSection].join(" ")}>{t('index.cafeteria_plan')}</div>
+        <div className={[styles.smallContainer, styles.contentSection].join(" ")}>{t('cafeteria_plan.title')}</div>
         <div className={[styles.overlayContainer, styles.contentSection].join(" ")}>Overlay</div>
-        <div className={[styles.smallContainer, styles.contentSection].join(" ")}>{t('index.news')}</div>
+        <div className={[styles.smallContainer, styles.contentSection].join(" ")}>{t('news.title')}</div>
       </div>
     </div>
   );
