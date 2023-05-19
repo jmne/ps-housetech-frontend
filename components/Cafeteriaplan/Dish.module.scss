@@ -1,0 +1,42 @@
+@use "/assets/scss/constants.scss" as g;
+
+
+.container {
+    padding: g.$margin-sm;
+    background: g.$container-item;
+    border-radius: g.$border-radius-base;
+    display: flex;
+    flex-direction: row;
+    box-shadow: g.$shadow-outer;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+    .dishInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        .name {
+
+        }
+
+        .prices {
+            font-size: g.$text-small;
+            font-weight: 300;
+            color: g.$text-secondary;
+        }
+    }
+
+    .icons {
+        display: flex;
+        flex-direction: row;
+        object-fit: contain;
+        justify-content: end;
+
+        img {
+            width: g.$text-large;
+            height: g.$text-large;
+        }
+    }
