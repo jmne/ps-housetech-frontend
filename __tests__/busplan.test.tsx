@@ -2,11 +2,6 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 
-// Translation Setup
-import i18n from "../i18-test_config";
-import { I18nextProvider } from "react-i18next";
-
-
 import Bus from "@/components/Busplan/Bus";
 import { Busride } from "types/Busride";
 

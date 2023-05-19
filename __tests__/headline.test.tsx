@@ -1,7 +1,6 @@
 // Testing library
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import mockRouter from 'next-router-mock';
 
 // Translation Setup
 import i18n from "../i18-test_config";
@@ -19,6 +18,7 @@ describe("Headline", () => {
     );
     // Check for test string
     expect(screen.getByText("Department of Information Systems")).toBeInTheDocument();
+    
     // Check for images
     expect(screen.getByAltText("WWU Logo")).toBeInTheDocument();
     expect(screen.getByAltText("ERCIS Logo")).toBeInTheDocument();
