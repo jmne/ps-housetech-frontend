@@ -1,6 +1,7 @@
 // Testing library
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
+import mockRouter from 'next-router-mock';
 
 // Translation Setup
 import i18n from "../i18-test_config";
