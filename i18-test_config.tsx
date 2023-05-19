@@ -1,5 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import index from "public/locales/en/index.json"
 
 i18n
     .use(initReactI18next)
@@ -20,4 +21,4 @@ i18n
         resources: { en: { translationsNS: {} } },
     });
 
-export default i18n;
+export default i18n.addResourceBundle("en","index",index,true);

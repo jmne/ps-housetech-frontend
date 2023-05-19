@@ -1,27 +1,25 @@
-import Headline from "@/components/Headline/Headline";
+// Testing library
 import "@testing-library/jest-dom";
-import { screen } from "@testing-library/react";
-import { mount } from 'enzyme';
+import { render, screen } from "@testing-library/react";
 
+// Translation Setup
 import i18n from "../i18-test_config";
 import { I18nextProvider } from "react-i18next";
 
-import wwu_logo from "assets/images/wwu-no-text.svg";
-import ercis_logo from "assets/images/ercis.svg";
+// Component
+import Headline from "@/components/Headline/Headline";
 
 describe("Headline", () => {
   it("Renders the headline", () => {
-    const mounted = mount(
+    render(
       <I18nextProvider i18n={i18n}>
         <Headline />
       </I18nextProvider>
-    )
+    );
     // Check for test string
-    expect(mounted.contains("Department of Information Systems")).toBe(true);
+    expect(screen.getByText("Department of Information Systems")).toBeInTheDocument();
     // Check for images
-    // expect(mounted.getByAltText("WWU Logo")).toBeInTheDocument();
-    // expect(mounted.getByAltText("ERCIS Logo")).toBeInTheDocument();
-    expect(mounted.find("img").prop("src")?.includes(wwu_logo))
-    expect(mounted.find("img").prop("src")?.includes(ercis_logo))
+    expect(screen.getByAltText("WWU Logo")).toBeInTheDocument();
+    expect(screen.getByAltText("ERCIS Logo")).toBeInTheDocument();
   });
 });
