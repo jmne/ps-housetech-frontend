@@ -1,188 +1,177 @@
 @use "/assets/scss/constants.scss" as g;
 
-
 // Container of information element + easteregg
 .container {
-    position: relative;
-    transform-style: preserve-3d;
+  position: relative;
+  transform-style: preserve-3d;
 
-    -webkit-transition: transform 0.4s;
-    -moz-transition: transform 0.4s;
-    -o-transition: transform 0.4s;
-    transition: transform 0.4s;
+  -webkit-transition: transform 0.4s;
+  -moz-transition: transform 0.4s;
+  -o-transition: transform 0.4s;
+  transition: transform 0.4s;
 
-    // background for information element + hidden easteregg background
-    .background {
-        padding: g.$margin-sm;
-        background: g.$container-item;
-        border-radius: g.$border-radius-base;
+  // background for information element + hidden easteregg background
+  .background {
+    padding: g.$margin-sm;
+    background: g.$container-item;
+    border-radius: g.$border-radius-base;
 
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
 
-    .icon {
-        object-fit: contain;
-        width: g.$text-base;
-        height: g.$text-base;
-    }
+  .iconBus {
+    object-fit: contain;
+    width: g.$text-large;
+    height: g.$text-large;
+  }
 
-    .iconBus {
-        object-fit: contain;
-        width: g.$text-large;
-        height: g.$text-large;
-    }
+  // Styling for the hidden easteregg
+  .easteregg {
+    z-index: 1;
 
-    // Styling for the hidden easteregg
-    .easteregg {
-        z-index: 1;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 
-        display: flex;
-        position: absolute;
-        width: 100%;
-        height: 100%;
+    gap: g.$margin-small;
 
-        gap: g.$margin-small;
+    justify-content: center;
+    align-items: center;
 
-        justify-content: center;
-        align-items: center;
+    box-shadow: g.$shadow-outer;
 
-        box-shadow: g.$shadow-outer;
+    -webkit-transform: rotateX(90deg) translateZ(100px);
+    -moz-transform: rotateX(90deg) translateZ(100px);
+    transform: rotateX(90deg) translateZ(100px);
+  }
 
-        -webkit-transform: rotateX(90deg) translateZ(100px);
-        -moz-transform: rotateX(90deg) translateZ(100px);
-        transform: rotateX(90deg) translateZ(100px);
-    }
+  // Styling for the information element
+  .bus {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 
-    // Styling for the information element
-    .bus {
-        position: absolute;
-        width: 100%;
-        height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 
+    box-shadow: g.$shadow-outer;
+
+    -webkit-transform: rotateY(0deg) translateZ(100px);
+    -moz-transform: rotateY(0deg) translateZ(100px);
+    transform: rotateY(0deg) translateZ(100px);
+
+    .vertical {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .lineWrapper {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
         align-items: center;
-
-        box-shadow: g.$shadow-outer;
-
-        -webkit-transform: rotateY(0deg) translateZ(100px);
-        -moz-transform: rotateY(0deg) translateZ(100px);
-        transform: rotateY(0deg) translateZ(100px);
-
-        .vertical {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            .lineWrapper {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                gap: g.$margin-small;
-                overflow: hidden;
-            }
-
-
-        }
-
-        .secondary {
-            font-size: g.$text-small;
-            font-weight: 300;
-            color: g.$text-secondary;
-        }
-
-        .time {
-            text-align: end;
-            white-space: nowrap;
-        }
-
-        .delay {
-            color: g.$warning
-        }
+        gap: g.$margin-small;
+        overflow: hidden;
+      }
     }
+
+    .secondary {
+      font-size: g.$text-small;
+      font-weight: 300;
+      color: g.$text-secondary;
+    }
+
+    .time {
+      text-align: end;
+      white-space: nowrap;
+    }
+
+    .delay {
+      color: g.$warning;
+    }
+  }
 }
 
 // Used for positioning the items in the grid
 
 .inward {
-    grid-column: 1;
+  grid-column: 1;
 }
 
 .outward {
-    grid-column: 2;
+  grid-column: 2;
 }
 
 .first {
-    grid-row: 1;
+  grid-row: 1;
 }
 
 .second {
-    grid-row: 2;
+  grid-row: 2;
 }
 
 .third {
-    grid-row: 3;
+  grid-row: 3;
 }
 
 // Wiggle animation
 
 .wiggle {
-    animation-name: wiggle;
-    animation-duration: 600ms;
-    animation-iteration-count: 1;
-    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-name: wiggle;
+  animation-duration: 600ms;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 @keyframes wiggle {
-    0% {
-        transform: rotateX(-2deg);
-    }
+  0% {
+    transform: rotateX(-2deg);
+  }
 
-    10% {
-        transform: rotateX(2deg);
-    }
+  10% {
+    transform: rotateX(2deg);
+  }
 
-    20% {
-        transform: rotateX(-1deg);
-    }
+  20% {
+    transform: rotateX(-1deg);
+  }
 
-    30% {
-        transform: rotateX(3deg);
-    }
+  30% {
+    transform: rotateX(3deg);
+  }
 
-    40% {
-        transform: rotateX(-2deg);
-    }
+  40% {
+    transform: rotateX(-2deg);
+  }
 
-    50% {
-        transform: rotateX(3deg);
-    }
+  50% {
+    transform: rotateX(3deg);
+  }
 
-    60% {
-        transform: rotateX(0deg);
-    }
+  60% {
+    transform: rotateX(0deg);
+  }
 
-    100% {
-        transform: rotateX(0deg);
-    }
+  100% {
+    transform: rotateX(0deg);
+  }
 }
 
 .hint {
-    animation-name: hint;
-    animation-duration: 500ms;
-    animation-iteration-count: 1;
-    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-name: hint;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 @keyframes hint {
-    50% {
+  50% {
+  }
 
-    }
-
-    100% {
-
-    }
+  100% {
+  }
 }

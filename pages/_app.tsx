@@ -8,7 +8,7 @@ import localFont from "next/font/local";
 // IMPORTS - ASSETS
 import "../assets/scss/global.scss";
 // const trebuchet = localFont({src: "../assets/misc/TrebuchetMS.ttf"});
-import { Inter } from 'next/font/google';
+import { Inter } from "next/font/google";
 
 const inter = Inter({
   subsets: ['latin'],

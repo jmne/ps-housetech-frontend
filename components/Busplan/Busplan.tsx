@@ -7,31 +7,30 @@ import { useEffect, useState } from "react";
 import Bus from "@/components/Busplan/Bus";
 
 // IMPORTS - ASSETS
-import indexStyles from "@/pages/index.module.scss"
-import busStyles from "@/components/Busplan/Busplan.module.scss"
+import indexStyles from "@/pages/index.module.scss";
+import busStyles from "@/components/Busplan/Busplan.module.scss";
 import { Busride } from "types/Busride";
 
-
 /**
- * 
+ *
  * @param busses All the data received regarding busses
  * @returns seperate arrays for inward and outward busses
  */
 function splitBusses(busses: Busride[]) {
-    var inward: Busride[] = [];
-    var outward: Busride[] = [];
+  var inward: Busride[] = [];
+  var outward: Busride[] = [];
 
-    // check .direction property to find out if bus is going in or out of the city
-    busses.forEach(bus => {
-        if (bus.direction === "Einw\u00e4rts") inward.push(bus);
-        else outward.push(bus);
-    });
+  // health-check.js .direction property to find out if bus is going in or out of the city
+  busses.forEach((bus) => {
+    if (bus.direction === "Einw\u00e4rts") inward.push(bus);
+    else outward.push(bus);
+  });
 
-    return ({ inward, outward })
+  return { inward, outward };
 }
 
 /**
- * 
+ *
  * @returns Busplan showing Busses sorted by "inward" and "outward" busses
  */
 export default function Busplan() {
@@ -42,14 +41,14 @@ export default function Busplan() {
     const [busses_inward, setInward] = useState<Busride[]>([])
     const [busses_outward, setoutward] = useState<Busride[]>([])
 
-    // Data is initially 0 when waiting for the API response -> retrigger splitBusses when data changes
-    useEffect(() => {
-        if (isLoading) return;
-        if (error) return;
-        const { inward, outward } = splitBusses(data);
-        setInward(inward);
-        setoutward(outward);
-    }, [data])
+  // Data is initially 0 when waiting for the API response -> retrigger splitBusses when data changes
+  useEffect(() => {
+    if (isLoading) return;
+    if (error) return;
+    const { inward, outward } = splitBusses(data);
+    setInward(inward);
+    setoutward(outward);
+  }, [data]);
 
     return (
         <section className={[indexStyles.smallContainer, indexStyles.contentSection].join(" ")}>

@@ -10,55 +10,54 @@
 }
 
 .bodyWrapper {
-    display: grid;
-    flex-grow: 1;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(8, 1fr);
-    gap: g.$margin-base;
+  display: grid;
+  flex-grow: 1;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(8, 1fr);
+  gap: g.$margin-base;
 
-    .contentSection {
-        width: auto;
-        height: auto;
-        padding: g.$margin-base;
-        background-color: g.$container;
-        box-shadow: g.$shadow-outer;
-        border-radius: g.$border-radius-base;
-    }
+  .contentSection {
+    width: auto;
+    height: auto;
+    padding: g.$margin-base;
+    background-color: g.$container;
+    box-shadow: g.$shadow-outer;
+    border-radius: g.$border-radius-base;
+  }
 
-    .largeContainer {
-        display: flex;
-        flex-direction: column;
-        grid-row: span 2;
-        grid-column: span 5;
-    }
+  .largeContainer {
+    display: flex;
+    flex-direction: column;
+    grid-row: span 2;
+    grid-column: span 5;
+  }
 
-    .overlayContainer {
-        display: flex;
-        grid-row: span 1;
-        grid-column: span 5;
-    }
+  .overlayContainer {
+    display: flex;
+    grid-row: span 1;
+    grid-column: span 5;
+  }
 
-    .smallContainer {
-        flex-direction: column;
-        display: flex;
-        grid-row: span 1;
-        grid-column: span 3;
-    }
+  .smallContainer {
+    flex-direction: column;
+    display: flex;
+    grid-row: span 1;
+    grid-column: span 3;
+  }
 }
 
 .cardHeadline {
-    flex-grow: 0;
+  flex-grow: 0;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    margin-bottom: g.$margin-base;
+  margin-bottom: g.$margin-base;
 
-    h2 {
-        font-size: g.$text-base;
-        font-weight: 400;
-        margin: 0;
-    }
+  h2 {
+    font-size: g.$text-base;
+    font-weight: 400;
+    margin: 0;
+  }
 }
-

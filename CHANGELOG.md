@@ -31,7 +31,6 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 
 [0.0.1]: https://zivgitlab.uni-muenster.de/ml-de/teaching/ps-house-tech/releases/tag/v0.0.1
 
-
 ## | [0.1.1] - 2023-05-13
 
 ---

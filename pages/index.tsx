@@ -7,8 +7,7 @@ import Headline from "@/components/Headline/Headline";
 import Busplan from '@/components/Busplan/Busplan'
 
 // IMPORTS - ASSETS
-import styles from '@/pages/index.module.scss'
-
+import styles from "@/pages/index.module.scss";
 
 export default function Index() {
   const { t } = useTranslation("index")
