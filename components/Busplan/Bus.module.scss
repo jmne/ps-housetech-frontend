@@ -16,10 +16,16 @@
     background: g.$container-item;
     border-radius: g.$border-radius-base;
 
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-    }
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .icon {
+    object-fit: contain;
+    width: g.$text-base;
+    height: g.$text-base;
+  }
 
   .iconBus {
     object-fit: contain;
