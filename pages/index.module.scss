@@ -1,12 +1,12 @@
 @use "/assets/scss/constants.scss" as g;
 
 .wrapper {
-  width: auto;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: g.$margin-base;
-  gap: g.$margin-base;
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: g.$margin-base;
+    gap: g.$margin-base
 }
 
 .bodyWrapper {
