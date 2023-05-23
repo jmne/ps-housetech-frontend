@@ -1,0 +1,17 @@
+{
+    "header": {
+        "title": "Institut für Wirtschaftsinformatik"
+    },
+    "wayfinder": {
+        "title": "Wo ist?"
+    },
+    "busplan": {
+        "title": "Busplan"
+    },
+    "cafeteria_plan": {
+        "title": "Mensaplan"
+    },
+    "news": {
+        "title": "Aktuelles"
+    }
+}
