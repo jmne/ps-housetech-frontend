@@ -1,11 +1,15 @@
 @use "/assets/scss/constants.scss" as g;
 
 .cafeteriaplan {
-  display: grid;
-  grid-auto-rows: calc(33.33% - g.$margin-small);
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  background-attachment: local;
   gap: g.$margin-small;
-
   margin: 0;
   padding: 0;
-  overflow: hidden;
+
+  &::-webkit-scrollbar {
+  display: none;
+}
 }

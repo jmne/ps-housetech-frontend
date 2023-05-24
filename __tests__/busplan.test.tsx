@@ -19,11 +19,13 @@ const dir = "inward";
 const index = 0;
 
 describe("Busplan", () => {
-    it("Renders a single bus-ride component for the busplan", () => {
-        render(<Bus bus={sample_ride} direction={"inward"} index={0} />);
-        // Check for test string
-        expect(screen.getByText(sample_ride.line)).toBeInTheDocument();
-        expect(screen.getByText(sample_ride.going_to)).toBeInTheDocument();
-        expect(screen.getByText(`${sample_ride.minutes_until_departure} min`)).toBeInTheDocument();
-    });
+  it("Renders a single bus-ride component for the busplan", () => {
+    render(<Bus bus={sample_ride} direction={"inward"} index={0} />);
+    // Check for test string
+    expect(screen.getByText(sample_ride.line)).toBeInTheDocument();
+    expect(screen.getByText(sample_ride.going_to)).toBeInTheDocument();
+    expect(
+      screen.getByText(`${sample_ride.minutes_until_departure} min`)
+    ).toBeInTheDocument();
+  });
 });

@@ -9,8 +9,10 @@ import Dish from "@/components/Cafeteriaplan/Dish";
 import indexStyles from "@/pages/index.module.scss";
 import cafeteriaStyles from "@/components/Cafeteriaplan/Cafeteriaplan.module.scss";
 import { DishInformation } from "types/DishInformation";
+import { useTranslation } from "next-i18next";
 
 export default function Cafeteriaplan() {
+  const { t }=useTranslation("index");
   const { data, isLoading, error } = useCafeteriaplan();
 
   return (
@@ -18,7 +20,7 @@ export default function Cafeteriaplan() {
       className={[indexStyles.smallContainer, indexStyles.contentSection].join(" ")}
     >
       <div className={indexStyles.cardHeadline}>
-        <h2>Cafeteriaplan</h2>
+        <h2>{t("cafeteria_plan.title")}</h2>
       </div>
       <ol className={cafeteriaStyles.cafeteriaplan}>
         {data.map((dish, index) => (
