@@ -11,18 +11,18 @@ import icon_chicken from "assets/images/foodicons/chicken.png";
 import icon_pork from "assets/images/foodicons/pork.png";
 import icon_beef from "assets/images/foodicons/beef.png";
 import icon_fish from "assets/images/foodicons/fish.png";
-import icon_vegetarian from "assets/foodicons/images/vegetarian.png";
+import icon_vegetarian from "assets/images/foodicons/vegetarian.png";
 import icon_vegan from "assets/images/foodicons/vegan.png";
 import icon_alcohol from "assets/images/foodicons/alcohol.png";
 
 const getIcon = {
-  Gfl: "assets/images/foodicons/chicken.png",
-  Sch: "assets/images/foodicons/pork.png",
-  Rin: "assets/images/foodicons/beef.png",
-  Fis: "assets/images/foodicons/fish.png",
-  Vgt: "assets/images/foodicons/vegetarian.png",
-  Vgn: "assets/images/foodicons/vegan.png",
-  Alk: "assets/images/foodicons/alcohol.png"
+  Gfl: icon_chicken,
+  Sch: icon_pork,
+  Rin: icon_beef,
+  Fis: icon_fish,
+  Vgt: icon_vegetarian,
+  Vgn: icon_vegan,
+  Alk: icon_alcohol
 };
 
 interface DishProps {
@@ -38,13 +38,9 @@ export default function Dish({ dish }: DishProps) {
         </span>
       </div>
       <div className={styles.icons}>
-        {/**
-                    * {dish.foodicons.map((icon) => (
-                    *    <Image src={getIcon[icon]} alt={"Foodicon"} fill={false} className={styles.icons} />
-                    *    
-                    *))
-                    }*/}
-        <Image src={icon_chicken} alt={"chicken"} fill={false} className={styles.icons} />
+        {dish.foodicons.map((icon) => (
+          <Image src={getIcon[icon]} alt={"Foodicon"} fill={false} className={styles.icons} />
+        ))}
       </div>
     </div>
   );

@@ -9,15 +9,14 @@
   box-shadow: g.$shadow-outer;
   justify-content: space-between;
   align-items: center;
+
+  box-sizing: content-box;
 }
 
 .dishInfo {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  .name {
-  }
 
   .prices {
     font-size: g.$text-small;

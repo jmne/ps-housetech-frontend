@@ -15,6 +15,7 @@ export default function Cafeteriaplan() {
   const { t } = useTranslation("index");
   const { data, isLoading, error } = useCafeteriaplan();
 
+
   return (
     <section
       className={[indexStyles.smallContainer, indexStyles.contentSection, cafeteriaStyles.shadowFix].join(" ")}
@@ -24,7 +25,10 @@ export default function Cafeteriaplan() {
       </div>
       <ol className={[cafeteriaStyles.cafeteriaplan, cafeteriaStyles.scrolling].join(" ")}>
         {data.map((dish, index) => (
+          (index === 2) ? 
+          <><Dish dish={dish} key={index} /><div></div></> : 
           <Dish dish={dish} key={index} />
+
         ))}
       </ol>
     </section>

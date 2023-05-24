@@ -2,7 +2,7 @@
 
 .cafeteriaplan {
   display: grid;
-  grid-template-rows: repeat(3, (calc(33.33% - (2/3) * g.$margin-small)));
+  grid-template-rows: repeat(3, (calc(33.33% - (2/3) * g.$margin-small))) calc(g.$margin-base / 2);
   grid-auto-rows: calc(33% - g.$margin-small);
   gap: g.$margin-small;
   
@@ -10,8 +10,9 @@
   max-height: 100%;
   
   margin: 0;
-  margin-block-start: g.$margin-base;
+  margin-block-start: calc(g.$margin-base / 2);
   padding-inline: g.$margin-base;
+  padding-block-start: calc(g.$margin-base / 2);
   padding-block-end: g.$margin-base;
 
   overflow-y: scroll;
@@ -19,10 +20,6 @@
 
   &::-webkit-scrollbar {
     display: none;
-  }
-
-  &:nth-child(3){
-    padding-inline-start: (g.$margin-base*2);
   }
 }
 
