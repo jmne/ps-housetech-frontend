@@ -1,0 +1,68 @@
+@use "/assets/scss/constants.scss" as g;
+
+$flagHeight: g.$icon-base;
+$selectorHeight: 0.3rem;
+$border: g.$border-radius-base;
+$gap: g.$margin-small;
+$animDuration: 0.5s;
+$animDelay: $animDuration;
+
+.wrapper {
+  list-style: none;
+  display: flex;
+  gap: $gap;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 0;
+    margin: 0;
+    height: $flagHeight;
+    width: $flagHeight * 1.5;
+    border-radius: $border;
+
+    cursor: pointer;
+
+    z-index: 1;
+    opacity: 0.4;
+
+    transition: all $animDuration;
+
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .selector {
+    position: absolute;
+
+    height: $selectorHeight;
+    width: $flagHeight * 1.5;
+
+    background-color: #f4d257;
+    border-radius: $border $border ($border * 4) ($border * 4);
+
+    // Yellow of the german flag
+    box-shadow: 0px -10px 20px 3px #f4d257;
+    transform: translateY($flagHeight + $gap * 1.2);
+
+    transition: all $animDuration;
+
+    &.secondSelector {
+      background-color: g.$main-primary;
+      // Blue of the uk flag
+      box-shadow: 0px -10px 20px 3px #1f316e;
+      transform: translateY($flagHeight + $gap * 1.2) translateX($flagHeight * 1.5 + $gap);
+    }
+  }
+}
+
+.flag {
+  height: 100%;
+  width: 100%;
+}

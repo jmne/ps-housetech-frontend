@@ -17,6 +17,8 @@ RUN npm install
 # Copy all files
 COPY ./ ./
 
+RUN apk --no-cache add curl
+
 # Build app
 RUN npm run build
 

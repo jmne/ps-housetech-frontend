@@ -38,3 +38,13 @@ run-linting:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: never
     - when: always
+test-build:
+  stage: test
+  needs: []
+  script:
+    - echo "Testing building..."
+    - npm run build
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - when: always
