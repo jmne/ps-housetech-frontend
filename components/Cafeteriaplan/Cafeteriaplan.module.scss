@@ -1,17 +1,11 @@
 @use "/assets/scss/constants.scss" as g;
 
-.cafeteriaplan{
-    display: grid;
-    grid-auto-rows: calc(33.33% - g.$margin-small);
-    gap: g.$margin-small;
+.cafeteriaplan {
+  display: grid;
+  grid-auto-rows: calc(33.33% - g.$margin-small);
+  gap: g.$margin-small;
 
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
-
-
-
-
-
-

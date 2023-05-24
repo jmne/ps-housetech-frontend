@@ -16,39 +16,36 @@ import icon_vegan from "assets/images/foodicons/vegan.png";
 import icon_alcohol from "assets/images/foodicons/alcohol.png";
 
 const getIcon = {
-    "Gfl": "assets/images/foodicons/chicken.png",
-    "Sch": "assets/images/foodicons/pork.png",
-    "Rin": "assets/images/foodicons/beef.png",
-    "Fis": "assets/images/foodicons/fish.png",
-    "Vgt": "assets/images/foodicons/vegetarian.png",
-    "Vgn": "assets/images/foodicons/vegan.png",
-    "Alk": "assets/images/foodicons/alcohol.png",
-}
-
-
+  Gfl: "assets/images/foodicons/chicken.png",
+  Sch: "assets/images/foodicons/pork.png",
+  Rin: "assets/images/foodicons/beef.png",
+  Fis: "assets/images/foodicons/fish.png",
+  Vgt: "assets/images/foodicons/vegetarian.png",
+  Vgn: "assets/images/foodicons/vegan.png",
+  Alk: "assets/images/foodicons/alcohol.png"
+};
 
 interface DishProps {
-    dish: DishInformation
+  dish: DishInformation;
 }
-export default function Dish({ dish }:DishProps) {  
-    return (
-         
-             <div className={styles.container}>
-                <div className={styles.dishInfo}>
-                    <span className={styles.name}>{dish.meal}</span>
-                    <span className={styles.prices}>{dish.price1}€ | {dish.price3}€</span>
-                </div>
-                <div className={styles.icons}>
-                  {/**
+export default function Dish({ dish }: DishProps) {
+  return (
+    <div className={styles.container}>
+      <div className={styles.dishInfo}>
+        <span className={styles.name}>{dish.meal}</span>
+        <span className={styles.prices}>
+          {dish.price1}€ | {dish.price3}€
+        </span>
+      </div>
+      <div className={styles.icons}>
+        {/**
                     * {dish.foodicons.map((icon) => (
                     *    <Image src={getIcon[icon]} alt={"Foodicon"} fill={false} className={styles.icons} />
                     *    
                     *))
                     }*/}
-                    <Image src={icon_chicken} alt={"chicken"} fill={false} className={styles.icons} />
-                </div> 
-             </div>
-             
-    )
+        <Image src={icon_chicken} alt={"chicken"} fill={false} className={styles.icons} />
+      </div>
+    </div>
+  );
 }
-

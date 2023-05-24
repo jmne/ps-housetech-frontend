@@ -10,7 +10,7 @@
 }
 
 .logo {
-  width: calc(g.$icon-xm *2);
+  width: calc(g.$icon-xm * 2);
   height: g.$icon-xm;
   img {
     object-fit: contain;
@@ -28,6 +28,6 @@
   h1 {
     font-weight: bold;
     font-size: g.$text-medium; //smaller
-    margin: 0
+    margin: 0;
   }
 }
