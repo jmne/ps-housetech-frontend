@@ -4,7 +4,8 @@ import { useTranslation } from "next-i18next";
 
 // IMPORTS - COMPONENTS
 import Headline from "@/components/Headline/Headline";
-import Busplan from '@/components/Busplan/Busplan'
+import Busplan from "@/components/Busplan/Busplan";
+import Cafeteriaplan from "@/components/Cafeteriaplan/Cafeteriaplan";
 
 // IMPORTS - ASSETS
 import styles from "@/pages/index.module.scss";
@@ -20,7 +21,7 @@ export default function Index() {
       <div className={styles.bodyWrapper}>
         <Wayfinder />
         <Busplan />
-        <div className={[styles.smallContainer, styles.contentSection].join(" ")}>{t('cafeteria_plan.title')}</div>
+        <Cafeteriaplan />
         <div className={[styles.overlayContainer, styles.contentSection].join(" ")}>Overlay</div>
         <div className={[styles.smallContainer, styles.contentSection].join(" ")}>{t('news.title')}</div>
       </div>

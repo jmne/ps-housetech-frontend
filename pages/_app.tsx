@@ -11,7 +11,7 @@ import "../assets/scss/global.scss";
 import { Inter } from "next/font/google";
 
 const inter = Inter({
-  subsets: ['latin'],
+  subsets: ["latin"],
   weight: ["300", "400", "500"]
 });
 
@@ -19,6 +19,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
   <main className={inter.className}>
     <Component {...pageProps} />
   </main>
-)
+);
 
-export default appWithTranslation(MyApp)
+export default appWithTranslation(MyApp);

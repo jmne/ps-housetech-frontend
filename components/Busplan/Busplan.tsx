@@ -1,5 +1,5 @@
 // IMPORTS - BUILTINS
-import useBusplan from "hooks/useBusplan"
+import useBusplan from "hooks/useBusplan";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 
@@ -20,7 +20,7 @@ function splitBusses(busses: Busride[]) {
   var inward: Busride[] = [];
   var outward: Busride[] = [];
 
-  // health-check.js .direction property to find out if bus is going in or out of the city
+  // check .direction property to find out if bus is going in or out of the city
   busses.forEach((bus) => {
     if (bus.direction === "Einw\u00e4rts") inward.push(bus);
     else outward.push(bus);
@@ -34,12 +34,12 @@ function splitBusses(busses: Busride[]) {
  * @returns Busplan showing Busses sorted by "inward" and "outward" busses
  */
 export default function Busplan() {
-    const {t} = useTranslation('index')
+  const { t } = useTranslation("index");
 
-    // Retrieve data and define states for inward & outward busses
-    const { data, isLoading, error } = useBusplan();
-    const [busses_inward, setInward] = useState<Busride[]>([])
-    const [busses_outward, setoutward] = useState<Busride[]>([])
+  // Retrieve data and define states for inward & outward busses
+  const { data, isLoading, error } = useBusplan();
+  const [busses_inward, setInward] = useState<Busride[]>([]);
+  const [busses_outward, setoutward] = useState<Busride[]>([]);
 
   // Data is initially 0 when waiting for the API response -> retrigger splitBusses when data changes
   useEffect(() => {
@@ -50,19 +50,21 @@ export default function Busplan() {
     setoutward(outward);
   }, [data]);
 
-    return (
-        <section className={[indexStyles.smallContainer, indexStyles.contentSection].join(" ")}>
-            <div className={indexStyles.cardHeadline}>
-                <h2>{t('busplan.title')}</h2>
-            </div>
-            <ol className={busStyles.busplan}>
-                {busses_inward.map((bus, index) => (
-                    <Bus bus={bus} direction={"inward"} index={index} key={index}/>
-                ))}
-                {busses_outward.map((bus, index) => (
-                    <Bus bus={bus} direction={"outward"} index={index} key={index}/>
-                ))}
-            </ol>
-        </section>
-    )
+  return (
+    <section
+      className={[indexStyles.smallContainer, indexStyles.contentSection].join(" ")}
+    >
+      <div className={indexStyles.cardHeadline}>
+        <h2>{t("busplan.title")}</h2>
+      </div>
+      <ol className={busStyles.busplan}>
+        {busses_inward.map((bus, index) => (
+          <Bus bus={bus} direction={"inward"} index={index} key={index} />
+        ))}
+        {busses_outward.map((bus, index) => (
+          <Bus bus={bus} direction={"outward"} index={index} key={index} />
+        ))}
+      </ol>
+    </section>
+  );
 }
