@@ -12,7 +12,7 @@ interface props {
 
 export function SearchBar({ setter, placeholder }: props) {
     return (
-        <div className={styles.searchField}>
+        <div className={[styles.searchField, styles.background].join(" ")}>
             <Image src={icon_search} alt={"search icon"} fill={false} className={styles.icon} />
             <input className={styles.input} type="text" onChange={(e) => setter(e.target.value)} placeholder={placeholder}/>
         </ div>

@@ -6,41 +6,63 @@
     grid-template-rows: 1fr;
 }
 
+.background {
+    border-radius: g.$border-radius-base;
+    background-color: g.$container-item;
+}
+
 .searchSection {
     display: flex;
     flex-direction: column;
     width: 100%;
 
-    border: 2px solid g.$main-primary;
-
     .searchField {
+        width: 100%;
+        height: fit-content;
+        padding-inline: g.$margin-small;
+
         display: flex;
         flex-direction: row;
+        align-items: center;
+        gap: g.$margin-small;
 
-        width: 100%;
-        border: 2px solid g.$accent1;
+
+        border: 2px solid g.$main-primary;
+
+        &:focus-within{
+            background-color: g.$main-primary-tint;
+        }
     }
-
+    
     .icon {
         width: g.$icon-base;
         height: g.$icon-base;
-
-        fill: g.$main-primary;
-
-        border: 2px solid g.$main-secondary;
     }
-
+    
     .input {
         flex-grow: 1;
-
+        height: 100%;
+        
+        
+        background-color: transparent;
+        
+        border: none;
+        
         color: g.$text-primary;
-        border: 2px solid g.$main-secondary;
+        font-size: g.$text-base;
+        
+        &:focus{
+            outline: none;
+            animation: 0.5s 1 forwards grow;
+        }
     }
 
     ol {
         list-style: none;
         margin: 0;
         padding: 0;
+
+        overflow-y: scroll;
     }
 }
 
@@ -52,11 +74,14 @@
 
     list-style-type: none;
 
-    border: 2px solid g.$accent1;
-    background-color: g.$main-secondary;
-
     .caption {
         color: g.$text-secondary;
         font-size: g.$text-small;
+    }
+}
+
+@keyframes grow{
+    40% {
+        transform: scale(1.05);
     }
 }
