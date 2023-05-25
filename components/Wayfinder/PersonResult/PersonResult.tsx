@@ -6,10 +6,11 @@ interface props {
 }
 
 export function PersonResult({ person }: props) {
+
     return (
         <li className={styles.person}>
             <span>{person.name}</span>
-            <span>{person.department}</span>
+            <span className={styles.caption}>{person.department}</span>
         </li>
     )
 }

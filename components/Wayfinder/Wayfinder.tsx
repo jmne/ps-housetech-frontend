@@ -47,7 +47,9 @@ export function Wayfinder() {
             <div className={styles_wayfinder.searchSection}>
                 <SearchBar setter={setInput} placeholder={t("wayfinder.title")} />
                 <ol>
-                    {filteredPersons.map(p => <PersonResult person={p} key={`${p.name}${p.department}`}/>)}
+                    {filteredPersons.map(p =>
+                        <PersonResult person={p} key={`${p.name}${p.department}`} />
+                    )}
                 </ol>
             </div>
 

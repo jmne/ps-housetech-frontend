@@ -2,13 +2,13 @@
 
 .container {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: min(30%, 500px) 1fr;
     grid-template-rows: 1fr;
 }
 
 .background {
     border-radius: g.$border-radius-base;
-    background-color: g.$container-item;
+    background: g.$container-item;
 }
 
 .searchSection {
@@ -16,10 +16,14 @@
     flex-direction: column;
     width: 100%;
 
+
     .searchField {
-        width: 100%;
+        width: auto;
         height: fit-content;
         padding-inline: g.$margin-small;
+
+        margin-block-start: g.$margin-base;
+        margin-inline: g.$margin-base;
 
         display: flex;
         flex-direction: row;
@@ -60,8 +64,8 @@
     ol {
         list-style: none;
         margin: 0;
-        padding: 0;
-
+        padding-inline: g.$margin-base;
+        padding-block-end: g.$margin-base;
         overflow-y: scroll;
     }
 }
@@ -69,10 +73,17 @@
 .person {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
+    margin-block-start: g.$margin-small;
     padding: g.$margin-small;
 
     list-style-type: none;
+    box-shadow: g.$shadow-outer;
+
+    border-radius: g.$border-radius-base;
+
+    height: 4rem;
 
     .caption {
         color: g.$text-secondary;
