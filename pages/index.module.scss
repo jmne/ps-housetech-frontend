@@ -26,8 +26,6 @@
   }
 
   .largeContainer {
-    display: flex;
-    flex-direction: column;
     grid-row: span 2;
     grid-column: span 5;
   }

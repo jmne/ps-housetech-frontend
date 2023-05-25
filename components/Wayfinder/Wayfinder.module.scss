@@ -1,0 +1,62 @@
+@use "/assets/scss/constants.scss" as g;
+
+.container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 1fr;
+}
+
+.searchSection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    border: 2px solid g.$main-primary;
+
+    .searchField {
+        display: flex;
+        flex-direction: row;
+
+        width: 100%;
+        border: 2px solid g.$accent1;
+    }
+
+    .icon {
+        width: g.$icon-base;
+        height: g.$icon-base;
+
+        fill: g.$main-primary;
+
+        border: 2px solid g.$main-secondary;
+    }
+
+    .input {
+        flex-grow: 1;
+
+        color: g.$text-primary;
+        border: 2px solid g.$main-secondary;
+    }
+
+    ol {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.person {
+    display: flex;
+    flex-direction: column;
+
+    padding: g.$margin-small;
+
+    list-style-type: none;
+
+    border: 2px solid g.$accent1;
+    background-color: g.$main-secondary;
+
+    .caption {
+        color: g.$text-secondary;
+        font-size: g.$text-small;
+    }
+}

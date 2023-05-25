@@ -8,6 +8,7 @@ import Busplan from '@/components/Busplan/Busplan'
 
 // IMPORTS - ASSETS
 import styles from "@/pages/index.module.scss";
+import { Wayfinder } from '@/components/Wayfinder/Wayfinder';
 
 export default function Index() {
   const { t } = useTranslation("index")
@@ -17,7 +18,7 @@ export default function Index() {
     <div className={styles.wrapper}>
       <Headline />
       <div className={styles.bodyWrapper}>
-        <div className={[styles.largeContainer, styles.contentSection].join(" ")}>{t("wayfinder.title")}</div>
+        <Wayfinder />
         <Busplan />
         <div className={[styles.smallContainer, styles.contentSection].join(" ")}>{t('cafeteria_plan.title')}</div>
         <div className={[styles.overlayContainer, styles.contentSection].join(" ")}>Overlay</div>
