@@ -56,7 +56,7 @@ const SvgLeo3Floor1 = (props: SVGProps<SVGSVGElement>) => (
       clipRule="evenodd"
       fill="#852339"
       points="281.47,336.47 214.03,287.85 166.78,321.31   234.23,369.937 "
-      id="polygon11"
+      id="room-122"
     />
     <polygon
       fill="none"
