@@ -22,12 +22,14 @@ export function PersonResult({ person }: props) {
         if (selectedPersonContext.current_person === person){
             selectedPersonContext.setPerson(undefined)
             mapContext.setRoom(undefined)
+            mapContext.setBuilding(undefined)
         }
         // Other person was selected before -> Set focus on this person
         else {
             console.log("SET NEW")
             selectedPersonContext.setPerson(person)
             mapContext.setRoom(person.room)
+            mapContext.setBuilding(person.building)
         }
     }
 
@@ -37,7 +39,8 @@ export function PersonResult({ person }: props) {
             <span className={styles.caption}>{person.department}</span>
             <div className={styles.hidden}>
                 <span className={styles.attribute}>{t("wayfinder.search.room")}</span><span className={styles.caption}>{person.room}</span><br />
-                <span className={styles.attribute}>{t("wayfinder.search.phone")}</span><span className={styles.caption}>{person.phone}</span>
+                <span className={styles.attribute}>{t("wayfinder.search.phone")}</span><span className={styles.caption}>{person.phone}</span><br />
+                <span className={styles.attribute}>{t("wayfinder.search.phone")}</span><span className={styles.caption}>{person.building}</span>
             </div>
         </li>
     )
