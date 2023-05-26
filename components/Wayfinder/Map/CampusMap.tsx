@@ -60,12 +60,12 @@ function getFloorNumber(room: string | number): number {
  * @param room
  * @param building
  */
-function roomInBuilding(room: string, building: CampusBuilding) {
-    if (room === "017" && building === "leo3") return false
-    if (building === "leo11") return false
+function roomInBuilding(room: string, current_building: CampusBuilding) {
+    if (room == "017" && current_building == "leo3") return false
+    else if(room == "017" && current_building == "leo11") return true
 
-    if (building === "leo3") return true
-    else return false
+    if (current_building == "leo11") return false
+    return true
 }
 
 type out_of_frame_direction = "left" | "right"
@@ -238,12 +238,14 @@ export function CampusMap() {
      */
     function manageNewHighlight(room: string, b: CampusBuilding) {
         const already_in_correct_building = roomInBuilding(room, current_building)
+        console.log(already_in_correct_building)
         const wait_for_building_switch = already_in_correct_building ? 0 : (animationDuration * 2)
 
         let buildingMoved = false
 
         // If needed -> Move building into frame
         if (!already_in_correct_building) {
+            console.log("Moving building")
             // Case: move to Leo 3
             if (current_building === "leo11") {
                 console.log("Move to leo 3")
