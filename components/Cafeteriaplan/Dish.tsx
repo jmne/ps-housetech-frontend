@@ -38,8 +38,8 @@ export default function Dish({ dish }: DishProps) {
         </span>
       </div>
       <div className={styles.icons}>
-        {dish.foodicons.map((icon) => (
-          <Image src={getIcon[icon]} alt={"Foodicon"} fill={false} className={styles.icons} />
+        {dish.foodicons.map((icon, index) => (
+          <Image src={getIcon[icon]} alt={"Foodicon"} fill={false} className={styles.icons} key={`${dish.meal}-icon-${icon}`}/>
         ))}
       </div>
     </div>

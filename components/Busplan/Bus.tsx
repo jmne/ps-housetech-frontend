@@ -8,8 +8,8 @@ import { Busride } from "types/Busride";
 import styles from "@/components/Busplan/Bus.module.scss";
 
 // IMPORTS - ICONS
-import icon_inward from "assets/images/icon_city.svg";
-import icon_outward from "assets/images/icon_forrest.svg";
+import icon_inward from "assets/images/icon_city.svg?url";
+import icon_outward from "assets/images/icon_forrest.svg?url";
 import icon_bus from "assets/images/bus.png";
 
 type Direction = "inward" | "outward";

@@ -3,7 +3,7 @@ import Image from "next/image"
 
 // IMPORTS - ASSETS
 import styles from "@/components/Wayfinder/Wayfinder.module.scss"
-import icon_search from "assets/images/icon_search.svg"
+import IconSearch from "assets/images/icon_search.svg"
 
 interface props {
     setter: Function,
@@ -13,8 +13,10 @@ interface props {
 export function SearchBar({ setter, placeholder }: props) {
     return (
         <div className={[styles.searchField, styles.background].join(" ")}>
-            <Image src={icon_search} alt={"search icon"} fill={false} className={styles.icon} />
-            <input className={styles.input} type="text" onChange={(e) => setter(e.target.value)} placeholder={placeholder}/>
+            <div className={styles.iconWrapper}>
+                <IconSearch className={styles.icon} />
+            </div>
+            <input className={styles.input} type="text" onChange={(e) => setter(e.target.value)} placeholder={placeholder} />
         </ div>
     )
 }

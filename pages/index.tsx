@@ -11,6 +11,10 @@ import Cafeteriaplan from "@/components/Cafeteriaplan/Cafeteriaplan";
 import styles from "@/pages/index.module.scss";
 import { Wayfinder } from '@/components/Wayfinder/Wayfinder';
 
+// IMPORTS - CONTEXT
+import { SelectedPersonProvider } from 'context/PersonContext';
+import { MapProvider } from "context/mapContext";
+
 export default function Index() {
   const { t } = useTranslation("index")
   console.log(t)
@@ -19,7 +23,11 @@ export default function Index() {
     <div className={styles.wrapper}>
       <Headline />
       <div className={styles.bodyWrapper}>
-        <Wayfinder />
+        <MapProvider>
+          <SelectedPersonProvider>
+            <Wayfinder />
+          </SelectedPersonProvider>
+        </MapProvider>
         <Busplan />
         <Cafeteriaplan />
         <div className={[styles.overlayContainer, styles.contentSection].join(" ")}>Overlay</div>

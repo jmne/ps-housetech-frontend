@@ -26,8 +26,8 @@ export default function Cafeteriaplan() {
       <ol className={[cafeteriaStyles.cafeteriaplan, cafeteriaStyles.scrolling].join(" ")}>
         {data.map((dish, index) => (
           (index === 2) ? 
-          <><Dish dish={dish} key={index} /><div></div></> : 
-          <Dish dish={dish} key={index} />
+          <><Dish dish={dish} key={`${dish.meal}${index}-padding`} /><div></div></> : 
+            <Dish dish={dish} key={`${dish.meal}${index}`} />
 
         ))}
       </ol>
