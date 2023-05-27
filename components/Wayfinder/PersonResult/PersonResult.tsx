@@ -3,7 +3,7 @@ import { useTranslation } from "next-i18next";
 import { useMapContext } from "context/MapContext";
 import { usePersonSearchContext } from "context/PersonContext";
 import styles from "@/components/Wayfinder/Wayfinder.module.scss";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 
 interface Props {
     person: Employee;

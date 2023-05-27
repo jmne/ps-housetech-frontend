@@ -39,6 +39,9 @@ const floors_leo3 = [
 
 const floors_leo11 = ["map-leo11-floor0"];
 
+
+
+
 export function CampusMap() {
     const { t } = useTranslation("index");
     const mapContext = useMapContext();
