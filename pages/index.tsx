@@ -13,7 +13,7 @@ import { Wayfinder } from '@/components/Wayfinder/Wayfinder';
 
 // IMPORTS - CONTEXT
 import { SelectedPersonProvider } from 'context/PersonContext';
-import { MapProvider } from "context/mapContext";
+import { MapProvider } from "context/MapContext";
 
 export default function Index() {
   const { t } = useTranslation("index")

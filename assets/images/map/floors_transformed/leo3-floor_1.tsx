@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { SVGProps } from "react";
-const SvgLeo3Floor1 = (props: SVGProps<SVGSVGElement>) => (
+const SvgLeo3Floor1 = React.forwardRef((props: SVGProps<SVGSVGElement>, ref) => (
   <svg
     width="100%"
     height="100%"
@@ -15,6 +15,7 @@ const SvgLeo3Floor1 = (props: SVGProps<SVGSVGElement>) => (
       strokeMiterlimit: 10
     }}
     {...props}
+    ref={ref}
     viewBox="0 0 614.25 447"
   >
     <polygon
@@ -959,6 +960,6 @@ const SvgLeo3Floor1 = (props: SVGProps<SVGSVGElement>) => (
     >
     </g>
   </svg>
-);
+));
 export default SvgLeo3Floor1;
 

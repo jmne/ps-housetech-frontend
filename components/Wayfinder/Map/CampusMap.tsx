@@ -1,285 +1,149 @@
+// IMPORTS - REACT
+import { useState, useEffect, useRef, useCallback } from "react";
+
+// IMPORTS - NEXTJS
 import { useTranslation } from "next-i18next";
-import { useState, useEffect, useContext } from "react";
 
-
-import styles from "@/components/Wayfinder/Map/Map.module.scss"
-
-// IMPORTS - MAPS
-//
-// To make this work -> Remove with/height properties from svg
-import Leo3_floor0 from "assets/images/map/floors_transformed/leo3-floor_0"
-import Leo3_floor1 from "assets/images/map/floors_transformed/leo3-floor_1"
-import Leo3_floor2 from "assets/images/map/floors_transformed/leo3-floor_2"
-import Leo3_floor3 from "assets/images/map/floors_transformed/leo3-floor_3"
-import Leo11_floor0 from "assets/images/map/floors_transformed/leo11-floor0"
+// IMPORTS - TYPES
 import { BuildingFloor, CampusBuilding } from "types/Campus";
-import { useMapContext } from "context/mapContext";
-import { useTimeout } from "usehooks-ts";
 
-const animationDuration = 500;
-const map_x_offset = 5;
-const map_y_offset = 15;
-const focus_scaling = 1.1;
-const not_in_focus_opacity = 0.15;
+// IMPORTS - CONTEXT
+import { useMapContext } from "context/MapContext";
 
-/**
- * Get the Floor level of a room as BuildingFloor value
- * @param room number of the room
- */
-function getFloor(room: string | number): BuildingFloor {
-    let n = room
-    if (typeof room !== "number") { let n = parseInt(room) }
+// IMPORTS - UTIL_FUNCTIONS
+import {
+    getFloor,
+    highlightFloor,
+    highlightRoom,
+    mapTransitionConfig,
+    moveBuilding,
+    roomInBuilding,
+} from "utils/mapTransformations";
 
-    // Why ts-ignore? -> If room is given as string, it is parsed and n is overwritten as integer
-    // @ts-ignore
-    if (n < 100) return "floor0"
-    // @ts-ignore
-    if (n < 200) return "floor1"
-    // @ts-ignore
-    if (n < 300) return "floor2"
-    // @ts-ignore
-    if (n < 400) return "floor3"
-    // base case
-    return "floor0"
-}
-
-/**
- * Get the Floor level of a room as Number
- * @param room number of the room
- */
-function getFloorNumber(room: string | number): number {
-    const floorString = getFloor(room)
-    const n_string = floorString.charAt(5)
-    const n = parseInt(n_string)
-
-    return (n)
-}
-
-/**
- * Check if a room is in the current building  -> Currently only configured to work for the test-data
- * @param room
- * @param building
- */
-function roomInBuilding(room: string, current_building: CampusBuilding) {
-    if (room == "017" && current_building == "leo3") return false
-    else if(room == "017" && current_building == "leo11") return true
-
-    if (current_building == "leo11") return false
-    return true
-}
-
-type out_of_frame_direction = "left" | "right"
-function moveBuilding(old_floors: HTMLElement[], new_floors: HTMLElement[], out_dir: out_of_frame_direction) {
-    const floor_move_out = (out_dir === "left") ? "translateX(-200%)" : "translateX(100%)"
-
-    // 'Collapse' old floors
-    old_floors.forEach((e) => {
-        e.style.transform = ""
-        e.style.opacity = `${not_in_focus_opacity}`
-    })
-
-    setTimeout(() => {
-        // Push old floors out of frame
-        old_floors.forEach((e) => {
-            console.log(`move ${e.id} out of frame`)
-            e.style.transform = floor_move_out
-            e.style.opacity = `${not_in_focus_opacity}`
-        })
-
-        // Move new floors into frame
-        new_floors.forEach((e) => {
-            console.log(`move ${e.id} into frame`)
-            e.style.transform = ""
-            e.style.opacity = "100"
-        })
-    }, animationDuration)
-}
-
-/**
- * Trigger highlighting of a room
- * @param room number of the room
- */
-function highlightRoom(room: string | number) {
-    // construct the svg-id and get the element
-    const room_id = `room-${room}`
-    const element = document.getElementById(room_id)
-    if (!(element)) return
-
-    // Room was selected before -> Remove highlight
-    if (element.classList.contains(styles.highlight)) {
-        element.classList.remove(styles.highlight)
-    }
-    // New selection -> Highlight room
-    else {
-        element.classList.add(styles.highlight)
-    }
-}
-
-/**
- * Move the correct floor into focus
- * @param floor 
- * @param building 
- * @param leo3_floors
- */
-function highlightFloor(new_floor: BuildingFloor, building: CampusBuilding, leo3_floors: HTMLElement[], leo11_floor: HTMLElement) {
-    const floor_nr = new_floor.charAt(5)
-    const index_new_layer = parseInt(floor_nr)
-
-    console.log("Highlight ", new_floor, " in ", building)
-
-    if (building === "leo11" && new_floor === "floor0") {
-        leo11_floor.style.transform = `scale(${focus_scaling})`
-        leo11_floor.style.zIndex = "5";
-        leo11_floor.style.opacity = "100";
-        return
-    }
-
-    leo3_floors.forEach((element, index) => {
-        // Layer is the target layer -> Set focus
-        if (index === index_new_layer) {
-            element.style.transform = `scale(${focus_scaling})`
-            element.style.zIndex = "5";
-            element.style.opacity = "100";
-            return
-        }
-
-        // If new layer is higher -> diff < 0
-        // If new layer is lower ->  diff > 0
-        const diff = index - index_new_layer
-        // Layer is 'under' new layer -> Push down
-        if (diff < 0) {
-            element.style.transform = `translateX(${diff * map_x_offset}%) translateY(${-diff * map_y_offset}%)`
-            element.style.opacity = `${not_in_focus_opacity}`
-        }
-        // Layer is 'over' new layer -> Push up
-        else {
-            element.style.transform = "translateX(40%) translateY(-100%)"
-            element.style.opacity = `${not_in_focus_opacity}`
-        }
-
-    });
-}
+// IMPORTS - ASSETS
+// SVG
+import Leo3_floor0 from "assets/images/map/floors_transformed/leo3-floor_0";
+import Leo3_floor1 from "assets/images/map/floors_transformed/leo3-floor_1";
+import Leo3_floor2 from "assets/images/map/floors_transformed/leo3-floor_2";
+import Leo3_floor3 from "assets/images/map/floors_transformed/leo3-floor_3";
+import Leo11_floor0 from "assets/images/map/floors_transformed/leo11-floor0";
+// CSS
+import styles from "@/components/Wayfinder/Map/Map.module.scss";
 
 const floors_leo3 = [
     "map-leo3-floor0",
     "map-leo3-floor1",
     "map-leo3-floor2",
-    "map-leo3-floor3"]
+    "map-leo3-floor3",
+];
 
-const floors_leo11 = [
-    "map-leo11-floor0"
-]
+const floors_leo11 = ["map-leo11-floor0"];
 
 export function CampusMap() {
     const { t } = useTranslation("index");
-    const mapContext = useMapContext()
+    const mapContext = useMapContext();
 
     // Track which map is in focus & last room in focus
-    const [componentRendered, setRendered] = useState(false)
-    const [current_building, setBuilding] = useState<CampusBuilding>("leo3")
-    const [current_floor, setFloor] = useState<BuildingFloor>("floor0")
-    const [current_room, setRoom] = useState<string | undefined>(undefined)
+    const [componentRendered, setRendered] = useState(false);
+    const [current_building, setBuilding] = useState<CampusBuilding>("leo3");
+    const [current_floor, setFloor] = useState<BuildingFloor>("floor0");
+    const [current_room, setRoom] = useState<string | undefined>(undefined);
 
     // Save elements of the layers
-    const [leo3_elements, set_leo3_elements] = useState<HTMLElement[]>([])
-    const [leo11_elements, set_leo11_elements] = useState<HTMLElement[]>([])
+    // Initialize Refs directly in array
+    const leo3_elements = [
+        useRef<SVGSVGElement>(null),
+        useRef<SVGSVGElement>(null),
+        useRef<SVGSVGElement>(null),
+        useRef<SVGSVGElement>(null),
+    ];
 
-    // Run when component renders
-    // -> Get layer elements
-    // -> Set focus on Floor 0 of Leo 3
+    const leo11_elements = [useRef<SVGSVGElement>(null)];
+
+    // This effect runs only once after the initial render. It sets up the initial state of the map.
     useEffect(() => {
-        if (componentRendered) return
-        console.log("rerender triggered")
+        if (componentRendered) return;
 
-        floors_leo3.forEach((id) => {
-            const element = document.getElementById(id)
-            if (element && !(leo3_elements.includes(element))) leo3_elements.push(element)
-        })
-        floors_leo11.forEach((id) => {
-            const element = document.getElementById(id)
-            if (element && !(leo11_elements.includes(element))) leo11_elements.push(element)
-        })
+        moveBuilding(leo11_elements, leo3_elements, "left");
 
-        moveBuilding(leo11_elements, leo3_elements, "left")
         setTimeout(() => {
-            highlightFloor(current_floor, current_building, leo3_elements, leo11_elements[0])
-            setRendered(true)
-        }, animationDuration)
-    })
+            highlightFloor(current_floor, current_building, leo3_elements, leo11_elements[0]);
+            setRendered(true);
+        }, mapTransitionConfig.animationDuration);
+    }, [leo3_elements, leo11_elements]);
 
-    // Trigger animation when selected person changes
+    // This effect is triggered whenever mapContext.current_room changes. It manages highlighting the new room and making necessary adjustments.
     useEffect(() => {
-        const r = mapContext.current_room
-        const b = mapContext.current_building
+        const { current_room: contextRoom, current_building: contextBuilding } = mapContext;
 
         // No person selected -> No room to highlight
-        if (!r) {
+        if (!contextRoom) {
             // If there was a room highlighted -> Remove highlighting, Update state and return
-            if (current_room) highlightRoom(current_room)
-            setRoom(r)
-            return
+            if (current_room) highlightRoom(current_room);
+            setRoom(undefined);
+            return;
         }
 
         // New person was selected
         // Remove highlighting on old room
         if (current_room) {
-            highlightRoom(current_room)
+            highlightRoom(current_room);
         }
 
+        // If no context building -> Can't transition to anything
+        if (!contextBuilding) return;
+
         // Highlight the new room
-        manageNewHighlight(r, b)
-    }, [mapContext.current_room])
+        manageNewHighlight(contextRoom, contextBuilding);
+    }, [mapContext.current_room, mapContext.current_building]);
 
     /**
-     * Highlight **new** room
-     * If needed: Move to other building
-     * If needed: Move to other floor
-     * @param room room to be highlighted
+     * Highlight the **new** room
+     * If needed: Move to another building
+     * If needed: Move to another floor
+     * @param room The room to be highlighted
+     * @param b The building to which the room belongs
      */
-    function manageNewHighlight(room: string, b: CampusBuilding) {
-        const already_in_correct_building = roomInBuilding(room, current_building)
-        console.log(already_in_correct_building)
-        const wait_for_building_switch = already_in_correct_building ? 0 : (animationDuration * 2)
+    const manageNewHighlight = useCallback((room: string, b: CampusBuilding) => {
+        const already_in_correct_building = roomInBuilding(room, current_building);
+        const wait_for_building_switch = already_in_correct_building
+            ? 0
+            : mapTransitionConfig.animationDuration * 2;
 
-        let buildingMoved = false
+        let buildingMoved = false;
 
         // If needed -> Move building into frame
         if (!already_in_correct_building) {
-            console.log("Moving building")
-            // Case: move to Leo 3
-            if (current_building === "leo11") {
-                console.log("Move to leo 3")
-                moveBuilding(leo11_elements, leo3_elements, "left")
-                setBuilding("leo3")
-            }
-            // Case: move to Leo 11
-            else {
-                console.log("Move to leo 11")
-                moveBuilding(leo3_elements, leo11_elements, "right")
-                setBuilding("leo11")
-            }
-            buildingMoved = true
+            const [from_elements, to_elements, to_Building, animation_out_direction] =
+                current_building === "leo11"
+                    ? [leo11_elements, leo3_elements, "leo3", "left"]
+                    : [leo3_elements, leo11_elements, "leo11", "right"];
+
+
+            moveBuilding(from_elements, to_elements, animation_out_direction);
+            setBuilding(to_Building);
+
+            buildingMoved = true;
         }
 
-        const floor_of_room = getFloor(room)
-        const already_on_correct_floor = (floor_of_room == current_floor)
-        const wait_for_floor_switch = already_on_correct_floor ? 0 : animationDuration
+        const floor_of_room = getFloor(room);
+        const already_on_correct_floor = floor_of_room === current_floor;
+        const wait_for_floor_switch = already_on_correct_floor ? 0 : mapTransitionConfig.animationDuration;
 
         // If needed -> Move floor into focus
         // -> Optionally wait for building switch first
         setTimeout(() => {
             if (!already_on_correct_floor || buildingMoved) {
-                console.log("Move to ", floor_of_room)
-                highlightFloor(floor_of_room, b, leo3_elements, leo11_elements[0])
-                setFloor(floor_of_room)
+                highlightFloor(floor_of_room, b, leo3_elements, leo11_elements[0]);
+                setFloor(floor_of_room);
             }
-        }, wait_for_building_switch)
 
-        setTimeout(() => {
-            highlightRoom(room)
-            setRoom(room)
-        }, (wait_for_building_switch + wait_for_floor_switch))
-    }
+            setTimeout(() => {
+                highlightRoom(room);
+                setRoom(room);
+            }, wait_for_floor_switch);
+        }, wait_for_building_switch);
+    }, [current_building, current_floor, leo3_elements, leo11_elements]);
 
     return (
         <div className={styles.container}>
@@ -288,12 +152,12 @@ export function CampusMap() {
                 <span>{t(`wayfinder.map.${current_floor}`)}</span>
             </div>
             <div className={styles.floorWrapper}>
-                <Leo3_floor0 className={styles.floor} width="100%" height="100%" id={"map-leo3-floor0"} />
-                <Leo3_floor1 className={styles.floor} width="100%" height="100%" id={"map-leo3-floor1"} />
-                <Leo3_floor2 className={styles.floor} width="100%" height="100%" id={"map-leo3-floor2"} />
-                <Leo3_floor3 className={styles.floor} width="100%" height="100%" id={"map-leo3-floor3"} />
-                <Leo11_floor0 className={styles.floor} width="100%" height="100%" id={"map-leo11-floor0"} />
+                <Leo3_floor0 className={styles.floor} id={"map-leo3-floor0"} ref={leo3_elements[0]} />
+                <Leo3_floor1 className={styles.floor} id={"map-leo3-floor1"} ref={leo3_elements[1]} />
+                <Leo3_floor2 className={styles.floor} id={"map-leo3-floor2"} ref={leo3_elements[2]} />
+                <Leo3_floor3 className={styles.floor} id={"map-leo3-floor3"} ref={leo3_elements[3]} />
+                <Leo11_floor0 className={styles.floor} id={"map-leo11-floor0"} ref={leo11_elements[0]} />
             </div>
         </div>
-    )
+    );
 }

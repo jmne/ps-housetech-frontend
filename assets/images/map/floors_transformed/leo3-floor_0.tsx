@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { SVGProps } from "react";
-const SvgLeo3Floor0 = (props: SVGProps<SVGSVGElement>) => (
+const SvgLeo3Floor0 = React.forwardRef((props: SVGProps<SVGSVGElement>, ref) => (
   <svg
     width="100%"
     height="100%"
@@ -15,6 +15,7 @@ const SvgLeo3Floor0 = (props: SVGProps<SVGSVGElement>) => (
       strokeLinejoin: "round",
       strokeMiterlimit: 10
     }}
+    ref={ref}
     {...props}
   >
     <path
@@ -1121,6 +1122,6 @@ const SvgLeo3Floor0 = (props: SVGProps<SVGSVGElement>) => (
       </text>
     </g>
   </svg>
-);
+));
 export default SvgLeo3Floor0;
 

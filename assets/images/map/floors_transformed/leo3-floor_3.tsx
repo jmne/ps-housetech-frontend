@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { SVGProps } from "react";
-const SvgLeo3Floor3 = (props: SVGProps<SVGSVGElement>) => (
+const SvgLeo3Floor3 = React.forwardRef((props: SVGProps<SVGSVGElement>, ref) => (
   <svg
     width="100%"
     height="100%"
@@ -16,6 +16,7 @@ const SvgLeo3Floor3 = (props: SVGProps<SVGSVGElement>) => (
       strokeMiterlimit: 10
     }}
     {...props}
+    ref={ref}
   >
     <polygon
       fillRule="evenodd"
@@ -1044,6 +1045,6 @@ const SvgLeo3Floor3 = (props: SVGProps<SVGSVGElement>) => (
       />
     </g>
   </svg>
-);
+));
 export default SvgLeo3Floor3;
 
