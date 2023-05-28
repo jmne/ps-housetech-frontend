@@ -33,7 +33,7 @@ export function useEmployeesSorted(sortBy: sortKeysEmployee){
  * Fetch all Employees
  * @returns Employee[]
  */
-function useEmployees() {
+export function useEmployees() {
     // const { data, isLoading, error } = useSWR<Employee[]>
 
     const data = sampleEmployees;

@@ -21,8 +21,8 @@ export function PersonResult({ person }: Props) {
             mapContext.setBuilding(undefined);
         } else {
             selectedPersonContext.setPerson(person);
-            mapContext.setRoom(person.room);
-            mapContext.setBuilding(person.building);
+            mapContext.setRoom(person.roomNumber);
+            mapContext.setBuilding("leo3");
         }
     }, [person, mapContext, selectedPersonContext]);
 
@@ -32,20 +32,31 @@ export function PersonResult({ person }: Props) {
     return (
         <li
             className={styles.person}
-            id={`${person.name}_${person.department}`}
+            id={`${person.cfFamilyNames}${person.phone}${person.chair}`}
             onClick={setSelection}
         >
-            <span>{person.name}</span>
-            <span className={styles.caption}>{person.department}</span>
+            <span>{`${person.cfFirstNames} ${person.cfFamilyNames}`}</span>
+            <span className={styles.caption}>{person.chair}</span>
             <div className={styles.hidden}>
-                <span className={styles.attribute}>{roomTranslation}</span>
-                <span className={styles.caption}>{person.room}</span>
-                <br />
-                <span className={styles.attribute}>{phoneTranslation}</span>
-                <span className={styles.caption}>{person.phone}</span>
-                <br />
-                <span className={styles.attribute}>{phoneTranslation}</span>
-                <span className={styles.caption}>{person.building}</span>
+
+                {person.phone
+                    ? <><span className={styles.attribute}>{phoneTranslation}</span>
+                        <span className={styles.caption}>{person.phone}</span>
+                        <br /></>
+                    : <></>
+                }
+                {person.email
+                    ? <><span className={styles.attribute}>Mail</span>
+                        <span className={styles.caption}>{person.email}</span>
+                        <br /></>
+                    : <></>
+                }
+                {person.phone
+                    ? <><span className={styles.attribute}>{roomTranslation}</span>
+                        <span className={styles.caption}>{person.roomNumber}</span>
+                        <br /></>
+                    : <></>
+                }
             </div>
         </li>
     );

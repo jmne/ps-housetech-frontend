@@ -1,8 +1,8 @@
 // IMPORTS - BUILTINS
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 // IMPORTS - HELPERS
-import { useEmployeesSorted } from "hooks/useEmployees"
+import { useEmployees, useEmployeesSorted } from "hooks/useEmployees"
 import { Employee, sortKeysEmployee } from "types/Employee"
 
 // IMPORTS - ASSETS
@@ -16,6 +16,7 @@ import { CampusMap } from "./Map/CampusMap"
 // IMPORTS - CONTEXT
 import { usePersonSearchContext } from "context/PersonContext"
 import { employeeInFilter, expand, collapse } from "utils/personCardsTransformations"
+import Fuse from "fuse.js"
 
 export function Wayfinder() {
     // Translation setup
@@ -28,18 +29,51 @@ export function Wayfinder() {
     const [current_person, setPerson] = useState<Employee | undefined>()
 
     // Get data for the list of Persons
-    const [sortKey, setSortKey] = useState<sortKeysEmployee>("name")
-    const persons = useEmployeesSorted(sortKey)
+    const [sortKey, setSortKey] = useState<sortKeysEmployee>("cfFamilyNames")
+    const persons = useEmployees()
     const [filteredPersons, setFilteredPersons] = useState(persons)
 
     // Track search input
     const [input, setInput] = useState("")
 
+    // Fuse for fuzzy search
+    const fuse = useMemo(() => {
+        if (!persons) return new Fuse([])
+
+        const fuse_options = {
+            findAllMatches: true,
+            keys: [
+                {
+                    name: "cfFirstNames",
+                    weight: 1
+                },
+                {
+                    name: "cfFamilyNames",
+                    weight: 1
+                },
+                {
+                    name: "chair",
+                    weight: 1
+                },
+                {
+                    name: "roomNumber",
+                    weight: 0.5
+                }
+            ]
+        }
+
+        return new Fuse(persons,fuse_options)
+    }, persons)
+
     // When input changes, update the persons shown in the list
     useEffect(() => {
+        if (input === "") {
+            setFilteredPersons(persons)
+            return
+        }
         console.log(input)
-
-        setFilteredPersons(persons.filter(p => employeeInFilter(p, input)))
+        setFilteredPersons(fuse.search(input).map((e) => e.item))
+        console.log(filteredPersons)
     }, [persons, input])
 
     // When a person in the list was clicked, update global state & collapse/hide appropriate list elements
@@ -75,7 +109,7 @@ export function Wayfinder() {
                 <SearchBar setter={setInput} placeholder={t("wayfinder.title")} />
                 <ol>
                     {filteredPersons.map(p => (
-                        <PersonResult person={p} key={`${p.name}${p.department}`} />
+                        <PersonResult person={p} key={`${p.cfFirstNames}${p.cfFamilyNames}`} />
                     ))}
                 </ol>
             </div>

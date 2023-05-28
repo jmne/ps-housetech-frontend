@@ -9,10 +9,10 @@ import { Employee } from "types/Employee";
  */
 export function employeeInFilter(e: Employee, input: string): boolean {
     const input_lower = input.toLowerCase()
-    const dep_lower = e.department.toLowerCase()
-    const name_lower = e.name.toLowerCase()
+    const dep_lower = e.chair?.toLowerCase()
+    const name_lower = `${e.cfFamilyNames?.toLowerCase()}${e.cfFirstNames?.toLowerCase()}`
 
-    return dep_lower.includes(input_lower) || name_lower.includes(input_lower)
+    return dep_lower?.includes(input_lower) || name_lower.includes(input_lower)
 }
 
 /**
@@ -20,7 +20,8 @@ export function employeeInFilter(e: Employee, input: string): boolean {
  * @param p - The person in the list.
  */
 export function collapse(p: Employee): void {
-    const elem = document.getElementById(`${p.name}_${p.department}`)
+    console.log(p)
+    const elem = document.getElementById(`${p.cfFamilyNames}${p.phone}${p.chair}`)
     if (elem) elem.classList.remove(styles_wayfinder.expanded)
 }
 
@@ -29,6 +30,6 @@ export function collapse(p: Employee): void {
  * @param p - The person in the list.
  */
 export function expand(p: Employee): void {
-    const elem = document.getElementById(`${p.name}_${p.department}`)
+    const elem = document.getElementById(`${p.cfFamilyNames}${p.phone}${p.chair}`)
     if (elem) elem.classList.add(styles_wayfinder.expanded)
 }
