@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { SVGProps } from "react";
-const SvgLeo11Floor0 = React.forwardRef((props: SVGProps<SVGSVGElement>, ref) => (
+const SvgLeo11Floor0 = React.forwardRef<SVGSVGElement>((props: SVGProps<SVGSVGElement>, ref) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"

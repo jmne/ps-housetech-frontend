@@ -3,13 +3,13 @@ import { useTranslation } from "next-i18next";
 import { useMapContext } from "context/MapContext";
 import { usePersonSearchContext } from "context/PersonContext";
 import styles from "@/components/Wayfinder/Wayfinder.module.scss";
-import { useCallback } from "react";
+import { forwardRef, useCallback } from "react";
 
 interface Props {
     person: Employee;
 }
 
-export function PersonResult({ person }: Props) {
+export const PersonResult = forwardRef<HTMLLIElement, Props>(({ person }, ref) => {
     const { t } = useTranslation("index");
     const mapContext = useMapContext();
     const selectedPersonContext = usePersonSearchContext();
@@ -34,6 +34,7 @@ export function PersonResult({ person }: Props) {
             className={styles.person}
             id={`${person.cfFamilyNames}${person.phone}${person.chair}`}
             onClick={setSelection}
+            ref={ref}
         >
             <span>{`${person.cfFirstNames} ${person.cfFamilyNames}`}</span>
             <span className={styles.caption}>{person.chair}</span>
@@ -59,5 +60,5 @@ export function PersonResult({ person }: Props) {
                 }
             </div>
         </li>
-    );
-}
+    )
+})

@@ -5,7 +5,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useTranslation } from "next-i18next";
 
 // IMPORTS - TYPES
-import { BuildingFloor, CampusBuilding } from "types/Campus";
+import { BuildingFloor, CampusBuilding, buildingNames } from "types/Campus";
 
 // IMPORTS - CONTEXT
 import { useMapContext } from "context/MapContext";
@@ -14,19 +14,17 @@ import { useMapContext } from "context/MapContext";
 import {
     getFloor,
     highlightFloor,
-    highlightRoom,
+    setRoomHighlight,
     mapTransitionConfig,
     moveBuilding,
     roomInBuilding,
+    animate_to,
 } from "utils/mapTransformations";
 
 // IMPORTS - ASSETS
 // SVG
-import Leo3_floor0 from "assets/images/map/floors_transformed/leo3-floor_0";
-import Leo3_floor1 from "assets/images/map/floors_transformed/leo3-floor_1";
-import Leo3_floor2 from "assets/images/map/floors_transformed/leo3-floor_2";
-import Leo3_floor3 from "assets/images/map/floors_transformed/leo3-floor_3";
-import Leo11_floor0 from "assets/images/map/floors_transformed/leo11-floor0";
+
+import { Leo11_Floor0, Leo3_Floor0, Leo3_Floor1, Leo3_Floor2, Leo3_Floor3 } from "assets/images/map/floors_transformed_new"
 // CSS
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
 
@@ -48,7 +46,7 @@ export function CampusMap() {
 
     // Track which map is in focus & last room in focus
     const [componentRendered, setRendered] = useState(false);
-    const [current_building, setBuilding] = useState<CampusBuilding>("leo3");
+    const [current_building, setBuilding] = useState<CampusBuilding>(buildingNames.LEO3);
     const [current_floor, setFloor] = useState<BuildingFloor>("floor0");
     const [current_room, setRoom] = useState<string | undefined>(undefined);
 
@@ -82,7 +80,7 @@ export function CampusMap() {
         // No person selected -> No room to highlight
         if (!contextRoom) {
             // If there was a room highlighted -> Remove highlighting, Update state and return
-            if (current_room) highlightRoom(current_room);
+            if (current_room) setRoomHighlight(current_room, "leo3", false);
             setRoom(undefined);
             return;
         }
@@ -90,7 +88,7 @@ export function CampusMap() {
         // New person was selected
         // Remove highlighting on old room
         if (current_room) {
-            highlightRoom(current_room);
+            setRoomHighlight(current_room, "leo3", false);
         }
 
         // If no context building -> Can't transition to anything
@@ -118,9 +116,9 @@ export function CampusMap() {
         // If needed -> Move building into frame
         if (!already_in_correct_building) {
             const [from_elements, to_elements, to_Building, animation_out_direction] =
-                current_building === "leo11"
-                    ? [leo11_elements, leo3_elements, "leo3", "left"]
-                    : [leo3_elements, leo11_elements, "leo11", "right"];
+                current_building === buildingNames.LEO11
+                    ? [leo11_elements, leo3_elements, buildingNames.LEO3, animate_to.LEO3]
+                    : [leo3_elements, leo11_elements, buildingNames.LEO11, animate_to.LEO11];
 
 
             moveBuilding(from_elements, to_elements, animation_out_direction);
@@ -142,7 +140,7 @@ export function CampusMap() {
             }
 
             setTimeout(() => {
-                highlightRoom(room);
+                setRoomHighlight(room, "leo3", true);
                 setRoom(room);
             }, wait_for_floor_switch);
         }, wait_for_building_switch);
@@ -155,11 +153,11 @@ export function CampusMap() {
                 <span>{t(`wayfinder.map.${current_floor}`)}</span>
             </div>
             <div className={styles.floorWrapper}>
-                <Leo3_floor0 className={styles.floor} id={"map-leo3-floor0"} ref={leo3_elements[0]} />
-                <Leo3_floor1 className={styles.floor} id={"map-leo3-floor1"} ref={leo3_elements[1]} />
-                <Leo3_floor2 className={styles.floor} id={"map-leo3-floor2"} ref={leo3_elements[2]} />
-                <Leo3_floor3 className={styles.floor} id={"map-leo3-floor3"} ref={leo3_elements[3]} />
-                <Leo11_floor0 className={styles.floor} id={"map-leo11-floor0"} ref={leo11_elements[0]} />
+                <Leo3_Floor0 className={styles.floor} id={"map-leo3-floor0"} ref={leo3_elements[0]} />
+                <Leo3_Floor1 className={styles.floor} id={"map-leo3-floor1"} ref={leo3_elements[1]} />
+                <Leo3_Floor2 className={styles.floor} id={"map-leo3-floor2"} ref={leo3_elements[2]} />
+                <Leo3_Floor3 className={styles.floor} id={"map-leo3-floor3"} ref={leo3_elements[3]} />
+                <Leo11_Floor0 className={styles.floor} id={"map-leo11-floor0"} ref={leo11_elements[0]} />
             </div>
         </div>
     );

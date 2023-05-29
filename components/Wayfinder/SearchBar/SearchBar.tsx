@@ -1,6 +1,3 @@
-// IMPORTS - BUILTINS
-import Image from "next/image"
-
 // IMPORTS - ASSETS
 import styles from "@/components/Wayfinder/Wayfinder.module.scss"
 import IconSearch from "assets/images/icon_search.svg"

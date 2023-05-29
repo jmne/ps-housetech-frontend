@@ -7,6 +7,7 @@ $animDuration: 0.5s;
     grid-template-columns: min(30%, 600px) 1fr;
     grid-template-rows: 1fr;
 
+    min-height: 0;
     height: 100%;
     max-height: 100%;
 }
@@ -22,6 +23,8 @@ $animDuration: 0.5s;
     width: 100%;
     min-height: 0px;
 
+    z-index: 10;
+
 
     .searchField {
         width: auto;
@@ -35,7 +38,6 @@ $animDuration: 0.5s;
         flex-direction: row;
         align-items: center;
         gap: g.$margin-small;
-
 
         border: 2px solid g.$main-primary;
 
@@ -105,13 +107,14 @@ $animDuration: 0.5s;
 
     list-style-type: none;
     box-shadow: g.$shadow-outer;
+    background-color: g.$container-item;
 
     border-radius: g.$border-radius-base;
 
     transition: height $animDuration;
     min-height: 0px;
-    height: 4rem;
-
+    height: 5rem;
+    box-sizing: border-box;
 
     .caption {
         color: g.$text-secondary;
@@ -140,7 +143,7 @@ $animDuration: 0.5s;
     }
 
     &.expanded {
-        height: 10rem;
+        height: 15rem;
 
         .hidden {
             // Sliding in

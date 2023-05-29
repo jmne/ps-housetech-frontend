@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { SVGProps } from "react";
-const SvgLeo3Floor1 = React.forwardRef((props: SVGProps<SVGSVGElement>, ref) => (
+const SvgLeo3Floor1 = React.forwardRef<SVGSVGElement>((props: SVGProps<SVGSVGElement>, ref) => (
   <svg
     width="100%"
     height="100%"

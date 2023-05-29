@@ -51,14 +51,15 @@ export function getFloorNumber(room: string | number): number {
  * @returns Boolean indicating if the room is in the current building
  */
 export function roomInBuilding(room: string, current_building: CampusBuilding): boolean {
-    if (room === "017" && current_building === "leo3") return false;
-    else if (room === "017" && current_building === "leo11") return true;
-
     if (current_building === "leo11") return false;
     return true;
 }
 
 export type out_of_frame_direction = "left" | "right";
+export enum animate_to {
+    LEO11 = "right",
+    LEO3 = "left"
+}
 
 /**
  * Move the building from old floors to new floors
@@ -106,21 +107,33 @@ export function moveBuilding(
 /**
  * Trigger highlighting of a room
  * @param room Number of the room
+ * @param building id of the building: 'leo3' or 'leo11'
  */
-export function highlightRoom(room: string | number) {
-    // Construct the SVG ID and get the element
-    const room_id = `room-${room}`;
-    const element = document.getElementById(room_id);
-    if (!element) return;
+export function setRoomHighlight(room: string | number, building: CampusBuilding, highlight: boolean, floor?: string) {
+    // Construct the SVG ID and get the element(s)
+    // if e.g. wc is given, multiple elements are existing and floor is needed
+    const room_id = floor ? `${building}-${room}${floor}` : `${building}-${room}`;
+    const room_elements = document.querySelectorAll(`#${room_id}`)
+    if (!room_elements || room_elements.length === 0) return;
 
     // Room was selected before, remove highlight
-    if (element.classList.contains(styles.highlight)) {
-        element.classList.remove(styles.highlight);
-    }
+    if (highlight === true) addRoomHighlight(room_elements)
     // New selection, highlight room
-    else {
-        element.classList.add(styles.highlight);
-    }
+    else removeRoomHighlight(room_elements)
+}
+
+function addRoomHighlight(elements: NodeListOf<Element>) {
+    elements.forEach((e) => {
+        const classes = e.classList
+        if (!classes.contains(styles.highlight)) classes.add(styles.highlight)
+    })
+}
+
+function removeRoomHighlight(elements: NodeListOf<Element>) {
+    elements.forEach((e) => {
+        const classes = e.classList
+        if (classes.contains(styles.highlight)) classes.remove(styles.highlight)
+    })
 }
 
 /**

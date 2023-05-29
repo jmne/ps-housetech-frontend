@@ -45,6 +45,12 @@ export interface Employee {
 //     }
 // ]
 
+
+// 022 -> Sebastian Köffer
+// 122 -> Paul Kruse
+// 210 -> Benjamin Klör
+
+
 const data: Employee[] = [
     {
         "academicTitle": "Dr.",
@@ -1489,6 +1495,6 @@ const data: Employee[] = [
 ]
 
 export const sampleEmployees = data.filter((person, i, data) => {
-    return(i === 
+    return (i ===
         data.findIndex((e) => e.email === person.email && e.cfFamilyNames === person.cfFamilyNames))
 })

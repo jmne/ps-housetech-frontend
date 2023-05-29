@@ -1,6 +1,6 @@
 // IMPORTS - BUILTINS
 import useCafeteriaplan from "hooks/useCafeteriaplan";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 // IMPORTS - COMPONENTS
 import Dish from "@/components/Cafeteriaplan/Dish";
@@ -25,8 +25,8 @@ export default function Cafeteriaplan() {
       </div>
       <ol className={[cafeteriaStyles.cafeteriaplan, cafeteriaStyles.scrolling].join(" ")}>
         {data.map((dish, index) => (
-          (index === 2) ? 
-          <><Dish dish={dish} key={`${dish.meal}${index}-padding`} /><div></div></> : 
+          (index === 2) ?
+            <Fragment key={`${dish.meal}${index}`}><Dish dish={dish} /><div></div></Fragment> :
             <Dish dish={dish} key={`${dish.meal}${index}`} />
 
         ))}

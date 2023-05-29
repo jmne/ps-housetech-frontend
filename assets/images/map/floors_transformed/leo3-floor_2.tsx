@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { SVGProps } from "react";
-const SvgLeo3Floor2 = React.forwardRef((props: SVGProps<SVGSVGElement>, ref) => (
+const SvgLeo3Floor2 = React.forwardRef<SVGSVGElement>((props: SVGProps<SVGSVGElement>, ref) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -50,7 +50,7 @@ const SvgLeo3Floor2 = React.forwardRef((props: SVGProps<SVGSVGElement>, ref) => 
       clipRule="evenodd"
       fill="#852339"
       points="281.47,336.47 214.03,287.85 166.78,321.31   234.23,369.937 "
-      id="room-222"
+      id="room-210"
     />
     <polygon
       fill="none"

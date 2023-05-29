@@ -1,9 +1,9 @@
 // IMPORTS - BUILTINS
-import { useEffect, useMemo, useState } from "react"
+import { Ref, useEffect, useMemo, useRef, useState } from "react"
 
 // IMPORTS - HELPERS
-import { useEmployees, useEmployeesSorted } from "hooks/useEmployees"
-import { Employee, sortKeysEmployee } from "types/Employee"
+import { useEmployees } from "hooks/useEmployees"
+import { Employee } from "types/Employee"
 
 // IMPORTS - ASSETS
 import styles_index from "@/pages/index.module.scss"
@@ -15,8 +15,12 @@ import { CampusMap } from "./Map/CampusMap"
 
 // IMPORTS - CONTEXT
 import { usePersonSearchContext } from "context/PersonContext"
-import { employeeInFilter, expand, collapse } from "utils/personCardsTransformations"
+import { expand, collapse } from "utils/personCardsTransformations"
 import Fuse from "fuse.js"
+
+interface personRef {
+    [id: string]: HTMLLIElement | null,
+}
 
 export function Wayfinder() {
     // Translation setup
@@ -27,9 +31,10 @@ export function Wayfinder() {
 
     // Internal tracking of the last person that was clicked on the list
     const [current_person, setPerson] = useState<Employee | undefined>()
+    const personRefs: personRef = {}
+    const listRef = useRef<HTMLOListElement>(null)
 
     // Get data for the list of Persons
-    const [sortKey, setSortKey] = useState<sortKeysEmployee>("cfFamilyNames")
     const persons = useEmployees()
     const [filteredPersons, setFilteredPersons] = useState(persons)
 
@@ -62,7 +67,7 @@ export function Wayfinder() {
             ]
         }
 
-        return new Fuse(persons,fuse_options)
+        return new Fuse(persons, fuse_options)
     }, persons)
 
     // When input changes, update the persons shown in the list
@@ -80,6 +85,26 @@ export function Wayfinder() {
     useEffect(() => {
         // Get the global state - Was set in the list element 'PersonResult'
         const p = selectedPersonContext.current_person
+        //
+        //try {
+        //
+        //    // Scroll to the selected person
+        //    if (p) {
+        //        const key = `${p.cfFirstNames}${p.cfFamilyNames}`
+        //        const ref = personRefs[key]
+        //        console.log(ref)
+        //
+        //        if (ref) {
+        //            const parent = listRef;
+        //
+        //            // Check if the item is already at the top of the list
+        //            // If not, scroll it into view
+        //            ref.scrollIntoView({ behavior: "smooth", block: "start" });
+        //        }
+        //    }
+        //} catch {
+        //    console.log("Error with ref")
+        //}
 
         // If nothing was selected before
         if (!current_person) {
@@ -107,10 +132,11 @@ export function Wayfinder() {
         <section className={[styles_index.largeContainer, styles_index.contentSection, styles_wayfinder.container].join(" ")}>
             <div className={styles_wayfinder.searchSection}>
                 <SearchBar setter={setInput} placeholder={t("wayfinder.title")} />
-                <ol>
-                    {filteredPersons.map(p => (
-                        <PersonResult person={p} key={`${p.cfFirstNames}${p.cfFamilyNames}`} />
-                    ))}
+                <ol ref={listRef}>
+                    {filteredPersons.map(p => {
+                        const k = `${p.cfFirstNames}${p.cfFamilyNames}`
+                        return (<PersonResult person={p} key={`${p.cfFirstNames}${p.cfFamilyNames}`} ref={el => personRefs[k] = el} />)
+                    })}
                 </ol>
             </div>
             <CampusMap />

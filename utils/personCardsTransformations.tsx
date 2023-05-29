@@ -20,7 +20,6 @@ export function employeeInFilter(e: Employee, input: string): boolean {
  * @param p - The person in the list.
  */
 export function collapse(p: Employee): void {
-    console.log(p)
     const elem = document.getElementById(`${p.cfFamilyNames}${p.phone}${p.chair}`)
     if (elem) elem.classList.remove(styles_wayfinder.expanded)
 }

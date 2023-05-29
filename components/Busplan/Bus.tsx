@@ -8,7 +8,9 @@ import { Busride } from "types/Busride";
 import styles from "@/components/Busplan/Bus.module.scss";
 
 // IMPORTS - ICONS
+//@ts-ignore
 import icon_inward from "assets/images/icon_city.svg?url";
+//@ts-ignore
 import icon_outward from "assets/images/icon_forrest.svg?url";
 import icon_bus from "assets/images/bus.png";
 
@@ -96,9 +98,8 @@ export default function Bus({ bus, direction, index }: BusProps) {
       hint = true;
       elem.style.transform = `translateZ(-${h_halft}px) rotateX(-${10 + 30 * rand}deg)`;
     } else
-      elem.style.transform = `translateZ(-${h_halft}px) rotateX(-${
-        90 + 15 + 5 * rand
-      }deg)`;
+      elem.style.transform = `translateZ(-${h_halft}px) rotateX(-${90 + 15 + 5 * rand
+        }deg)`;
 
     // Revert effects -> Different timing based on animation
     if (hint) {
