@@ -85,26 +85,6 @@ export function Wayfinder() {
     useEffect(() => {
         // Get the global state - Was set in the list element 'PersonResult'
         const p = selectedPersonContext.current_person
-        //
-        //try {
-        //
-        //    // Scroll to the selected person
-        //    if (p) {
-        //        const key = `${p.cfFirstNames}${p.cfFamilyNames}`
-        //        const ref = personRefs[key]
-        //        console.log(ref)
-        //
-        //        if (ref) {
-        //            const parent = listRef;
-        //
-        //            // Check if the item is already at the top of the list
-        //            // If not, scroll it into view
-        //            ref.scrollIntoView({ behavior: "smooth", block: "start" });
-        //        }
-        //    }
-        //} catch {
-        //    console.log("Error with ref")
-        //}
 
         // If nothing was selected before
         if (!current_person) {

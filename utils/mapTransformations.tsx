@@ -7,11 +7,12 @@ import styles from "@/components/Wayfinder/Map/Map.module.scss";
  * Configuration for map transitions
  */
 export const mapTransitionConfig = {
-    animationDuration: 500,
+    animationDuration: 750,
     map_x_offset: 5,
     map_y_offset: 15,
     focus_scaling: 1.1,
-    not_in_focus_opacity: 0.15
+    not_in_focus_opacity: 0.15,
+    map_focus_shadow: "drop-shadow(4px 4px 6px rgba(50, 50, 93, 0.20)) drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.15))",
 };
 
 /**
@@ -156,9 +157,7 @@ export function highlightFloor(
         const element = leo11_floor.current;
         if (!element) return;
 
-        element.style.transform = `scale(${mapTransitionConfig.focus_scaling})`;
-        element.style.zIndex = "5";
-        element.style.opacity = "100";
+        applyHighlightOnFloor(element)
         return;
     }
 
@@ -167,24 +166,31 @@ export function highlightFloor(
         if (!el) return;
         // Layer is the target layer, set focus
         if (index === index_new_layer) {
-            el.style.transform = `scale(${mapTransitionConfig.focus_scaling})`;
-            el.style.zIndex = "5";
-            el.style.opacity = "100";
+            applyHighlightOnFloor(el)
             return;
         }
 
         // If new layer is higher, diff < 0
         // If new layer is lower, diff > 0
         const diff = index - index_new_layer;
-        // Layer is 'under' new layer, push down
-        if (diff < 0) {
-            el.style.transform = `translateX(${diff * mapTransitionConfig.map_x_offset}%) translateY(${-diff * mapTransitionConfig.map_y_offset}%)`;
-            el.style.opacity = `${mapTransitionConfig.not_in_focus_opacity}`;
-        }
-        // Layer is 'over' new layer, push up
-        else {
-            el.style.transform = "translateX(40%) translateY(-100%)";
-            el.style.opacity = `${mapTransitionConfig.not_in_focus_opacity}`;
-        }
+        removeHighlightFromFloor(el, diff)
     });
+}
+function applyHighlightOnFloor(element: SVGSVGElement,) {
+    element.style.transform = `scale(${mapTransitionConfig.focus_scaling})`;
+    element.style.zIndex = "5";
+    element.style.opacity = "100";
+}
+
+function removeHighlightFromFloor(element: SVGSVGElement, offset: number) {
+    // Layer is 'under' new layer, push down
+    if (offset < 0) {
+        element.style.transform = `translateX(${offset * mapTransitionConfig.map_x_offset}%) translateY(${-offset * mapTransitionConfig.map_y_offset}%)`;
+        element.style.opacity = `${mapTransitionConfig.not_in_focus_opacity}`;
+    }
+    // Layer is 'over' new layer, push up
+    else {
+        element.style.transform = "translateX(40%) translateY(-100%)";
+        element.style.opacity = `${mapTransitionConfig.not_in_focus_opacity}`;
+    }
 }
