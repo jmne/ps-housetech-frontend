@@ -15,6 +15,7 @@ import { useTranslation } from "next-i18next";
 // IMPORTS - ICONS
 import arrow_back from "assets/images/arrow_back.svg";
 import arrow_forward from "assets/images/arrow_forward.svg";
+import { sample_dishes } from "types/SampleDishes";
 
 export default function Cafeteriaplan() {
   const { t } = useTranslation("index");
@@ -37,7 +38,7 @@ export default function Cafeteriaplan() {
         olRef.current.scrollTo({ top: 0, behavior: "smooth" });
         startTimer(); // recursive to repeat the timer
       }
-    }, 2000);
+    }, 5000);
   };
 
   useEffect(() => {
@@ -80,11 +81,11 @@ export default function Cafeteriaplan() {
         {data.map((dish, index) =>
           index === 2 ? (
             <>
-              <Dish dish={dish["item"]} key={index} />
+              <Dish dish={sample_dishes[0].item} key={index} />
               <div></div>
             </>
           ) : (
-            <Dish dish={dish["item"]} key={index} />
+            <Dish dish={sample_dishes[0].item} key={index} />
           )
         )}
       </ol>
