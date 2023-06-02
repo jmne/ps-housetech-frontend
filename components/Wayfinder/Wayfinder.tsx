@@ -17,12 +17,15 @@ import { CampusMap } from "./Map/CampusMap"
 import { usePersonSearchContext } from "context/PersonContext"
 import { expand, collapse } from "utils/personCardsTransformations"
 import Fuse from "fuse.js"
+import { useSearchInputContext } from "context/SearchInputContext"
 
 interface personRef {
     [id: string]: HTMLLIElement | null,
 }
 
 export function Wayfinder() {
+    const searchInputContext = useSearchInputContext()
+
     // Translation setup
     const { t } = useTranslation("index")
 
@@ -37,9 +40,6 @@ export function Wayfinder() {
     // Get data for the list of Persons
     const persons = useEmployees()
     const [filteredPersons, setFilteredPersons] = useState(persons)
-
-    // Track search input
-    const [input, setInput] = useState("")
 
     // Fuse for fuzzy search
     const fuse = useMemo(() => {
@@ -72,14 +72,12 @@ export function Wayfinder() {
 
     // When input changes, update the persons shown in the list
     useEffect(() => {
-        if (input === "") {
+        if (searchInputContext.input === "") {
             setFilteredPersons(persons)
             return
         }
-        console.log(input)
-        setFilteredPersons(fuse.search(input).map((e) => e.item))
-        console.log(filteredPersons)
-    }, [persons, input])
+        setFilteredPersons(fuse.search(searchInputContext.input).map((e) => e.item))
+    }, [persons, searchInputContext.input])
 
     // When a person in the list was clicked, update global state & collapse/hide appropriate list elements
     useEffect(() => {
@@ -111,7 +109,7 @@ export function Wayfinder() {
     return (
         <section className={[styles_index.largeContainer, styles_index.contentSection, styles_wayfinder.container].join(" ")}>
             <div className={styles_wayfinder.searchSection}>
-                <SearchBar setter={setInput} placeholder={t("wayfinder.title")} />
+                <SearchBar placeholder={t("wayfinder.title")} />
                 <ol ref={listRef}>
                     {filteredPersons.map(p => {
                         const k = `${p.cfFirstNames}${p.cfFamilyNames}`

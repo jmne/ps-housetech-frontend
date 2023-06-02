@@ -1,19 +1,28 @@
 // IMPORTS - ASSETS
 import styles from "@/components/Wayfinder/Wayfinder.module.scss"
 import IconSearch from "assets/images/icon_search.svg"
+import { useSearchInputContext } from "context/SearchInputContext"
 
 interface props {
-    setter: Function,
     placeholder: string
 }
 
-export function SearchBar({ setter, placeholder }: props) {
+export function SearchBar({ placeholder }: props) {
+    const searchInputContext = useSearchInputContext()
+
+    const containerStyles = searchInputContext.active ? [styles.searchField, styles.background, styles.focus] : [styles.searchField, styles.background]
+    const inputStyles = searchInputContext.active ? [styles.input, styles.focus].join(" ") : styles.focus
+
     return (
-        <div className={[styles.searchField, styles.background].join(" ")}>
+        <div className={containerStyles.join(" ")} onClick={() => searchInputContext.setActive(!searchInputContext.active)}>
             <div className={styles.iconWrapper}>
                 <IconSearch className={styles.icon} />
             </div>
-            <input className={styles.input} type="text" onChange={(e) => setter(e.target.value)} placeholder={placeholder} />
+            <div className={inputStyles}>
+                {searchInputContext.input === ""
+                    ? <span>{placeholder}</span>
+                    : <span>{searchInputContext.input}</span>}
+            </div>
         </ div>
     )
 }

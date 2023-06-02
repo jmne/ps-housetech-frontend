@@ -6,6 +6,7 @@ import type { AppProps } from "next/app";
 import "../assets/scss/global.scss";
 // const trebuchet = localFont({src: "../assets/misc/TrebuchetMS.ttf"});
 import { Inter } from "next/font/google";
+import { SearchInputProvider } from "context/SearchInputContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,9 +14,11 @@ const inter = Inter({
 });
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-      <main className={inter.className}>
-        <Component {...pageProps} />
-      </main>    
+  <SearchInputProvider>
+    <main className={inter.className}>
+      <Component {...pageProps} />
+    </main>
+  </SearchInputProvider>
 );
 
 export default appWithTranslation(MyApp);

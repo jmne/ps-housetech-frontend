@@ -1,0 +1,85 @@
+@use "/assets/scss/constants.scss" as g;
+
+$halfBorder: calc(g.$border-base / 2);
+$quarterBorder: calc(g.$border-base / 4);
+
+.container {
+    display: grid;
+    grid-auto-rows: 1fr;
+    width: 100%;
+
+    margin: g.$margin-base;
+
+    border: $halfBorder solid g.$text-secondary;
+    border-radius: g.$border-radius-base;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    box-shadow: g.$shadow-outer;
+
+    animation: create 0.2s linear 0s 1;
+    opacity: 100;
+
+    &.removing {
+        opacity: 0;
+        animation: delete 0.2s linear 0s 1;
+    }
+}
+
+.row {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+
+    .key:first-child {
+        border-left-width: 0px;
+    }
+
+    .key:last-child {
+        border-right-width: 0px;
+    }
+
+    &:first-of-type .key {
+        border-top-width: 0px;
+    }
+
+    &:last-of-type .key {
+        border-bottom-width: 0px;
+    }
+}
+
+.key {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: g.$container-item;
+    
+    border: $quarterBorder solid g.$text-secondary;
+
+    font-size: g.$text-base;
+
+    &:active{
+        background-color: g.$background;
+    }
+}
+
+@keyframes create {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 100;
+    }
+}
+
+@keyframes delete {
+    0% {
+        opacity: 100;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

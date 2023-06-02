@@ -3,7 +3,7 @@
 $animDuration: 0.75s;
 
 .container {
-    position:relative;
+    position: relative;
 
     display: grid;
     grid-template-columns: min(30%, 600px) 1fr;
@@ -43,7 +43,7 @@ $animDuration: 0.75s;
 
         border: 2px solid g.$main-primary;
 
-        &:focus-within {
+        &.focus {
             background-color: g.$main-primary-tint;
         }
     }
@@ -55,11 +55,11 @@ $animDuration: 0.75s;
         align-items: center;
         justify-content: center;
     }
-    
+
     .icon {
         display: inline-block;
         width: g.$icon-base;
-    
+
         height: 100%;
 
         fill: g.$main-primary;
@@ -68,8 +68,6 @@ $animDuration: 0.75s;
     .input {
         flex-grow: 1;
         height: 100%;
-
-
         background-color: transparent;
 
         border: none;
@@ -77,7 +75,10 @@ $animDuration: 0.75s;
         color: g.$text-primary;
         font-size: g.$text-base;
 
-        &:focus {
+        display: flex;
+        align-items: center;
+
+        &.focus {
             outline: none;
             animation: 0.5s 1 forwards grow;
         }
