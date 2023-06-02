@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { fetcher } from "utils/basicFetcher";
 
 // IMPORTS - ASSETS
-import { DishInformation, sample_dishes } from "types/DishInformation";
+import { DishInformation, sample_dishes } from "types/SampleDishes";
 
 const revalidate_cafeteriaplan = 20;
 const url = "ps-housetech.uni-muenster.de/api/mensa";

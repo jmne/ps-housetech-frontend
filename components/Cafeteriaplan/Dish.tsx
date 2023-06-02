@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 // IMPORTS - ASSETS
-import { DishInformation } from "types/DishInformation";
+import { DishInformation, SampleDishes } from "types/SampleDishes";
 import styles from "@/components/Cafeteriaplan/Dish.module.scss";
 
 // IMPORTS - ICONS
@@ -14,6 +14,7 @@ import icon_fish from "assets/images/foodicons/fish.png";
 import icon_vegetarian from "assets/images/foodicons/vegetarian.png";
 import icon_vegan from "assets/images/foodicons/vegan.png";
 import icon_alcohol from "assets/images/foodicons/alcohol.png";
+import { info } from "sass";
 
 const getIcon = {
   Gfl: icon_chicken,
@@ -26,22 +27,39 @@ const getIcon = {
 };
 
 interface DishProps {
-  dish: DishInformation;
+  dish: SampleDishes["item"];
 }
+
+
+
+// returns the dish container with information about the dish; prices are fixed to 2 decimal places and a '.' is replaced by a ','
 export default function Dish({ dish }: DishProps) {
   return (
-    <div className={styles.container}>
-      <div className={styles.dishInfo}>
-        <span className={styles.name}>{dish.meal}</span>
-        <span className={styles.prices}>
-          {dish.price1}€ | {dish.price3}€
-        </span>
-      </div>
-      <div className={styles.icons}>
-        {dish.foodicons.map((icon) => (
-          <Image src={getIcon[icon]} alt={"Foodicon"} fill={false} className={styles.icons} />
-        ))}
-      </div>
+    <div>
+      {dish.map((item, index) => (
+        <div className={styles.container} key={index}>
+          <div className={styles.dishInfo}>
+            <span className={styles.name}>{item.meal}</span>
+            <span className={styles.prices}>
+              {item.price1.toFixed(2).replace(".", ",")}€ |{" "}
+              {item.price3.toFixed(2).replace(".", ",")}€
+            </span>
+          </div>
+          <div className={styles.icons}>
+            {item.foodicons.map((icon, iconIndex) => (
+              <Image
+                src={getIcon[icon]}
+                alt={"Foodicon"}
+                fill={false}
+                className={styles.icon}
+                key={iconIndex}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
+
+

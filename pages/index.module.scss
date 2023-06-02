@@ -13,8 +13,8 @@
 }
 
 .bodyWrapper {
-  height: calc(100% - g.$icon-base - 3*g.$margin-base);
-  max-height: calc(100% - g.$icon-base - 3*g.$margin-base);
+  height: calc(100% - g.$icon-base - 3 * g.$margin-base);
+  max-height: calc(100% - g.$icon-base - 3 * g.$margin-base);
 
   display: grid;
   flex-grow: 1;
