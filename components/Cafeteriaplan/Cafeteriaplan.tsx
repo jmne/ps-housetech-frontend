@@ -1,6 +1,6 @@
 // IMPORTS - BUILTINS
 import useCafeteriaplan from "hooks/useCafeteriaplan";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, Fragment } from "react";
 import Image from "next/image";
 
 // IMPORTS - COMPONENTS
@@ -15,7 +15,18 @@ import { useTranslation } from "next-i18next";
 // IMPORTS - ICONS
 import arrow_back from "assets/images/arrow_back.svg";
 import arrow_forward from "assets/images/arrow_forward.svg";
-import { sample_dishes } from "types/SampleDishes";
+import { SampleDishes, sample_dishes } from "types/SampleDishes";
+
+function formatDateForData(d: Date) {
+  const month_short = d.getMonth()
+  const day_short = d.getDate()
+
+  const year = d.getFullYear()
+  const month = month_short.valueOf() < 10 ? `0${month_short}` : month_short
+  const day = day_short.valueOf() < 10 ? `0${day_short}` : day_short
+
+  return `${year}-${month}-${day}`
+}
 
 export default function Cafeteriaplan() {
   const { t } = useTranslation("index");
@@ -25,11 +36,16 @@ export default function Cafeteriaplan() {
   const timer = useRef<number>();
 
   // getting the formatted Date from today
-  const currentDate = new Date();
-  const day = currentDate.getDate().toString().padStart(2, "0");
-  const month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
-  const year = currentDate.getFullYear().toString();
-  const formattedDate = `${day}.${month}.${year}`;
+  const today = new Date()
+  const current_date_title = today.toLocaleDateString("en-gb").replaceAll("/", ".")
+
+  const [selectedDate, setSelectedDate] = useState(formatDateForData(today))
+  const [currentData, setCurrentData] = useState<SampleDishes>()
+
+  useEffect(() => {
+    const selection = data.find((e) => e.date === selectedDate)
+    if (selection) setCurrentData(selection)
+  }, [selectedDate])
 
   const startTimer = () => {
     clearTimeout(timer.current);
@@ -68,7 +84,7 @@ export default function Cafeteriaplan() {
             fill={false}
             className={cafeteriaStyles.date}
           />
-          <span className={cafeteriaStyles.dateText}>{formattedDate}</span>
+          <span className={cafeteriaStyles.dateText}>{current_date_title}</span>
           <Image
             src={arrow_forward}
             alt={"Arrow Forward"}
@@ -78,16 +94,20 @@ export default function Cafeteriaplan() {
         </div>
       </div>
       <ol className={cafeteriaStyles.cafeteriaplan} ref={olRef}>
-        {data.map((dish, index) =>
-          index === 2 ? (
-            <>
-              <Dish dish={sample_dishes[0].item} key={index} />
-              <div></div>
-            </>
-          ) : (
-            <Dish dish={sample_dishes[0].item} key={index} />
+        {currentData ?
+          currentData.item.map((dish, index) =>
+            index === 2 ? (
+              <Fragment key={`${dish.meal}${dish.price1}`}>
+                <Dish dish={dish} />
+                <div></div>
+              </Fragment>
+            ) : (
+              <Dish dish={dish} key={`${dish.meal}${dish.price1}`} />
+            )
           )
-        )}
+          :
+          <></>
+        }
       </ol>
     </section>
   );

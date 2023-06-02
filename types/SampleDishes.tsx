@@ -15,6 +15,19 @@ export interface SampleDishes {
   weekday: string;
 }
 
+function formatDateForData(d: Date) {
+  const month_short = d.getMonth()
+  const day_short = d.getDate()
+
+  const year = d.getFullYear()
+  const month = month_short.valueOf() < 10 ? `0${month_short}` : month_short
+  const day = day_short.valueOf() < 10 ? `0${day_short}` : day_short
+
+  return `${year}-${month}-${day}`
+}
+
+const today = new Date()
+
 export const sample_dishes: SampleDishes[] = [
   {
     item: [
@@ -51,40 +64,8 @@ export const sample_dishes: SampleDishes[] = [
         allergens: "1"
       },
       {
-        category: "Beilage 1",
-        meal: "Reis",
-        foodicons: ["Vgn"],
-        price1: 0.3,
-        price3: 0.45,
-        allergens: "1"
-      },
-      {
         category: "Beilage 2",
         meal: "Kaisergemüse",
-        foodicons: ["Vgn"],
-        price1: 0.5,
-        price3: 0.75,
-        allergens: "1"
-      },
-      {
-        category: "Beilage 2",
-        meal: "Sommergemüse",
-        foodicons: ["Vgn"],
-        price1: 0.5,
-        price3: 0.75,
-        allergens: "1"
-      },
-      {
-        category: "Beilage 2",
-        meal: "Nudeln",
-        foodicons: ["Vgt"],
-        price1: 0.5,
-        price3: 0.75,
-        allergens: "AWE,C"
-      },
-      {
-        category: "Beilage 2",
-        meal: "Erbsen",
         foodicons: ["Vgn"],
         price1: 0.5,
         price3: 0.75,
@@ -123,7 +104,7 @@ export const sample_dishes: SampleDishes[] = [
         allergens: "G"
       }
     ],
-    date: "2023-05-17",
+    date: formatDateForData(new Date()),
     weekday: "Wednesday"
   },
   {

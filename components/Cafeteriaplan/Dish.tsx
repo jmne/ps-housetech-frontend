@@ -27,35 +27,31 @@ const getIcon = {
 };
 
 interface DishProps {
-  dish: SampleDishes["item"];
+  dish: DishInformation;
 }
 
 // returns the dish container with information about the dish; prices are fixed to 2 decimal places and a '.' is replaced by a ','
 export default function Dish({ dish }: DishProps) {
   return (
-    <div>
-      {dish.map((dish, index) => (
-        <div className={styles.container} key={index}>
-          <div className={styles.dishInfo}>
-            <span className={styles.name}>{dish.meal}</span>
-            <span className={styles.prices}>
-              {dish.price1.toFixed(2).replace(".", ",")}€ |{" "}
-              {dish.price3.toFixed(2).replace(".", ",")}€
-            </span>
-          </div>
-          <div className={styles.icons}>
-            {dish.foodicons.map((icon, iconIndex) => (
-              <Image
-                src={getIcon[icon]}
-                alt={"Foodicon"}
-                fill={false}
-                className={styles.icon}
-                key={iconIndex}
-              />
-            ))}
-          </div>
-        </div>
-      ))}
+    <div className={styles.container}>
+      <div className={styles.dishInfo}>
+        <span className={styles.name}>{dish.meal}</span>
+        <span className={styles.prices}>
+          {dish.price1.toFixed(2).replace(".", ",")}€ |{" "}
+          {dish.price3.toFixed(2).replace(".", ",")}€
+        </span>
+      </div>
+      <div className={styles.icons}>
+        {dish.foodicons.map((icon, iconIndex) => (
+          <Image
+            src={getIcon[icon]}
+            alt={"Foodicon"}
+            fill={false}
+            className={styles.icon}
+            key={iconIndex}
+          />
+        ))}
+      </div>
     </div>
   );
 }
