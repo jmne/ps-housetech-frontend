@@ -16,6 +16,9 @@ $quarterBorder: calc(g.$border-base / 4);
 
     animation: create 0.2s linear 0s 1;
     opacity: 100;
+    background-color: g.$container-item;
+
+    padding: g.$margin-small;
 
     &.fadeOut {
         transition: opacity 500ms ease-out;
@@ -28,21 +31,21 @@ $quarterBorder: calc(g.$border-base / 4);
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
 
-    .key:first-child {
-        border-left-width: 0px;
-    }
-
-    .key:last-child {
-        border-right-width: 0px;
-    }
-
-    &:first-of-type .key {
-        border-top-width: 0px;
-    }
-
-    &:last-of-type .key {
-        border-bottom-width: 0px;
-    }
+    //.key:first-child {
+    //    border-left-width: 0px;
+    //}
+//
+    //.key:last-child {
+    //    border-right-width: 0px;
+    //}
+//
+    //&:first-of-type .key {
+    //    border-top-width: 0px;
+    //}
+//
+    //&:last-of-type .key {
+    //    border-bottom-width: 0px;
+    //}
 }
 
 .key {
@@ -52,12 +55,20 @@ $quarterBorder: calc(g.$border-base / 4);
 
     background-color: g.$container-item;
 
-    border: $quarterBorder solid g.$text-secondary;
+    //border: $quarterBorder solid g.$text-secondary;
+    border: none;
+    border-radius: g.$border-radius-base / 2;
 
     font-size: g.$text-base;
 
+    box-sizing: border-box;
+    margin: g.$margin-small / 2;
+
+    box-shadow: g.$shadow-outer;
+
     &:active {
-        background-color: g.$background;
+        //background-color: g.$background;
+        box-shadow: g.$shadow-inner-light;
     }
 }
 
