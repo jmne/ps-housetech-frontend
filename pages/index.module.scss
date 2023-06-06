@@ -40,11 +40,14 @@
   }
 
   .overlayContainer {
-    display: flex;
+    display: grid;
     grid-row: span 1;
     grid-column: span 5;
-
     padding: 0;
+
+    & > * {
+      grid-area: 1 / 1 / 1 / 1;
+    }
   }
 
   .smallContainer {

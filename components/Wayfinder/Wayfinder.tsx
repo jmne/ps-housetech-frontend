@@ -18,6 +18,7 @@ import { usePersonSearchContext } from "context/PersonContext"
 import { expand, collapse } from "utils/personCardsTransformations"
 import Fuse from "fuse.js"
 import { useSearchInputContext } from "context/SearchInputContext"
+import { TIMER_DURATION } from "utils/constants"
 
 interface personRef {
     [id: string]: HTMLLIElement | null,
@@ -40,6 +41,24 @@ export function Wayfinder() {
     // Get data for the list of Persons
     const persons = useEmployees()
     const [filteredPersons, setFilteredPersons] = useState(persons)
+
+    function showPerson(person: Employee) {
+        setTimeout(() => {
+            expand(person)
+        }, 250)
+        setPerson(person)
+        const personElement = personRefs[`${person.cfFirstNames}${person.cfFamilyNames}`]
+
+        if (!listRef.current || !personElement) return
+        const scroll_by = personElement.offsetTop - listRef.current.scrollTop - 5
+        listRef.current.scrollBy({ top: scroll_by, behavior: "smooth" })
+    }
+
+    function resetLayout() {
+        searchInputContext.setActive(false)
+        searchInputContext.setInput("")
+        if (listRef.current) listRef.current.scrollBy({ top: listRef.current.scrollTop, behavior: "smooth" })
+    }
 
     // Fuse for fuzzy search
     const fuse = useMemo(() => {
@@ -84,24 +103,27 @@ export function Wayfinder() {
         // Get the global state - Was set in the list element 'PersonResult'
         const p = selectedPersonContext.current_person
 
-        // If nothing was selected before
-        if (!current_person) {
-            if (!p) return // Nothing is selected now, do nothing
-
-            // Something is selected now, expand person's element and set current_person
-            expand(p)
-            setPerson(p)
-        } else {
-            // Something was selected before
+        // Nothing selected now & nothing selected before
+        if (!p && !current_person) null
+        // Something selected now
+        else if (!p && current_person) {
+            collapse(current_person)
+            setPerson(undefined)
+        }
+        // Something selected now and nothing selected before -> Show new person
+        else if (p && !current_person) {
+            showPerson(p)
+        }
+        // Something selected now and something selected before
+        else {
             if (p === current_person) {
                 // Clicked person matches previous person - Collapse and unset current_person
-                collapse(p)
+                if (p) collapse(p)
                 setPerson(undefined)
             } else {
                 // Different person selected - Collapse old, set new person, and expand new person
-                collapse(current_person)
-                setPerson(p)
-                if (p) expand(p)
+                if (current_person) collapse(current_person)
+                if (p) showPerson(p)
             }
         }
     }, [selectedPersonContext.current_person])
@@ -112,8 +134,8 @@ export function Wayfinder() {
                 <SearchBar placeholder={t("wayfinder.title")} />
                 <ol ref={listRef}>
                     {filteredPersons.map(p => {
-                        const k = `${p.cfFirstNames}${p.cfFamilyNames}`
-                        return (<PersonResult person={p} key={`${p.cfFirstNames}${p.cfFamilyNames}`} ref={el => personRefs[k] = el} />)
+                        const unique_id = `${p.cfFirstNames}${p.cfFamilyNames}`
+                        return (<PersonResult person={p} key={unique_id} ref={el => personRefs[unique_id] = el} />)
                     })}
                 </ol>
             </div>

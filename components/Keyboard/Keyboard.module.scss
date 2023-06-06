@@ -8,10 +8,7 @@ $quarterBorder: calc(g.$border-base / 4);
     grid-auto-rows: 1fr;
     width: 100%;
 
-    margin: g.$margin-base;
 
-    border: $halfBorder solid g.$text-secondary;
-    border-radius: g.$border-radius-base;
     box-sizing: border-box;
     overflow: hidden;
 
@@ -20,9 +17,9 @@ $quarterBorder: calc(g.$border-base / 4);
     animation: create 0.2s linear 0s 1;
     opacity: 100;
 
-    &.removing {
+    &.fadeOut {
+        transition: opacity 500ms ease-out;
         opacity: 0;
-        animation: delete 0.2s linear 0s 1;
     }
 }
 
@@ -54,12 +51,12 @@ $quarterBorder: calc(g.$border-base / 4);
     align-items: center;
 
     background-color: g.$container-item;
-    
+
     border: $quarterBorder solid g.$text-secondary;
 
     font-size: g.$text-base;
 
-    &:active{
+    &:active {
         background-color: g.$background;
     }
 }
@@ -71,15 +68,5 @@ $quarterBorder: calc(g.$border-base / 4);
 
     100% {
         opacity: 100;
-    }
-}
-
-@keyframes delete {
-    0% {
-        opacity: 100;
-    }
-
-    100% {
-        opacity: 0;
     }
 }

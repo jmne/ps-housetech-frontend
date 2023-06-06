@@ -29,6 +29,7 @@ $animDuration: 0.75s;
 
 
     .searchField {
+        z-index: 1;
         width: auto;
         height: fit-content;
         padding-inline: g.$margin-small;
@@ -42,6 +43,8 @@ $animDuration: 0.75s;
         gap: g.$margin-small;
 
         border: 2px solid g.$main-primary;
+
+        filter: drop-shadow(0 0.4rem 0.4rem rgba(g.$main-primary, 0.5));
 
         &.focus {
             background-color: g.$main-primary-tint;
@@ -85,10 +88,11 @@ $animDuration: 0.75s;
     }
 
     ol {
+        position: relative;
+
         list-style: none;
         margin: 0;
         padding-inline: g.$margin-base;
-        padding-block-end: g.$margin-base;
 
         min-height: 0px;
         overflow-y: scroll;
@@ -118,6 +122,10 @@ $animDuration: 0.75s;
     min-height: 0px;
     height: fit-content;
     box-sizing: border-box;
+
+    &:last-child {
+            margin-block-end: g.$margin-base;
+    }
 
     .caption {
         color: g.$text-secondary;

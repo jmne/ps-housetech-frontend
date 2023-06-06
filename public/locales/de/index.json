@@ -6,11 +6,12 @@
         "title": "Wo ist?",
         "search": {
             "room": "Raum",
-            "phone": "Tel."
+            "phone": "Tel.",
+            "mail": "E-Mail"
         },
         "map": {
-            "leo3": "Leo 3",
-            "leo11": "Leo 11",
+            "leo3": "Leonardo Campus 3",
+            "leo11": "Leonardo Campus 11",
             "floor0": "Erdgeschoss",
             "floor1": "OG 1",
             "floor2": "OG 2",
