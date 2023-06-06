@@ -10,8 +10,8 @@ interface helperProps {
 }
 
 function Key({ keycode, index, row, ...props }: helperProps) {
-    const isLetter = !(["clear","space","backspace"].includes(keycode))
-    
+    const isLetter = !(["clear", "space", "backspace"].includes(keycode))
+
     const searchContext = useSearchInputContext()
     function handleKey() {
         if (keycode == "clear") clearInput()
@@ -22,7 +22,7 @@ function Key({ keycode, index, row, ...props }: helperProps) {
 
     function appendInput(newKey: string) {
         const inputLength = searchContext.input.length
-        const isCapital = (inputLength === 0) || searchContext.input[inputLength-1] === " "
+        const isCapital = (inputLength === 0) || searchContext.input[inputLength - 1] === " "
         searchContext.setInput(`${searchContext.input}${isCapital ? newKey.toUpperCase() : newKey}`)
     }
 
@@ -39,11 +39,11 @@ function Key({ keycode, index, row, ...props }: helperProps) {
     )
 }
 
-export const Keyboard = () =>  useMemo(() => {
+export const Keyboard = () => useMemo(() => {
     const keys = [
         ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ü"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä"],
-        ["y", "x", "c", "v", "b", "n", "m"],
+        ["y", "x", "c", "v", "b", "n", "m", "-"],
         ["clear", "space", "backspace"],
     ]
 
