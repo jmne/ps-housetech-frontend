@@ -18,7 +18,7 @@ describe("Headline", () => {
     );
     // Check for test string
     expect(screen.getByText("Department of Information Systems")).toBeInTheDocument();
-    
+
     // Check for images
     expect(screen.getByAltText("WWU Logo")).toBeInTheDocument();
     expect(screen.getByAltText("ERCIS Logo")).toBeInTheDocument();

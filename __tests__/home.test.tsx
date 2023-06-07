@@ -9,10 +9,7 @@ import { I18nextProvider } from "react-i18next";
 // Component
 import Home from "@/pages/index";
 
-
 describe("Homepage", () => {
-
-
   it("Renders the Homepage", () => {
     render(
       <I18nextProvider i18n={i18n}>
