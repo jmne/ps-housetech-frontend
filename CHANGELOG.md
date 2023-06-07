@@ -42,9 +42,11 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 - Component added to display incoming busses for the Station at Leonardo-Campus (Easteregg included ;))
 - Revised general styling for responsive font-sizes and usage of custom font
 
+
 ### 🛠️ Bugfix
 
 ===============================
+
 
 ## | [0.1.2] - 2023-05-17
 
@@ -55,8 +57,11 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 ### ✨ Feature
 
 - Headline component with ERCIS & WWU logos
-  - WWU logo without text
+	- WWU logo without text
 - Revised general styling
-  - icon-xm constant added
+	- icon-xm constant added
 
 ### 🛠️ Bugfix
+
+
+

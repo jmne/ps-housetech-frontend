@@ -1,6 +1,8 @@
-import Bus from "@/components/Busplan/Bus";
+// Testing library
 import "@testing-library/jest-dom";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+
+import Bus from "@/components/Busplan/Bus";
 import { Busride } from "types/Busride";
 
 const sample_ride: Busride = {
@@ -16,14 +18,12 @@ const sample_ride: Busride = {
 const dir = "inward";
 const index = 0;
 
-describe("Homepage", () => {
-  it("renders a sample page", () => {
-    render(<Bus bus={sample_ride} direction={"inward"} index={0} />);
-    // Check for test string
-    expect(screen.getByText(sample_ride.line)).toBeInTheDocument();
-    expect(screen.getByText(sample_ride.going_to)).toBeInTheDocument();
-    expect(
-      screen.getByText(`${sample_ride.minutes_until_departure} min`)
-    ).toBeInTheDocument();
-  });
+describe("Busplan", () => {
+    it("Renders a single bus-ride component for the busplan", () => {
+        render(<Bus bus={sample_ride} direction={"inward"} index={0} />);
+        // Check for test string
+        expect(screen.getByText(sample_ride.line)).toBeInTheDocument();
+        expect(screen.getByText(sample_ride.going_to)).toBeInTheDocument();
+        expect(screen.getByText(`${sample_ride.minutes_until_departure} min`)).toBeInTheDocument();
+    });
 });
