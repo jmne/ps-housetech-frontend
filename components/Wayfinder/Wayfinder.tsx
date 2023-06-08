@@ -18,20 +18,23 @@ import { usePersonSearchContext } from "context/PersonContext"
 import { expand, collapse } from "utils/personCardsTransformations"
 import Fuse from "fuse.js"
 import { useSearchInputContext } from "context/SearchInputContext"
-import { TIMER_DURATION } from "utils/constants"
+import { useTimeoutContext } from "context/TimeoutContext"
+import { WAYFINDER_CARD_ANIMATION_DURATION } from "utils/constants"
+import { useMapContext } from "context/MapContext"
 
 interface personRef {
     [id: string]: HTMLLIElement | null,
 }
 
 export function Wayfinder() {
+    // Global state of the selected person in the list
+    const selectedPersonContext = usePersonSearchContext()
     const searchInputContext = useSearchInputContext()
+    const timeoutContext = useTimeoutContext()
+    const mapContext = useMapContext()
 
     // Translation setup
     const { t } = useTranslation("index")
-
-    // Global state of the selected person in the list
-    const selectedPersonContext = usePersonSearchContext()
 
     // Internal tracking of the last person that was clicked on the list
     const [current_person, setPerson] = useState<Employee | undefined>()
@@ -42,22 +45,33 @@ export function Wayfinder() {
     const persons = useEmployees()
     const [filteredPersons, setFilteredPersons] = useState(persons)
 
+    // Define reset function and add it to the global timeout-handler
+    function resetLayout() {
+        // Reset all states
+        selectedPersonContext.setPerson(undefined)
+        searchInputContext.setActive(false)
+        searchInputContext.setInput("")
+
+        // Scroll list to top
+        if (listRef.current) listRef.current.scrollBy({ top: listRef.current.scrollTop, behavior: "smooth" })
+    }
+
+    timeoutContext.handler.addResetListener({
+        origin: "wayfinder",
+        resetFunction: resetLayout
+    })
+
+
     function showPerson(person: Employee) {
         setTimeout(() => {
             expand(person)
-        }, 250)
+        }, WAYFINDER_CARD_ANIMATION_DURATION)
         setPerson(person)
         const personElement = personRefs[`${person.cfFirstNames}${person.cfFamilyNames}`]
 
         if (!listRef.current || !personElement) return
         const scroll_by = personElement.offsetTop - listRef.current.scrollTop - 5
         listRef.current.scrollBy({ top: scroll_by, behavior: "smooth" })
-    }
-
-    function resetLayout() {
-        searchInputContext.setActive(false)
-        searchInputContext.setInput("")
-        if (listRef.current) listRef.current.scrollBy({ top: listRef.current.scrollTop, behavior: "smooth" })
     }
 
     // Fuse for fuzzy search

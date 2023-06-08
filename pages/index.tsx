@@ -15,10 +15,23 @@ import { Wayfinder } from '@/components/Wayfinder/Wayfinder';
 import { SelectedPersonProvider } from 'context/PersonContext';
 import { MapProvider } from "context/MapContext";
 import { Overlay } from '@/components/Overlay/Overlay';
+import { useTimeoutContext } from 'context/TimeoutContext';
+import { useEffect, useState } from 'react';
+import { IdleHandler } from 'utils/IdleHandler';
 
 export default function Index() {
+  const timeoutContext = useTimeoutContext()
   const { t } = useTranslation("index")
-  console.log(t)
+  const [currentTimer, setCurrentTimer] = useState<IdleHandler | undefined>()
+
+  // Track the timeout handler changes and make sure the event listeners are unmounted if the handler changes
+  useEffect(() => {
+    if (currentTimer !== timeoutContext.handler && currentTimer) {
+      currentTimer.cleanUp()
+      setCurrentTimer(timeoutContext.handler)
+    }
+  }, [timeoutContext.handler])
+
 
   return (
     <div className={styles.wrapper}>

@@ -7,6 +7,7 @@ import "../assets/scss/global.scss";
 // const trebuchet = localFont({src: "../assets/misc/TrebuchetMS.ttf"});
 import { Inter } from "next/font/google";
 import { SearchInputProvider } from "context/SearchInputContext";
+import { TimeoutProvider } from "context/TimeoutContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,11 +15,13 @@ const inter = Inter({
 });
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <SearchInputProvider>
-    <main className={inter.className}>
-      <Component {...pageProps} />
-    </main>
-  </SearchInputProvider>
+  <TimeoutProvider>
+    <SearchInputProvider>
+      <main className={inter.className}>
+        <Component {...pageProps} />
+      </main>
+    </SearchInputProvider>
+  </TimeoutProvider>
 );
 
 export default appWithTranslation(MyApp);

@@ -3,6 +3,7 @@ import { RefObject } from "react";
 import { BuildingFloor, CampusBuilding } from "types/Campus";
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
 
+
 /**
  * Configuration for map transitions
  */
@@ -11,7 +12,7 @@ export const mapTransitionConfig = {
     map_x_offset: 5,
     map_y_offset: 15,
     focus_scaling: 1.1,
-    not_in_focus_opacity: 0.15,
+    not_in_focus_opacity: 0.6,
     map_focus_shadow: "drop-shadow(4px 4px 6px rgba(50, 50, 93, 0.20)) drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.15))",
 };
 
@@ -186,11 +187,13 @@ function removeHighlightFromFloor(element: SVGSVGElement, offset: number) {
     // Layer is 'under' new layer, push down
     if (offset < 0) {
         element.style.transform = `translateX(${offset * mapTransitionConfig.map_x_offset}%) translateY(${-offset * mapTransitionConfig.map_y_offset}%)`;
-        element.style.opacity = `${mapTransitionConfig.not_in_focus_opacity}`;
+        element.style.opacity = `${mapTransitionConfig.not_in_focus_opacity / Math.abs(offset * 2)}`;
+        element.style.zIndex = "4"
     }
     // Layer is 'over' new layer, push up
     else {
         element.style.transform = "translateX(40%) translateY(-100%)";
         element.style.opacity = `${mapTransitionConfig.not_in_focus_opacity}`;
+        element.style.zIndex = "6"
     }
 }

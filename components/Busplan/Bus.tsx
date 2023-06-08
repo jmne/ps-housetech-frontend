@@ -8,10 +8,8 @@ import { Busride } from "types/Busride";
 import styles from "@/components/Busplan/Bus.module.scss";
 
 // IMPORTS - ICONS
-//@ts-ignore
-import icon_inward from "assets/images/icon_city.svg?url";
-//@ts-ignore
-import icon_outward from "assets/images/icon_forrest.svg?url";
+import IconInward from "assets/images/icon_city.svg";
+import IconOutward from "assets/images/icon_forrest.svg";
 import icon_bus from "assets/images/bus.png";
 
 type Direction = "inward" | "outward";
@@ -140,14 +138,9 @@ export default function Bus({ bus, direction, index }: BusProps) {
         <div className={styles.vertical}>
           <div className={styles.lineWrapper}>
             {direction === "inward" ? (
-              <Image src={icon_inward} alt={"In"} fill={false} className={styles.icon} />
+              <IconInward alt={"Goind into City"} className={styles.icon} />
             ) : (
-              <Image
-                src={icon_outward}
-                alt={"Out"}
-                fill={false}
-                className={styles.icon}
-              />
+              <IconOutward alt={"Goind out of City"} className={styles.icon} />
             )}
             <span className={styles.line}>{bus.line}</span>
           </div>

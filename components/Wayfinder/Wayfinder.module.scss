@@ -43,11 +43,14 @@ $animDuration: 0.75s;
         gap: g.$margin-small;
 
         border: 2px solid g.$main-primary;
+        box-shadow: g.$shadow-outer;
 
-        filter: drop-shadow(0 0.4rem 0.4rem rgba(g.$main-primary, 0.5));
-
+        transition: transform 0.1s ease-out 0s, filter 0.1s ease-out;
+        
         &.focus {
-            background-color: g.$main-primary-tint;
+            filter: drop-shadow(0 0.4rem 0.4rem rgba(g.$main-primary, 0.5));
+            transform: scale(1.05);
+            //background-color: g.$main-primary-tint;
         }
     }
 
@@ -83,7 +86,7 @@ $animDuration: 0.75s;
 
         &.focus {
             outline: none;
-            animation: 0.5s 1 forwards grow;
+            //animation: 0.5s 1 forwards grow;
         }
     }
 
