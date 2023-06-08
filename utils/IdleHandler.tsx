@@ -62,7 +62,6 @@ export class IdleHandler {
         this.idle_mode = true
         this.resetListeners.forEach(listener => {
             listener.resetFunction()
-            console.log(`Called reset function for ${listener.origin}`)
         })
     }
 
@@ -116,6 +115,6 @@ export class IdleHandler {
             if (expiredTime < Date.now()) {
                 this.resetComponents()
             }
-        }, 10000)
+        }, 5000)
     }
 }

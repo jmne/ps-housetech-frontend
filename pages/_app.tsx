@@ -15,13 +15,13 @@ const inter = Inter({
 });
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <TimeoutProvider>
+  //<TimeoutProvider>
     <SearchInputProvider>
       <main className={inter.className}>
         <Component {...pageProps} />
       </main>
     </SearchInputProvider>
-  </TimeoutProvider>
+  //</TimeoutProvider>
 );
 
 export default appWithTranslation(MyApp);

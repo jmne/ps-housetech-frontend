@@ -1,5 +1,5 @@
 // IMPORTS - BUILTINS
-import { Ref, useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 
 // IMPORTS - HELPERS
 import { useEmployees } from "hooks/useEmployees"
@@ -18,9 +18,8 @@ import { usePersonSearchContext } from "context/PersonContext"
 import { expand, collapse } from "utils/personCardsTransformations"
 import Fuse from "fuse.js"
 import { useSearchInputContext } from "context/SearchInputContext"
-import { useTimeoutContext } from "context/TimeoutContext"
-import { WAYFINDER_CARD_ANIMATION_DURATION } from "utils/constants"
-import { useMapContext } from "context/MapContext"
+import { TIMEOUT_DURATION, WAYFINDER_CARD_ANIMATION_DURATION } from "utils/constants"
+import { IdleHandler } from "utils/IdleHandler"
 
 interface personRef {
     [id: string]: HTMLLIElement | null,
@@ -30,8 +29,6 @@ export function Wayfinder() {
     // Global state of the selected person in the list
     const selectedPersonContext = usePersonSearchContext()
     const searchInputContext = useSearchInputContext()
-    const timeoutContext = useTimeoutContext()
-    const mapContext = useMapContext()
 
     // Translation setup
     const { t } = useTranslation("index")
@@ -39,7 +36,7 @@ export function Wayfinder() {
     // Internal tracking of the last person that was clicked on the list
     const [current_person, setPerson] = useState<Employee | undefined>()
     const personRefs: personRef = {}
-    const listRef = useRef<HTMLOListElement>(null)
+    const listRef = useRef<HTMLOListElement>()
 
     // Get data for the list of Persons
     const persons = useEmployees()
@@ -48,18 +45,24 @@ export function Wayfinder() {
     // Define reset function and add it to the global timeout-handler
     function resetLayout() {
         // Reset all states
-        selectedPersonContext.setPerson(undefined)
-        searchInputContext.setActive(false)
-        searchInputContext.setInput("")
+        const actions = [
+            selectedPersonContext.setPerson.bind(null, undefined),
+            searchInputContext.setActive.bind(null, false),
+            searchInputContext.setInput.bind(null, ""),
+        ]
+
+        actions.forEach((action, index) => {
+            setTimeout(() => {
+                action()
+            }, 250)
+        })
 
         // Scroll list to top
-        if (listRef.current) listRef.current.scrollBy({ top: listRef.current.scrollTop, behavior: "smooth" })
+        setTimeout(() => {
+            if (listRef.current) listRef.current.scrollBy({ top: (- listRef.current.scrollTop), behavior: "smooth" })
+        }, 1500)
     }
-
-    timeoutContext.handler.addResetListener({
-        origin: "wayfinder",
-        resetFunction: resetLayout
-    })
+    new IdleHandler({ timeout: TIMEOUT_DURATION, resetListener: [{ origin: "wayfinder", resetFunction: resetLayout }] })
 
 
     function showPerson(person: Employee) {
