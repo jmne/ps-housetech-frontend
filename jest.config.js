@@ -12,8 +12,7 @@ const customJestConfig = {
   reporters: ["default", "jest-junit"],
   modulePaths: ["./"],
   moduleNameMapper: {
-    // it will override the default config
-    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|svg?url)$": "<rootDir>/__mocks__/fileMock.js",
+    "^[./a-zA-Z0-9$_-]+\\.svg?url$": "<rootDir>/__mocks__/fileMock.js",
   },
 };
 

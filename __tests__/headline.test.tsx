@@ -9,6 +9,8 @@ import { I18nextProvider } from "react-i18next";
 // Component
 import Headline from "@/components/Headline/Headline";
 
+
+
 describe("Headline", () => {
   it("Renders the headline", () => {
     render(

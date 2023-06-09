@@ -1,63 +1,86 @@
-import { render, fireEvent, screen } from '@testing-library/react';
-import { SearchInputProvider } from 'context/SearchInputContext';
-import { Key, Keyboard } from '@/components/Keyboard/Keyboard';
-import '@testing-library/jest-dom/extend-expect';
+import { render, fireEvent, screen } from "@testing-library/react";
+import Keyboard, { Key } from "@/components/Keyboard/Keyboard";
+import { useSearchInputContext } from "context/SearchInputContext";
 
-describe('<Key />', () => {
-    it('renders correctly', () => {
-        const { getByText } = render(
-            <SearchInputProvider>
-                <Key keycode="a" index={0} row={[]} />
-            </SearchInputProvider>
-        );
+jest.mock("context/SearchInputContext");
 
-        expect(getByText('A')).toBeInTheDocument();
+describe("Keyboard and Key components", () => {
+    beforeEach(() => {
+        useSearchInputContext.mockReturnValue({
+            input: "",
+            setInput: jest.fn(),
+        });
     });
 
-    it('responds to click event', () => {
-        const { getByText } = render(
-            <SearchInputProvider>
-                <Key keycode="a" index={0} row={[]} />
-            </SearchInputProvider>
-        );
+    test("Keyboard renders correctly", () => {
+        const keys = [
+            ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ü"],
+            ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä"],
+            ["y", "x", "c", "v", "b", "n", "m", "-"],
+        ]
+        const special_keys = ["clear", "space", "backspace"]
 
-        fireEvent.click(getByText('A'));
-        expect(getByText('A')).toHaveClass('key');
-    });
-});
+        render(<Keyboard />);
 
-describe('<Keyboard />', () => {
-    it('renders correctly', () => {
-        const { getByText } = render(
-            <SearchInputProvider>
-                <Keyboard />
-            </SearchInputProvider>
-        );
-
-        expect(getByText('A')).toBeInTheDocument();
-        expect(getByText('B')).toBeInTheDocument();
-        expect(getByText('space')).toBeInTheDocument();
-        expect(getByText('backspace')).toBeInTheDocument();
-        expect(getByText('clear')).toBeInTheDocument();
+        keys.forEach((row) => {
+            row.forEach((value) => {
+                expect(screen.getByText(value.toUpperCase())).toBeInTheDocument()
+            })
+        })
+        special_keys.forEach((key) => {
+            expect(screen.getByText(key)).toBeInTheDocument()
+        })
     });
 
-    it('responds to click event', () => {
-        const { getByText } = render(
-            <SearchInputProvider>
-                <Keyboard />
-            </SearchInputProvider>
-        );
+    test("Key component triggers setInput correctly on click", () => {
+        const setInput = jest.fn();
+        useSearchInputContext.mockReturnValue({
+            input: "",
+            setInput,
+        });
 
-        fireEvent.click(getByText('A'));
-        fireEvent.click(getByText('space'));
-        fireEvent.click(getByText('B'));
-        fireEvent.click(getByText('backspace'));
-        fireEvent.click(getByText('clear'));
+        const { getByText } = render(<Key keycode="a" />);
+        fireEvent.click(getByText(/A/));
 
-        expect(getByText('A')).toHaveClass('key');
-        expect(getByText('B')).toHaveClass('key');
-        expect(getByText('space')).toHaveClass('key');
-        expect(getByText('backspace')).toHaveClass('key');
-        expect(getByText('clear')).toHaveClass('key');
+        expect(setInput).toHaveBeenCalledWith("A");
+    });
+
+    test("Key component handles 'backspace' correctly", () => {
+        const setInput = jest.fn();
+        useSearchInputContext.mockReturnValue({
+            input: "A",
+            setInput,
+        });
+
+        const { getByText } = render(<Key keycode="backspace" />);
+        fireEvent.click(getByText(/backspace/));
+
+        expect(setInput).toHaveBeenCalledWith("");
+    });
+
+    test("Key component handles 'clear' correctly", () => {
+        const setInput = jest.fn();
+        useSearchInputContext.mockReturnValue({
+            input: "A",
+            setInput,
+        });
+
+        const { getByText } = render(<Key keycode="clear" />);
+        fireEvent.click(getByText(/clear/));
+
+        expect(setInput).toHaveBeenCalledWith("");
+    });
+
+    test("Key component handles 'space' correctly", () => {
+        const setInput = jest.fn();
+        useSearchInputContext.mockReturnValue({
+            input: "",
+            setInput,
+        });
+
+        const { getByText } = render(<Key keycode="space" />);
+        fireEvent.click(getByText(/space/));
+
+        expect(setInput).toHaveBeenCalledWith(" ");
     });
 });

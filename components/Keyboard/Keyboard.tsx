@@ -6,7 +6,7 @@ interface helperProps {
     keycode: string,
 }
 
-function Key({ keycode }: helperProps) {
+export function Key({ keycode }: helperProps) {
     const isLetter = !(["clear", "space", "backspace"].includes(keycode))
 
     const searchContext = useSearchInputContext()
@@ -46,7 +46,7 @@ const Keyboard = forwardRef((props, ref) => useMemo(() => {
     ]
 
     return (//@ts-ignore
-        < article className={styles.container} id="keyboard" ref={ref} >
+        < article className={styles.container} id="keyboard" ref={ref}>
             {
                 keys.map((row, index) => {
                     return (
