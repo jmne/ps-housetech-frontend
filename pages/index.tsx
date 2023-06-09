@@ -30,7 +30,7 @@ export default function Index() {
       currentTimer.cleanUp()
       setCurrentTimer(timeoutContext.handler)
     }
-  }, [timeoutContext.handler])
+  }, [timeoutContext.handler, currentTimer])
 
 
   return (

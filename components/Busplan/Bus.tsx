@@ -1,6 +1,5 @@
 // IMPORTS - BUILTINS
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 
 // IMPORTS - ASSETS
@@ -51,7 +50,7 @@ export default function Bus({ bus, direction, index }: BusProps) {
   // Setup of 3d transformations for rotate-animation
   useEffect(() => {
     if (ref.current) setHeight(ref.current.clientHeight / 2);
-  });
+  }, [ref.current?.clientHeight]);
 
   useEffect(() => {
     if (h_halft > 0) {
@@ -65,7 +64,7 @@ export default function Bus({ bus, direction, index }: BusProps) {
         `busEasteregg${column}${row}`
       )!.style.transform = `rotateX(90deg) translateZ(${h_halft}px)`;
     }
-  }, [h_halft]);
+  }, [h_halft, column, row]);
 
   // Applies classes to the information div & hidden easteregg div to trigger the animation.
   // -> Chance to rotate or wiggle

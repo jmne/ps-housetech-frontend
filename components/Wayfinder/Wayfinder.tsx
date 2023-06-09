@@ -10,7 +10,7 @@ import styles_index from "@/pages/index.module.scss"
 import styles_wayfinder from "@/components/Wayfinder/Wayfinder.module.scss"
 import { useTranslation } from "next-i18next"
 import { SearchBar } from "./SearchBar/SearchBar"
-import { PersonResult } from "./PersonResult/PersonResult"
+import PersonResult from "./PersonResult/PersonResult"
 import { CampusMap } from "./Map/CampusMap"
 
 // IMPORTS - CONTEXT
@@ -43,26 +43,28 @@ export function Wayfinder() {
     const [filteredPersons, setFilteredPersons] = useState(persons)
 
     // Define reset function and add it to the global timeout-handler
-    function resetLayout() {
-        // Reset all states
-        const actions = [
-            selectedPersonContext.setPerson.bind(null, undefined),
-            searchInputContext.setActive.bind(null, false),
-            searchInputContext.setInput.bind(null, ""),
-        ]
+    useEffect(() => {
+        const resetLayout = () => {
+            const scrollToTop = () => {
+                if (listRef.current) listRef.current.scrollBy({ top: (-listRef.current.scrollTop), behavior: "smooth" })
+            }
 
-        actions.forEach((action, index) => {
-            setTimeout(() => {
-                action()
-            }, 250)
-        })
+            const actions = [
+                selectedPersonContext.setPerson.bind(null, undefined),
+                searchInputContext.setActive.bind(null, false),
+                scrollToTop.bind(null),
+                searchInputContext.setInput.bind(null, ""),
+            ]
 
-        // Scroll list to top
-        setTimeout(() => {
-            if (listRef.current) listRef.current.scrollBy({ top: (- listRef.current.scrollTop), behavior: "smooth" })
-        }, 1500)
-    }
-    new IdleHandler({ timeout: TIMEOUT_DURATION, resetListener: [{ origin: "wayfinder", resetFunction: resetLayout }] })
+            actions.forEach((action, index) => {
+                setTimeout(() => {
+                    action()
+                }, 500 * index)
+            })
+        }
+
+        new IdleHandler({ timeout: TIMEOUT_DURATION, resetListener: [{ origin: "wayfinder", resetFunction: resetLayout }] })
+    }, [searchInputContext.setActive, selectedPersonContext.setPerson, searchInputContext.setInput])
 
 
     function showPerson(person: Employee) {
@@ -104,7 +106,7 @@ export function Wayfinder() {
         }
 
         return new Fuse(persons, fuse_options)
-    }, persons)
+    }, [persons])
 
     // When input changes, update the persons shown in the list
     useEffect(() => {
@@ -113,7 +115,7 @@ export function Wayfinder() {
             return
         }
         setFilteredPersons(fuse.search(searchInputContext.input).map((e) => e.item))
-    }, [persons, searchInputContext.input])
+    }, [persons, searchInputContext.input, fuse])
 
     // When a person in the list was clicked, update global state & collapse/hide appropriate list elements
     useEffect(() => {
@@ -143,6 +145,7 @@ export function Wayfinder() {
                 if (p) showPerson(p)
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedPersonContext.current_person])
 
     return (

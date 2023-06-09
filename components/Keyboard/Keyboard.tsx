@@ -4,11 +4,9 @@ import { forwardRef, useMemo } from "react";
 
 interface helperProps {
     keycode: string,
-    index: number,
-    row: string[],
 }
 
-export function Key({ keycode, index, row, ...props }: helperProps) {
+function Key({ keycode }: helperProps) {
     const isLetter = !(["clear", "space", "backspace"].includes(keycode))
 
     const searchContext = useSearchInputContext()
@@ -39,7 +37,7 @@ export function Key({ keycode, index, row, ...props }: helperProps) {
 }
 
 
-export const Keyboard = forwardRef((props, ref) => useMemo(() => {
+const Keyboard = forwardRef((props, ref) => useMemo(() => {
     const keys = [
         ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ü"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä"],
@@ -53,11 +51,14 @@ export const Keyboard = forwardRef((props, ref) => useMemo(() => {
                 keys.map((row, index) => {
                     return (
                         <div className={styles.row} key={index}>
-                            {row.map((keycode, index, all) => <Key keycode={keycode} index={index} row={all} key={keycode} />)}
+                            {row.map((keycode) => <Key keycode={keycode} key={keycode} />)}
                         </div>
                     )
                 })
             }
         </article >
     )
-}, []))
+}, [ref]))
+
+Keyboard.displayName = "Keyboard"
+export default Keyboard

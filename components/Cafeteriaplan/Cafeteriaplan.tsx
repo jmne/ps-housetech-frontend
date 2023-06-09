@@ -1,6 +1,6 @@
 // IMPORTS - BUILTINS
 import useCafeteriaplan from "hooks/useCafeteriaplan";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 
 // IMPORTS - COMPONENTS
 import Dish from "@/components/Cafeteriaplan/Dish";
@@ -8,12 +8,11 @@ import Dish from "@/components/Cafeteriaplan/Dish";
 // IMPORTS - ASSETS
 import indexStyles from "@/pages/index.module.scss";
 import cafeteriaStyles from "@/components/Cafeteriaplan/Cafeteriaplan.module.scss";
-import { DishInformation } from "types/DishInformation";
 import { useTranslation } from "next-i18next";
 
 export default function Cafeteriaplan() {
   const { t } = useTranslation("index");
-  const { data, isLoading, error } = useCafeteriaplan();
+  const { data } = useCafeteriaplan();
 
 
   return (

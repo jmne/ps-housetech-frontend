@@ -9,7 +9,7 @@ interface Props {
     person: Employee;
 }
 
-export const PersonResult = forwardRef<HTMLLIElement, Props>(({ person }, ref) => {
+const PersonResult = forwardRef<HTMLLIElement, Props>(({ person }, ref) => {
     const { t } = useTranslation("index");
     const mapContext = useMapContext();
     const selectedPersonContext = usePersonSearchContext();
@@ -62,3 +62,6 @@ export const PersonResult = forwardRef<HTMLLIElement, Props>(({ person }, ref) =
         </li>
     )
 })
+
+PersonResult.displayName = "PersonResult"
+export default PersonResult

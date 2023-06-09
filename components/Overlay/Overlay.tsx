@@ -1,12 +1,9 @@
 import { useSearchInputContext } from "context/SearchInputContext";
 
 import indexStyles from "@/pages/index.module.scss"
-import { Keyboard } from "@/components/Keyboard/Keyboard";
-import { RefObject, useEffect, useRef, useState } from "react";
+import Keyboard from "@/components/Keyboard/Keyboard";
+import { useEffect, useRef, useState } from "react";
 
-interface helperProps {
-    children: JSX.Element
-}
 
 export function Overlay() {
     const [activeKeyboard, setActiveKeyboard] = useState(false)
@@ -16,7 +13,7 @@ export function Overlay() {
     useEffect(() => {
         if (searchInputContext.active) setActiveKeyboard(true)
         else {
-            if (keyboardRef.current) {keyboardRef.current.style.opacity = "0"; console.log("Opacity set")}
+            if (keyboardRef.current) keyboardRef.current.style.opacity = "0"
             setTimeout(() => {
                 setActiveKeyboard(false)
             }, 500)
@@ -25,7 +22,7 @@ export function Overlay() {
 
     return (
         <section className={[indexStyles.contentSection, indexStyles.overlayContainer].join(" ")}>
-            <span>I wonder what happens if you click the input ;)</span>
+            <span className={indexStyles.wrapper}>I wonder what happens if you click the input ;)</span>
             {activeKeyboard
                 ? <Keyboard ref={keyboardRef} />
                 : <></>}

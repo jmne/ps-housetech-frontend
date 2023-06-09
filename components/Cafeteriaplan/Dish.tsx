@@ -1,5 +1,3 @@
-// IMPORTS - BUILTINS
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 // IMPORTS - ASSETS
@@ -39,7 +37,7 @@ export default function Dish({ dish }: DishProps) {
       </div>
       <div className={styles.icons}>
         {dish.foodicons.map((icon, index) => (
-          <Image src={getIcon[icon]} alt={"Foodicon"} fill={false} className={styles.icons} key={`${dish.meal}-icon${index}`}/>
+          <Image src={getIcon[icon]} alt={"Foodicon"} fill={false} className={styles.icons} key={`${dish.meal}-icon${index}`} />
         ))}
       </div>
     </div>
