@@ -1,33 +1,26 @@
+import { Origin } from "types/IdleHandling"
+import { IdleHandler } from "./IdleHandler"
+
 const STORAGE_KEY = "_expiredTime"
-
-
-type Origin = "wayfinder" | "map" | "busplan" | "cafeteriaplan" | "news" | "overlay" | "languageSettings"
-
-interface ResetListener {
-    origin: Origin,
-    resetFunction: Function
-}
 
 interface props {
     timeout: number, // Timeout in seconds before website gets resetted
-    resetListener?: ResetListener[] // All reset functions to call
 }
 
-export class IdleHandler {
+export class IdleHandlerManager {
     timeout: number
-    resetListeners: ResetListener[]
-    eventHandler: EventListenerOrEventListenerObject
     idle_mode: boolean
     interval: NodeJS.Timer | undefined
+    IdleHandlers: IdleHandler[]
+    eventHandler: EventListenerOrEventListenerObject
 
-    constructor({ timeout, resetListener }: props) {
-        this.timeout = timeout
-        this.resetListeners = resetListener ? resetListener : []
+    constructor({ timeout }: props) {
         this.idle_mode = false
+        this.timeout = timeout
+        this.IdleHandlers = []
 
         this.eventHandler = this.updateExpiredTime.bind(this)
         this.tracker()
-
         this.startInterval()
     }
 
@@ -35,14 +28,14 @@ export class IdleHandler {
      * 
      * @param listener New ResetListener to register and reset if needed. 'Origin' property used to check if the component is already listened
      */
-    addResetListener(listener: ResetListener) {
+    addResetListener(listener: IdleHandler) {
         let already_listening = false
-        this.resetListeners.forEach(l => {
-            if (l.origin == listener.origin) already_listening = true
+        this.IdleHandlers.forEach(handler => {
+            if (handler.origin == listener.origin) already_listening = true
         });
 
         if (already_listening) return
-        this.resetListeners.push(listener)
+        this.IdleHandlers.push(listener)
     }
 
     /**
@@ -50,7 +43,7 @@ export class IdleHandler {
      * @param origin Remove the ResetListener belonging to the specified origin (component name)
      */
     removeResetListener(origin: Origin) {
-        this.resetListeners = this.resetListeners.filter((entry) => {
+        this.IdleHandlers = this.IdleHandlers.filter((entry) => {
             entry.origin != origin
         })
     }
@@ -60,8 +53,8 @@ export class IdleHandler {
      */
     resetComponents() {
         this.idle_mode = true
-        this.resetListeners.forEach(listener => {
-            listener.resetFunction()
+        this.IdleHandlers.forEach(handler => {
+            handler.reset()
         })
     }
 

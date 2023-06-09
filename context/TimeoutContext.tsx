@@ -1,13 +1,13 @@
 import { createContext, useContext } from "react";
-import { IdleHandler } from "utils/IdleHandler";
+import { IdleHandlerManager } from "utils/IdleHandling/IdleHandlerManager";
 import { TIMEOUT_DURATION } from "utils/constants";
 
 interface TimeoutData {
-    handler: IdleHandler | undefined
+    manager: IdleHandlerManager | undefined
 }
 
 const Timeout_Data = createContext<TimeoutData>({
-    handler: undefined
+    manager: undefined
 })
 
 interface props {
@@ -16,7 +16,7 @@ interface props {
 
 export function TimeoutProvider({ children }: props) {
     let init_state: TimeoutData = {
-        handler: new IdleHandler({ timeout: TIMEOUT_DURATION })
+        manager: new IdleHandlerManager({ timeout: TIMEOUT_DURATION })
     }
 
     return (

@@ -18,8 +18,9 @@ import { usePersonSearchContext } from "context/PersonContext"
 import { expand, collapse } from "utils/personCardsTransformations"
 import Fuse from "fuse.js"
 import { useSearchInputContext } from "context/SearchInputContext"
-import { TIMEOUT_DURATION, WAYFINDER_CARD_ANIMATION_DURATION } from "utils/constants"
-import { IdleHandler } from "utils/IdleHandler"
+import { WAYFINDER_CARD_ANIMATION_DURATION } from "utils/constants"
+import { IdleHandler } from "utils/IdleHandling/IdleHandler"
+import { useTimeoutContext } from "context/TimeoutContext"
 
 interface personRef {
     [id: string]: HTMLLIElement | null,
@@ -29,6 +30,7 @@ export function Wayfinder() {
     // Global state of the selected person in the list
     const selectedPersonContext = usePersonSearchContext()
     const searchInputContext = useSearchInputContext()
+    const timeoutContext = useTimeoutContext()
 
     // Translation setup
     const { t } = useTranslation("index")
@@ -63,7 +65,8 @@ export function Wayfinder() {
             })
         }
 
-        new IdleHandler({ timeout: TIMEOUT_DURATION, resetListener: [{ origin: "wayfinder", resetFunction: resetLayout }] })
+        const handler = new IdleHandler({ origin: "wayfinder", resetFunction: resetLayout })
+        if (timeoutContext.manager) timeoutContext.manager.addResetListener(handler)
     }, [searchInputContext.setActive, selectedPersonContext.setPerson, searchInputContext.setInput])
 
 
