@@ -1,5 +1,5 @@
 // IMPORTS - BUILTINS
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 
 // IMPORTS - COMPONENTS
@@ -37,10 +37,9 @@ export default function Index() {
   );
 }
 
-
 //@ts-ignore
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...(await serverSideTranslations(locale, ['index']))
+    ...(await serverSideTranslations(locale, ["index"]))
   }
-})
+});
