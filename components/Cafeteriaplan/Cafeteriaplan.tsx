@@ -14,21 +14,32 @@ export default function Cafeteriaplan() {
   const { t } = useTranslation("index");
   const { data } = useCafeteriaplan();
 
-
   return (
     <section
-      className={[indexStyles.smallContainer, indexStyles.contentSection, cafeteriaStyles.shadowFix].join(" ")}
+      className={[
+        indexStyles.smallContainer,
+        indexStyles.contentSection,
+        cafeteriaStyles.shadowFix
+      ].join(" ")}
     >
-      <div className={[indexStyles.cardHeadline, cafeteriaStyles.headlineMargin].join(" ")}>
+      <div
+        className={[indexStyles.cardHeadline, cafeteriaStyles.headlineMargin].join(" ")}
+      >
         <h2>{t("cafeteria_plan.title")}</h2>
       </div>
-      <ol className={[cafeteriaStyles.cafeteriaplan, cafeteriaStyles.scrolling].join(" ")}>
-        {data.map((dish, index) => (
-          (index === 2) ?
-            <Fragment key={`${dish.meal}${index}`}><Dish dish={dish} /><div></div></Fragment> :
+      <ol
+        className={[cafeteriaStyles.cafeteriaplan, cafeteriaStyles.scrolling].join(" ")}
+      >
+        {data.map((dish, index) =>
+          index === 2 ? (
+            <Fragment key={`${dish.meal}${index}`}>
+              <Dish dish={dish} />
+              <div></div>
+            </Fragment>
+          ) : (
             <Dish dish={dish} key={`${dish.meal}${index}`} />
-
-        ))}
+          )
+        )}
       </ol>
     </section>
   );

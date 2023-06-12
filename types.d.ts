@@ -10,4 +10,4 @@ declare module "*.svg?url" {
   export default content;
 }
 
-declare module ""
+declare module "";

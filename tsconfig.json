@@ -28,7 +28,8 @@
     "types.d.ts",
     "next.config.js",
     "next-i18next.config.js",
-    "hooks/useTimeout.js"
-, "jest.config.js"  ],
+    "hooks/useTimeout.js",
+    "jest.config.js"
+  ],
   "exclude": ["node_modules"]
 }

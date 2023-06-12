@@ -95,8 +95,9 @@ export default function Bus({ bus, direction, index }: BusProps) {
       hint = true;
       elem.style.transform = `translateZ(-${h_halft}px) rotateX(-${10 + 30 * rand}deg)`;
     } else
-      elem.style.transform = `translateZ(-${h_halft}px) rotateX(-${90 + 15 + 5 * rand
-        }deg)`;
+      elem.style.transform = `translateZ(-${h_halft}px) rotateX(-${
+        90 + 15 + 5 * rand
+      }deg)`;
 
     // Revert effects -> Different timing based on animation
     if (hint) {

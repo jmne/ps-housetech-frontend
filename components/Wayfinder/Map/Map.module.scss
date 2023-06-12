@@ -1,6 +1,6 @@
 @use "/assets/scss/constants.scss" as g;
 
-$animDuration: 0.750s;
+$animDuration: 0.75s;
 $floorname_padding: g.$margin-base;
 
 $map_x_offset: -10%;
@@ -10,57 +10,57 @@ $map_not-focus_opacity: 15%;
 $map_other_building_x_offset: 200%;
 
 .container {
-    display: grid;
+  display: grid;
 
+  min-height: 100%;
+  min-width: 100%;
+
+  .title {
+    margin-block-start: $floorname_padding;
+    margin-inline-start: $floorname_padding;
+
+    grid-area: 1 / 1 / 1 / 1;
+
+    height: g.$icon-base;
+    width: fit-content;
+
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      font-weight: 400;
+      font-size: g.$text-base;
+      margin: 0;
+      padding: 0;
+    }
+
+    span {
+      font-size: g.$text-small;
+      color: g.$text-secondary;
+    }
+  }
+
+  .floorWrapper {
     min-height: 100%;
     min-width: 100%;
+    max-height: 100%;
+    max-width: 100%;
 
-    .title {
-        margin-block-start: $floorname_padding;
-        margin-inline-start: $floorname_padding;
+    grid-area: 1 / 1 / 3 / 3;
+    display: grid;
 
-        grid-area: 1 / 1 / 1 / 1;
-
-        height: g.$icon-base;
-        width: fit-content;
-
-        display: flex;
-        flex-direction: column;
-
-        h2 {
-            font-weight: 400;
-            font-size: g.$text-base;
-            margin: 0;
-            padding: 0;
-        }
-
-        span {
-            font-size: g.$text-small;
-            color: g.$text-secondary;
-        }
+    * {
+      transition: all $animDuration ease-out;
     }
+  }
 
-    .floorWrapper {
-        min-height: 100%;
-        min-width: 100%;
-        max-height: 100%;
-        max-width: 100%;
+  .floor {
+    width: 100%;
+    height: 100%;
+    grid-area: 1 / 1 / 1 / 1;
+  }
 
-        grid-area: 1 / 1 / 3 / 3;
-        display: grid;
-
-        * {
-            transition: all $animDuration ease-out;
-        }
-    }
-
-    .floor {
-        width: 100%;
-        height: 100%;
-        grid-area: 1 / 1 / 1 / 1;
-    }
-
-    .highlight {
-        fill: g.$main-secondary !important;
-    }
+  .highlight {
+    fill: g.$main-secondary !important;
+  }
 }

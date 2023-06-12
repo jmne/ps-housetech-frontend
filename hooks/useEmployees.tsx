@@ -14,11 +14,11 @@ const url = "ps-housetech.uni-muenster.de/api/bus";
  * @returns Employee[]
  */
 export function useEmployees() {
-    // const { data, isLoading, error } = useSWR<Employee[]>
+  // const { data, isLoading, error } = useSWR<Employee[]>
 
-    const data = sampleEmployees;
-    const isLoading = false;
-    const error = undefined;
+  const data = sampleEmployees;
+  const isLoading = false;
+  const error = undefined;
 
-    return data
+  return data;
 }

@@ -9,16 +9,16 @@ import Cafeteriaplan from "@/components/Cafeteriaplan/Cafeteriaplan";
 
 // IMPORTS - ASSETS
 import styles from "@/pages/index.module.scss";
-import { Wayfinder } from '@/components/Wayfinder/Wayfinder';
+import { Wayfinder } from "@/components/Wayfinder/Wayfinder";
 
 // IMPORTS - CONTEXT
-import { SelectedPersonProvider } from 'context/PersonContext';
+import { SelectedPersonProvider } from "context/PersonContext";
 import { MapProvider } from "context/MapContext";
-import { Overlay } from '@/components/Overlay/Overlay';
+import { Overlay } from "@/components/Overlay/Overlay";
 
 export default function Index() {
-  const { t } = useTranslation("index")
-  
+  const { t } = useTranslation("index");
+
   return (
     <div className={styles.wrapper}>
       <Headline />
@@ -31,7 +31,9 @@ export default function Index() {
         <Busplan />
         <Cafeteriaplan />
         <Overlay />
-        <div className={[styles.smallContainer, styles.contentSection].join(" ")}>{t('news.title')}</div>
+        <div className={[styles.smallContainer, styles.contentSection].join(" ")}>
+          {t("news.title")}
+        </div>
       </div>
     </div>
   );

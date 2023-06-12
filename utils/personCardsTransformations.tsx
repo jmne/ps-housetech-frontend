@@ -8,11 +8,11 @@ import { Employee } from "types/Employee";
  * @returns - Boolean indicating if the input string is found in some attribute of the person.
  */
 export function employeeInFilter(e: Employee, input: string): boolean {
-    const input_lower = input.toLowerCase()
-    const dep_lower = e.chair?.toLowerCase()
-    const name_lower = `${e.cfFamilyNames?.toLowerCase()}${e.cfFirstNames?.toLowerCase()}`
+  const input_lower = input.toLowerCase();
+  const dep_lower = e.chair?.toLowerCase();
+  const name_lower = `${e.cfFamilyNames?.toLowerCase()}${e.cfFirstNames?.toLowerCase()}`;
 
-    return dep_lower?.includes(input_lower) || name_lower.includes(input_lower)
+  return dep_lower?.includes(input_lower) || name_lower.includes(input_lower);
 }
 
 /**
@@ -20,8 +20,8 @@ export function employeeInFilter(e: Employee, input: string): boolean {
  * @param p - The person in the list.
  */
 export function collapse(p: Employee): void {
-    const elem = document.getElementById(`${p.cfFamilyNames}${p.phone}${p.chair}`)
-    if (elem) elem.classList.remove(styles_wayfinder.expanded)
+  const elem = document.getElementById(`${p.cfFamilyNames}${p.phone}${p.chair}`);
+  if (elem) elem.classList.remove(styles_wayfinder.expanded);
 }
 
 /**
@@ -29,6 +29,6 @@ export function collapse(p: Employee): void {
  * @param p - The person in the list.
  */
 export function expand(p: Employee): void {
-    const elem = document.getElementById(`${p.cfFamilyNames}${p.phone}${p.chair}`)
-    if (elem) elem.classList.add(styles_wayfinder.expanded)
+  const elem = document.getElementById(`${p.cfFamilyNames}${p.phone}${p.chair}`);
+  if (elem) elem.classList.add(styles_wayfinder.expanded);
 }

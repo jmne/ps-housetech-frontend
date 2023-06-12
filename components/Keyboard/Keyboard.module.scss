@@ -4,81 +4,80 @@ $halfBorder: calc(g.$border-base / 2);
 $quarterBorder: calc(g.$border-base / 4);
 
 .container {
-    display: grid;
-    grid-auto-rows: 1fr;
-    width: 100%;
+  display: grid;
+  grid-auto-rows: 1fr;
+  width: 100%;
 
+  box-sizing: border-box;
+  overflow: hidden;
 
-    box-sizing: border-box;
-    overflow: hidden;
+  box-shadow: g.$shadow-outer;
 
-    box-shadow: g.$shadow-outer;
+  animation: create 0.2s ease-out 0s 1;
+  opacity: 100;
+  transition: opacity 500ms ease-out;
+  background-color: g.$container-item;
 
-    animation: create 0.2s ease-out 0s 1;
-    opacity: 100;
+  padding: g.$margin-small;
+
+  &.fadeOut {
     transition: opacity 500ms ease-out;
-    background-color: g.$container-item;
-
-    padding: g.$margin-small;
-
-    &.fadeOut {
-        transition: opacity 500ms ease-out;
-        opacity: 0;
-    }
+    opacity: 0;
+  }
 }
 
 .row {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
 
-    //.key:first-child {
-    //    border-left-width: 0px;
-    //}
-//
-    //.key:last-child {
-    //    border-right-width: 0px;
-    //}
-//
-    //&:first-of-type .key {
-    //    border-top-width: 0px;
-    //}
-//
-    //&:last-of-type .key {
-    //    border-bottom-width: 0px;
-    //}
+  //.key:first-child {
+  //    border-left-width: 0px;
+  //}
+  //
+  //.key:last-child {
+  //    border-right-width: 0px;
+  //}
+  //
+  //&:first-of-type .key {
+  //    border-top-width: 0px;
+  //}
+  //
+  //&:last-of-type .key {
+  //    border-bottom-width: 0px;
+  //}
 }
 
 .key {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    background-color: g.$container-item;
+  background-color: g.$container-item;
 
-    //border: $quarterBorder solid g.$text-secondary;
-    border: none;
-    border-radius: g.$border-radius-base / 2;
+  //border: $quarterBorder solid g.$text-secondary;
+  border: none;
+  border-radius: g.$border-radius-base / 2;
 
-    font-size: g.$text-base;
+  font-size: g.$text-base;
 
-    box-sizing: border-box;
-    margin: g.$margin-small / 2;
+  box-sizing: border-box;
+  margin: g.$margin-small / 2;
 
-    box-shadow: g.$shadow-outer;
+  box-shadow: g.$shadow-outer;
 
-    &:active {
-        //background-color: g.$background;
-        box-shadow: g.$shadow-inner-light;
-    }
+  &:active {
+    //background-color: g.$background;
+    box-shadow: g.$shadow-inner-light;
+  }
 }
 
 @keyframes create {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-        opacity: 100;
-    }
+  100% {
+    opacity: 100;
+  }
 }
