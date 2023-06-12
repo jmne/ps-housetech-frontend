@@ -3,7 +3,20 @@
         "title": "Institut für Wirtschaftsinformatik"
     },
     "wayfinder": {
-        "title": "Wo ist?"
+        "title": "Wo ist?",
+        "search": {
+            "room": "Raum",
+            "phone": "Tel.",
+            "mail": "E-Mail"
+        },
+        "map": {
+            "leo3": "Leonardo Campus 3",
+            "leo11": "Leonardo Campus 11",
+            "floor0": "Erdgeschoss",
+            "floor1": "OG 1",
+            "floor2": "OG 2",
+            "floor3": "OG 3"
+        }
     },
     "busplan": {
         "title": "Busplan"
