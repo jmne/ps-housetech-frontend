@@ -5,28 +5,32 @@ import { useTranslation } from "next-i18next";
 // IMPORTS - COMPONENTS
 import Headline from "@/components/Headline/Headline";
 import Busplan from "@/components/Busplan/Busplan";
+import Cafeteriaplan from "@/components/Cafeteriaplan/Cafeteriaplan";
 
 // IMPORTS - ASSETS
 import styles from "@/pages/index.module.scss";
+import { Wayfinder } from "@/components/Wayfinder/Wayfinder";
+
+// IMPORTS - CONTEXT
+import { SelectedPersonProvider } from "context/PersonContext";
+import { MapProvider } from "context/MapContext";
+import { Overlay } from "@/components/Overlay/Overlay";
 
 export default function Index() {
   const { t } = useTranslation("index");
-  console.log(t);
 
   return (
     <div className={styles.wrapper}>
       <Headline />
       <div className={styles.bodyWrapper}>
-        <div className={[styles.largeContainer, styles.contentSection].join(" ")}>
-          {t("wayfinder.title")}
-        </div>
+        <MapProvider>
+          <SelectedPersonProvider>
+            <Wayfinder />
+          </SelectedPersonProvider>
+        </MapProvider>
         <Busplan />
-        <div className={[styles.smallContainer, styles.contentSection].join(" ")}>
-          {t("cafeteria_plan.title")}
-        </div>
-        <div className={[styles.overlayContainer, styles.contentSection].join(" ")}>
-          Overlay
-        </div>
+        <Cafeteriaplan />
+        <Overlay />
         <div className={[styles.smallContainer, styles.contentSection].join(" ")}>
           {t("news.title")}
         </div>

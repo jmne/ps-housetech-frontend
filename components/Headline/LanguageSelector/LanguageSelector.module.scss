@@ -26,7 +26,7 @@ $animDelay: $animDuration;
     z-index: 1;
     opacity: 0.4;
 
-    transition: all $animDuration;
+    transition: opacity $animDuration;
 
     overflow: hidden;
     display: flex;
@@ -49,7 +49,7 @@ $animDelay: $animDuration;
 
     // Yellow of the german flag
     box-shadow: 0px -10px 20px 3px #f4d257;
-    transform: translateY($flagHeight + $gap * 1.2);
+    transform: translateY($flagHeight + $gap);
 
     transition: all $animDuration;
 
@@ -57,7 +57,7 @@ $animDelay: $animDuration;
       background-color: g.$main-primary;
       // Blue of the uk flag
       box-shadow: 0px -10px 20px 3px #1f316e;
-      transform: translateY($flagHeight + $gap * 1.2) translateX($flagHeight * 1.5 + $gap);
+      transform: translateY($flagHeight + $gap) translateX($flagHeight * 1.5 + $gap);
     }
   }
 }
