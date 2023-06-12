@@ -53,11 +53,11 @@ const Keyboard = forwardRef((props, ref) =>
     ];
 
     return (
-      //@ts-ignore
       <article
         className={styles.container}
         id="keyboard"
         data-testid="keyboard"
+        //@ts-ignore
         ref={ref}
       >
         {keys.map((row, index) => {
