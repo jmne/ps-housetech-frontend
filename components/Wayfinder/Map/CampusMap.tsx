@@ -46,7 +46,7 @@ export function CampusMap() {
         useRef<SVGSVGElement>(null),
         useRef<SVGSVGElement>(null),
     ]
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const leo11_elements = [useRef<SVGSVGElement>(null)]
 
@@ -142,10 +142,15 @@ export function CampusMap() {
                 <span>{t(`wayfinder.map.${current_floor}`)}</span>
             </div>
             <div className={styles.floorWrapper}>
+                {/* @ts-ignore */}
                 <Leo3_Floor0 className={styles.floor} id={"map-leo3-floor0"} ref={leo3_elements[0]} />
+                {/* @ts-ignore */}
                 <Leo3_Floor1 className={styles.floor} id={"map-leo3-floor1"} ref={leo3_elements[1]} />
+                {/* @ts-ignore */}
                 <Leo3_Floor2 className={styles.floor} id={"map-leo3-floor2"} ref={leo3_elements[2]} />
+                {/* @ts-ignore */}
                 <Leo3_Floor3 className={styles.floor} id={"map-leo3-floor3"} ref={leo3_elements[3]} />
+                {/* @ts-ignore */}
                 <Leo11_Floor0 className={styles.floor} id={"map-leo11-floor0"} ref={leo11_elements[0]} />
             </div>
         </div>

@@ -38,7 +38,7 @@ export function Wayfinder() {
     // Internal tracking of the last person that was clicked on the list
     const [current_person, setPerson] = useState<Employee | undefined>()
     const personRefs: personRef = {}
-    const listRef = useRef<HTMLOListElement>()
+    const listRef = useRef<HTMLOListElement>(null)
 
     // Get data for the list of Persons
     const persons = useEmployees()
