@@ -2,8 +2,15 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 
-import Bus from "@/components/Busplan/Bus";
 import { Busride } from "types/Busride";
+import { mockImage } from "__mocks__/mock_svgComponent";
+
+jest.mock("next/image", () => mockImage);
+jest.mock("assets/images/icon_search.svg", () => mockImage);
+jest.mock("assets/images/icon_city.svg", () => mockImage);
+jest.mock("assets/images/icon_forrest.svg", () => mockImage);
+
+import Bus from "@/components/Busplan/Bus";
 
 const sample_ride: Busride = {
   station: "Leonardo-Campus",

@@ -8,6 +8,7 @@ $text-small: 0.7rem;
 $text-primary: #15171b;
 $text-secondary: #95989d;
 $main-primary: #435c8b;
+$main-primary-tint: #dde5f2;
 $main-secondary: #a5cf39;
 $background: #f0f0f0;
 $container: #f8f8f8;
@@ -39,4 +40,11 @@ $border-radius-base: 12px;
 // SHADOWS
 $shadow-outer: 0px 6px 12px -2px rgba(50, 50, 93, 0.25),
   0px 3px 7px -3px rgba(0, 0, 0, 0.3);
+$shadow-outer-harder: 0px 6px 12px -2px rgba(50, 50, 93, 0.3),
+  0px 3px 7px -3px rgba(0, 0, 0, 0.35);
+
 $shadow-inner: inset -4px 0px 6px 2px rgba(0, 0, 0, 0.3);
+$shadow-inner-light: inset -2px 0px 3px 4px rgba(0, 0, 0, 0.2);
+
+$shadow-svg: drop-shadow(2px 2px 4px rgba(50, 50, 93, 0.2))
+  drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));

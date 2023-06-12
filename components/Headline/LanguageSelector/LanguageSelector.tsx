@@ -29,7 +29,7 @@ export function LanguageSelector() {
     setTimeout(() => {
       setAnimation(false);
     }, 500);
-  }, []);
+  }, [currentLang]);
 
   function switchLang() {
     if (animationInProgress) return;

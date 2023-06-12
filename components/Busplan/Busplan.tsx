@@ -20,7 +20,7 @@ function splitBusses(busses: Busride[]) {
   var inward: Busride[] = [];
   var outward: Busride[] = [];
 
-  // health-check.js .direction property to find out if bus is going in or out of the city
+  // check .direction property to find out if bus is going in or out of the city
   busses.forEach((bus) => {
     if (bus.direction === "Einw\u00e4rts") inward.push(bus);
     else outward.push(bus);
@@ -48,7 +48,7 @@ export default function Busplan() {
     const { inward, outward } = splitBusses(data);
     setInward(inward);
     setoutward(outward);
-  }, [data]);
+  }, [data, isLoading, error]);
 
   return (
     <section
