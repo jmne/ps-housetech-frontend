@@ -12,7 +12,8 @@ const customJestConfig = {
   reporters: ["default", "jest-junit"],
   modulePaths: ["./"],
   moduleNameMapper: {
-    "^[./a-zA-Z0-9$_-]+\\.svg?url$": "<rootDir>/__mocks__/fileMock.js",
+    "\\.svg?url": "<rootDir>__mocks__/mock_svgURL.js",
+    "\\.svg": "<rootDir>/__mocks__/mock_svgComponent.tsx",
   },
 };
 

@@ -46,7 +46,7 @@ const Keyboard = forwardRef((props, ref) => useMemo(() => {
     ]
 
     return (//@ts-ignore
-        < article className={styles.container} id="keyboard" ref={ref}>
+        < article className={styles.container} id="keyboard" data-testid="keyboard" ref={ref}>
             {
                 keys.map((row, index) => {
                     return (
