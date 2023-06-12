@@ -12,10 +12,10 @@ import { mockImage } from "../__mocks__/mock_svgComponent"
 // Component
 import Home from "@/pages/index";
 
+jest.mock("next/image", () => mockImage)
 jest.mock("assets/images/icon_search.svg", () => mockImage);
 jest.mock("assets/images/icon_city.svg", () => mockImage);
 jest.mock("assets/images/icon_forrest.svg", () => mockImage);
-jest.mock("next/Image", () => mockImage)
 
 
 describe("Homepage", () => {
