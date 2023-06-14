@@ -15,6 +15,7 @@ import { Wayfinder } from "@/components/Wayfinder/Wayfinder";
 import { SelectedPersonProvider } from "context/PersonContext";
 import { MapProvider } from "context/MapContext";
 import { Overlay } from "@/components/Overlay/Overlay";
+import { News } from "@/components/News/News";
 
 export default function Index() {
   const { t } = useTranslation("index");
@@ -31,9 +32,7 @@ export default function Index() {
         <Busplan />
         <Cafeteriaplan />
         <Overlay />
-        <div className={[styles.smallContainer, styles.contentSection].join(" ")}>
-          {t("news.title")}
-        </div>
+        <News />
       </div>
     </div>
   );
