@@ -16,17 +16,17 @@ export interface SampleDishes {
 }
 
 function formatDateForData(d: Date) {
-  const month_short = d.getMonth()
-  const day_short = d.getDate()
+  const month_short = d.getMonth();
+  const day_short = d.getDate();
 
-  const year = d.getFullYear()
-  const month = month_short.valueOf() < 10 ? `0${month_short}` : month_short
-  const day = day_short.valueOf() < 10 ? `0${day_short}` : day_short
+  const year = d.getFullYear();
+  const month = month_short.valueOf() < 10 ? `0${month_short}` : month_short;
+  const day = day_short.valueOf() < 10 ? `0${day_short}` : day_short;
 
-  return `${year}-${month}-${day}`
+  return `${year}-${month}-${day}`;
 }
 
-const today = new Date()
+const today = new Date();
 
 export const sample_dishes: SampleDishes[] = [
   {
