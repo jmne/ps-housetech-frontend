@@ -2,8 +2,8 @@
 
 .container {
     display: grid;
-    grid-template-columns: 30% 1fr;
-    grid-template-rows: auto 1fr 3rem;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr calc(33% - 2.5 * g.$margin-small);
 
     padding: g.$margin-base;
     gap: g.$margin-small;
@@ -17,6 +17,8 @@
         font-weight: 400;
         margin: 0;
         padding: 0;
+
+        margin-block-end: g.$margin-base;
     }
 
     >div {
@@ -32,7 +34,7 @@
         display: grid;
         grid-template-columns: 1fr;
         grid-auto-rows: 1fr;
-        gap: auto;
+        align-items: center;
 
         // contain the forecasts for each hour
         >div {
@@ -41,6 +43,10 @@
             align-items: center;
 
             gap: g.$margin-small;
+
+            height: fit-content;
+
+            margin-inline: g.$margin-base;
 
             img {
                 min-height: 0;
@@ -96,6 +102,8 @@
 
         grid-area: 2 / 2 / 3 / 3;
 
+        overflow: hidden;
+
         .information {
             grid-area: 1 / 1 / 2 / 2;
             
@@ -103,6 +111,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            font-size: g.$text-sm;
 
             .time {
                 display: inline-flex;
