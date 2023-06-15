@@ -27,7 +27,7 @@ export function News() {
     return (
         <section className={[indexStyles.contentSection, indexStyles.newsContainer, styles.container].join(" ")} >
             <div className={styles.headlineContainer}>
-                <h2>{t("news.events.title")}</h2>
+                <h2>{t("news.title")}</h2>
             </div>
             <Events />
 

@@ -5,7 +5,7 @@ export type Origin =
   | "cafeteriaplan"
   | "news"
   | "overlay"
-  | "languageSettings";
+  | "index";
 
 export interface ResetListener {
   origin: Origin;

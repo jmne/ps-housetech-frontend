@@ -13,12 +13,28 @@ import { Wayfinder } from "@/components/Wayfinder/Wayfinder";
 // IMPORTS - CONTEXT
 import { SelectedPersonProvider } from "context/PersonContext";
 import { MapProvider } from "context/MapContext";
-import { Weather } from "@/components/Overlay/Overlay";
+import { Weather } from "@/components/Weather/Weather";
 import { News } from "@/components/News/News";
 import { useOverlayContext } from "context/OverlayContext";
+import { useTimeoutContext } from "context/TimeoutContext";
+import { useEffect } from "react";
+import { IdleHandler } from "utils/IdleHandling/IdleHandler";
+import { useRouter } from "next/router";
 
 export default function Index() {
   const overlayContext = useOverlayContext()
+  const timeoutContext = useTimeoutContext()
+  const router = useRouter()
+
+  useEffect(() => {
+    function resetIndex() {
+      overlayContext.setOverlay(undefined)
+      router.push("/", "/", { locale: "en" });
+    }
+
+    const idleHandler = new IdleHandler({ origin: "index", resetFunction: resetIndex })
+    if (timeoutContext.manager) timeoutContext.manager.addResetListener(idleHandler)
+  }, [timeoutContext.manager, overlayContext])
 
   return (
     <div className={styles.wrapper}>
@@ -29,10 +45,10 @@ export default function Index() {
             <Wayfinder />
           </SelectedPersonProvider>
         </MapProvider>
-        <Busplan />
+        <Weather />
         <Cafeteriaplan />
         <News />
-        <Weather />
+        <Busplan />
       </div>
       {overlayContext.current_overlay ? overlayContext.current_overlay : undefined}
     </div>

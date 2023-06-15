@@ -1,6 +1,6 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
-import { Overlay } from "components/Overlay/Overlay";
+import { Overlay } from "@/components/Weather/Weather";
 import { useSearchInputContext } from "context/SearchInputContext";
 
 jest.mock("react", () => {
