@@ -39,10 +39,10 @@
     grid-column: span 5;
   }
 
-  .overlayContainer {
+  .weatherContainer {
     display: grid;
     grid-row: span 1;
-    grid-column: span 5;
+    grid-column: span 3;
     padding: 0;
 
     position: relative;
@@ -52,12 +52,27 @@
     }
   }
 
+  .newsContainer{
+    grid-row: span 1;
+    grid-column: span 5;
+
+    display: grid;
+    grid-template-rows: fit-content 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
   .smallContainer {
     flex-direction: column;
     display: flex;
     grid-row: span 1;
     grid-column: span 3;
   }
+
+  //transition: opacity linear 0.1s;
+}
+
+.bodyMuted {
+  opacity: 20%;
 }
 
 .cardHeadline {
@@ -74,4 +89,40 @@
     font-weight: 400;
     margin: 0;
   }
+}
+
+.overlayContainer {
+  z-index: 15;
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 80%;
+  height: 80%;
+
+  background-color: g.$container-item;
+  border: g.$border-base solid g.$text-secondary;
+  border-radius: g.$border-radius-base;
+  border-top-right-radius: 0;
+
+  .close {
+      position: absolute;
+      border: g.$border-base solid g.$text-secondary;
+      border-radius: 0 g.$border-radius-small g.$border-radius-small 0;
+      background: g.$container-item;
+      
+      fill: g.$text-primary;
+
+      top: 0px;
+      right: 0px;
+      transform: translateX(100%) translateY(- g.$border-base);
+
+      svg {
+        width: g.$icon-xm;
+        height: g.$icon-xm;
+      }
+    }
 }

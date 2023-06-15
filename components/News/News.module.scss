@@ -13,6 +13,8 @@
 }
 
 .headlineContainer {
+    grid-area: 1 / 1 / 2 / 2;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
