@@ -29,7 +29,15 @@ function formatDateForData(d: Date) {
 }
 
 export function getDayOfWeek(day: Date) {
-  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
   const dayOfWeekIndex = day.getDay();
   const dayOfWeek = daysOfWeek[dayOfWeekIndex];
 
@@ -96,7 +104,9 @@ export default function Cafeteriaplan() {
         cafeteriaStyles.shadowFix
       ].join(" ")}
     >
-      <div className={[indexStyles.cardHeadline, cafeteriaStyles.headlineMargin].join(" ")}>
+      <div
+        className={[indexStyles.cardHeadline, cafeteriaStyles.headlineMargin].join(" ")}
+      >
         <h2>{t("cafeteria_plan.title")}</h2>
         <div className={cafeteriaStyles.date}>
           <Image
@@ -125,7 +135,3 @@ export default function Cafeteriaplan() {
     </section>
   );
 }
-
-
-
-
