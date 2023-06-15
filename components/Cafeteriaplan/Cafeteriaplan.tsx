@@ -18,14 +18,22 @@ import arrow_forward from "assets/images/arrow_forward.svg";
 import { SampleDishes, sample_dishes } from "types/SampleDishes";
 
 function formatDateForData(d: Date) {
-  const month_short = d.getMonth()
-  const day_short = d.getDate()
+  const month_short = d.getMonth();
+  const day_short = d.getDate();
 
-  const year = d.getFullYear()
-  const month = month_short.valueOf() < 10 ? `0${month_short}` : month_short
-  const day = day_short.valueOf() < 10 ? `0${day_short}` : day_short
+  const year = d.getFullYear();
+  const month = month_short.valueOf() < 10 ? `0${month_short}` : month_short;
+  const day = day_short.valueOf() < 10 ? `0${day_short}` : day_short;
 
-  return `${year}-${month}-${day}`
+  return `${year}-${month}-${day}`;
+}
+
+export function getDayOfWeek(day: Date) {
+  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const dayOfWeekIndex = day.getDay();
+  const dayOfWeek = daysOfWeek[dayOfWeekIndex];
+
+  return dayOfWeek;
 }
 
 export default function Cafeteriaplan() {
@@ -35,35 +43,50 @@ export default function Cafeteriaplan() {
   const olRef = useRef<HTMLOListElement>(null);
   const timer = useRef<number>();
 
-  // getting the formatted Date from today
-  const today = new Date()
-  const current_date_title = today.toLocaleDateString("en-gb").replaceAll("/", ".")
-
-  const [selectedDate, setSelectedDate] = useState(formatDateForData(today))
-  const [currentData, setCurrentData] = useState<SampleDishes>()
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   useEffect(() => {
-    const selection = data.find((e) => e.date === selectedDate)
-    if (selection) setCurrentData(selection)
-  }, [selectedDate])
+    const formattedDate = formatDateForData(selectedDate);
+    const index = data.findIndex((e) => e.date === formattedDate);
+    if (index !== -1) {
+      setCurrentIndex(index);
+    }
+  }, [selectedDate, data]);
+
+  const handleArrowBack = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex((prevIndex) => prevIndex - 1);
+      setSelectedDate(new Date(data[currentIndex - 1].date));
+    }
+  };
+
+  const handleArrowForward = () => {
+    if (currentIndex < data.length - 1) {
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+      setSelectedDate(new Date(data[currentIndex + 1].date));
+    }
+  };
 
   const startTimer = () => {
     clearTimeout(timer.current);
     timer.current = window.setTimeout(() => {
       if (olRef.current) {
         olRef.current.scrollTo({ top: 0, behavior: "smooth" });
-        startTimer(); // recursive to repeat the timer
+        startTimer();
       }
     }, 5000);
   };
 
   useEffect(() => {
-    startTimer(); // start timer, when component is used
+    startTimer();
 
     return () => {
-      clearTimeout(timer.current); // clear timer afterwards
+      clearTimeout(timer.current);
     };
   }, []);
+
+  const currentData = data[currentIndex] || null;
 
   return (
     <section
@@ -73,9 +96,7 @@ export default function Cafeteriaplan() {
         cafeteriaStyles.shadowFix
       ].join(" ")}
     >
-      <div
-        className={[indexStyles.cardHeadline, cafeteriaStyles.headlineMargin].join(" ")}
-      >
+      <div className={[indexStyles.cardHeadline, cafeteriaStyles.headlineMargin].join(" ")}>
         <h2>{t("cafeteria_plan.title")}</h2>
         <div className={cafeteriaStyles.date}>
           <Image
@@ -83,32 +104,28 @@ export default function Cafeteriaplan() {
             alt={"Arrow Back"}
             fill={false}
             className={cafeteriaStyles.date}
+            onClick={handleArrowBack}
           />
-          <span className={cafeteriaStyles.dateText}>{current_date_title}</span>
+          <span className={cafeteriaStyles.dateText}>{getDayOfWeek(selectedDate)}</span>
           <Image
             src={arrow_forward}
             alt={"Arrow Forward"}
             fill={false}
             className={cafeteriaStyles.date}
+            onClick={handleArrowForward}
           />
         </div>
       </div>
       <ol className={cafeteriaStyles.cafeteriaplan} ref={olRef}>
-        {currentData ?
-          currentData.item.map((dish, index) =>
-            index === 2 ? (
-              <Fragment key={`${dish.meal}${dish.price1}`}>
-                <Dish dish={dish} />
-                <div></div>
-              </Fragment>
-            ) : (
-              <Dish dish={dish} key={`${dish.meal}${dish.price1}`} />
-            )
-          )
-          :
-          <></>
-        }
+        {currentData &&
+          currentData.item.map((dish, index) => (
+            <Dish dish={dish} key={`${dish.meal}${dish.price1}${index}`} />
+          ))}
       </ol>
     </section>
   );
 }
+
+
+
+
