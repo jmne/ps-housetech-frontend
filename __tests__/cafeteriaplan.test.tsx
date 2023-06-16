@@ -199,19 +199,20 @@ describe("Cafeteriaplan component", () => {
     mockedUseTimeoutContext.mockReturnValue({ manager: undefined });
   });
 
+  const hasText = (element: HTMLElement | null, text: string) => {
+    return element?.textContent?.toLowerCase().includes(text.toLowerCase()) ?? false;
+  };
+  
   test("Renders the component correctly", () => {
     render(<Cafeteriaplan />);
-
-    const dish1Element = screen.queryByText(/Dish 1/i);
-
+  
+    const dish1Element = screen.queryByText((content, element) => hasText(element as HTMLElement, "Dish 1"));
     expect(dish1Element).toBeInTheDocument();
-
-
-    const dish2Element = screen.queryByText(/Dish 2/i);
-
+  
+    const dish2Element = screen.queryByText((content, element) => hasText(element as HTMLElement, "Dish 2"));
     expect(dish2Element).toBeInTheDocument();
-
   });
+  
 
   test("Data remains the same when handling arrowBackButton on the first index", () => {
     render(<Cafeteriaplan />);
