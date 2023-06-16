@@ -1,6 +1,6 @@
 import { useSearchInputContext } from "context/SearchInputContext";
 import styles from "@/components/Keyboard/Keyboard.module.scss";
-import { forwardRef, useMemo } from "react";
+import { useMemo } from "react";
 
 interface helperProps {
   keycode: string;
@@ -45,36 +45,47 @@ export function Key({ keycode }: helperProps) {
   );
 }
 
-const Keyboard = forwardRef((props, ref) =>
-  useMemo(() => {
+interface KeyboardProps {
+  visible: boolean
+}
+
+function Keyboard({ visible }: KeyboardProps) {
+
+  const innerKeyboard = useMemo(() => {
     const keys = [
       ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ü"],
       ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä"],
       ["y", "x", "c", "v", "b", "n", "m", "-"],
-      ["clear", "space", "backspace"]
-    ];
+      ["clear", "space", "backspace"],
+    ]
 
     return (
-      <article
-        className={styles.container}
-        id="keyboard"
-        data-testid="keyboard"
-        //@ts-ignore
-        ref={ref}
-      >
-        {keys.map((row, index) => {
-          return (
-            <div className={styles.row} key={index}>
-              {row.map((keycode) => (
-                <Key keycode={keycode} key={keycode} />
-              ))}
-            </div>
-          );
-        })}
-      </article>
-    );
-  }, [ref])
-);
+      <>
+        {
+          keys.map((row, index) => {
+            return (
+              <div className={styles.row} key={index}>
+                {row.map((keycode) => (
+                  <Key keycode={keycode} key={keycode} />
+                ))}
+              </div>
+            );
+          })
+        }
+      </>
+    )
+  }, [])
+
+  return (
+    <article
+      className={visible ? [styles.container, styles.visible].join(" ") : styles.container}
+      id="keyboard"
+      data-testid="keyboard"
+    >
+      {innerKeyboard}
+    </article>
+  )
+}
 
 Keyboard.displayName = "Keyboard";
 export default Keyboard;
