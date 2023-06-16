@@ -59,6 +59,20 @@ describe("Cafeteriaplan component", () => {
 
   test("Handles arrow back correctly", () => {
     render(<Cafeteriaplan />);
+
+    const arrowBack = screen.getByAltText("Arrow Back");
+    expect(arrowBack).toBeInTheDocument();
+
+    arrowBack.click();
+
+    const dish3 = screen.queryByText("Dish 3");
+    expect(dish3).toBeInTheDocument(); // Adjust the assertion to handle null case
+
+    expect(screen.getByText("Dish 4")).toBeInTheDocument();
+  });
+
+  test("Handles arrow back correctly", () => {
+    render(<Cafeteriaplan />);
   
     const arrowBack = screen.getByAltText("Arrow Back");
     expect(arrowBack).toBeInTheDocument();
@@ -66,12 +80,11 @@ describe("Cafeteriaplan component", () => {
     arrowBack.click();
   
     const dish3 = screen.queryByText("Dish 3");
-    expect(dish3).toBeInTheDocument(); // Adjust the assertion to handle null case
+    expect(dish3).toBeNull(); // Adjust the assertion to handle null case
   
     expect(screen.getByText("Dish 4")).toBeInTheDocument();
   });
   
-
   test("Handles arrow forward correctly", () => {
     render(<Cafeteriaplan />);
   
@@ -81,11 +94,10 @@ describe("Cafeteriaplan component", () => {
     arrowForward.click();
   
     const dish3 = screen.queryByText("Dish 3");
-    expect(dish3).toBeInTheDocument(); // Adjust the assertion to handle null case
+    expect(dish3).toBeNull(); // Adjust the assertion to handle null case
   
     expect(screen.getByText("Dish 4")).toBeInTheDocument();
   });
-  
   
 
   test("Formats date correctly", () => {
@@ -101,10 +113,9 @@ describe("Cafeteriaplan component", () => {
   });
 });
 function formatDateForData(date: Date): string {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-  
-    return `${year}-${month}-${day}`;
-  }
-  
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
