@@ -46,7 +46,7 @@ $animDuration: 0.75s;
 
     transition: transform 0.1s ease-out 0s, filter 0.1s ease-out;
 
-    &.focus {
+    &:focus-within {
       filter: drop-shadow(0 0.4rem 0.4rem rgba(g.$main-primary, 0.5));
       transform: scale(1.05);
       //background-color: g.$main-primary-tint;
@@ -83,10 +83,7 @@ $animDuration: 0.75s;
     display: flex;
     align-items: center;
 
-    &.focus {
-      outline: none;
-      //animation: 0.5s 1 forwards grow;
-    }
+    outline: none;
   }
 
   ol {
