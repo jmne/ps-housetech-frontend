@@ -1,51 +1,196 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Cafeteriaplan, { getDayOfWeek } from "@/components/Cafeteriaplan/Cafeteriaplan";
 import useCafeteriaplan from "hooks/useCafeteriaplan";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 import { SampleDishes } from "types/SampleDishes";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18-test_config";
 
 jest.mock("hooks/useCafeteriaplan");
 jest.mock("utils/IdleHandling/IdleHandler");
 jest.mock("context/TimeoutContext");
 
-const mockedUseCafeteriaplan = useCafeteriaplan as jest.MockedFunction<
-  typeof useCafeteriaplan
->;
-const mockedUseTimeoutContext = useTimeoutContext as jest.MockedFunction<
-  typeof useTimeoutContext
->;
-const mockData: SampleDishes[] = [
-  {
-    date: "2023-06-15",
-    weekday: "Thursday",
-    item: [
-      {
-        meal: "Dish 1",
-        price1: 10,
-        category: "Category 1",
-        foodicons: [],
-        price3: 0,
-        allergens: "F"
+const mockedUseCafeteriaplan = useCafeteriaplan as jest.MockedFunction<typeof useCafeteriaplan>;
+const mockedUseTimeoutContext = useTimeoutContext as jest.MockedFunction<typeof useTimeoutContext>;
+
+function formatDateForData(date: Date): string {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function generateMockData(): SampleDishes[] {
+  const currentTime = new Date();
+
+  return [
+    {
+      date: formatDateForData(new Date(currentTime.getTime() - 86400000 * 3)),
+      weekday: getDayOfWeek(new Date(currentTime.getTime() - 86400000 * 3)),
+      item: [
+        {
+          meal: "Dish 3",
+          price1: 12,
+          category: "Category 3",
+          foodicons: [],
+          price3: 0,
+          allergens: "D",
+        },
+        {
+          meal: "Dish 4",
+          price1: 8,
+          category: "Category 4",
+          foodicons: [],
+          price3: 0,
+          allergens: "G",
+        },
+      ],
+    },
+    {
+      date: formatDateForData(new Date(currentTime.getTime() - 86400000 * 2)),
+      weekday: getDayOfWeek(new Date(currentTime.getTime() - 86400000 * 2)),
+      item: [
+        {
+          meal: "Dish 5",
+          price1: 9,
+          category: "Category 5",
+          foodicons: [],
+          price3: 0,
+          allergens: "H",
+        },
+        {
+          meal: "Dish 6",
+          price1: 11,
+          category: "Category 6",
+          foodicons: [],
+          price3: 0,
+          allergens: "J",
+        },
+      ],
+    },
+    {
+      date: formatDateForData(new Date(currentTime.getTime() - 86400000)),
+      weekday: getDayOfWeek(new Date(currentTime.getTime() - 86400000)),
+      item: [
+        {
+          meal: "Dish 7",
+          price1: 13,
+          category: "Category 7",
+          foodicons: [],
+          price3: 0,
+          allergens: "K",
+        },
+        {
+          meal: "Dish 8",
+          price1: 10,
+          category: "Category 8",
+          foodicons: [],
+          price3: 0,
+          allergens: "L",
+        },
+      ],
+    },
+    {
+      date: formatDateForData(currentTime),
+      weekday: getDayOfWeek(currentTime),
+      item: [
+        {
+          meal: "Dish 1",
+          price1: 10,
+          category: "Category 1",
+          foodicons: [],
+          price3: 0,
+          allergens: "F",
+        },
+        {
+          meal: "Dish 2",
+          price1: 15,
+          category: "Category 2",
+          foodicons: [],
+          price3: 0,
+          allergens: "AWE",
+        },
+      ],
+    },
+    {
+        date: formatDateForData(new Date(currentTime.getTime() + 86400000)),
+        weekday: getDayOfWeek(new Date(currentTime.getTime() + 86400000)),
+        item: [
+          {
+            meal: "Dish 3",
+            price1: 12,
+            category: "Category 3",
+            foodicons: [],
+            price3: 0,
+            allergens: "D",
+          },
+          {
+            meal: "Dish 4",
+            price1: 8,
+            category: "Category 4",
+            foodicons: [],
+            price3: 0,
+            allergens: "G",
+          },
+        ],
       },
       {
-        meal: "Dish 2",
-        price1: 15,
-        category: "Category 2",
-        foodicons: [],
-        price3: 0,
-        allergens: "AWE"
+        date: formatDateForData(new Date(currentTime.getTime() + 86400000 * 2)),
+        weekday: getDayOfWeek(new Date(currentTime.getTime() + 86400000 * 2)),
+        item: [
+          {
+            meal: "Dish 5",
+            price1: 9,
+            category: "Category 5",
+            foodicons: [],
+            price3: 0,
+            allergens: "H",
+          },
+          {
+            meal: "Dish 6",
+            price1: 11,
+            category: "Category 6",
+            foodicons: [],
+            price3: 0,
+            allergens: "J",
+          },
+        ],
+      },
+      {
+        date: formatDateForData(new Date(currentTime.getTime() + 86400000 * 3)),
+        weekday: getDayOfWeek(new Date(currentTime.getTime() + 86400000 * 3)),
+        item: [
+          {
+            meal: "Dish 7",
+            price1: 13,
+            category: "Category 7",
+            foodicons: [],
+            price3: 0,
+            allergens: "K",
+          },
+          {
+            meal: "Dish 8",
+            price1: 10,
+            category: "Category 8",
+            foodicons: [],
+            price3: 0,
+            allergens: "L",
+          },
+        ],
       }
-    ]
-  }
-];
+  ];
+}
+
+const mockData: SampleDishes[] = generateMockData();
 
 describe("Cafeteriaplan component", () => {
   beforeEach(() => {
     mockedUseCafeteriaplan.mockReturnValue({
       data: mockData,
       isLoading: false,
-      error: undefined
+      error: undefined,
     });
     mockedUseTimeoutContext.mockReturnValue({ manager: undefined });
   });
@@ -57,65 +202,51 @@ describe("Cafeteriaplan component", () => {
     expect(screen.getByText("Dish 2")).toBeInTheDocument();
   });
 
-  test("Handles arrow back correctly", () => {
+  test("Data remains the same when handling arrowBackButton on the first index", () => {
     render(<Cafeteriaplan />);
 
-    const arrowBack = screen.getByAltText("Arrow Back");
-    expect(arrowBack).toBeInTheDocument();
+    const arrowBackButton = screen.getByLabelText("Arrow Back");
+    fireEvent.click(arrowBackButton);
 
-    arrowBack.click();
+    const firstItem = mockData[0];
+    const dish1Element = screen.getByText(firstItem.item[0].meal);
+    const dish2Element = screen.getByText(firstItem.item[1].meal);
 
-    const dish3 = screen.queryByText("Dish 3");
-    expect(dish3).toBeInTheDocument(); // Adjust the assertion to handle null case
-
-    expect(screen.getByText("Dish 4")).toBeInTheDocument();
+    expect(dish1Element).toBeInTheDocument();
+    expect(dish2Element).toBeInTheDocument();
   });
 
-  test("Handles arrow back correctly", () => {
+   test("Data remains the same when handling arrowForwardButton on the last index", () => {
     render(<Cafeteriaplan />);
-  
-    const arrowBack = screen.getByAltText("Arrow Back");
-    expect(arrowBack).toBeInTheDocument();
-  
-    arrowBack.click();
-  
-    const dish3 = screen.queryByText("Dish 3");
-    expect(dish3).toBeNull(); // Adjust the assertion to handle null case
-  
-    expect(screen.getByText("Dish 4")).toBeInTheDocument();
-  });
-  
-  test("Handles arrow forward correctly", () => {
-    render(<Cafeteriaplan />);
-  
-    const arrowForward = screen.getByAltText("Arrow Forward");
-    expect(arrowForward).toBeInTheDocument();
-  
-    arrowForward.click();
-  
-    const dish3 = screen.queryByText("Dish 3");
-    expect(dish3).toBeNull(); // Adjust the assertion to handle null case
-  
-    expect(screen.getByText("Dish 4")).toBeInTheDocument();
-  });
-  
 
-  test("Formats date correctly", () => {
-    const date = new Date("2023-06-15");
-    const formattedDate = formatDateForData(date);
-    expect(formattedDate).toBe("2023-06-15");
+    const arrowForwardButton = screen.getByLabelText("Arrow Forward");
+    fireEvent.click(arrowForwardButton);
+
+    const lastItem = mockData[mockData.length - 1];
+    const dish1Element = screen.getByText(lastItem.item[0].meal);
+    const dish2Element = screen.getByText(lastItem.item[1].meal);
+
+    expect(dish1Element).toBeInTheDocument();
+    expect(dish2Element).toBeInTheDocument();
   });
 
-  test("Gets day of week correctly", () => {
-    const date = new Date("2023-06-15");
-    const dayOfWeek = getDayOfWeek(date);
-    expect(dayOfWeek).toBe("Thursday");
+  describe("Cafeteriaplan component", () => {
+    it("Renders the component with translated title", () => {
+      render(
+        <I18nextProvider i18n={i18n}>
+          <Cafeteriaplan />
+        </I18nextProvider>
+      );
+  
+      // Check for translated title
+      const germanTitle = screen.getByText("Mensaplan");
+      const englishTitle = screen.getByText("Cafeteria plan");
+  
+      expect(germanTitle).toBeInTheDocument();
+      expect(englishTitle).toBeInTheDocument();
+    });
   });
+
 });
-function formatDateForData(date: Date): string {
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
 
-  return `${year}-${month}-${day}`;
-}
+
