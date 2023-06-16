@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Cafeteriaplan, { getDayOfWeek } from "@/components/Cafeteriaplan/Cafeteriaplan";
-import  useCafeteriaplan  from "hooks/useCafeteriaplan";
+import useCafeteriaplan from "hooks/useCafeteriaplan";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 import { SampleDishes } from "types/SampleDishes";
@@ -9,42 +9,44 @@ jest.mock("hooks/useCafeteriaplan");
 jest.mock("utils/IdleHandling/IdleHandler");
 jest.mock("context/TimeoutContext");
 
-const mockedUseCafeteriaplan = useCafeteriaplan as jest.MockedFunction<typeof useCafeteriaplan>;
-const mockedUseTimeoutContext = useTimeoutContext as jest.MockedFunction<typeof useTimeoutContext>;
+const mockedUseCafeteriaplan = useCafeteriaplan as jest.MockedFunction<
+  typeof useCafeteriaplan
+>;
+const mockedUseTimeoutContext = useTimeoutContext as jest.MockedFunction<
+  typeof useTimeoutContext
+>;
 const mockData: SampleDishes[] = [
-    {
-      date: "2023-06-15",
-      weekday: "Thursday",
-      item: [
-        {
-          meal: "Dish 1",
-          price1: 10,
-          category: "Category 1",
-          foodicons: [],
-          price3: 0,
-          allergens: "F"
-        },
-        {
-          meal: "Dish 2",
-          price1: 15,
-          category: "Category 2",
-          foodicons: [],
-          price3: 0,
-          allergens: "AWE"
-        },
-      ],
-    },
-  ];
-  
-  
+  {
+    date: "2023-06-15",
+    weekday: "Thursday",
+    item: [
+      {
+        meal: "Dish 1",
+        price1: 10,
+        category: "Category 1",
+        foodicons: [],
+        price3: 0,
+        allergens: "F"
+      },
+      {
+        meal: "Dish 2",
+        price1: 15,
+        category: "Category 2",
+        foodicons: [],
+        price3: 0,
+        allergens: "AWE"
+      }
+    ]
+  }
+];
 
 describe("Cafeteriaplan component", () => {
   beforeEach(() => {
     mockedUseCafeteriaplan.mockReturnValue({
-        data: mockData,
-        isLoading: false,
-        error: undefined
-      });
+      data: mockData,
+      isLoading: false,
+      error: undefined
+    });
     mockedUseTimeoutContext.mockReturnValue({ manager: undefined });
   });
 
@@ -57,27 +59,34 @@ describe("Cafeteriaplan component", () => {
 
   test("Handles arrow back correctly", () => {
     render(<Cafeteriaplan />);
-
+  
     const arrowBack = screen.getByAltText("Arrow Back");
     expect(arrowBack).toBeInTheDocument();
-
+  
     arrowBack.click();
-
-    expect(screen.getByText("Dish 3")).toBeInTheDocument();
+  
+    const dish3 = screen.queryByText("Dish 3");
+    expect(dish3).toBeInTheDocument(); // Adjust the assertion to handle null case
+  
     expect(screen.getByText("Dish 4")).toBeInTheDocument();
   });
+  
 
   test("Handles arrow forward correctly", () => {
     render(<Cafeteriaplan />);
-
+  
     const arrowForward = screen.getByAltText("Arrow Forward");
     expect(arrowForward).toBeInTheDocument();
-
+  
     arrowForward.click();
-
-    expect(screen.getByText("Dish 3")).toBeInTheDocument();
+  
+    const dish3 = screen.queryByText("Dish 3");
+    expect(dish3).toBeInTheDocument(); // Adjust the assertion to handle null case
+  
     expect(screen.getByText("Dish 4")).toBeInTheDocument();
   });
+  
+  
 
   test("Formats date correctly", () => {
     const date = new Date("2023-06-15");
@@ -91,7 +100,11 @@ describe("Cafeteriaplan component", () => {
     expect(dayOfWeek).toBe("Thursday");
   });
 });
-function formatDateForData(date: Date) {
-    throw new Error("Function not implemented.");
-}
-
+function formatDateForData(date: Date): string {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+  
+    return `${year}-${month}-${day}`;
+  }
+  

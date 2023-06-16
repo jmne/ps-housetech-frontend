@@ -21,7 +21,6 @@ import { SampleDishes, sample_dishes } from "types/SampleDishes";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 
-
 function formatDateForData(d: Date) {
   const month_short = d.getMonth();
   const day_short = d.getDate();
@@ -84,36 +83,42 @@ export default function Cafeteriaplan() {
   const timeoutContext = useTimeoutContext();
 
   const resetLayout = () => {
-      if (olRef.current) {
-        olRef.current.scrollBy({
-          top: -olRef.current.scrollTop,
-          behavior: "smooth"
-        });
-      }
+    if (olRef.current) {
+      olRef.current.scrollBy({
+        top: -olRef.current.scrollTop,
+        behavior: "smooth"
+      });
+    }
 
-      const currentDate = formatDateForData(selectedDate);
-      const index = sample_dishes.findIndex((dish) => dish.date === currentDate);
-    
-      if (index !== -1) {
-        const currentTime = new Date().toLocaleTimeString("de-DE", { hour: "numeric", minute: "numeric", hour12: false });
-        const currentHour = parseInt(currentTime.split(":")[0]);
-        const currentMinute = parseInt(currentTime.split(":")[1]);
-    
-        if (currentHour >= 15 && currentMinute >= 0) {
-          if (index < sample_dishes.length - 1) {
-            setCurrentIndex(index + 1);
-          }
-        } else {
-          setCurrentIndex(index);
+    const currentDate = formatDateForData(selectedDate);
+    const index = sample_dishes.findIndex((dish) => dish.date === currentDate);
+
+    if (index !== -1) {
+      const currentTime = new Date().toLocaleTimeString("de-DE", {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: false
+      });
+      const currentHour = parseInt(currentTime.split(":")[0]);
+      const currentMinute = parseInt(currentTime.split(":")[1]);
+
+      if (currentHour >= 15 && currentMinute >= 0) {
+        if (index < sample_dishes.length - 1) {
+          setCurrentIndex(index + 1);
         }
+      } else {
+        setCurrentIndex(index);
       }
-    };
+    }
+  };
 
   useEffect(() => {
-    const handler = new IdleHandler({ origin: "cafeteriaplan", resetFunction: resetLayout });
+    const handler = new IdleHandler({
+      origin: "cafeteriaplan",
+      resetFunction: resetLayout
+    });
     if (timeoutContext.manager) timeoutContext.manager.addResetListener(handler);
   }, [timeoutContext.manager]);
-
 
   const currentData = data[currentIndex] || null;
 
