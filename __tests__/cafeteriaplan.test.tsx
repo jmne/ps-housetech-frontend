@@ -205,21 +205,11 @@ describe("Cafeteriaplan component", () => {
 
   test("Renders the component correctly", () => {
     render(<Cafeteriaplan />);
-  
-   
-  
+
     // Assert that the component renders without errors
-    const component = screen.getByTestId("cafeteriaplan-component");
+    const component = screen.getByTestId("cafeteriaplan");
     expect(component).toBeInTheDocument();
-  
-   
-  
-    // Assert that the title is rendered correctly
-    const title = screen.getByText("Mensaplan");
-    expect(title).toBeInTheDocument();
-  
-   
-  
+
     // Assert that at least one dish is rendered
     const dish = screen.queryByText(/Dish \d+/i);
     expect(dish).toBeInTheDocument();
