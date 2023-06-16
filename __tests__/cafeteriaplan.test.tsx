@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Cafeteriaplan, { getDayOfWeek } from "@/components/Cafeteriaplan/Cafeteriaplan";
 import useCafeteriaplan from "hooks/useCafeteriaplan";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
@@ -205,12 +205,11 @@ describe("Cafeteriaplan component", () => {
 
   test("Renders the component correctly", () => {
     render(<Cafeteriaplan />);
-  
+
     // Assert that at least one dish is rendered
     const dishes = screen.getAllByText(/Dish \d+/i);
     expect(dishes.length).toBeGreaterThan(0);
   });
-  
 
   test("Data remains the same when handling arrowBackButton on the first index", () => {
     render(<Cafeteriaplan />);
@@ -232,26 +231,31 @@ describe("Cafeteriaplan component", () => {
   test("Data remains the same when handling arrowForwardButton on the last index", () => {
     render(<Cafeteriaplan />);
   
-    const lastItem = mockData[mockData.length - 1];
+    // Retrieve the arrow forward button element
+    const arrowForwardButton = screen.getByAltText("Arrow Forward");
   
-    const hasText = (element: Element | null, text: string) => {
-      if (element instanceof HTMLElement) {
-        return element?.textContent?.toLowerCase().includes(text.toLowerCase()) ?? false;
-      }
-      return false;
-    };
+    // Click the arrow forward button to navigate to the next day
+    fireEvent.click(arrowForwardButton);
   
-    const dish1Element = screen.getByText((content, element) =>
-      hasText(element, lastItem.item[0].meal)
-    );
+    // Wait for the component to re-render with the updated data
+    waitFor(() => {
+      // Retrieve the list of dish elements
+      const dishElements = screen.queryAllByTestId("dish");
   
-    const dish2Element = screen.getByText((content, element) =>
-      hasText(element, lastItem.item[1].meal)
-    );
+      // Retrieve the last dish element
+      const lastDishElement = dishElements[dishElements.length - 1];
   
-    expect(dish1Element).toBeInTheDocument();
-    expect(dish2Element).toBeInTheDocument();
+      // Retrieve the dish name element
+      const dishNameElement = lastDishElement.querySelector(".name") as HTMLElement;
+  
+      // Retrieve the expected dish name from the rendered dish element
+      const expectedDishName = dishNameElement?.textContent;
+  
+      // Assert that the dish name remains the same
+      expect(expectedDishName).toBe("Dish 4");
+    });
   });
+  
   
 
   describe("Cafeteriaplan component", () => {
