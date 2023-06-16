@@ -16,6 +16,20 @@ export const mapTransitionConfig = {
     "drop-shadow(4px 4px 6px rgba(50, 50, 93, 0.20)) drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.15))"
 };
 
+
+
+export function validateRoomNumber(room: string | number) {
+  const roomStr = room.toString();
+
+  const validRoomNumber = roomStr.match(/^\d{3}$/);
+  if (validRoomNumber) return validRoomNumber[0];
+
+  const sequenceOfThreeDigits = roomStr.match(/(?<!\d)\d{3}(?!\d)/);
+  if (sequenceOfThreeDigits) return sequenceOfThreeDigits[0];
+
+  return "";
+}
+
 /**
  * Get the floor level of a room as BuildingFloor value
  * @param room Number of the room
@@ -191,12 +205,10 @@ function applyHighlightOnFloor(element: SVGSVGElement) {
 function removeHighlightFromFloor(element: SVGSVGElement, offset: number) {
   // Layer is 'under' new layer, push down
   if (offset < 0) {
-    element.style.transform = `translateX(${
-      offset * mapTransitionConfig.map_x_offset
-    }%) translateY(${-offset * mapTransitionConfig.map_y_offset}%)`;
-    element.style.opacity = `${
-      mapTransitionConfig.not_in_focus_opacity / Math.abs(offset * 2)
-    }`;
+    element.style.transform = `translateX(${offset * mapTransitionConfig.map_x_offset
+      }%) translateY(${-offset * mapTransitionConfig.map_y_offset}%)`;
+    element.style.opacity = `${mapTransitionConfig.not_in_focus_opacity / Math.abs(offset * 2)
+      }`;
     element.style.zIndex = "4";
   }
   // Layer is 'over' new layer, push up

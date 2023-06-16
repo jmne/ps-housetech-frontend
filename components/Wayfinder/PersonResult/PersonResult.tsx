@@ -4,6 +4,7 @@ import { useMapContext } from "context/MapContext";
 import { usePersonSearchContext } from "context/PersonContext";
 import styles from "@/components/Wayfinder/Wayfinder.module.scss";
 import { forwardRef, useCallback } from "react";
+import { validateRoomNumber } from "utils/mapTransformations";
 
 interface Props {
   person: Employee;
@@ -21,7 +22,11 @@ const PersonResult = forwardRef<HTMLLIElement, Props>(({ person }, ref) => {
       mapContext.setBuilding(undefined);
     } else {
       selectedPersonContext.setPerson(person);
-      mapContext.setRoom(person.roomNumber);
+      
+      if (!person.roomNumber) return
+      const validRoomNumber = validateRoomNumber(person.roomNumber)
+      if (validRoomNumber == "") return
+      mapContext.setRoom(validRoomNumber);
       mapContext.setBuilding("leo3");
     }
   }, [person, mapContext, selectedPersonContext]);
