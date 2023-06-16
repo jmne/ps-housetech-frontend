@@ -4,7 +4,7 @@ $halfBorder: calc(g.$border-base / 2);
 $quarterBorder: calc(g.$border-base / 4);
 
 .container {
-  display: grid;
+  display: none;
   grid-auto-rows: 1fr;
   width: 100%;
 
@@ -13,16 +13,17 @@ $quarterBorder: calc(g.$border-base / 4);
 
   box-shadow: g.$shadow-outer;
 
-  animation: create 0.2s ease-out 0s 1;
-  opacity: 100;
-  transition: opacity 500ms ease-out;
+  opacity: 0;
+
+  transition: opacity 200ms ease-out;
   background-color: g.$container-item;
 
   padding: g.$margin-small;
 
-  &.fadeOut {
-    transition: opacity 500ms ease-out;
-    opacity: 0;
+  &.visible {
+    animation: create 0.2s ease-out 0s 1;
+    opacity: 100;
+    display: grid;
   }
 }
 
