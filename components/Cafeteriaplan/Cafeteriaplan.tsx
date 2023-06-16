@@ -17,6 +17,11 @@ import arrow_back from "assets/images/arrow_back.svg";
 import arrow_forward from "assets/images/arrow_forward.svg";
 import { SampleDishes, sample_dishes } from "types/SampleDishes";
 
+// IMPORTS - CONTEXT
+import { IdleHandler } from "utils/IdleHandling/IdleHandler";
+import { useTimeoutContext } from "context/TimeoutContext";
+
+
 function formatDateForData(d: Date) {
   const month_short = d.getMonth();
   const day_short = d.getDate();
@@ -76,23 +81,39 @@ export default function Cafeteriaplan() {
     }
   };
 
-  const startTimer = () => {
-    clearTimeout(timer.current);
-    timer.current = window.setTimeout(() => {
+  const timeoutContext = useTimeoutContext();
+
+  const resetLayout = () => {
       if (olRef.current) {
-        olRef.current.scrollTo({ top: 0, behavior: "smooth" });
-        startTimer();
+        olRef.current.scrollBy({
+          top: -olRef.current.scrollTop,
+          behavior: "smooth"
+        });
       }
-    }, 5000);
-  };
+
+      const currentDate = formatDateForData(selectedDate);
+      const index = sample_dishes.findIndex((dish) => dish.date === currentDate);
+    
+      if (index !== -1) {
+        const currentTime = new Date().toLocaleTimeString("de-DE", { hour: "numeric", minute: "numeric", hour12: false });
+        const currentHour = parseInt(currentTime.split(":")[0]);
+        const currentMinute = parseInt(currentTime.split(":")[1]);
+    
+        if (currentHour >= 15 && currentMinute >= 0) {
+          if (index < sample_dishes.length - 1) {
+            setCurrentIndex(index + 1);
+          }
+        } else {
+          setCurrentIndex(index);
+        }
+      }
+    };
 
   useEffect(() => {
-    startTimer();
+    const handler = new IdleHandler({ origin: "cafeteriaplan", resetFunction: resetLayout });
+    if (timeoutContext.manager) timeoutContext.manager.addResetListener(handler);
+  }, [timeoutContext.manager]);
 
-    return () => {
-      clearTimeout(timer.current);
-    };
-  }, []);
 
   const currentData = data[currentIndex] || null;
 
