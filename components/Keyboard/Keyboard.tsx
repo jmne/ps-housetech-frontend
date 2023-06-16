@@ -10,11 +10,13 @@ export function Key({ keycode }: helperProps) {
   const isLetter = !["clear", "space", "backspace"].includes(keycode);
 
   const searchContext = useSearchInputContext();
-  function handleKey() {
+  function handleKey(e: Event) {
     if (keycode == "clear") clearInput();
     else if (keycode == "space") appendInput(" ");
     else if (keycode == "backspace") removeChar();
     else appendInput(keycode);
+
+    e.preventDefault()
   }
 
   function appendInput(newKey: string) {
@@ -37,7 +39,7 @@ export function Key({ keycode }: helperProps) {
   }
 
   return (
-    <button className={styles.key} onClick={() => handleKey()}>
+    <button className={styles.key} onMouseDown={(e) => handleKey(e)}>
       {isLetter ? keycode.toUpperCase() : keycode}
     </button>
   );
