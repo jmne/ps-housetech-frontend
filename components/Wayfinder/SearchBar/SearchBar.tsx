@@ -2,6 +2,7 @@
 import styles from "@/components/Wayfinder/Wayfinder.module.scss";
 import IconSearch from "assets/images/icon_search.svg";
 import { useSearchInputContext } from "context/SearchInputContext";
+import { useRef } from "react";
 
 interface props {
   placeholder: string;
@@ -10,28 +11,21 @@ interface props {
 export function SearchBar({ placeholder }: props) {
   const searchInputContext = useSearchInputContext();
 
-  const containerStyles = searchInputContext.active
-    ? [styles.searchField, styles.background, styles.focus]
-    : [styles.searchField, styles.background];
-  const inputStyles = searchInputContext.active
-    ? [styles.input, styles.focus].join(" ")
-    : styles.focus;
+  const inputRef = useRef<HTMLInputElement>(null)
+  const focusInput = () => {
+    if (!inputRef.current) return
+    if (document.activeElement !== inputRef.current) inputRef.current.focus()
+  }
 
   return (
     <div
-      className={containerStyles.join(" ")}
-      onClick={() => searchInputContext.setActive(!searchInputContext.active)}
+      className={[styles.searchField, styles.background].join(" ")}
+      onClick={focusInput}
     >
       <div className={styles.iconWrapper}>
         <IconSearch className={styles.icon} />
       </div>
-      <div className={inputStyles}>
-        {searchInputContext.input === "" ? (
-          <span>{placeholder}</span>
-        ) : (
-          <span>{searchInputContext.input}</span>
-        )}
-      </div>
+      <input className={styles.input} placeholder={placeholder} value={searchInputContext.input} onChange={(e) => searchInputContext.setInput(e.target.value)} onFocus={() => searchInputContext.setActive(true)} onBlur={() => searchInputContext.setActive(false)} ref={inputRef}/>
     </div>
   );
 }

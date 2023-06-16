@@ -40,7 +40,7 @@ describe("Keyboard and Key components", () => {
     });
 
     const { getByText } = render(<Key keycode="a" />);
-    fireEvent.click(getByText(/A/));
+    fireEvent.mouseDown(getByText(/A/));
 
     expect(setInput).toHaveBeenCalledWith("A");
   });
@@ -53,7 +53,7 @@ describe("Keyboard and Key components", () => {
     });
 
     const { getByText } = render(<Key keycode="backspace" />);
-    fireEvent.click(getByText(/backspace/));
+    fireEvent.mouseDown(getByText(/backspace/));
 
     expect(setInput).toHaveBeenCalledWith("");
   });
@@ -66,7 +66,7 @@ describe("Keyboard and Key components", () => {
     });
 
     const { getByText } = render(<Key keycode="clear" />);
-    fireEvent.click(getByText(/clear/));
+    fireEvent.mouseDown(getByText(/clear/));
 
     expect(setInput).toHaveBeenCalledWith("");
   });
@@ -79,7 +79,7 @@ describe("Keyboard and Key components", () => {
     });
 
     const { getByText } = render(<Key keycode="space" />);
-    fireEvent.click(getByText(/space/));
+    fireEvent.mouseDown(getByText(/space/));
 
     expect(setInput).toHaveBeenCalledWith(" ");
   });
