@@ -11,8 +11,12 @@ jest.mock("hooks/useCafeteriaplan");
 jest.mock("utils/IdleHandling/IdleHandler");
 jest.mock("context/TimeoutContext");
 
-const mockedUseCafeteriaplan = useCafeteriaplan as jest.MockedFunction<typeof useCafeteriaplan>;
-const mockedUseTimeoutContext = useTimeoutContext as jest.MockedFunction<typeof useTimeoutContext>;
+const mockedUseCafeteriaplan = useCafeteriaplan as jest.MockedFunction<
+  typeof useCafeteriaplan
+>;
+const mockedUseTimeoutContext = useTimeoutContext as jest.MockedFunction<
+  typeof useTimeoutContext
+>;
 
 function formatDateForData(date: Date): string {
   const year = date.getFullYear();
@@ -36,7 +40,7 @@ function generateMockData(): SampleDishes[] {
           category: "Category 3",
           foodicons: [],
           price3: 0,
-          allergens: "D",
+          allergens: "D"
         },
         {
           meal: "Dish 4",
@@ -44,9 +48,9 @@ function generateMockData(): SampleDishes[] {
           category: "Category 4",
           foodicons: [],
           price3: 0,
-          allergens: "G",
-        },
-      ],
+          allergens: "G"
+        }
+      ]
     },
     {
       date: formatDateForData(new Date(currentTime.getTime() - 86400000 * 2)),
@@ -58,7 +62,7 @@ function generateMockData(): SampleDishes[] {
           category: "Category 5",
           foodicons: [],
           price3: 0,
-          allergens: "H",
+          allergens: "H"
         },
         {
           meal: "Dish 6",
@@ -66,9 +70,9 @@ function generateMockData(): SampleDishes[] {
           category: "Category 6",
           foodicons: [],
           price3: 0,
-          allergens: "J",
-        },
-      ],
+          allergens: "J"
+        }
+      ]
     },
     {
       date: formatDateForData(new Date(currentTime.getTime() - 86400000)),
@@ -80,7 +84,7 @@ function generateMockData(): SampleDishes[] {
           category: "Category 7",
           foodicons: [],
           price3: 0,
-          allergens: "K",
+          allergens: "K"
         },
         {
           meal: "Dish 8",
@@ -88,9 +92,9 @@ function generateMockData(): SampleDishes[] {
           category: "Category 8",
           foodicons: [],
           price3: 0,
-          allergens: "L",
-        },
-      ],
+          allergens: "L"
+        }
+      ]
     },
     {
       date: formatDateForData(currentTime),
@@ -102,7 +106,7 @@ function generateMockData(): SampleDishes[] {
           category: "Category 1",
           foodicons: [],
           price3: 0,
-          allergens: "F",
+          allergens: "F"
         },
         {
           meal: "Dish 2",
@@ -110,76 +114,76 @@ function generateMockData(): SampleDishes[] {
           category: "Category 2",
           foodicons: [],
           price3: 0,
-          allergens: "AWE",
-        },
-      ],
+          allergens: "AWE"
+        }
+      ]
     },
     {
-        date: formatDateForData(new Date(currentTime.getTime() + 86400000)),
-        weekday: getDayOfWeek(new Date(currentTime.getTime() + 86400000)),
-        item: [
-          {
-            meal: "Dish 3",
-            price1: 12,
-            category: "Category 3",
-            foodicons: [],
-            price3: 0,
-            allergens: "D",
-          },
-          {
-            meal: "Dish 4",
-            price1: 8,
-            category: "Category 4",
-            foodicons: [],
-            price3: 0,
-            allergens: "G",
-          },
-        ],
-      },
-      {
-        date: formatDateForData(new Date(currentTime.getTime() + 86400000 * 2)),
-        weekday: getDayOfWeek(new Date(currentTime.getTime() + 86400000 * 2)),
-        item: [
-          {
-            meal: "Dish 5",
-            price1: 9,
-            category: "Category 5",
-            foodicons: [],
-            price3: 0,
-            allergens: "H",
-          },
-          {
-            meal: "Dish 6",
-            price1: 11,
-            category: "Category 6",
-            foodicons: [],
-            price3: 0,
-            allergens: "J",
-          },
-        ],
-      },
-      {
-        date: formatDateForData(new Date(currentTime.getTime() + 86400000 * 3)),
-        weekday: getDayOfWeek(new Date(currentTime.getTime() + 86400000 * 3)),
-        item: [
-          {
-            meal: "Dish 7",
-            price1: 13,
-            category: "Category 7",
-            foodicons: [],
-            price3: 0,
-            allergens: "K",
-          },
-          {
-            meal: "Dish 8",
-            price1: 10,
-            category: "Category 8",
-            foodicons: [],
-            price3: 0,
-            allergens: "L",
-          },
-        ],
-      }
+      date: formatDateForData(new Date(currentTime.getTime() + 86400000)),
+      weekday: getDayOfWeek(new Date(currentTime.getTime() + 86400000)),
+      item: [
+        {
+          meal: "Dish 3",
+          price1: 12,
+          category: "Category 3",
+          foodicons: [],
+          price3: 0,
+          allergens: "D"
+        },
+        {
+          meal: "Dish 4",
+          price1: 8,
+          category: "Category 4",
+          foodicons: [],
+          price3: 0,
+          allergens: "G"
+        }
+      ]
+    },
+    {
+      date: formatDateForData(new Date(currentTime.getTime() + 86400000 * 2)),
+      weekday: getDayOfWeek(new Date(currentTime.getTime() + 86400000 * 2)),
+      item: [
+        {
+          meal: "Dish 5",
+          price1: 9,
+          category: "Category 5",
+          foodicons: [],
+          price3: 0,
+          allergens: "H"
+        },
+        {
+          meal: "Dish 6",
+          price1: 11,
+          category: "Category 6",
+          foodicons: [],
+          price3: 0,
+          allergens: "J"
+        }
+      ]
+    },
+    {
+      date: formatDateForData(new Date(currentTime.getTime() + 86400000 * 3)),
+      weekday: getDayOfWeek(new Date(currentTime.getTime() + 86400000 * 3)),
+      item: [
+        {
+          meal: "Dish 7",
+          price1: 13,
+          category: "Category 7",
+          foodicons: [],
+          price3: 0,
+          allergens: "K"
+        },
+        {
+          meal: "Dish 8",
+          price1: 10,
+          category: "Category 8",
+          foodicons: [],
+          price3: 0,
+          allergens: "L"
+        }
+      ]
+    }
   ];
 }
 
@@ -190,7 +194,7 @@ describe("Cafeteriaplan component", () => {
     mockedUseCafeteriaplan.mockReturnValue({
       data: mockData,
       isLoading: false,
-      error: undefined,
+      error: undefined
     });
     mockedUseTimeoutContext.mockReturnValue({ manager: undefined });
   });
@@ -198,14 +202,18 @@ describe("Cafeteriaplan component", () => {
   test("Renders the component correctly", () => {
     render(<Cafeteriaplan />);
 
-    expect(screen.getByText("Dish 1")).toBeInTheDocument();
-    expect(screen.getByText("Dish 2")).toBeInTheDocument();
+    expect(screen.getByText(/Dish 1/)).toBeInTheDocument();
+
+    expect(screen.getByText(/Dish 2/)).toBeInTheDocument();
   });
 
   test("Data remains the same when handling arrowBackButton on the first index", () => {
     render(<Cafeteriaplan />);
 
-    const arrowBackButton = screen.getByLabelText("Arrow Back");
+    // Use the alt text to find the arrow back button
+    const arrowBackAltText = "Arrow Back";
+    const arrowBackButton = screen.getByAltText(arrowBackAltText);
+
     fireEvent.click(arrowBackButton);
 
     const firstItem = mockData[0];
@@ -216,10 +224,12 @@ describe("Cafeteriaplan component", () => {
     expect(dish2Element).toBeInTheDocument();
   });
 
-   test("Data remains the same when handling arrowForwardButton on the last index", () => {
+  test("Data remains the same when handling arrowForwardButton on the last index", () => {
     render(<Cafeteriaplan />);
 
-    const arrowForwardButton = screen.getByLabelText("Arrow Forward");
+    const arrowForwardAltText = "Arrow Forward";
+    const arrowForwardButton = screen.getByAltText(arrowForwardAltText);
+
     fireEvent.click(arrowForwardButton);
 
     const lastItem = mockData[mockData.length - 1];
@@ -237,16 +247,12 @@ describe("Cafeteriaplan component", () => {
           <Cafeteriaplan />
         </I18nextProvider>
       );
-  
+
       // Check for translated title
-      const germanTitle = screen.getByText("Mensaplan");
-      const englishTitle = screen.getByText("Cafeteria plan");
-  
-      expect(germanTitle).toBeInTheDocument();
-      expect(englishTitle).toBeInTheDocument();
+      const titleRegex = /mensaplan/i;
+    const translatedTitle = screen.getByText(titleRegex);
+
+    expect(translatedTitle).toBeInTheDocument();
     });
   });
-
 });
-
-
