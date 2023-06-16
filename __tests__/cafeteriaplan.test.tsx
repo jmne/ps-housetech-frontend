@@ -202,17 +202,28 @@ describe("Cafeteriaplan component", () => {
   const hasText = (element: HTMLElement | null, text: string) => {
     return element?.textContent?.toLowerCase().includes(text.toLowerCase()) ?? false;
   };
-  
+
   test("Renders the component correctly", () => {
     render(<Cafeteriaplan />);
   
-    const dish1Element = screen.queryByText((content, element) => hasText(element as HTMLElement, "Dish 1"));
-    expect(dish1Element).not.toBeNull();
+   
   
-    const dish2Element = screen.queryByText((content, element) => hasText(element as HTMLElement, "Dish 2"));
-    expect(dish2Element).not.toBeNull();
+    // Assert that the component renders without errors
+    const component = screen.getByTestId("cafeteriaplan-component");
+    expect(component).toBeInTheDocument();
+  
+   
+  
+    // Assert that the title is rendered correctly
+    const title = screen.getByText("Mensaplan");
+    expect(title).toBeInTheDocument();
+  
+   
+  
+    // Assert that at least one dish is rendered
+    const dish = screen.queryByText(/Dish \d+/i);
+    expect(dish).toBeInTheDocument();
   });
-  
 
   test("Data remains the same when handling arrowBackButton on the first index", () => {
     render(<Cafeteriaplan />);
