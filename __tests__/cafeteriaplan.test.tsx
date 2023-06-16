@@ -207,10 +207,10 @@ describe("Cafeteriaplan component", () => {
     render(<Cafeteriaplan />);
   
     const dish1Element = screen.queryByText((content, element) => hasText(element as HTMLElement, "Dish 1"));
-    expect(dish1Element).toBeInTheDocument();
+    expect(dish1Element).not.toBeNull();
   
     const dish2Element = screen.queryByText((content, element) => hasText(element as HTMLElement, "Dish 2"));
-    expect(dish2Element).toBeInTheDocument();
+    expect(dish2Element).not.toBeNull();
   });
   
 
