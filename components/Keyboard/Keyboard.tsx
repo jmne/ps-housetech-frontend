@@ -37,8 +37,8 @@ export function Key({ keycode }: helperProps) {
   function clearInput() {
     searchContext.setInput("");
   }
-
   return (
+    // @ts-ignore
     <button className={styles.key} onMouseDown={(e) => handleKey(e)}>
       {isLetter ? keycode.toUpperCase() : keycode}
     </button>

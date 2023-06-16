@@ -11,13 +11,6 @@ interface props {
 export function SearchBar({ placeholder }: props) {
   const searchInputContext = useSearchInputContext();
 
-  const containerStyles = searchInputContext.active
-    ? [styles.searchField, styles.background, styles.focus]
-    : [styles.searchField, styles.background];
-  const inputStyles = searchInputContext.active
-    ? [styles.input, styles.focus].join(" ")
-    : styles.focus;
-
   const inputRef = useRef<HTMLInputElement>(null)
   const focusInput = () => {
     if (!inputRef.current) return
@@ -26,7 +19,7 @@ export function SearchBar({ placeholder }: props) {
 
   return (
     <div
-      className={containerStyles.join(" ")}
+      className={[styles.searchField, styles.background].join(" ")}
       onClick={focusInput}
     >
       <div className={styles.iconWrapper}>
