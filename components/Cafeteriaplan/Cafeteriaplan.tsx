@@ -68,14 +68,14 @@ export default function Cafeteriaplan() {
 
   const handleArrowBack = () => {
     if (currentIndex > 0) {
-   //   setCurrentIndex((prevIndex) => prevIndex - 1);
+      //   setCurrentIndex((prevIndex) => prevIndex - 1);
       setSelectedDate(new Date(data[currentIndex - 1].date));
     }
   };
 
   const handleArrowForward = () => {
     if (currentIndex < data.length - 1) {
-   //   setCurrentIndex((prevIndex) => prevIndex + 1);
+      //   setCurrentIndex((prevIndex) => prevIndex + 1);
       setSelectedDate(new Date(data[currentIndex + 1].date));
     }
   };

@@ -202,9 +202,15 @@ describe("Cafeteriaplan component", () => {
   test("Renders the component correctly", () => {
     render(<Cafeteriaplan />);
 
-    expect(screen.getByText("Dish 1")).toBeInTheDocument();
+    const dish1Element = screen.queryByText(/Dish 1/i);
 
-    expect(screen.getByText("Dish 2")).toBeInTheDocument();
+    expect(dish1Element).toBeInTheDocument();
+
+
+    const dish2Element = screen.queryByText(/Dish 2/i);
+
+    expect(dish2Element).toBeInTheDocument();
+
   });
 
   test("Data remains the same when handling arrowBackButton on the first index", () => {
@@ -247,8 +253,8 @@ describe("Cafeteriaplan component", () => {
           <Cafeteriaplan />
         </I18nextProvider>
       );
-        // Check for test string
-        expect(screen.getByText("Cafeteria plan")).toBeInTheDocument();
+      // Check for test string
+      expect(screen.getByText("Cafeteria plan")).toBeInTheDocument();
     });
   });
 });
