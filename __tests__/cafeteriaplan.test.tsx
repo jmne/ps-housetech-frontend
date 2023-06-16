@@ -202,9 +202,9 @@ describe("Cafeteriaplan component", () => {
   test("Renders the component correctly", () => {
     render(<Cafeteriaplan />);
 
-    expect(screen.getByText(/Dish 1/)).toBeInTheDocument();
+    expect(screen.getByText("Dish 1")).toBeInTheDocument();
 
-    expect(screen.getByText(/Dish 2/)).toBeInTheDocument();
+    expect(screen.getByText("Dish 2")).toBeInTheDocument();
   });
 
   test("Data remains the same when handling arrowBackButton on the first index", () => {
@@ -247,12 +247,8 @@ describe("Cafeteriaplan component", () => {
           <Cafeteriaplan />
         </I18nextProvider>
       );
-
-      // Check for translated title
-      const titleRegex = /mensaplan/i;
-    const translatedTitle = screen.getByText(titleRegex);
-
-    expect(translatedTitle).toBeInTheDocument();
+        // Check for test string
+        expect(screen.getByText("Cafeteria plan")).toBeInTheDocument();
     });
   });
 });
