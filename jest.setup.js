@@ -6,3 +6,13 @@
 import "@testing-library/jest-dom/extend-expect";
 
 jest.mock("next/router", () => require("next-router-mock"));
+jest.mock('components/Cafeteriaplan/Cafeteriaplan.tsx', () => ({
+    __esModule: true,
+    ChildComponent: () => {
+        return (
+            <div data-testid="mocked-child-component">
+                haha mocked
+            </div>
+        )
+    },
+}));

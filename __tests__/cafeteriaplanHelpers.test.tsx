@@ -10,7 +10,7 @@ describe("Testing the helper functions defined for the cafeteriaplan-component",
     const output = [1, 2];
 
     input.forEach((value, index) => {
-      expect(getIndexForDate(TEST_DATA_FORMATTED, value)).toBe(index);
+      expect(getIndexForDate(TEST_DATA_FORMATTED, value)).toBe(output[index]);
     });
   });
 
@@ -23,7 +23,7 @@ describe("Testing the helper functions defined for the cafeteriaplan-component",
     converted_by_function.forEach((data, index) => {
       // check if date is instance of Date and matches expected value
       expect(data.date).toBeInstanceOf(Date);
-      expect(data.date.getDay()).toBe(TEST_DATA_FORMATTED[index].date.getDay());
+      expect(data.date.getDate()).toBe(TEST_DATA_FORMATTED[index].date.getDate());
 
       // check if weekday is removed
       expect(data).not.toHaveProperty("weekday");
@@ -36,7 +36,7 @@ describe("Testing the helper functions defined for the cafeteriaplan-component",
 
 const TEST_DATA_FORMATTED: FoodplanConverted[] = [
   {
-    date: new Date(Date.parse("2023-06-17T00:00:00")),
+    date: new Date(Date.parse("2023-06-17T00:00:00Z")),
     item: [
       {
         meal: "Dish 1",
@@ -57,7 +57,7 @@ const TEST_DATA_FORMATTED: FoodplanConverted[] = [
     ]
   },
   {
-    date: new Date(Date.parse("2023-06-18T00:00:00")),
+    date: new Date(Date.parse("2023-06-18T00:00:00Z")),
     item: [
       {
         meal: "Dish 3",
@@ -78,7 +78,7 @@ const TEST_DATA_FORMATTED: FoodplanConverted[] = [
     ]
   },
   {
-    date: new Date(Date.parse("2023-06-19T00:00:00")),
+    date: new Date(Date.parse("2023-06-19T00:00:00Z")),
     item: [
       {
         meal: "Dish 5",
@@ -99,11 +99,11 @@ const TEST_DATA_FORMATTED: FoodplanConverted[] = [
     ]
   },
   {
-    date: new Date(Date.parse("2023-06-20T00:00:00")),
+    date: new Date(Date.parse("2023-06-20T00:00:00Z")),
     item: undefined
   },
   {
-    date: new Date(Date.parse("2023-06-21T00:00:00")),
+    date: new Date(Date.parse("2023-06-21T00:00:00Z")),
     item: [
       {
         meal: "Dish 9",

@@ -1,26 +1,31 @@
+"use client";
+
 // IMPORTS - BUILTINS
 import useCafeteriaplan from "hooks/useCafeteriaplan";
-import { useEffect, useState, useRef, Fragment } from "react";
+import { useEffect, useState, useRef, Fragment, useMemo } from "react";
 import Image from "next/image";
+import { Navigation, Virtual } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // IMPORTS - COMPONENTS
 import Dish from "@/components/Cafeteriaplan/Dish";
 
 // IMPORTS - ASSETS
+import { useTranslation } from "next-i18next";
 import indexStyles from "@/pages/index.module.scss";
 import cafeteriaStyles from "@/components/Cafeteriaplan/Cafeteriaplan.module.scss";
-import { useTranslation } from "next-i18next";
-
-// IMPORTS - ICONS
-import arrow_back from "assets/images/arrow_back.svg";
-import arrow_forward from "assets/images/arrow_forward.svg";
-import { Foodplan, sample_foodplan } from "types/Foodplan";
+import "swiper/css";
+import "swiper/css/navigation";
 
 // IMPORTS - CONTEXT
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 
 // IMPORTS - HELPERS
+import { getIndexForDate } from "utils/cafeteriahelper";
+import { getWeekday } from "utils/dateHelpers";
+import { useRouter } from "next/router";
+import { Foodplan } from "./Foodplan";
 
 export function getDayOfWeek(day: Date) {
   const daysOfWeek = [
@@ -40,67 +45,55 @@ export function getDayOfWeek(day: Date) {
 
 export default function Cafeteriaplan() {
   const { t } = useTranslation("index");
+  const timeoutContext = useTimeoutContext();
   const { data, isLoading, error } = useCafeteriaplan();
+  const router = useRouter();
 
   const olRef = useRef<HTMLOListElement>(null);
   const timer = useRef<number>();
 
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
+  const [currentIndex, setCurrentIndex] = useState<number | undefined>();
+  const [swiperInstance, setSwiperInstance] = useState()
 
   useEffect(() => {
-    const formattedDate = getCafeteriaDateString(selectedDate);
-    const index = data.findIndex((e) => e.date === formattedDate);
-    if (index !== -1) {
-      setCurrentIndex(index);
+    if (typeof currentIndex !== "undefined" && data[currentIndex].date) setSelectedDate(data[currentIndex].date);
+    else setSelectedDate(undefined)
+  }, [currentIndex, data]);
+
+  const index_of_today = useMemo(() => {
+    if (typeof data !== "undefined") {
+      const index = getIndexForDate(data, new Date());
+      if (index !== -1) return index;
+      else return 0;
     }
-  }, [selectedDate, data]);
+    else return 0
+  }, [data])
 
-  const handleArrowBack = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prevIndex) => prevIndex - 1);
-      setSelectedDate(new Date(data[currentIndex - 1].date));
-    }
-  };
+    function resetLayout() {
+      const current_time = new Date();
 
-  const handleArrowForward = () => {
-    if (currentIndex < data.length - 1) {
-      //   setCurrentIndex((prevIndex) => prevIndex + 1);
-      setSelectedDate(new Date(data[currentIndex + 1].date));
-    }
-  };
+      var target_index = index_of_today;
 
-  const timeoutContext = useTimeoutContext();
-
-  const resetLayout = () => {
-    if (olRef.current) {
-      olRef.current.scrollBy({
-        top: -olRef.current.scrollTop,
-        behavior: "smooth"
-      });
-    }
-
-    const currentDate = getCafeteriaDateString(selectedDate);
-    const index = sample_foodplan.findIndex((dish) => dish.date === currentDate);
-
-    if (index !== -1) {
-      const currentTime = new Date().toLocaleTimeString("de-DE", {
-        hour: "numeric",
-        minute: "numeric",
-        hour12: false
-      });
-      const currentHour = parseInt(currentTime.split(":")[0]);
-      const currentMinute = parseInt(currentTime.split(":")[1]);
-
-      if (currentHour >= 15 && currentMinute >= 0) {
-        if (index < sample_foodplan.length - 1) {
-          setCurrentIndex(index + 1);
-        }
-      } else {
-        setCurrentIndex(index);
+      if (current_time.getHours() >= 15) {
+        const next_index = getIndexForDate(
+          data,
+          new Date(current_time.getTime() + 86400000)
+        );
+        if (next_index !== -1) target_index = next_index;
       }
+
+      //@ts-ignore
+      if (swiperInstance) swiperInstance.slideTo(target_index);
     }
-  };
+
+    useEffect(() => {
+      const handler = new IdleHandler({
+        origin: "cafeteriaplan",
+        resetFunction: resetLayout
+      });
+      if (timeoutContext.manager) timeoutContext.manager.addResetListener(handler);
+    }, [timeoutContext.manager]);
 
   useEffect(() => {
     const handler = new IdleHandler({
@@ -109,8 +102,6 @@ export default function Cafeteriaplan() {
     });
     if (timeoutContext.manager) timeoutContext.manager.addResetListener(handler);
   }, [timeoutContext.manager]);
-
-  const currentData = data[currentIndex] || null;
 
   return (
     <section
@@ -125,29 +116,40 @@ export default function Cafeteriaplan() {
       >
         <h2>{t("cafeteria_plan.title")}</h2>
         <div className={cafeteriaStyles.date}>
-          <Image
-            src={arrow_back}
-            alt={"Arrow Back"}
-            fill={false}
-            className={cafeteriaStyles.date}
-            onClick={handleArrowBack}
-          />
-          <span className={cafeteriaStyles.dateText}>{getDayOfWeek(selectedDate)}</span>
-          <Image
-            src={arrow_forward}
-            alt={"Arrow Forward"}
-            fill={false}
-            className={cafeteriaStyles.date}
-            onClick={handleArrowForward}
-          />
+          <span className={cafeteriaStyles.dateText}>
+            {selectedDate && getWeekday(selectedDate, "long", router.locale)}
+          </span>
+          <span className={cafeteriaStyles.dateNumber}>
+            {selectedDate && selectedDate.toLocaleDateString("de-de")}
+          </span>
         </div>
       </div>
-      <ol className={cafeteriaStyles.cafeteriaplan} ref={olRef}>
-        {currentData &&
-          currentData.item.map((dish, index) => (
-            <Dish dish={dish} key={`${dish.meal}${dish.price1}${index}`} />
-          ))}
-      </ol>
+
+      <Swiper
+        modules={[Virtual, Navigation]}
+        navigation={true}
+        className={cafeteriaStyles.swiperContainer}
+        slidesPerView={1}
+        onActiveIndexChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
+        initialSlide={index_of_today}
+        loop={false}
+        //@ts-ignore
+        onSwiper={(swiper) => setSwiperInstance(swiper)}
+      >
+        {data.map((foodplan, index) => {
+          return (
+            <SwiperSlide key={index} virtualIndex={index}>
+              {foodplan.item ? (
+                <Foodplan data={foodplan.item} />
+              ) : (
+                <p className={cafeteriaStyles.missingDataString}>
+                  {t("cafeteria_plan.no_data_for_day")}
+                </p>
+              )}
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </section>
   );
 }

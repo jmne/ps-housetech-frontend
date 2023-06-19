@@ -2,9 +2,7 @@
 
 .cafeteriaplan {
   display: grid;
-  grid-template-rows: repeat(3, (calc(33.33% - (2 / 3) * g.$margin-small))) calc(
-      g.$margin-base / 2
-    );
+  grid-template-rows: repeat(3, (calc(33.33% - (2 / 3) * g.$margin-small))) calc(g.$margin-base / 2);
   grid-auto-rows: calc(33% - g.$margin-small);
   gap: g.$margin-small;
 
@@ -37,18 +35,29 @@
 
 .date {
   display: flex;
-  flex-direction: row;
-  object-fit: contain;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: g.$margin-base;
-  height: g.$text-small;
+  gap: 0;
 
-  img {
-    width: g.$text-medium;
-    height: g.$text-medium;
+  height: fit-content;
+
+  .dateText {
+    font-weight: bold;
+  }
+
+  .dateNumber {
+    font-size: g.$text-small;
+    color: g.$text-secondary;
   }
 }
 
-.dateText {
-  font-weight: bold;
+.swiperContainer {
+  height: 100%;
+  width: 100%;
+}
+
+.missingDataString{
+  margin-inline: g.$margin-base;
+  color: g.$text-secondary;
 }

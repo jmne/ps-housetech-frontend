@@ -21,7 +21,7 @@ export interface FoodplanConverted {
 }
 
 function formatDateForData(d: Date) {
-  const month_short = d.getMonth();
+  const month_short = d.getMonth() + 1;
   const day_short = d.getDate();
 
   const year = d.getFullYear();
@@ -109,7 +109,7 @@ export const sample_foodplan: Foodplan[] = [
         allergens: "G"
       }
     ],
-    date: formatDateForData(new Date()),
+    date: formatDateForData(new Date(today.getTime() - 86400000)),
     weekday: "Wednesday"
   },
   {
@@ -171,71 +171,10 @@ export const sample_foodplan: Foodplan[] = [
         allergens: "AWE"
       }
     ],
-    date: "2023-05-19",
+    date: formatDateForData(today),
     weekday: "Friday"
   },
-  {
-    item: [
-      {
-        category: "Speisenangebot 1",
-        meal: "Linsenlasagne mit Tomatensauce",
-        foodicons: ["Vgn"],
-        price1: 3.9,
-        price3: 5.85,
-        allergens: "AWE,I"
-      },
-      {
-        category: "Speisenangebot 2",
-        meal: "Champignon-Risotto",
-        foodicons: ["Vgt"],
-        price1: 1.25,
-        price3: 1.9,
-        allergens: "G,Rin"
-      },
-      {
-        category: "Speisenangebot 3",
-        meal: "Paniertes Hähnchenschnitzel mit Currysauce",
-        foodicons: ["Gfl"],
-        price1: 2.45,
-        price3: 3.7,
-        allergens: "AWE,Gfl"
-      },
-      {
-        category: "Beilage 2",
-        meal: "Kaisergemüse",
-        foodicons: ["Vgn"],
-        price1: 0.5,
-        price3: 0.75,
-        allergens: "1"
-      },
-      {
-        category: "Beilage 2",
-        meal: "Zucchinigemüse",
-        foodicons: ["Vgn"],
-        price1: 0.5,
-        price3: 0.75,
-        allergens: ""
-      },
-      {
-        category: "Beilage 2",
-        meal: "Couscous",
-        foodicons: ["Vgn"],
-        price1: 0.5,
-        price3: 0.75,
-        allergens: "AWE"
-      },
-      {
-        category: "Beilage 3",
-        meal: "Pariser Kartoffeln Münsterlandknolle",
-        foodicons: ["Vgn"],
-        price1: 0.7,
-        price3: 1.05,
-        allergens: "1"
-      }
-    ],
-    date: "2023-05-22",
-    weekday: "Monday"
-  },
+
   {
     item: [
       {
@@ -311,7 +250,7 @@ export const sample_foodplan: Foodplan[] = [
         allergens: "1"
       }
     ],
-    date: "2023-05-24",
+    date: formatDateForData(new Date(today.getTime() + 2 * 86400000)),
     weekday: "Wednesday"
   }
 ];

@@ -20,3 +20,8 @@ div#__next > main {
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --swiper-theme-color: #435c8b !important;
+  --swiper-navigation-size: 2rem !important;
+}

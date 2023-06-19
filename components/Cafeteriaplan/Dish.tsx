@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 // IMPORTS - ASSETS
-import { DishInformation, SampleDishes } from "types/Foodplan";
+import { Dish } from "types/Foodplan";
 import styles from "@/components/Cafeteriaplan/Dish.module.scss";
 
 // IMPORTS - ICONS
@@ -27,11 +27,11 @@ const getIcon = {
 };
 
 interface DishProps {
-  dish: DishInformation;
+  dish: Dish;
 }
 
 // returns the dish container with information about the dish; prices are fixed to 2 decimal places and a '.' is replaced by a ','
-export default function Dish({ dish }: DishProps) {
+export default function DishCard({ dish }: DishProps) {
   return (
     <div className={styles.container}>
       <div className={styles.dishInfo}>
