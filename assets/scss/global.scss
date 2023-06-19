@@ -22,6 +22,15 @@ div#__next > main {
 }
 
 :root {
-  --swiper-theme-color: #435c8b !important;
+  --swiper-theme-color: rgba(67, 92, 139, 0.8) !important;
   --swiper-navigation-size: 2rem !important;
+}
+
+.swiper-button-disabled {
+  opacity: 0 !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  transition: opacity 0.25s ease-out;
 }
