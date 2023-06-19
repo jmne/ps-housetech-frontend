@@ -3,7 +3,7 @@ import Cafeteriaplan, { getDayOfWeek } from "@/components/Cafeteriaplan/Cafeteri
 import useCafeteriaplan from "hooks/useCafeteriaplan";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
-import { SampleDishes } from "types/SampleDishes";
+import { SampleDishes } from "types/Foodplan";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../i18-test_config";
 
@@ -230,33 +230,31 @@ describe("Cafeteriaplan component", () => {
 
   test("Data remains the same when handling arrowForwardButton on the last index", () => {
     render(<Cafeteriaplan />);
-  
+
     // Retrieve the arrow forward button element
     const arrowForwardButton = screen.getByAltText("Arrow Forward");
-  
+
     // Click the arrow forward button to navigate to the next day
     fireEvent.click(arrowForwardButton);
-  
+
     // Wait for the component to re-render with the updated data
     waitFor(() => {
       // Retrieve the list of dish elements
       const dishElements = screen.queryAllByTestId("dish");
-  
+
       // Retrieve the last dish element
       const lastDishElement = dishElements[dishElements.length - 1];
-  
+
       // Retrieve the dish name element
       const dishNameElement = lastDishElement.querySelector(".name") as HTMLElement;
-  
+
       // Retrieve the expected dish name from the rendered dish element
       const expectedDishName = dishNameElement?.textContent;
-  
+
       // Assert that the dish name remains the same
       expect(expectedDishName).toBe("Dish 4");
     });
   });
-  
-  
 
   describe("Cafeteriaplan component", () => {
     it("Renders the component with translated title", () => {

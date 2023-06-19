@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { fetcher } from "utils/basicFetcher";
 
 // IMPORTS - ASSETS
-import { DishInformation, sample_dishes } from "types/SampleDishes";
+import { sample_foodplan } from "types/Foodplan";
 
 const revalidate_cafeteriaplan = 20;
 const url = "ps-housetech.uni-muenster.de/api/mensa";
@@ -15,7 +15,7 @@ const url = "ps-housetech.uni-muenster.de/api/mensa";
 export default function useCafeteriaplan() {
   // const { data, isLoading, error } = useSWR<Busride>(url, fetcher);
 
-  const data = sample_dishes;
+  const data = sample_foodplan;
   const isLoading = false;
   const error = undefined;
 

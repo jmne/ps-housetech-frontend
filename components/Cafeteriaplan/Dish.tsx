@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 // IMPORTS - ASSETS
-import { DishInformation, SampleDishes } from "types/SampleDishes";
+import { DishInformation, SampleDishes } from "types/Foodplan";
 import styles from "@/components/Cafeteriaplan/Dish.module.scss";
 
 // IMPORTS - ICONS

@@ -1,6 +1,6 @@
 type Foodicons = "Gfl" | "Sch" | "Rin" | "Fis" | "Vgt" | "Vgn" | "Alk";
 
-export interface DishInformation {
+export interface Dish {
   category: string;
   meal: string;
   foodicons: Foodicons[];
@@ -9,8 +9,8 @@ export interface DishInformation {
   allergens: string;
 }
 
-export interface SampleDishes {
-  item: DishInformation[];
+export interface Foodplan {
+  item: Dish[];
   date: string;
   weekday: string;
 }

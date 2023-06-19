@@ -9,28 +9,19 @@ import Dish from "@/components/Cafeteriaplan/Dish";
 // IMPORTS - ASSETS
 import indexStyles from "@/pages/index.module.scss";
 import cafeteriaStyles from "@/components/Cafeteriaplan/Cafeteriaplan.module.scss";
-import { DishInformation } from "types/DishInformation";
 import { useTranslation } from "next-i18next";
 
 // IMPORTS - ICONS
 import arrow_back from "assets/images/arrow_back.svg";
 import arrow_forward from "assets/images/arrow_forward.svg";
-import { SampleDishes, sample_dishes } from "types/SampleDishes";
+import { Foodplan, sample_foodplan } from "types/Foodplan";
 
 // IMPORTS - CONTEXT
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 
-function formatDateForData(d: Date) {
-  const month_short = d.getMonth();
-  const day_short = d.getDate();
-
-  const year = d.getFullYear();
-  const month = month_short.valueOf() < 10 ? `0${month_short}` : month_short;
-  const day = day_short.valueOf() < 10 ? `0${day_short}` : day_short;
-
-  return `${year}-${month}-${day}`;
-}
+// IMPORTS - HELPERS
+import { getCafeteriaDateString } from "utils/cafeteriahelper";
 
 export function getDayOfWeek(day: Date) {
   const daysOfWeek = [
@@ -59,7 +50,7 @@ export default function Cafeteriaplan() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   useEffect(() => {
-    const formattedDate = formatDateForData(selectedDate);
+    const formattedDate = getCafeteriaDateString(selectedDate);
     const index = data.findIndex((e) => e.date === formattedDate);
     if (index !== -1) {
       setCurrentIndex(index);
@@ -68,7 +59,7 @@ export default function Cafeteriaplan() {
 
   const handleArrowBack = () => {
     if (currentIndex > 0) {
-      //   setCurrentIndex((prevIndex) => prevIndex - 1);
+         setCurrentIndex((prevIndex) => prevIndex - 1);
       setSelectedDate(new Date(data[currentIndex - 1].date));
     }
   };
@@ -90,8 +81,8 @@ export default function Cafeteriaplan() {
       });
     }
 
-    const currentDate = formatDateForData(selectedDate);
-    const index = sample_dishes.findIndex((dish) => dish.date === currentDate);
+    const currentDate = getCafeteriaDateString(selectedDate);
+    const index = sample_foodplan.findIndex((dish) => dish.date === currentDate);
 
     if (index !== -1) {
       const currentTime = new Date().toLocaleTimeString("de-DE", {
@@ -103,7 +94,7 @@ export default function Cafeteriaplan() {
       const currentMinute = parseInt(currentTime.split(":")[1]);
 
       if (currentHour >= 15 && currentMinute >= 0) {
-        if (index < sample_dishes.length - 1) {
+        if (index < sample_foodplan.length - 1) {
           setCurrentIndex(index + 1);
         }
       } else {
