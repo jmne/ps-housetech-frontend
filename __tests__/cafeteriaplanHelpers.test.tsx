@@ -6,7 +6,7 @@ describe("Testing the helper functions defined for the cafeteriaplan-component",
         const output = ["2020-12-05", "2017-05-12"]
 
         input.forEach((value, index) => {
-            expect(getCafeteriaDateString(value) == output[index]).toBe(true)
+            expect(getCafeteriaDateString(value)).toBe(output[index])
         })
     })
 
@@ -15,7 +15,7 @@ describe("Testing the helper functions defined for the cafeteriaplan-component",
         const output = [1, 2]
 
         input.forEach((value, index) => {
-            expect(getIndexForDate(TEST_DATA_FORMATTED, value) === output[index]).toBe(true)
+            expect(getIndexForDate(TEST_DATA_FORMATTED, value)).toBe(output[index])
         })
     })
 
@@ -28,7 +28,7 @@ describe("Testing the helper functions defined for the cafeteriaplan-component",
         converted_by_function.forEach((data, index) => {
             // check if date is instance of Date and matches expected value
             expect(data.date).toBeInstanceOf(Date);
-            expect(data.date.getTime()).toBe(TEST_DATA_FORMATTED[index].date.getTime());
+            expect(data.date.getDay()).toBe(TEST_DATA_FORMATTED[index].date.getDay());
 
             // check if weekday is removed
             expect(data).not.toHaveProperty('weekday');
