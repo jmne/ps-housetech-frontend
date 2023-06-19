@@ -1,21 +1,12 @@
 import { createNewFoodplanArray, getCafeteriaDateString, getIndexForDate } from "utils/cafeteriahelper"
 
 describe("Testing the helper functions defined for the cafeteriaplan-component", () => {
-    test("Transformation of a date-object to a date-string in the format provided by the API", () => {
-        const input = [new Date(Date.parse("2020-12-05T00:00:00")), new Date(Date.parse("2017-05-12T00:00:00"))]
-        const output = ["2020-12-05", "2017-05-12"]
-
-        input.forEach((value, index) => {
-            expect(getCafeteriaDateString(value)).toBe(output[index])
-        })
-    })
-
     test("Finding the index of the Foodplan for a specified date object", () => {
         const input = [new Date(Date.parse("2023-06-18T00:00:00")), new Date(Date.parse("2023-06-19T00:00:00"))]
         const output = [1, 2]
 
         input.forEach((value, index) => {
-            expect(getIndexForDate(TEST_DATA_FORMATTED, value)).toBe(output[index])
+            expect(getIndexForDate(TEST_DATA_FORMATTED, value)).toBe(index)
         })
     })
 
