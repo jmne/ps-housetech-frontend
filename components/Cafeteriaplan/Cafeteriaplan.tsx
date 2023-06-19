@@ -21,7 +21,6 @@ import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 
 // IMPORTS - HELPERS
-import { getCafeteriaDateString } from "utils/cafeteriahelper";
 
 export function getDayOfWeek(day: Date) {
   const daysOfWeek = [

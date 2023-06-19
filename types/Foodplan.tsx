@@ -15,6 +15,11 @@ export interface Foodplan {
   weekday: string;
 }
 
+export interface FoodplanConverted {
+  item: Dish[] | undefined;
+  date: Date;
+}
+
 function formatDateForData(d: Date) {
   const month_short = d.getMonth();
   const day_short = d.getDate();
@@ -28,7 +33,7 @@ function formatDateForData(d: Date) {
 
 const today = new Date();
 
-export const sample_dishes: SampleDishes[] = [
+export const sample_foodplan: Foodplan[] = [
   {
     item: [
       {
