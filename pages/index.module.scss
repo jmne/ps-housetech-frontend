@@ -27,7 +27,7 @@
     min-height: 0;
     padding: g.$margin-base;
     background-color: g.$container;
-    box-shadow: g.$shadow-outer;
+    box-shadow: g.$shadow-outer__light;
     border-radius: g.$border-radius-base;
     overflow: hidden;
   }
@@ -104,23 +104,32 @@
   height: 80%;
 
   background-color: g.$container-item;
-  border: g.$border-base solid g.$text-secondary;
   border-radius: g.$border-radius-base;
   border-top-right-radius: 0;
 
+  box-shadow: g.$shadow-outer;
+
   .close {
       position: absolute;
-      border: g.$border-base solid g.$text-secondary;
-      border-radius: 0 g.$border-radius-small g.$border-radius-small 0;
-      background: g.$container-item;
+      border: none;
+      border-radius: g.$border-radius-small;
+      background: g.$container;
+
+      box-shadow: g.$shadow-outer;
+
+      overflow: hidden;
       
       fill: g.$text-primary;
 
       top: 0px;
       right: 0px;
-      transform: translateX(100%) translateY(- g.$border-base);
+      transform: translateX(calc(100% + g.$margin-base)) translateY(- g.$border-base);
+
+      cursor: pointer;
 
       svg {
+        z-index: 2;
+
         width: g.$icon-xm;
         height: g.$icon-xm;
       }
