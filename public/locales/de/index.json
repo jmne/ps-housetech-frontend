@@ -25,6 +25,9 @@
         "title": "Mensaplan"
     },
     "news": {
-        "title": "Aktuelles"
+        "title": "Aktuelles",
+        "events": {
+            "title": "Events"
+        }
     }
 }

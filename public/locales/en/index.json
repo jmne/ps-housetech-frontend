@@ -25,6 +25,9 @@
         "title": "Cafeteria plan"
     },
     "news": {
-        "title": "News"
+        "title": "News",
+        "events": {
+            "title": "Events"
+        }
     }
 }

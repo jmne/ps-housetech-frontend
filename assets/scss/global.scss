@@ -20,3 +20,14 @@ div#__next > main {
 * {
   box-sizing: border-box;
 }
+
+h2 {
+  font-size: g.$text-medium;
+  font-weight: 700;
+  margin-block: g.$margin-large;
+}
+
+p {
+  line-height: 1.6;
+  margin-block-end: g.$margin-base;
+}
