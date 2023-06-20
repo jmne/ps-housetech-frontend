@@ -53,46 +53,49 @@ export default function Cafeteriaplan() {
 
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const [currentIndex, setCurrentIndex] = useState<number | undefined>();
-  const [swiperInstance, setSwiperInstance] = useState()
+  const [swiperInstance, setSwiperInstance] = useState();
 
   useEffect(() => {
-    if (typeof currentIndex !== "undefined" && data[currentIndex].date) setSelectedDate(data[currentIndex].date);
-    else setSelectedDate(undefined)
+    if (typeof currentIndex !== "undefined" && data[currentIndex].date)
+      setSelectedDate(data[currentIndex].date);
+    else setSelectedDate(undefined);
   }, [currentIndex, data]);
 
   const index_of_today = useMemo(() => {
     if (typeof data !== "undefined") {
-      const index = getIndexForDate(data, new Date());
+      const target_date = new Date();
+      if (target_date.getHours() >= 15)
+        target_date.setTime(target_date.getTime() + 86400000);
+      const index = getIndexForDate(data, target_date);
       if (index !== -1) return index;
       else return 0;
-    }
-    else return 0
-  }, [data])
+    } else return 0;
+  }, [data]);
 
-    function resetLayout() {
-      const current_time = new Date();
+  function resetLayout() {
+    const current_time = new Date();
 
-      var target_index = index_of_today;
+    var target_index = index_of_today;
 
-      if (current_time.getHours() >= 15) {
-        const next_index = getIndexForDate(
-          data,
-          new Date(current_time.getTime() + 86400000)
-        );
-        if (next_index !== -1) target_index = next_index;
-      }
-
-      //@ts-ignore
-      if (swiperInstance) swiperInstance.slideTo(target_index);
+    if (current_time.getHours() >= 15) {
+      const next_index = getIndexForDate(
+        data,
+        new Date(current_time.getTime() + 86400000)
+      );
+      if (next_index !== -1) target_index = next_index;
     }
 
-    useEffect(() => {
-      const handler = new IdleHandler({
-        origin: "cafeteriaplan",
-        resetFunction: resetLayout
-      });
-      if (timeoutContext.manager) timeoutContext.manager.addResetListener(handler);
-    }, [timeoutContext.manager]);
+    //@ts-ignore
+    if (swiperInstance) swiperInstance.slideTo(target_index);
+  }
+
+  useEffect(() => {
+    const handler = new IdleHandler({
+      origin: "cafeteriaplan",
+      resetFunction: resetLayout
+    });
+    if (timeoutContext.manager) timeoutContext.manager.addResetListener(handler);
+  }, [timeoutContext.manager]);
 
   useEffect(() => {
     const handler = new IdleHandler({
