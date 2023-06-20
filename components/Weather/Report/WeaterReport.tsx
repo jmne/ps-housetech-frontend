@@ -114,7 +114,7 @@ export function WeatherReport() {
                             <div key={`${item.time}${item.temp}`}>
                                 <span className={styles.muted}>{`${item.time}:00`}</span>
                                 <span >{item.temp}°</span>
-                                <img src={weatherIcon.src} />
+                                <img src={weatherIcon.src} alt={"weather icon"}/>
                             </div>
                         )
                     })
@@ -129,7 +129,7 @@ export function WeatherReport() {
                             <div key={`${item.day.getDay()}`}>
                                 <span className={styles.muted}>{weekday}</span>
                                 <span >{item.temp}°</span>
-                                <img src={weatherIcon.src} />
+                                <img src={weatherIcon.src} alt={"weather icon"}/>
                             </div>
                         )
                     })
@@ -146,7 +146,7 @@ export function WeatherReport() {
                         <span className={styles.rainPrecipation}>{sampleCurrentWeather.rain}%</span>
                     </div>
                 </div>
-                <img src={weatherIcon.src} />
+                <img src={weatherIcon.src} alt={"weather icon"}/>
             </div>
         </div>
     )

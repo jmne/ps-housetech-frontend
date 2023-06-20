@@ -22,24 +22,30 @@ import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useRouter } from "next/router";
 
 export default function Index() {
-  const overlayContext = useOverlayContext()
-  const timeoutContext = useTimeoutContext()
-  const router = useRouter()
+  const overlayContext = useOverlayContext();
+  const timeoutContext = useTimeoutContext();
+  const router = useRouter();
 
   useEffect(() => {
     function resetIndex() {
-      overlayContext.setOverlay(undefined)
+      overlayContext.setOverlay(undefined);
       router.push("/", "/", { locale: "en" });
     }
 
-    const idleHandler = new IdleHandler({ origin: "index", resetFunction: resetIndex })
-    if (timeoutContext.manager) timeoutContext.manager.addResetListener(idleHandler)
-  }, [timeoutContext.manager, overlayContext])
+    const idleHandler = new IdleHandler({ origin: "index", resetFunction: resetIndex });
+    if (timeoutContext.manager) timeoutContext.manager.addResetListener(idleHandler);
+  }, [timeoutContext.manager, overlayContext, router]);
 
   return (
     <div className={styles.wrapper}>
       <Headline />
-      <div className={overlayContext.current_overlay ? [styles.bodyWrapper, styles.bodyMuted].join(" ") : styles.bodyWrapper}>
+      <div
+        className={
+          overlayContext.current_overlay
+            ? [styles.bodyWrapper, styles.bodyMuted].join(" ")
+            : styles.bodyWrapper
+        }
+      >
         <MapProvider>
           <SelectedPersonProvider>
             <Wayfinder />
