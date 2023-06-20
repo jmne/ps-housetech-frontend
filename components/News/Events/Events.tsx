@@ -35,6 +35,7 @@ export function Events() {
     <>
       <Swiper
         modules={[Virtual, Navigation]}
+        navigation={true}
         className={styles.swiperContainer}
         loop={true}
         onSwiper={(swiper) => setSwiperInstance(swiper)}
