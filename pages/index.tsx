@@ -16,25 +16,9 @@ import { MapProvider } from "context/MapContext";
 import { Weather } from "@/components/Weather/Weather";
 import { News } from "@/components/News/News";
 import { useOverlayContext } from "context/OverlayContext";
-import { useTimeoutContext } from "context/TimeoutContext";
-import { useEffect } from "react";
-import { IdleHandler } from "utils/IdleHandling/IdleHandler";
-import { useRouter } from "next/router";
 
 export default function Index() {
-  const overlayContext = useOverlayContext();
-  const timeoutContext = useTimeoutContext();
-  const router = useRouter();
-
-  useEffect(() => {
-    function resetIndex() {
-      overlayContext.setOverlay(undefined);
-      router.push("/", "/", { locale: "en" });
-    }
-
-    const idleHandler = new IdleHandler({ origin: "index", resetFunction: resetIndex });
-    if (timeoutContext.manager) timeoutContext.manager.addResetListener(idleHandler);
-  }, [timeoutContext.manager, overlayContext, router]);
+  const overlayContext = useOverlayContext()
 
   return (
     <div className={styles.wrapper}>

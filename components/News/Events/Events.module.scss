@@ -67,7 +67,7 @@
         box-sizing: border-box;
         padding: g.$margin-base;
 
-        overflow-y: scroll;
+        overflow-y: auto;
 
         display: flex;
         flex-direction: column;
