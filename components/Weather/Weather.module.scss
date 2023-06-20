@@ -1,0 +1,27 @@
+@use "/assets/scss/constants.scss" as g;
+
+.container {
+    position: relative;
+
+    .buttons {
+        position: absolute;
+        top: g.$margin-sm;
+        right: g.$margin-base;
+
+        display: inline-flex;
+        gap: g.$margin-small;
+
+        button {
+            border: g.$border-base solid g.$main-primary;
+            border-radius: g.$border-radius-small;
+            font-size: g.$text-small;
+            padding: g.$margin-small;
+
+            background-color: transparent;
+        }
+
+        .active {
+            background-color: g.$main-primary-tint;
+        }
+    }
+}

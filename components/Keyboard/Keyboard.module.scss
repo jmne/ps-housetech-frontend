@@ -4,6 +4,10 @@ $halfBorder: calc(g.$border-base / 2);
 $quarterBorder: calc(g.$border-base / 4);
 
 .container {
+  grid-area: 1 / 1 / 3 / 3;
+
+  z-index: 3;
+
   display: grid;
   grid-area: 1 / 1 / 3 / 3;
 

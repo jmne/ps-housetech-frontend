@@ -26,7 +26,7 @@
         "no_data_for_day": "Seems like there is no foodplan available for this day"
     },
     "news": {
-        "title": "News",
+        "title": "Events & Updates",
         "events": {
             "title": "Events"
         }
