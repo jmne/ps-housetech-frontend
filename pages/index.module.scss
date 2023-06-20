@@ -100,7 +100,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
 
-  width: 80%;
+  width: min(80%, 80rem);
   height: 80%;
 
   background-color: g.$container-item;

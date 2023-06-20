@@ -2,12 +2,16 @@
 
 .container {
     display: grid;
-    grid-template-columns: 30% 1fr;
+    grid-template-columns: 20% 1fr;
     grid-template-rows: auto;
     grid-auto-flow: row;
     gap: g.$margin-base;
 
     padding-inline-start: g.$margin-base;
+
+    p {
+        line-height: 2rem;
+    }
 
     .imageContainer {
         grid-area: 1 / 1 / 2 / 2;
@@ -90,13 +94,13 @@
 
     .description {
         grid-area: 1 / 2 / 3 / 2;
-        overflow-y: scroll;
+        overflow-y: auto;
 
         h2 {
             font-size: g.$text-medium;
             font-weight: 700;
-            margin-block-start: g.$margin-base;
-            margin-block-end: g.$margin-large;
+            margin-block-start: g.$margin-large;
+            margin-block-end: calc(g.$margin-large * 2);
             margin-inline: 0;
         }
 
