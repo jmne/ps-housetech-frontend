@@ -7,7 +7,7 @@ $quarterBorder: calc(g.$border-base / 4);
   display: grid;
   grid-area: 1 / 1 / 3 / 3;
 
-  z-index: 3;
+  z-index: 0;
 
   grid-auto-rows: 1fr;
   width: 100%;
@@ -26,6 +26,7 @@ $quarterBorder: calc(g.$border-base / 4);
   padding: g.$margin-small;
 
   &.visible {
+    z-index:3;
     animation: create 0.2s ease-out 0s 1;
     opacity: 100;
   }
