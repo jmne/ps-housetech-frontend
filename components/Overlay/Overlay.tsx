@@ -1,6 +1,6 @@
 import indexStyles from "@/pages/index.module.scss";
 
-export function Weather() {
+export function Overlay() {
 
   return (
     <section
