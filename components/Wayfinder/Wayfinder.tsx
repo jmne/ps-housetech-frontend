@@ -74,7 +74,8 @@ export function Wayfinder() {
   }, [
     searchInputContext.setActive,
     selectedPersonContext.setPerson,
-    searchInputContext.setInput
+    searchInputContext.setInput,
+    timeoutContext.manager
   ]);
 
   function showPerson(person: Employee) {
