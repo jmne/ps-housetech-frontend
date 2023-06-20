@@ -4,6 +4,7 @@ export type Origin =
   | "busplan"
   | "cafeteriaplan"
   | "news"
+  | "events"
   | "overlay"
   | "languageSettings";
 

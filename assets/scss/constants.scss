@@ -8,8 +8,10 @@ $text-small: 0.7rem;
 $text-primary: #15171b;
 $text-secondary: #95989d;
 $main-primary: #435c8b;
-$main-primary-tint: #dde5f2;
+$main-primary-tint: #35538972;
 $main-secondary: #a5cf39;
+$main-secondary_tint: #cafc4b24;
+$main-secondary_dark: #86bb00;
 $background: #f0f0f0;
 $container: #f8f8f8;
 $container-item: #fafafa;
@@ -31,20 +33,25 @@ $margin-small: 0.4rem;
 $icon-large: 4.44rem;
 $icon-xm: 3.33rem;
 $icon-base: 2.22rem;
+$icon-sm: 1.8rem;
 $icon-small: 1.11rem;
 
 // SIZING
-$border-base: 2px;
-$border-radius-base: 12px;
+$border-base: 1px;
+$border-radius-base: 0.6rem;
+$border-radius-small: 0.37rem;
 
 // SHADOWS
 $shadow-outer: 0px 6px 12px -2px rgba(50, 50, 93, 0.25),
   0px 3px 7px -3px rgba(0, 0, 0, 0.3);
-$shadow-outer-harder: 0px 6px 12px -2px rgba(50, 50, 93, 0.3),
+$shadow-outer__light: 0px 6px 12px -2px rgba(50, 50, 93, 0.1),
+  0px 3px 7px -3px rgba(0, 0, 0, 0.3);
+$shadow-outer-harder: 0px 6px 12px -2px rgba(50, 50, 93, 0.15),
   0px 3px 7px -3px rgba(0, 0, 0, 0.35);
+$shadow-outer__right: 6px 0px 12px rgba(50, 50, 93, 0.1),
+0px 0px 7px rgba(0, 0, 0, 0.3);
 
 $shadow-inner: inset -4px 0px 6px 2px rgba(0, 0, 0, 0.3);
 $shadow-inner-light: inset -2px 0px 3px 4px rgba(0, 0, 0, 0.2);
 
-$shadow-svg: drop-shadow(2px 2px 4px rgba(50, 50, 93, 0.2))
-  drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
+$shadow-svg: drop-shadow(2px 2px 4px rgba(50, 50, 93, 0.2)) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
