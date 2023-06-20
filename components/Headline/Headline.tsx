@@ -7,8 +7,8 @@ import { LanguageSelector } from "./LanguageSelector/LanguageSelector";
 
 // IMPORTS - ASSETS
 import styles from "@/components/Headline/Headline.module.scss";
-import logoWWU from "assets/images/wwu-no-text.svg";
-import logoERCIS from "assets/images/ercis.svg";
+import logoWWU from "assets/images/wwu-no-text.svg?url";
+import logoERCIS from "assets/images/ercis.svg?url";
 
 /**
  *

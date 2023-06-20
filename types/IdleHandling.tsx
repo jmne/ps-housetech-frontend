@@ -4,8 +4,9 @@ export type Origin =
   | "busplan"
   | "cafeteriaplan"
   | "news"
+  | "events"
   | "overlay"
-  | "index";
+  | "languageSettings";
 
 export interface ResetListener {
   origin: Origin;

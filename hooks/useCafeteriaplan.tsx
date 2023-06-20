@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { fetcher } from "utils/basicFetcher";
 
 // IMPORTS - ASSETS
-import { Foodplan, FoodplanConverted, sample_foodplan } from "types/Foodplan";
+import { sample_foodplan } from "types/Foodplan";
 import { convertFoodplan } from "utils/cafeteriahelper";
 import { useState } from "react";
 

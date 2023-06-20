@@ -1,0 +1,32 @@
+@use "/assets/scss/constants.scss" as g;
+
+.container {
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+
+    grid-row: span 1;
+    grid-column: span 3;
+
+    padding: 0 !important;
+}
+
+.headlineContainer {
+    grid-area: 1 / 1 / 2 / 2;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: fit-content;
+
+    box-sizing: border-box;
+    padding: g.$margin-base g.$margin-base 0 g.$margin-base;
+
+    h2 {
+        font-size: g.$text-base;
+        font-weight: 400;
+        margin: 0;
+    }
+}

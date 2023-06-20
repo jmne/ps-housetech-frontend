@@ -1,6 +1,5 @@
 // IMPORTS - BUILTINS
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 
 // IMPORTS - ASSETS
@@ -8,8 +7,8 @@ import { Busride } from "types/Busride";
 import styles from "@/components/Busplan/Bus.module.scss";
 
 // IMPORTS - ICONS
-import icon_inward from "assets/images/icon_city.svg";
-import icon_outward from "assets/images/icon_forrest.svg";
+import IconInward from "assets/images/icon_city.svg";
+import IconOutward from "assets/images/icon_forrest.svg";
 import icon_bus from "assets/images/bus.png";
 
 type Direction = "inward" | "outward";
@@ -51,7 +50,7 @@ export default function Bus({ bus, direction, index }: BusProps) {
   // Setup of 3d transformations for rotate-animation
   useEffect(() => {
     if (ref.current) setHeight(ref.current.clientHeight / 2);
-  });
+  }, [ref.current?.clientHeight]);
 
   useEffect(() => {
     if (h_halft > 0) {
@@ -65,7 +64,7 @@ export default function Bus({ bus, direction, index }: BusProps) {
         `busEasteregg${column}${row}`
       )!.style.transform = `rotateX(90deg) translateZ(${h_halft}px)`;
     }
-  }, [h_halft]);
+  }, [h_halft, column, row]);
 
   // Applies classes to the information div & hidden easteregg div to trigger the animation.
   // -> Chance to rotate or wiggle
@@ -139,14 +138,9 @@ export default function Bus({ bus, direction, index }: BusProps) {
         <div className={styles.vertical}>
           <div className={styles.lineWrapper}>
             {direction === "inward" ? (
-              <Image src={icon_inward} alt={"In"} fill={false} className={styles.icon} />
+              <IconInward alt={"Goind into City"} className={styles.icon} />
             ) : (
-              <Image
-                src={icon_outward}
-                alt={"Out"}
-                fill={false}
-                className={styles.icon}
-              />
+              <IconOutward alt={"Goind out of City"} className={styles.icon} />
             )}
             <span className={styles.line}>{bus.line}</span>
           </div>

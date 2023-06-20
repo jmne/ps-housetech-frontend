@@ -3,7 +3,20 @@
         "title": "Department of Information Systems"
     },
     "wayfinder": {
-        "title": "Where is?"
+        "title": "Where is?",
+        "search": {
+            "room": "Room",
+            "phone": "Phone",
+            "mail": "Mail"
+        },
+        "map": {
+            "leo3": "Leonardo Campus 3",
+            "leo11": "Leonardo Campus 11",
+            "floor0": "Floor 0",
+            "floor1": "Floor 1",
+            "floor2": "Floor 2",
+            "floor3": "Floor 3"
+        }
     },
     "busplan": {
         "title": "Bus plan"
@@ -13,6 +26,9 @@
         "no_data_for_day": "Seems like there is no foodplan available for this day"
     },
     "news": {
-        "title": "News"
+        "title": "News",
+        "events": {
+            "title": "Events"
+        }
     }
 }

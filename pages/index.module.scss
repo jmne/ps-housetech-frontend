@@ -27,22 +27,38 @@
     min-height: 0;
     padding: g.$margin-base;
     background-color: g.$container;
-    box-shadow: g.$shadow-outer;
+    box-shadow: g.$shadow-outer__light;
     border-radius: g.$border-radius-base;
     overflow: hidden;
   }
 
   .largeContainer {
-    display: flex;
-    flex-direction: column;
+    padding: 0;
+
     grid-row: span 2;
     grid-column: span 5;
   }
 
-  .overlayContainer {
-    display: flex;
+  .weatherContainer {
+    display: grid;
+    grid-row: span 1;
+    grid-column: span 3;
+    padding: 0;
+
+    position: relative;
+
+    & > * {
+      grid-area: 1 / 1 / 1 / 1;
+    }
+  }
+
+  .newsContainer{
     grid-row: span 1;
     grid-column: span 5;
+
+    display: grid;
+    grid-template-rows: fit-content 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .smallContainer {
@@ -51,6 +67,12 @@
     grid-row: span 1;
     grid-column: span 3;
   }
+
+  //transition: opacity linear 0.1s;
+}
+
+.bodyMuted {
+  opacity: 20%;
 }
 
 .cardHeadline {
@@ -67,4 +89,49 @@
     font-weight: 400;
     margin: 0;
   }
+}
+
+.overlayContainer {
+  z-index: 15;
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: min(80%, 80rem);
+  height: 80%;
+
+  background-color: g.$container-item;
+  border-radius: g.$border-radius-base;
+  border-top-right-radius: 0;
+
+  box-shadow: g.$shadow-outer;
+
+  .close {
+      position: absolute;
+      border: none;
+      border-radius: g.$border-radius-small;
+      background: g.$container;
+
+      box-shadow: g.$shadow-outer;
+
+      overflow: hidden;
+      
+      fill: g.$text-primary;
+
+      top: 0px;
+      right: 0px;
+      transform: translateX(calc(100% + g.$margin-base)) translateY(- g.$border-base);
+
+      cursor: pointer;
+
+      svg {
+        z-index: 2;
+
+        width: g.$icon-xm;
+        height: g.$icon-xm;
+      }
+    }
 }

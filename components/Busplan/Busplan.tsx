@@ -48,7 +48,7 @@ export default function Busplan() {
     const { inward, outward } = splitBusses(data);
     setInward(inward);
     setoutward(outward);
-  }, [data]);
+  }, [data, isLoading, error]);
 
   return (
     <section

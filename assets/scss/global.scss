@@ -9,9 +9,9 @@ body {
 
 html,
 body,
-body > div:first-child,
+body>div:first-child,
 div#__next,
-div#__next > main {
+div#__next>main {
   margin: 0;
   height: 100vh;
   width: 100vw;
@@ -20,6 +20,19 @@ div#__next > main {
 * {
   box-sizing: border-box;
 }
+
+h2 {
+  font-size: g.$text-medium;
+  font-weight: 700;
+  margin-block: g.$margin-large;
+}
+
+p {
+  line-height: 1.6;
+  margin-block-end: g.$margin-base;
+}
+
+// STYLING FOR SWIPER
 
 :root {
   --swiper-theme-color: rgba(67, 92, 139, 0.8) !important;

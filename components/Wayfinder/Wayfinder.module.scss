@@ -1,0 +1,173 @@
+@use "/assets/scss/constants.scss" as g;
+
+$animDuration: 0.75s;
+
+.container {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: min(30%, 600px) 1fr;
+  grid-template-rows: 1fr;
+
+  min-height: 0;
+  height: 100%;
+  max-height: 100%;
+}
+
+.background {
+  border-radius: g.$border-radius-base;
+  background: g.$container-item;
+}
+
+.searchSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0px;
+
+  z-index: 10;
+
+  .searchField {
+    z-index: 1;
+    width: auto;
+    height: fit-content;
+    padding-inline: g.$margin-small;
+
+    margin-block-start: g.$margin-base;
+    margin-inline: g.$margin-base;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: g.$margin-small;
+
+    border: 2px solid g.$main-primary;
+    box-shadow: g.$shadow-outer;
+
+    transition: transform 0.1s ease-out 0s, filter 0.1s ease-out;
+
+    &:focus-within {
+      filter: drop-shadow(0 0.4rem 0.4rem rgba(g.$main-primary, 0.5));
+      transform: scale(1.05);
+      //background-color: g.$main-primary-tint;
+    }
+  }
+
+  .iconWrapper {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon {
+    display: inline-block;
+    width: g.$icon-base;
+
+    height: 100%;
+
+    fill: g.$main-primary;
+  }
+
+  .input {
+    flex-grow: 1;
+    height: 100%;
+    background-color: transparent;
+
+    border: none;
+
+    color: g.$text-primary;
+    font-size: g.$text-base;
+
+    display: flex;
+    align-items: center;
+
+    outline: none;
+  }
+
+  ol {
+    position: relative;
+
+    list-style: none;
+    margin: 0;
+    padding-inline: g.$margin-base;
+
+    min-height: 0px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  margin-block-start: g.$margin-small;
+  padding-inline: g.$margin-small;
+  padding-block: g.$margin-base;
+
+  list-style-type: none;
+  box-shadow: g.$shadow-outer;
+  background-color: g.$container-item;
+
+  border-radius: g.$border-radius-base;
+
+  transition: height $animDuration;
+  min-height: 0px;
+  height: fit-content;
+  box-sizing: border-box;
+
+  &:last-child {
+    margin-block-end: g.$margin-base;
+  }
+
+  .caption {
+    color: g.$text-secondary;
+    font-size: g.$text-small;
+  }
+
+  .attribute {
+    font-size: g.$text-small;
+    margin-inline-end: g.$margin-small;
+  }
+
+  .hidden {
+    // Sliding out
+    transition: height $animDuration $animDuration,
+      margin-block-start $animDuration $animDuration, opacity ($animDuration/2) 0s;
+
+    min-height: 0px;
+    height: 0px;
+
+    overflow: hidden;
+    opacity: 0;
+
+    .caption {
+      font-weight: 600;
+    }
+  }
+
+  &.expanded {
+    .hidden {
+      // Sliding in
+      transition: height $animDuration 0s, margin-block-start $animDuration 0s,
+        opacity ($animDuration/2) $animDuration;
+      visibility: visible;
+      margin-block-start: g.$margin-base;
+      opacity: 100;
+
+      height: 10rem;
+    }
+  }
+}
+
+@keyframes grow {
+  40% {
+    transform: scale(1.05);
+  }
+}

@@ -2,8 +2,7 @@
 
 // IMPORTS - BUILTINS
 import useCafeteriaplan from "hooks/useCafeteriaplan";
-import { useEffect, useState, useRef, Fragment, useMemo } from "react";
-import Image from "next/image";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { Navigation, Virtual } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
