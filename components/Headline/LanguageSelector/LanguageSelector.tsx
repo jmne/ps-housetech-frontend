@@ -32,6 +32,8 @@ export function LanguageSelector() {
   }, [currentLang]);
 
   function switchLang() {
+    console.log(router.locale)
+    console.log(animationInProgress)
     if (animationInProgress) return;
     setAnimation(true);
     // Get DOM elements
@@ -40,7 +42,7 @@ export function LanguageSelector() {
     const selector = document.getElementById("selector-lang-button");
     if (!flag_de || !flag_uk || !selector) return;
 
-    if (currentLang === "en") {
+    if (["en", "en-gb", "en-us"].includes(router.locale ? router.locale : "en")) {
       flag_de.classList.add(styles.active);
       selector.classList.remove(styles.secondSelector);
       flag_uk.classList.remove(styles.active);

@@ -6,7 +6,7 @@ export type Origin =
   | "news"
   | "events"
   | "overlay"
-  | "languageSettings";
+  | "index";
 
 export interface ResetListener {
   origin: Origin;

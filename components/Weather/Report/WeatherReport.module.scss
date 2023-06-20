@@ -1,0 +1,156 @@
+@use "/assets/scss/constants.scss" as g;
+
+.container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr calc(33% - 2.5 * g.$margin-small);
+
+    padding: g.$margin-base;
+    gap: g.$margin-small;
+
+    overflow-y: hidden;
+
+    h2 {
+        grid-area: 1 / 1 / 2 / 2;
+
+        font-size: g.$text-base;
+        font-weight: 400;
+        margin: 0;
+        padding: 0;
+
+        margin-block-end: g.$margin-base;
+    }
+
+    >div {
+        background-color: g.$container-item;
+        border-radius: g.$border-radius-base;
+        box-shadow: g.$shadow-outer;
+        padding: g.$margin-small;
+    }
+
+    .forecastToday {
+        grid-area: 2 / 1 / 4 / 2;
+
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: 1fr;
+        align-items: center;
+
+        // contain the forecasts for each hour
+        >div {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            align-items: center;
+
+            gap: g.$margin-small;
+
+            height: fit-content;
+
+            margin-inline: g.$margin-base;
+
+            img {
+                min-height: 0;
+                min-width: 0;
+                height: g.$icon-sm;
+                width: g.$icon-sm;
+                max-height: 100%;
+                max-width: 100%;
+
+                object-fit: contain;
+
+                filter: drop-shadow(0 2px 2px g.$text-secondary)
+            }
+        }
+    }
+
+    .forecastNextDays {
+        grid-area: 3 / 2 / 4 / 3;
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+
+        >div {
+            position: relative;
+
+            width: fit-content;
+
+            display: grid;
+            grid-template-columns: auto auto auto;
+            align-items: center;
+            gap: g.$margin-small;
+
+            img {
+                min-height: 0;
+                min-width: 0;
+                height: g.$icon-sm;
+                width: g.$icon-sm;
+                max-height: 100%;
+                max-width: 100%;
+
+                object-fit: contain;
+
+                filter: drop-shadow(0 2px 2px g.$text-secondary)
+            }
+        }
+    }
+
+    .currentWeather {
+        display: grid;
+        grid-template-columns: 1fr 30%;
+        grid-template-rows: 1fr;
+
+        grid-area: 2 / 2 / 3 / 3;
+
+        overflow: hidden;
+
+        .information {
+            grid-area: 1 / 1 / 2 / 2;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: g.$text-sm;
+
+            .time {
+                display: inline-flex;
+                justify-content: center;
+                align-items: flex-end;
+                gap: g.$margin-small;
+            
+                font-size: g.$text-medium;
+            }
+
+            .weather {
+                display: inline-flex;
+                justify-content: center;
+                align-items: flex-start;
+                gap: g.$margin-small;
+            }
+
+            .rainPrecipation {
+                color: #2361d4;
+            }
+        }
+
+        img {
+            grid-area: 1 / 2 / 3 / 3;
+
+            min-height: 0;
+            min-width: 0;
+            height: 100%;
+            width: 100%;
+            max-height: 100%;
+            max-width: 100%;
+
+            object-fit: contain;
+
+            filter: drop-shadow(0 2px 2px g.$text-secondary)
+        }
+    }
+
+    .muted {
+        color: g.$text-secondary;
+    }
+}
