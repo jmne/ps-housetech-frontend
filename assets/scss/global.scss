@@ -9,9 +9,9 @@ body {
 
 html,
 body,
-body > div:first-child,
+body>div:first-child,
 div#__next,
-div#__next > main {
+div#__next>main {
   margin: 0;
   height: 100vh;
   width: 100vw;
@@ -30,4 +30,20 @@ h2 {
 p {
   line-height: 1.6;
   margin-block-end: g.$margin-base;
+}
+
+// STYLING FOR SWIPER
+
+:root {
+  --swiper-theme-color: rgba(67, 92, 139, 0.8) !important;
+  --swiper-navigation-size: 2rem !important;
+}
+
+.swiper-button-disabled {
+  opacity: 0 !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  transition: opacity 0.25s ease-out;
 }
