@@ -22,7 +22,8 @@
         "title": "Busplan"
     },
     "cafeteria_plan": {
-        "title": "Mensaplan"
+        "title": "Mensaplan",
+        "no_data_for_day": "Scheinbar gibt es keinen Mensaplan für diesen Tag"
     },
     "news": {
         "title": "Aktuelles",
