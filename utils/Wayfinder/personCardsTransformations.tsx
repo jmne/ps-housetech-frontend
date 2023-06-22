@@ -1,34 +1,80 @@
 import styles_wayfinder from "@/components/Wayfinder/Wayfinder.module.scss";
+import { MapData } from "context/MapContext";
+import { PersonData } from "context/PersonContext";
 import { Employee } from "types/Employee";
-
-/**
- * Check if a person is to be shown for the given input.
- * @param e - The person object.
- * @param input - The input string from the search field.
- * @returns - Boolean indicating if the input string is found in some attribute of the person.
- */
-export function employeeInFilter(e: Employee, input: string): boolean {
-  const input_lower = input.toLowerCase();
-  const dep_lower = e.chair?.toLowerCase();
-  const name_lower = `${e.cfFamilyNames?.toLowerCase()}${e.cfFirstNames?.toLowerCase()}`;
-
-  return dep_lower?.includes(input_lower) || name_lower.includes(input_lower);
-}
+import { getAddressID, validateRoomNumber } from "./mapValidations";
+import {
+  SEARCH_RESULT_COLLAPSED,
+  SEARCH_RESULT_EXPANDED
+} from "@/components/Wayfinder/PersonResult/PersonResult";
 
 /**
  * Collapse the list element for the given person to hide all details.
  * @param p - The person in the list.
  */
-export function collapse(p: Employee): void {
-  const elem = document.getElementById(`${p.cfFamilyNames}${p.phone}${p.chair}`);
-  if (elem) elem.classList.remove(styles_wayfinder.expanded);
+export function collapse(person: Employee): void {
+  const elem = person.searchResultRef?.current;
+  if (elem) elem.classList.value = SEARCH_RESULT_COLLAPSED;
 }
 
 /**
  * Expand the list element for the given person to show all details.
  * @param p - The person in the list.
  */
-export function expand(p: Employee): void {
-  const elem = document.getElementById(`${p.cfFamilyNames}${p.phone}${p.chair}`);
-  if (elem) elem.classList.add(styles_wayfinder.expanded);
+export function expand(person: Employee): void {
+  const elem = person.searchResultRef?.current;
+  if (elem) elem.classList.value = SEARCH_RESULT_EXPANDED;
+}
+
+export function handleExpansion(
+  person: Employee,
+  expansion: boolean,
+  selectedPersonContext: PersonData
+) {
+  if (
+    typeof selectedPersonContext.current_person !== "undefined" &&
+    selectedPersonContext.current_person !== person
+  )
+    setExpansion(selectedPersonContext.current_person, false);
+
+  setExpansion(person, expansion);
+}
+
+function setExpansion(person: Employee, expansion: boolean) {
+  if (expansion === true) expand(person);
+  else if (expansion === false) collapse(person);
+}
+
+export function handleClickOnPerson(
+  person: Employee,
+  mapContext: MapData,
+  selectedPersonContext: PersonData
+) {
+  const previous_selection = {
+    person: selectedPersonContext.current_person,
+    building: mapContext.current_building,
+    room: mapContext.current_room
+  };
+
+  const clicked = {
+    person: person,
+    building: person.address ? getAddressID(person.address) : undefined,
+    room: person.roomNumber ? validateRoomNumber(person.roomNumber) : undefined
+  };
+
+  const selectedPersonContext_OLD = { ...selectedPersonContext };
+
+  // Same person clicked -> remove from context
+  if (previous_selection.person === clicked.person) {
+    selectedPersonContext.setPerson(undefined);
+    mapContext.setBuilding(undefined);
+    mapContext.setRoom(undefined);
+    handleExpansion(clicked.person, false, selectedPersonContext_OLD);
+    return;
+  }
+  // Other Person selected -> set context value
+  selectedPersonContext.setPerson(clicked.person);
+  mapContext.setBuilding(clicked.building);
+  mapContext.setRoom(clicked.room);
+  handleExpansion(clicked.person, true, selectedPersonContext_OLD);
 }

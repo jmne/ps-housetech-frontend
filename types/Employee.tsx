@@ -1,4 +1,4 @@
-import { Ref } from "react";
+import { RefObject } from "react";
 
 export type sortKeysEmployee = "cfFirstNames" | "cfFamilyNames" | "chair";
 export type addressValue = "Leonardo-Campus 11" | "Leonardo-Campus 3";
@@ -8,15 +8,15 @@ export interface Employee {
   cfFirstNames: string | null;
   cfFamilyNames: string | null;
   roomNumber: string | null;
-  email: string | null;
-  phone: string | null;
+  emails: string[];
+  phones: string[];
   chair: string | null;
   image: string | null;
   address: addressValue;
-  searchResultRef?: Ref<HTMLLIElement> | undefined;
+  searchResultRef?: RefObject<HTMLLIElement> | undefined;
 }
 
-export const sampleEmployees = [
+export const sampleEmployees: Employee[] = [
   {
     academicTitle: "Dr.",
     cfFirstNames: "Sebastian",

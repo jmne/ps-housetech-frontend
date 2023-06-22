@@ -4,6 +4,29 @@ export const TIMEOUT_DURATION = 90; // seconds
 // Wayfinder
 export const WAYFINDER_CARD_ANIMATION_DURATION = 250; // milliseconds
 
+export const FUZZY_SEARCH_WEIGHTS = {
+  findAllMatches: true,
+  keys: [
+    {
+      name: "cfFirstNames",
+      weight: 1
+    },
+    {
+      name: "cfFamilyNames",
+      weight: 1
+    },
+    {
+      name: "chair",
+      weight: 1
+    },
+    {
+      name: "roomNumber",
+      weight: 0.5
+    }
+  ]
+};
+
+
 /**
  * Configuration for map transitions
  */

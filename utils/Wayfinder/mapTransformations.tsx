@@ -7,6 +7,7 @@ import { Employee } from "types/Employee";
 import { getAddressID, validateRoomNumber } from "./mapValidations";
 import { MapData } from "context/MapContext";
 import { PersonData } from "context/PersonContext";
+import { handleExpansion } from "./personCardsTransformations";
 
 /**
  * Move the building from old floors to new floors
@@ -150,34 +151,4 @@ function removeHighlightFromFloor(element: SVGSVGElement, offset: number) {
     element.style.opacity = `${mapTransitionConfig.not_in_focus_opacity}`;
     element.style.zIndex = "6";
   }
-}
-
-export function handleClickOnPerson(
-  person: Employee,
-  mapContext: MapData,
-  selectedPersonContext: PersonData
-) {
-  const previous_selection = {
-    person: selectedPersonContext.current_person,
-    building: mapContext.current_building,
-    room: mapContext.current_room
-  };
-
-  const clicked = {
-    person: person,
-    building: person.address ? getAddressID(person.address) : undefined,
-    room: person.roomNumber ? validateRoomNumber(person.roomNumber) : undefined
-  };
-
-  // Same person clicked -> remove from context
-  if (previous_selection.person === clicked.person) {
-    selectedPersonContext.setPerson(undefined);
-    mapContext.setBuilding(undefined);
-    mapContext.setRoom(undefined);
-    return;
-  }
-  // Other Person selected -> set context value
-  selectedPersonContext.setPerson(clicked.person)
-  mapContext.setBuilding(clicked.building)
-  mapContext.setRoom(clicked.room)
 }

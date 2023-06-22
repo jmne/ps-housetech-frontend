@@ -48,6 +48,10 @@ $animDuration: 0.75s;
 
     &:focus-within {
       filter: drop-shadow(0 0.4rem 0.4rem rgba(g.$main-primary, 0.5));
+
+      input {
+        filter: none;
+      }
       transform: scale(1.05);
       //background-color: g.$main-primary-tint;
     }
