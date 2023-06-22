@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { SVGProps } from "react";
-const SvgLeonardocampus = React.forwardRef<SVGSVGElement>(
+const LeonardoCampus = React.forwardRef<SVGSVGElement>(
   (props: SVGProps<SVGSVGElement>, ref) => (
     <svg
       width="100%"
@@ -3280,4 +3280,4 @@ const SvgLeonardocampus = React.forwardRef<SVGSVGElement>(
     </svg>
   )
 );
-export default SvgLeonardocampus;
+export default LeonardoCampus;

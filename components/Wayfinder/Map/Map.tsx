@@ -30,6 +30,7 @@ import {
 // CSS
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
 import { roomInBuilding, getFloor } from "utils/Wayfinder/mapValidations";
+import LeonardoCampus from "assets/images/map/campus_transformed/leonardocampus";
 
 export function CampusMap() {
   const { t } = useTranslation("index");
@@ -52,6 +53,8 @@ export function CampusMap() {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const leo11_elements = [useRef<SVGSVGElement>(null)];
+
+  const campus_element = useRef<SVGSVGElement>(null);
 
   // This effect runs only once after the initial render. It sets up the initial state of the map.
   useEffect(() => {
