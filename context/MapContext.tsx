@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { CampusBuilding } from "types/Campus";
 
-interface MapData {
+export interface MapData {
   current_room: string | undefined;
   setRoom: Function;
   current_building: CampusBuilding | undefined;

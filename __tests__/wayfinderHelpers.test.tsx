@@ -1,4 +1,4 @@
-import { getFloor, getFloorNumber, validateRoomNumber } from 'utils/mapTransformations';
+import { getFloor, getFloorNumber, validateRoomNumber } from 'utils/Wayfinder/mapTransformations';
 
 describe('Map transformation helpers', () => {
     it('should return the correct 3-digit room number when valid', () => {

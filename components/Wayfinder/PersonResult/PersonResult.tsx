@@ -3,8 +3,8 @@ import { useTranslation } from "next-i18next";
 import { useMapContext } from "context/MapContext";
 import { usePersonSearchContext } from "context/PersonContext";
 import styles from "@/components/Wayfinder/Wayfinder.module.scss";
-import { forwardRef, useCallback } from "react";
-import { validateRoomNumber } from "utils/mapTransformations";
+import { forwardRef } from "react";
+import { handleClickOnPerson } from "utils/Wayfinder/mapTransformations";
 
 interface Props {
   person: Employee;
@@ -14,23 +14,6 @@ const PersonResult = forwardRef<HTMLLIElement, Props>(({ person }, ref) => {
   const { t } = useTranslation("index");
   const mapContext = useMapContext();
   const selectedPersonContext = usePersonSearchContext();
-
-  const setSelection = useCallback(() => {
-    if (selectedPersonContext.current_person === person) {
-      selectedPersonContext.setPerson(undefined);
-      mapContext.setRoom(undefined);
-      mapContext.setBuilding(undefined);
-    } else {
-      selectedPersonContext.setPerson(person);
-      
-      if (!person.roomNumber) return
-      const validRoomNumber = validateRoomNumber(person.roomNumber)
-      if (validRoomNumber == "") return
-      mapContext.setRoom(validRoomNumber);
-      mapContext.setBuilding("leo3");
-    }
-  }, [person, mapContext, selectedPersonContext]);
-
   const phoneTranslation = t("wayfinder.search.phone");
   const roomTranslation = t("wayfinder.search.room");
 
@@ -38,7 +21,7 @@ const PersonResult = forwardRef<HTMLLIElement, Props>(({ person }, ref) => {
     <li
       className={styles.person}
       id={`${person.cfFamilyNames}${person.phone}${person.chair}`}
-      onClick={setSelection}
+      onClick={() => handleClickOnPerson(person, mapContext, selectedPersonContext)}
       ref={ref}
     >
       <span>{`${person.cfFirstNames} ${person.cfFamilyNames}`}</span>

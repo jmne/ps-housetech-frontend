@@ -1,6 +1,7 @@
-import { CampusBuilding } from "./Campus";
+import { Ref } from "react";
 
 export type sortKeysEmployee = "cfFirstNames" | "cfFamilyNames" | "chair";
+export type addressValue = "Leonardo-Campus 11" | "Leonardo-Campus 3";
 
 export interface Employee {
   academicTitle: string | null;
@@ -11,1584 +12,1918 @@ export interface Employee {
   phone: string | null;
   chair: string | null;
   image: string | null;
+  address: addressValue;
+  searchResultRef?: Ref<HTMLLIElement> | undefined;
 }
 
-// export const sampleEmployees = [
-//     {
-//         name: "Jens Lechtenboerger",
-//         department: "Machine Learning",
-//         room: "022",
-//         building: "leo3",
-//         phone: "01578290345"
-//     },
-//     {
-//         name: "Armin Stein",
-//         department: "Informationsmanagement",
-//         room: "122",
-//         building: "leo3",
-//         phone: "01578290346"
-//     },
-//     {
-//         name: "Michael Räckers",
-//         department: "Informationsmanagement",
-//         room: "222",
-//         building: "leo3",
-//         phone: "01578290347"
-//     },
-//     {
-//         name: "Benedikt Berger",
-//         department: "Informationsmanagement",
-//         room: "017",
-//         building: "leo11",
-//         phone: "01578290347"
-//     }
-// ]
-
-// 022 -> Sebastian Köffer
-// 122 -> Paul Kruse
-// 210 -> Benjamin Klör
-
-const data: Employee[] = [
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Torsten",
-    cfFamilyNames: "Gollhardt",
-    roomNumber: "034",
-    email: "torsten.gollhardt@ercis.uni-muenster.de",
-    phone: "+49 251 83-38086",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56364283"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Philipp",
-    cfFamilyNames: "Overfeld",
-    roomNumber: null,
-    email: "philipp.overfeld@ercis.uni-muenster.de",
-    phone: "+49 251 83-38079",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56399880"
-  },
-  {
-    academicTitle: "Prof. Dr. Dr.",
-    cfFirstNames: "Bj\u00f6rn",
-    cfFamilyNames: "Niehaves",
-    roomNumber: null,
-    email: "bjoern.niehaves@uni-siegen.de",
-    phone: "+49 251 83-38087",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56407678"
-  },
-  {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Pascal",
-    cfFamilyNames: "Kerschke",
-    roomNumber: "301",
-    email: "kerschke@uni-muenster.de",
-    phone: "+49 251 83-38240",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56376535"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Kay",
-    cfFamilyNames: "Hildebrand",
-    roomNumber: "301",
-    email: "hildebrand@ercis.de",
-    phone: "+49 251 83-38204",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56402416"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Benjamin",
-    cfFamilyNames: "Kl\u00f6r",
-    roomNumber: "210",
-    email: "benjamin.kloer@ercis.uni-muenster.de",
-    phone: "+49 251 83-38086",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56381837"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Kevin",
-    cfFamilyNames: "Ortbach",
-    roomNumber: null,
-    email: "kevin.ortbach@ercis.uni-muenster.de",
-    phone: "+49 251 83-38060",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56405991"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Sebastian",
-    cfFamilyNames: "K\u00f6ffer",
-    roomNumber: "022",
-    email: "sebastian.koeffer@ercis.uni-muenster.de",
-    phone: "+49 251 83-38057",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56414968"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Miriam",
-    cfFamilyNames: "Epke",
-    roomNumber: "029",
-    email: "miriam.epke@ercis.uni-muenster.de",
-    phone: "+49 251 83-38090",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56380394"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Holger",
-    cfFamilyNames: "Koelmann",
-    roomNumber: null,
-    email: "Holger.Koelmann@wiwi.uni-muenster.de",
-    phone: null,
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56385792"
-  },
-  {
-    academicTitle: "Jun.-Prof. Dr.",
-    cfFirstNames: "Dennis",
-    cfFamilyNames: "Riehle",
-    roomNumber: null,
-    email: "riehle@uni-koblenz.de",
-    phone: "+49 261 287-2560",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "78214895"
-  },
-  {
-    academicTitle: "Dr. Dr.",
-    cfFirstNames: "Victor",
-    cfFamilyNames: "Taratukhin",
-    roomNumber: null,
-    email: "victor.taratukhin@sap.com",
-    phone: null,
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56412094"
-  },
+export const sampleEmployees = [
   {
     academicTitle: "Dr.",
     cfFirstNames: "Sebastian",
     cfFamilyNames: "Herwig",
-    roomNumber: null,
-    email: "sebastian.herwig@uni-muenster.de",
-    phone: null,
+    roomNumber: "302",
+    emails: ["sebastian.herwig@uni-muenster.de"],
+    phones: ["+49 251 83-30347"],
     chair:
       "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "71935843"
+    image: "71935843",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: "Prof. Dr. Dr. h.c.",
     cfFirstNames: "J\u00f6rg",
     cfFamilyNames: "Becker",
-    roomNumber: null,
-    email: "becker@ercis.uni-muenster.de",
-    phone: "+49 251 83-38100",
+    roomNumber: "133",
+    emails: ["becker@ercis.uni-muenster.de", "prorektor-spq@uni-muenster.de"],
+    phones: ["+49 251 83-38100", "+49 251 83-22214"],
     chair:
       "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56362440"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Marco",
-    cfFamilyNames: "Niemann",
-    roomNumber: "029",
-    email: "marco.niemann@ercis.uni-muenster.de",
-    phone: "+49 251 83-38069",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "80525183"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Paul",
-    cfFamilyNames: "Kruse",
-    roomNumber: "122",
-    email: "paul.kruse@ercis.uni-muenster.de",
-    phone: "+49 251 83-38070",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "78220520"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Ute",
-    cfFamilyNames: "Paukstadt",
-    roomNumber: null,
-    email: "ute.paukstadt@nexaion.de",
-    phone: null,
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "80525353"
+    image: "56362440",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
     cfFirstNames: "Phillip",
     cfFamilyNames: "Gatzke",
     roomNumber: null,
-    email: "phillip.gatzke@ercis.uni-muenster.de",
-    phone: null,
+    emails: ["phillip.gatzke@ercis.uni-muenster.de"],
+    phones: [],
     chair:
       "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56369220"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Vera",
-    cfFamilyNames: "Steinhoff",
-    roomNumber: null,
-    email: "v.steinhoff@uni-muenster.de",
-    phone: null,
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "71576507"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Stefan",
-    cfFamilyNames: "Laube",
-    roomNumber: "325",
-    email: "mail@stefan-laube.de",
-    phone: "+49 251 83-38231",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56361079"
+    image: "56369220",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: "Dr.",
     cfFirstNames: "Katrin",
     cfFamilyNames: "Bergener",
     roomNumber: "032",
-    email: "katrin.bergener@ercis.uni-muenster.de",
-    phone: "+49 251 83-38065",
+    emails: ["katrin.bergener@ercis.uni-muenster.de", "katrin.bergener@uni-muenster.de"],
+    phones: ["+49 251 83-38065"],
     chair:
       "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "80513329"
-  },
-  {
-    academicTitle: "Dipl.-Ing.",
-    cfFirstNames: "Alexander",
-    cfFamilyNames: "Stieger",
-    roomNumber: null,
-    email: "stiegera@uni-muenster.de",
-    phone: "+49 1794886386",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56389575"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Annika",
-    cfFamilyNames: "Albers",
-    roomNumber: null,
-    email: "annika.albers@uni-muenster.de",
-    phone: null,
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56377597"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Markus",
-    cfFamilyNames: "Monhof",
-    roomNumber: "024",
-    email: "markus.monhof@ercis.uni-muenster.de",
-    phone: "+49 251 83-38081",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56400024"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Sebastian Alexander",
-    cfFamilyNames: "Br\u00e4uer",
-    roomNumber: "023",
-    email: "sebastian.braeuer@ercis.uni-muenster.de",
-    phone: "+49 251 83-38069",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56380850"
-  },
-  {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Sara",
-    cfFamilyNames: "Hofmann",
-    roomNumber: null,
-    email: "sara.hofmann@uni-bremen.de",
-    phone: null,
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56385936"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Moritz",
-    cfFamilyNames: "von Hoffen",
-    roomNumber: "009",
-    email: "moritz.von.hoffen@ercis.uni-muenster.de",
-    phone: "+49 251 83 38076",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56385188"
-  },
-  {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Daniel",
-    cfFamilyNames: "Beverungen",
-    roomNumber: null,
-    email: "daniel.beverungen@ercis.uni-muenster.de",
-    phone: "+49 251 83-38092",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56399082"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Jan",
-    cfFamilyNames: "Dagef\u00f6rde",
-    roomNumber: "327",
-    email: "jan.dagefoerde@uni-muenster.de",
-    phone: "+49 251 83-38264",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "78214220"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Andreas",
-    cfFamilyNames: "Hermann",
-    roomNumber: "120",
-    email: "andreas.hermann@ercis.uni-muenster.de",
-    phone: "+49 251 83-38062",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56365705"
-  },
-  {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Carsten Patrick",
-    cfFamilyNames: "Delfmann",
-    roomNumber: null,
-    email: "delfmann@uni-koblenz.de",
-    phone: null,
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56373695"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Lasse",
-    cfFamilyNames: "von Lojewski",
-    roomNumber: "122",
-    email: "lasse.von.lojewski@ercis.uni-muenster.de",
-    phone: "+49 251 83-38082",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56381911"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Elena",
-    cfFamilyNames: "Hindriks",
-    roomNumber: null,
-    email: "elena.spornikova@uni-muenster.de",
-    phone: null,
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56386128"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Andreas",
-    cfFamilyNames: "Baumgart",
-    roomNumber: "314",
-    email: "baumgart@wi.uni-muenster.de",
-    phone: "+49 251 83-38213",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56406543"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Susanne",
-    cfFamilyNames: "Mikowsky",
-    roomNumber: null,
-    email: "susanne.mikowsky@ercis.uni-muenster.de",
-    phone: "+49 251 83-38076",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56410256"
-  },
-  {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Martin",
-    cfFamilyNames: "Matzner",
-    roomNumber: "017",
-    email: "martin.matzner@ercis.uni-muenster.de",
-    phone: "+49 251 83-38088",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56379526"
+    image: "80513329",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: "Dr.",
     cfFirstNames: "Armin",
     cfFamilyNames: "Stein",
     roomNumber: "033",
-    email: "armin.stein@ercis.uni-muenster.de",
-    phone: "+49 251 83-38085",
+    emails: ["armin.stein@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38085"],
     chair:
       "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "80512992"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Ann-Kristin",
-    cfFamilyNames: "Cordes",
-    roomNumber: "023",
-    email: "ann-kristin.cordes@ercis.uni-muenster.de",
-    phone: "+49 251 83-38088",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "71929905"
-  },
-  {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Nico",
-    cfFamilyNames: "Clever",
-    roomNumber: null,
-    email: "clever@fh-muenster.de",
-    phone: null,
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56380826"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Burkhard",
-    cfFamilyNames: "Wei\u00df",
-    roomNumber: null,
-    email: "burkhard.weiss@ercis.uni-muenster.de",
-    phone: "+49 251 83-38089",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56423155"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Ayten",
-    cfFamilyNames: "\u00d6ks\u00fcz",
-    roomNumber: "105",
-    email: "ayten.oeksuez@uni-muenster.de",
-    phone: "+49 251 83-23683",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56412046"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Matthias",
-    cfFamilyNames: "Voigt",
-    roomNumber: null,
-    email: "matthias.voigt@ercis.uni-muenster.de",
-    phone: "+49 251 83-38072",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56423180"
-  },
-  {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Ralf",
-    cfFamilyNames: "Plattfaut",
-    roomNumber: null,
-    email: "ralf.plattfaut@ercis.uni-muenster.de",
-    phone: "+49 251 83-38081",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56423304"
-  },
-  {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Reima",
-    cfFamilyNames: "Suomi",
-    roomNumber: "12",
-    email: "suomi@uni-muenster.de",
-    phone: null,
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56406471"
+    image: "80512992",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
-    cfFirstNames: "Stefan",
-    cfFamilyNames: "Korff",
-    roomNumber: "324",
-    email: "stefan.korff@uni-muenster.de",
-    phone: null,
+    cfFirstNames: "Sarah",
+    cfFamilyNames: "Hunekamp",
+    roomNumber: null,
+    emails: [],
+    phones: [],
     chair:
       "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56405386"
+    image: "56410429",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Vertr.-Prof. Dr.",
+    cfFirstNames: "Friedrich",
+    cfFamilyNames: "Chasin",
+    roomNumber: "017",
+    emails: ["friedrich.chasin@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38084"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "80515330",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: "Dr.",
-    cfFirstNames: "Tobias",
-    cfFamilyNames: "Heide",
-    roomNumber: null,
-    email: "tobias.heide@ercis.uni-muenster.de",
-    phone: "+49 251 83-38059",
+    cfFirstNames: "Sven-Olaf",
+    cfFamilyNames: "Gerdt",
+    roomNumber: "478",
+    emails: ["sven-olaf.gerdt@wiwi.uni-muenster.de"],
+    phones: ["+49 251 83-22937"],
     chair:
       "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56404276"
+    image: "56379770",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Dr.",
+    cfFirstNames: "Bettina",
+    cfFamilyNames: "Distel",
+    roomNumber: "024",
+    emails: ["bettina.distel@ercis.uni-muenster.de", "bettina.distel@uni-muenster.de"],
+    phones: ["+49 251 83-38067", "+49 251 83-22679"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "83789967",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
-    cfFirstNames: "Susanne",
-    cfFamilyNames: "Freitag",
-    roomNumber: "V201",
-    email: "susanne.freitag@uni-muenster.de",
-    phone: "+49 251 83-24238",
+    cfFirstNames: "Jonathan",
+    cfFamilyNames: "Radas",
+    roomNumber: null,
+    emails: ["jonathan.radas@uni-muenster.de"],
+    phones: [],
     chair:
       "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "71944157"
+    image: "56375117",
+    address: "Leonardo-Campus 3"
   },
   {
-    academicTitle: "Diplom-Wirtschaftsinformatikerin",
-    cfFirstNames: "Irina",
-    cfFamilyNames: "Thome",
-    roomNumber: null,
-    email: "irina.thome@ercis.uni-muenster.de",
-    phone: "+49 251 83-38071",
+    academicTitle: null,
+    cfFirstNames: "Florian",
+    cfFamilyNames: "Schmolke",
+    roomNumber: "127",
+    emails: ["florian.schmolke@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38081"],
     chair:
       "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
-    image: "56423205"
+    image: "80515282",
+    address: "Leonardo-Campus 3"
   },
   {
-    academicTitle: "Jun.-Prof. Dr.",
-    cfFirstNames: "Dennis",
-    cfFamilyNames: "Riehle",
-    roomNumber: null,
-    email: "riehle@uni-koblenz.de",
-    phone: "+49 261 287-2560",
-    chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "78214895"
+    academicTitle: null,
+    cfFirstNames: "Timo",
+    cfFamilyNames: "D\u00fcmke",
+    roomNumber: "MCM 208",
+    emails: ["t.duemke@uni-muenster.de"],
+    phones: ["+49 251 83-28222"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "82736876",
+    address: "Leonardo-Campus 3"
   },
   {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Dragos-Calin",
-    cfFamilyNames: "Vieru",
+    academicTitle: null,
+    cfFirstNames: "Lennart",
+    cfFamilyNames: "Rettler",
     roomNumber: null,
-    email: "dragos.vieru@teluq.ca",
-    phone: null,
-    chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "80524918"
+    emails: [],
+    phones: [],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Sebastian",
+    cfFamilyNames: "Reiners",
+    roomNumber: "122",
+    emails: ["sebastian.reiners@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38068"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "78218670",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Jason",
+    cfFamilyNames: "Haak",
+    roomNumber: null,
+    emails: ["jason.haak@uni-muenster.de"],
+    phones: [],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "80526778",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Michael",
+    cfFamilyNames: "Koddebusch",
+    roomNumber: "119",
+    emails: ["michael.koddebusch@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38080"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "78217595",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Constantin",
+    cfFamilyNames: "von Herbay",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Simon Peter",
+    cfFamilyNames: "Rothgang",
+    roomNumber: null,
+    emails: ["srothgan@uni-muenster.de"],
+    phones: [],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "80526705",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Victoria",
+    cfFamilyNames: "Hoch",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Sven Eric",
+    cfFamilyNames: "Pr\u00fc\u00df",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "80723437",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Helene",
+    cfFamilyNames: "M\u00fcller",
+    roomNumber: null,
+    emails: ["h_muel26@uni-muenster.de"],
+    phones: [],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Franka",
+    cfFamilyNames: "Eberhardt",
+    roomNumber: null,
+    emails: ["feberhar@uni-muenster.de"],
+    phones: [],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Janis Joshua",
+    cfFamilyNames: "Elmer",
+    roomNumber: null,
+    emails: ["j_elme03@uni-muenster.de"],
+    phones: [],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Sam Peter Denis",
+    cfFamilyNames: "Fischer",
+    roomNumber: null,
+    emails: ["sfische2@uni-muenster.de"],
+    phones: [],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "84149087",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Lennart",
+    cfFamilyNames: "Effenberger",
+    roomNumber: null,
+    emails: ["leffenbe@uni-muenster.de"],
+    phones: [],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "David",
+    cfFamilyNames: "Nowak",
+    roomNumber: "120",
+    emails: ["david.nowak@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38074"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "84146681",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Tim",
+    cfFamilyNames: "Fischb\u00f6ck",
+    roomNumber: null,
+    emails: ["tfischbo@uni-muenster.de"],
+    phones: [],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "84413855",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Ana",
+    cfFamilyNames: "Sakhokia",
+    roomNumber: null,
+    emails: ["asakhoki@uni-muenster.de"],
+    phones: [],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: null,
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: "Dr.",
     cfFirstNames: "Paulina",
     cfFamilyNames: "Pesch",
     roomNumber: "328",
-    email: "paulina.pesch@uni-muenster.de",
-    phone: "+49 251 83-38234",
+    emails: ["paulina.pesch@uni-muenster.de"],
+    phones: ["+49 251 83-38234"],
     chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "56390323"
+    image: "56390323",
+    address: "Leonardo-Campus 3"
   },
   {
-    academicTitle: null,
-    cfFirstNames: "Lena",
-    cfFamilyNames: "Clever",
-    roomNumber: "324",
-    email: "lena.clever@wi.uni-muenster.de",
-    phone: "+49 251 83-38203",
-    chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "56376367"
-  },
-  {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Carsten Patrick",
-    cfFamilyNames: "Delfmann",
+    academicTitle: "Dr.",
+    cfFirstNames: "Oliver",
+    cfFamilyNames: "Tinz",
     roomNumber: null,
-    email: "delfmann@uni-koblenz.de",
-    phone: null,
+    emails: [],
+    phones: [],
     chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "56373695"
+    image: "80511331",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
     cfFirstNames: "Eva",
     cfFamilyNames: "Heitmann",
-    roomNumber: null,
-    email: "evahaum@uni-muenster.de",
-    phone: null,
+    roomNumber: "013",
+    emails: ["evahaum@uni-muenster.de"],
+    phones: ["+49 251 83-38181"],
     chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "56401620"
+    image: "56401620",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: "Dipl.-Math.",
     cfFirstNames: "Laura",
     cfFamilyNames: "Pfaff",
     roomNumber: "029",
-    email: "Laura.Priekule@wi.uni-muenster.de",
-    phone: "+49 251 83-38041",
+    emails: ["Laura.Priekule@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38041"],
     chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "56400700"
+    image: "56400700",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: "Prof. Dr.-Ing.",
     cfFirstNames: "Rainer",
     cfFamilyNames: "B\u00f6hme",
     roomNumber: null,
-    email: "rainer.boehme@uni-muenster.de",
-    phone: null,
+    emails: ["rainer.boehme@uni-muenster.de"],
+    phones: [],
     chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "56407993"
+    image: "56407993",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: "Dr. rer. nat.",
     cfFirstNames: "Raimund",
     cfFamilyNames: "Vogl",
     roomNumber: "R\u00f6ntgenstr. 9, 302",
-    email: "rvogl@uni-muenster.de",
-    phone: "+49 251 83-31551",
+    emails: ["rvogl@uni-muenster.de"],
+    phones: ["+49 251 83-31551"],
     chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "84343663"
+    image: "84343663",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
     cfFirstNames: "Helena",
     cfFamilyNames: "Schulte",
-    roomNumber: null,
-    email: "hschu_06@uni-muenster.de",
-    phone: null,
-    chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "56401644"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Simeon",
-    cfFamilyNames: "Vidolov",
-    roomNumber: "022",
-    email: "vidolovs@uni-muenster.de",
-    phone: "+49 251 83 38114",
-    chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "56380972"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Elena",
-    cfFamilyNames: "Gorbatschow",
-    roomNumber: null,
-    email: "el.gorbacheva@gmail.com",
-    phone: null,
-    chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "56410900"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Stefan",
-    cfFamilyNames: "Schellhammer",
     roomNumber: "013",
-    email: "stsc@wi.uni-muenster.de",
-    phone: "+49 251 83-38124",
+    emails: ["hschu_06@uni-muenster.de"],
+    phones: ["+49 251 83-38181"],
     chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "83000237"
+    image: "56401644",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: "Dr.",
     cfFirstNames: "Michael",
     cfFamilyNames: "R\u00e4ckers",
     roomNumber: "118",
-    email: "michael.raeckers@ercis.uni-muenster.de",
-    phone: "+49 251 83-38075",
-    chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "78215620"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Herbert",
-    cfFamilyNames: "K\u00f6sters",
-    roomNumber: null,
-    email: "herbert.koesters@wi.uni-muenster.de",
-    phone: null,
-    chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "56363248"
-  },
-  {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Tim Alexander",
-    cfFamilyNames: "Majchrzak",
-    roomNumber: null,
-    email: "tima@ercis.de",
-    phone: "+49 251 83-38264",
-    chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "56413977"
+    emails: ["michael.raeckers@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38075"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "78215620",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: "Dr.",
     cfFirstNames: "Hendrik",
     cfFamilyNames: "Scholta",
     roomNumber: "023",
-    email: "hendrik.scholta@ercis.uni-muenster.de",
-    phone: "+49 251 83-38072",
-    chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "83877449"
+    emails: ["hendrik.scholta@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38072"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "83877449",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
     cfFirstNames: "Christian",
     cfFamilyNames: "Ueding",
     roomNumber: "317",
-    email: "christian.ueding@wi.uni-muenster.de",
-    phone: "+49 251 83-38220",
+    emails: ["christian.ueding@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38220"],
     chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "56399636"
-  },
-  {
-    academicTitle: "Dr",
-    cfFirstNames: "Tanja",
-    cfFamilyNames: "Merfeld",
-    roomNumber: "324",
-    email: "tanja.merfeld@wi.uni-muenster.de",
-    phone: "+49 251 83-38042",
-    chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "56396435"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Jakob",
-    cfFamilyNames: "Bossek",
-    roomNumber: null,
-    email: "bossek@wi.uni-muenster.de",
-    phone: "+49 251 83-38200",
-    chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "56391477"
-  },
-  {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Ulrich",
-    cfFamilyNames: "Luckhaus",
-    roomNumber: null,
-    email: "luckhaus@greyhills.com",
-    phone: "+492217888600",
-    chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "71935722"
+    image: "56399636",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
-    cfFirstNames: "Marcel",
-    cfFamilyNames: "Gayk",
-    roomNumber: null,
-    email: "marcel.gayk@uni-muenster.de",
-    phone: null,
+    cfFirstNames: "Niklas",
+    cfFamilyNames: "Schr\u00f6der",
+    roomNumber: "318 (Leonardo-Campus 3)",
+    emails: [
+      "niklas.schroeder@wiwi.uni-muenster.de",
+      "niklas.schr\u00f6der@uni-muenster.de"
+    ],
+    phones: ["+49 251 83-38223"],
     chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "78211920"
+    image: null,
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
-    cfFirstNames: "Kim Marcella",
-    cfFamilyNames: "Allend\u00f6rfer",
+    cfFirstNames: "Berna",
+    cfFamilyNames: "Bakim",
     roomNumber: null,
-    email: "k.allendoerfer@uni-muenster.de",
-    phone: null,
+    emails: [],
+    phones: [],
     chair: "Institut f\u00fcr Wirtschaftsinformatik",
-    image: "71574868"
+    image: "71575109",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
-    cfFirstNames: "Philipp",
-    cfFamilyNames: "Overfeld",
+    cfFirstNames: "Jingxian",
+    cfFamilyNames: "He",
     roomNumber: null,
-    email: "philipp.overfeld@ercis.uni-muenster.de",
-    phone: "+49 251 83-38079",
+    emails: [],
+    phones: [],
     chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56399880"
-  },
-  {
-    academicTitle: "Dipl.-Wirt. Inf.",
-    cfFirstNames: "Christian",
-    cfFamilyNames: "Remfert",
-    roomNumber: "008",
-    email: "christian.remfert@wi.uni-muenster.de",
-    phone: "+49 251 83-38123",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56380802"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Nathalie",
-    cfFamilyNames: "Mitev",
-    roomNumber: null,
-    email: "nmitev@btinternet.com",
-    phone: null,
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56374586"
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "80509864",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
-    cfFirstNames: "Holger",
-    cfFamilyNames: "Koelmann",
+    cfFirstNames: "Marina",
+    cfFamilyNames: "B\u00f6hmer",
     roomNumber: null,
-    email: "Holger.Koelmann@wiwi.uni-muenster.de",
-    phone: null,
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56385792"
-  },
-  {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Dragos-Calin",
-    cfFamilyNames: "Vieru",
-    roomNumber: null,
-    email: "dragos.vieru@teluq.ca",
-    phone: null,
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "80524918"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Meral",
-    cfFamilyNames: "Avci",
-    roomNumber: "018",
-    email: "avci@wi.rwth-aachen.de",
-    phone: "+49 251 83-38230",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56373502"
+    emails: [],
+    phones: [],
+    chair: "Institut f\u00fcr Wirtschaftsinformatik",
+    image: null,
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
-    cfFirstNames: "Simon",
-    cfFamilyNames: "Lansmann",
-    roomNumber: "024",
-    email: "simon.lansmann@wi.uni-muenster.de",
-    phone: "+49 251 83-38113",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56381862"
+    cfFirstNames: "Frank",
+    cfFamilyNames: "Hebben",
+    roomNumber: "322 (Leonardo-Campus 3)",
+    emails: ["frank.hebben@wiwi.uni-muenster.de"],
+    phones: ["+49 251 83-38226"],
+    chair: "Institut f\u00fcr Wirtschaftsinformatik",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Anna Sophia",
+    cfFamilyNames: "Alverdes",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Institut f\u00fcr Wirtschaftsinformatik",
+    image: "78220420",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Laura",
+    cfFamilyNames: "Gro\u00dfe-Onnebrink",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Institut f\u00fcr Wirtschaftsinformatik",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Phillip",
+    cfFamilyNames: "Rath",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Institut f\u00fcr Wirtschaftsinformatik",
+    image: null,
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: "Dr.",
     cfFirstNames: "Malte",
     cfFamilyNames: "Kramer",
     roomNumber: "Heisenbergstr. 2, Raum 208",
-    email: "malte.kramer@uni-muenster.de",
-    phone: "+49 251 83-30357",
+    emails: ["malte.kramer@uni-muenster.de"],
+    phones: ["+49 251 83-30357"],
     chair:
       "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56389647"
-  },
-  {
-    academicTitle: "Dipl.-Ing., Dipl.-Kfm.",
-    cfFirstNames: "Siegfried",
-    cfFamilyNames: "Schallenm\u00fcller",
-    roomNumber: null,
-    email: "siegfried.schallenmueller@ercis.de",
-    phone: null,
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56386008"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Michaela",
-    cfFamilyNames: "Meinert",
-    roomNumber: "027",
-    email: "meinert@wi.uni-muenster.de",
-    phone: "+49 251 83-38110",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "80513017"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Sophie",
-    cfFamilyNames: "Stockhinger",
-    roomNumber: "011",
-    email: "sophie.stockhinger@wiwi.uni-muenster.de",
-    phone: "+49 251 83-38118",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "82277542"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Cornelia",
-    cfFamilyNames: "Gaebert",
-    roomNumber: null,
-    email: "cornelia.gaebert@uni-muenster.de",
-    phone: "+49 251 41446120",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56398408"
+    image: "56389647",
+    address: "Leonardo-Campus 11"
   },
   {
     academicTitle: "Prof. Dr.",
     cfFirstNames: "Stefan",
     cfFamilyNames: "Klein",
     roomNumber: "028",
-    email: "stefan.klein@uni-muenster.de",
-    phone: "+49 251 83-38111",
+    emails: ["stefan.klein@uni-muenster.de"],
+    phones: ["+49 251 83-38111"],
     chair:
       "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56384729"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Simeon",
-    cfFamilyNames: "Vidolov",
-    roomNumber: "022",
-    email: "vidolovs@uni-muenster.de",
-    phone: "+49 251 83 38114",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56380972"
+    image: "56384729",
+    address: "Leonardo-Campus 11"
   },
   {
     academicTitle: "Dr.",
     cfFirstNames: "Stefan",
     cfFamilyNames: "Schellhammer",
     roomNumber: "013",
-    email: "stsc@wi.uni-muenster.de",
-    phone: "+49 251 83-38124",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "83000237"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Benedikt",
-    cfFamilyNames: "Hoffmeister",
-    roomNumber: "122",
-    email: "benedikt.hoffmeister@ercis.uni-muenster.de",
-    phone: "+49 251 83-38076",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "84439857"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Ajay",
-    cfFamilyNames: "Kumar",
-    roomNumber: "214",
-    email: "ajay.kumar@ercis.uni-muenster.de",
-    phone: "+49 251 83-38026",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "78219470"
+    emails: ["stsc@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38124"],
+    chair: "Institut f\u00fcr Wirtschaftsinformatik",
+    image: "83000237",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: "Prof. Dr.",
     cfFirstNames: "Rolf Alexander",
     cfFamilyNames: "Teubner",
     roomNumber: "008",
-    email: "alexander.teubner@wi.uni-muenster.de",
-    phone: "+49 251 83-38117",
+    emails: ["alexander.teubner@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38117"],
     chair:
       "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56381692"
+    image: "56381692",
+    address: "Leonardo-Campus 11"
   },
   {
-    academicTitle: "Dr.",
+    academicTitle: null,
     cfFirstNames: "Jan",
     cfFamilyNames: "Stockhinger",
-    roomNumber: "011",
-    email: "jan.stockhinger@wiwi.uni-muenster.de",
-    phone: "+49 251 83-38115",
+    roomNumber: null,
+    emails: [],
+    phones: [],
     chair:
       "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56381813"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Jana",
-    cfFamilyNames: "Mattern",
-    roomNumber: "162",
-    email: "jana.mattern@wiwi.uni-muenster.de",
-    phone: "+49 251 83-22913",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56378394"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Michael",
-    cfFamilyNames: "Middelhoff",
-    roomNumber: "214",
-    email: "michael.middelhoff@ercis.uni-muenster.de",
-    phone: "+49 251 83-38020",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "78218770"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Julia",
-    cfFamilyNames: "Jacobs",
-    roomNumber: "024",
-    email: "julia.jacobs@uni-muenster.de",
-    phone: "+49 251 83-38116",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56380899"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Christian",
-    cfFamilyNames: "Kalla",
-    roomNumber: "008",
-    email: "christian.kalla@ercis.uni-muenster.de",
-    phone: "+49 251 83-38002",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56356245"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Patrick",
-    cfFamilyNames: "Troglauer",
-    roomNumber: "026",
-    email: "patrick.troglauer@wi.uni-muenster.de",
-    phone: "+49 251 83-38120",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "71574262"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Rewat",
-    cfFamilyNames: "Thapa",
-    roomNumber: "021",
-    email: "rewat.thapa@wi.uni-muenster.de",
-    phone: "+49 251 83-38121",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "56354028"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Katharina",
-    cfFamilyNames: "Dassel",
-    roomNumber: "022",
-    email: "katharina.dassel@wi.uni-muenster.de",
-    phone: "+49 251 83-38116",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "80526608"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Matthias",
-    cfFamilyNames: "Werner",
-    roomNumber: "025",
-    email: "matthias.werner@wi.uni-muenster.de",
-    phone: "+49 251 83-38114",
-    chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "71574407"
+    image: null,
+    address: "Leonardo-Campus 11"
   },
   {
     academicTitle: null,
     cfFirstNames: "Johannes Jakob Heinrich",
     cfFamilyNames: "von Ivernois",
     roomNumber: null,
-    email: "j_voni02@uni-muenster.de",
-    phone: null,
+    emails: ["j_voni02@uni-muenster.de"],
+    phones: [],
     chair:
-      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "84073422"
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "84073422",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
     cfFirstNames: "Paul Jakob",
     cfFamilyNames: "Br\u00fctzke",
     roomNumber: null,
-    email: "pbruetzk@uni-muenster.de",
-    phone: null,
+    emails: ["pbruetzk@uni-muenster.de"],
+    phones: [],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "83615301",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Said",
+    cfFamilyNames: "Lachhab",
+    roomNumber: null,
+    emails: [],
+    phones: [],
     chair:
       "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
-    image: "83615301"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Paul",
-    cfFamilyNames: "Kruse",
-    roomNumber: "122",
-    email: "paul.kruse@ercis.uni-muenster.de",
-    phone: "+49 251 83-38070",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "78220520"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Eduardo Francisco",
-    cfFamilyNames: "Israel",
-    roomNumber: "010",
-    email: "eduardo.israel@ercis.uni-muenster.de",
-    phone: "+49 251 83-38017",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "56382583"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Sebastian",
-    cfFamilyNames: "Henke",
-    roomNumber: "217",
-    email: "sebastian.henke@ercis.uni-muenster.de",
-    phone: "+49 251 83-38024",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "82860003"
-  },
-  {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Luiz Felipe",
-    cfFamilyNames: "Scavarda do Carmo",
-    roomNumber: null,
-    email: "lf.scavarda@puc-rio.br",
-    phone: null,
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "56389623"
-  },
-  {
-    academicTitle: "Prof. Dr.-Ing.",
-    cfFirstNames: "Bernd",
-    cfFamilyNames: "Hellingrath",
-    roomNumber: "109",
-    email: "bernd.hellingrath@ercis.uni-muenster.de",
-    phone: "+49 251 83-38001",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "80514122"
-  },
-  {
-    academicTitle: "Dipl.-Logist.",
-    cfFirstNames: "Daniel",
-    cfFamilyNames: "Link",
-    roomNumber: null,
-    email: "daniel.link@ercis.uni-muenster.de",
-    phone: null,
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "56408781"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Ann-Kristin",
-    cfFamilyNames: "Cordes",
-    roomNumber: "023",
-    email: "ann-kristin.cordes@ercis.uni-muenster.de",
-    phone: "+49 251 83-38088",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "71929905"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Sandra",
-    cfFamilyNames: "Lechtenberg",
-    roomNumber: null,
-    email: "sandra.lechtenberg@ercis.uni-muenster.de",
-    phone: null,
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "80512896"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Tobias",
-    cfFamilyNames: "Kreuter",
-    roomNumber: "156",
-    email: "tobias.kreuter@wiwi.uni-muenster.de",
-    phone: "+49 251 83-22968",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "82720081"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Dennis",
-    cfFamilyNames: "Horstkemper",
-    roomNumber: "214",
-    email: "dennis.horstkemper@ercis.uni-muenster.de",
-    phone: "+49 251 83-38021",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "80513977"
-  },
-  {
-    academicTitle: "Prof. Dr.",
-    cfFirstNames: "Fernando",
-    cfFamilyNames: "Buarque",
-    roomNumber: null,
-    email: "fbln@ecomp.poli.br",
-    phone: null,
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "56399758"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Luis Filipe",
-    cfFamilyNames: "de Araujo Pessoa",
-    roomNumber: null,
-    email: "filipe.pessoa@ercis.uni-muenster.de",
-    phone: null,
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "56405506"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Jan",
-    cfFamilyNames: "Wessel",
-    roomNumber: "19",
-    email: "jan.wessel@wiwi.uni-muenster.de",
-    phone: "+49 251 83-22997",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "80526004"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Patrick",
-    cfFamilyNames: "Hartmann",
-    roomNumber: null,
-    email: "max.hartmann@prof-becker.de",
-    phone: null,
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "56370591"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Benedikt",
-    cfFamilyNames: "Hoffmeister",
-    roomNumber: "122",
-    email: "benedikt.hoffmeister@ercis.uni-muenster.de",
-    phone: "+49 251 83-38076",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "84439857"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Ajay",
-    cfFamilyNames: "Kumar",
-    roomNumber: "214",
-    email: "ajay.kumar@ercis.uni-muenster.de",
-    phone: "+49 251 83-38026",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "78219470"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Carmen",
-    cfFamilyNames: "Sicking",
-    roomNumber: "110",
-    email: "carmen.sicking@ercis.uni-muenster.de",
-    phone: "+49 251 83-38000",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "84004642"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Johannes",
-    cfFamilyNames: "Ponge",
-    roomNumber: "214",
-    email: "johannes.ponge@ercis.uni-muenster.de",
-    phone: "+49 251 83-38013",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "56360034"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Adam",
-    cfFamilyNames: "Widera",
-    roomNumber: "101",
-    email: "adam.widera@ercis.uni-muenster.de",
-    phone: "+49 251 83-38011",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "71939918"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Michael",
-    cfFamilyNames: "Middelhoff",
-    roomNumber: "214",
-    email: "michael.middelhoff@ercis.uni-muenster.de",
-    phone: "+49 251 83-38020",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "78218770"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Christian",
-    cfFamilyNames: "Kalla",
-    roomNumber: "008",
-    email: "christian.kalla@ercis.uni-muenster.de",
-    phone: "+49 251 83-38002",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "56356245"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Fr\u00e9d\u00e9ric Niko Patrice",
-    cfFamilyNames: "Nicolas",
-    roomNumber: "009",
-    email: "frederic.nicolas@ercis.uni-muenster.de",
-    phone: "+49 251 83-38004",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "71932359"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Till",
-    cfFamilyNames: "Sahlm\u00fcller",
-    roomNumber: "217",
-    email: "till.sahlmueller@ercis.uni-muenster.de",
-    phone: "+49 251 83-38022",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "56354305"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Kevin",
-    cfFamilyNames: "Wesendrup",
-    roomNumber: "117",
-    email: "kevin.wesendrup@ercis.uni-muenster.de",
-    phone: "+49 251 83-38014",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "80512872"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Frauke",
-    cfFamilyNames: "Hellweg",
-    roomNumber: "113",
-    email: "frauke.hellweg@ercis.uni-muenster.de",
-    phone: "+49 251 83-38018",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "71943527"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Lucas",
-    cfFamilyNames: "Stampe",
-    roomNumber: null,
-    email: "lucas.stampe@ercis.uni-muenster.de",
-    phone: null,
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "80512944"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Edona",
-    cfFamilyNames: "Selimaj",
-    roomNumber: null,
-    email: "edona.selimaj@wiwi.uni-muenster.de",
-    phone: "+49 251 83-22057",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "82866718"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Janik",
-    cfFamilyNames: "Suer",
-    roomNumber: "113",
-    email: "Janik.Suer@ercis.uni-muenster.de",
-    phone: "+49 251 83-38006",
-    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
-    image: "83282402"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Kay",
-    cfFamilyNames: "Hildebrand",
-    roomNumber: "301",
-    email: "hildebrand@ercis.de",
-    phone: "+49 251 83-38204",
-    chair:
-      "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
-    image: "56402416"
-  },
-  {
-    academicTitle: null,
-    cfFirstNames: "Vera",
-    cfFamilyNames: "Steinhoff",
-    roomNumber: null,
-    email: "v.steinhoff@uni-muenster.de",
-    phone: null,
-    chair:
-      "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
-    image: "71576507"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Willi",
-    cfFamilyNames: "Mutschler",
-    roomNumber: "305",
-    email: "willi.mutschler@wiwi.uni-muenster.de",
-    phone: "+49 251 83-22954",
-    chair:
-      "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
-    image: "56370760"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Johannes",
-    cfFamilyNames: "Klein",
-    roomNumber: null,
-    email: "johannes.klein@uni-muenster.de",
-    phone: null,
-    chair:
-      "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
-    image: "56383092"
+    image: null,
+    address: "Leonardo-Campus 11"
   },
   {
     academicTitle: "Dr.",
     cfFirstNames: "Ingolf",
     cfFamilyNames: "Terveer",
     roomNumber: "315",
-    email: "terveer@wi.uni-muenster.de",
-    phone: "+49 251 83-38219",
+    emails: ["terveer@wi.uni-muenster.de", "terveer@uni-muenster.de"],
+    phones: ["+49 251 83-38219"],
     chair:
       "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
-    image: "56408043"
+    image: "56408043",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
-    cfFirstNames: "Jan",
-    cfFamilyNames: "Diebecker",
-    roomNumber: "J 476 B",
-    email: "jan.diebecker@wiwi.uni-muenster.de",
-    phone: "+49 251 83-22059",
+    cfFirstNames: "Jan-Florian",
+    cfFamilyNames: "Kawalla",
+    roomNumber: null,
+    emails: ["j_kawa05@uni-muenster.de"],
+    phones: [],
     chair:
       "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
-    image: "56400990"
+    image: null,
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
-    cfFirstNames: "Nils",
-    cfFamilyNames: "Tschampel",
-    roomNumber: "013",
-    email: "nils.tschampel@uni-muenster.de",
-    phone: "+49 251 83-38130",
+    cfFirstNames: "Lea",
+    cfFamilyNames: "Hagemeier",
+    roomNumber: null,
+    emails: [],
+    phones: [],
     chair:
       "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
-    image: "56403336"
-  },
-  {
-    academicTitle: "Dr.",
-    cfFirstNames: "Philipp",
-    cfFamilyNames: "Klein",
-    roomNumber: "J463",
-    email: "philipp.klein@wiwi.uni-muenster.de",
-    phone: "+49251 83-29948",
-    chair:
-      "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
-    image: "56366475"
+    image: "80525594",
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
-    cfFirstNames: "Kilian",
-    cfFamilyNames: "M\u00fcller",
-    roomNumber: "129",
-    email: "kilian.mueller@ercis.uni-muenster.de",
-    phone: "+49 251 83-38066",
+    cfFirstNames: "Tim",
+    cfFamilyNames: "Nagels",
+    roomNumber: null,
+    emails: [],
+    phones: [],
     chair:
       "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
-    image: "71943455"
-  },
-  {
-    academicTitle: "Prof. Dr.-Ing.",
-    cfFirstNames: "Christian",
-    cfFamilyNames: "Grimme",
-    roomNumber: "301",
-    email: "christian.grimme@wi.uni-muenster.de",
-    phone: "+49 251 83-38205",
-    chair:
-      "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
-    image: "78214270"
+    image: null,
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
-    cfFirstNames: "Jonathan",
-    cfFamilyNames: "Neugebauer",
-    roomNumber: "327",
-    email: "jonathan.neugebauer@wi.uni-muenster.de",
-    phone: "+49 251 83-38264",
+    cfFirstNames: "Dilan",
+    cfFamilyNames: "Hanenberg",
+    roomNumber: null,
+    emails: ["dhanenbe@uni-muenster.de"],
+    phones: [],
     chair:
       "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
-    image: "83526315"
+    image: null,
+    address: "Leonardo-Campus 3"
   },
   {
-    academicTitle: "Dr.",
-    cfFirstNames: "Nina",
-    cfFamilyNames: "B\u00fcchel",
-    roomNumber: "301",
-    email: "buechel@wi.uni-muenster.de",
-    phone: "+49 251 83-38207",
+    academicTitle: null,
+    cfFirstNames: "Malte Henrik",
+    cfFamilyNames: "Patt",
+    roomNumber: null,
+    emails: ["mpatt@uni-muenster.de"],
+    phones: [],
     chair:
       "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
-    image: "56405434"
+    image: null,
+    address: "Leonardo-Campus 3"
   },
   {
     academicTitle: null,
     cfFirstNames: "Michaela",
     cfFamilyNames: "Meinert",
     roomNumber: "027",
-    email: "meinert@wi.uni-muenster.de",
-    phone: "+49 251 83-38110",
+    emails: ["meinert@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38110"],
     chair:
-      "Juniorprofessur f\u00fcr Wirtschaftsinformatik, insbesondere Digitale Transformation und Gesellschaft (Prof. Berger)",
-    image: "80513017"
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
+    image: "80513017",
+    address: "Leonardo-Campus 11"
   },
   {
     academicTitle: null,
     cfFirstNames: "Miriam",
     cfFamilyNames: "M\u00f6llers",
     roomNumber: "019a",
-    email: "miriam.moellers@ercis.uni-muenster.de",
-    phone: "+49 251 83-38302",
+    emails: ["miriam.moellers@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38302"],
     chair:
       "Juniorprofessur f\u00fcr Wirtschaftsinformatik, insbesondere Digitale Transformation und Gesellschaft (Prof. Berger)",
-    image: "80526028"
+    image: "80526028",
+    address: "Leonardo-Campus 11"
   },
   {
     academicTitle: "Prof. Dr.",
     cfFirstNames: "Benedikt",
     cfFamilyNames: "Berger",
     roomNumber: "018",
-    email: "benedikt.berger@ercis.uni-muenster.de",
-    phone: "+49 251 83-38301",
+    emails: ["benedikt.berger@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38301"],
     chair:
       "Juniorprofessur f\u00fcr Wirtschaftsinformatik, insbesondere Digitale Transformation und Gesellschaft (Prof. Berger)",
-    image: "80513809"
+    image: "80513809",
+    address: "Leonardo-Campus 11"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Nils",
+    cfFamilyNames: "Veenhuis",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair:
+      "Juniorprofessur f\u00fcr Wirtschaftsinformatik, insbesondere Digitale Transformation und Gesellschaft (Prof. Berger)",
+    image: "80515210",
+    address: "Leonardo-Campus 11"
   },
   {
     academicTitle: null,
     cfFirstNames: "Valerie Li-Li",
     cfFamilyNames: "Tan",
     roomNumber: "019",
-    email: "valerie.tan@ercis.uni-muenster.de",
-    phone: "+49 251 83-38303",
+    emails: ["valerie.tan@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38303"],
     chair:
       "Juniorprofessur f\u00fcr Wirtschaftsinformatik, insbesondere Digitale Transformation und Gesellschaft (Prof. Berger)",
-    image: "81745820"
+    image: "81745820",
+    address: "Leonardo-Campus 11"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Lena",
+    cfFamilyNames: "Clever",
+    roomNumber: "324",
+    emails: ["lena.clever@wi.uni-muenster.de", "l_adam01@uni-muenster.de"],
+    phones: ["+49 251 83-38203"],
+    chair: "Institut f\u00fcr Wirtschaftsinformatik",
+    image: "56376367",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Martin",
+    cfFamilyNames: "Schmidt",
+    roomNumber: "103, Schlossplatz 3, 48143 M\u00fcnster",
+    emails: ["martin.schmidt@wiwi.uni-muenster.de"],
+    phones: ["+49 251 83-23019"],
+    chair: "Professur f\u00fcr Statistik und Optimierung (Prof. Trautmann)",
+    image: "84245991",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Dr.",
+    cfFirstNames: "Sophie",
+    cfFamilyNames: "Stockhinger",
+    roomNumber: "011",
+    emails: [
+      "sophie.stockhinger@wiwi.uni-muenster.de",
+      "Sophie.Wohlhage@wiwi.uni-muenster.de"
+    ],
+    phones: ["+49 251 83-38118", "+49 251 83-22945"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
+    image: "82277542",
+    address: "Leonardo-Campus 11"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Pascal",
+    cfFamilyNames: "B\u00fcsing",
+    roomNumber: "J380A",
+    emails: ["pascal.buesing@wiwi.uni-muenster.de"],
+    phones: ["+49 251 83-21993"],
+    chair: "Professur f\u00fcr Statistik und Optimierung (Prof. Trautmann)",
+    image: "80514798",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Dr.",
+    cfFirstNames: "Philipp",
+    cfFamilyNames: "Klein",
+    roomNumber: "J463",
+    emails: ["philipp.klein@wiwi.uni-muenster.de"],
+    phones: ["+49251 83-29948"],
+    chair:
+      "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
+    image: "56366475",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Kilian",
+    cfFamilyNames: "M\u00fcller",
+    roomNumber: "129",
+    emails: ["kilian.mueller@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38066"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "71943455",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Prof. Dr.-Ing.",
+    cfFirstNames: "Christian",
+    cfFamilyNames: "Grimme",
+    roomNumber: "301",
+    emails: ["christian.grimme@wi.uni-muenster.de", "cgrim_01@uni-muenster.de"],
+    phones: ["+49 251 83-38205"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "78214270",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Bj\u00f6rn",
+    cfFamilyNames: "Schulte genannt Tillmann",
+    roomNumber: "315",
+    emails: ["b_schu50@uni-muenster.de"],
+    phones: ["+49 251 83-25044"],
+    chair: "Professur f\u00fcr Statistik und Optimierung (Prof. Trautmann)",
+    image: "83066478",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Prof. Dr.",
+    cfFirstNames: "Heike",
+    cfFamilyNames: "Trautmann",
+    roomNumber: "309",
+    emails: ["trautmann@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38201"],
+    chair: "Professur f\u00fcr Statistik und Optimierung (Prof. Trautmann)",
+    image: "56381886",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Janina Susanne",
+    cfFamilyNames: "Pohl",
+    roomNumber: "316",
+    emails: ["janina.pohl@wi.uni-muenster.de", "j_pohl19@uni-muenster.de"],
+    phones: ["+49 251 83-38206"],
+    chair: "Professur f\u00fcr Statistik und Optimierung (Prof. Trautmann)",
+    image: "80513785",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Raphael Patrick",
+    cfFamilyNames: "Prager",
+    roomNumber: "313",
+    emails: ["raphael.prager@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38211"],
+    chair: "Professur f\u00fcr Statistik und Optimierung (Prof. Trautmann)",
+    image: "71941067",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Simon",
+    cfFamilyNames: "Markmann",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Professur f\u00fcr Statistik und Optimierung (Prof. Trautmann)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Paul",
+    cfFamilyNames: "Schmidt",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Professur f\u00fcr Statistik und Optimierung (Prof. Trautmann)",
+    image: "84059862",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Moritz Vinzent",
+    cfFamilyNames: "Seiler",
+    roomNumber: "316",
+    emails: ["moritz.seiler@uni-muenster.de"],
+    phones: ["+49 251 83-38210"],
+    chair: "Professur f\u00fcr Statistik und Optimierung (Prof. Trautmann)",
+    image: "71943141",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Michael Thomas",
+    cfFamilyNames: "Vogt",
+    roomNumber: null,
+    emails: ["mvogt1@uni-muenster.de"],
+    phones: [],
+    chair:
+      "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Christian",
+    cfFamilyNames: "L\u00fclf",
+    roomNumber: "224",
+    emails: ["christian.luelf@uni-muenster.de"],
+    phones: ["+49 251 83-38155"],
+    chair: "Professur f\u00fcr Maschinelles Lernen und Data Engineering (Prof. Gieseke)",
+    image: "80523991",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Sven",
+    cfFamilyNames: "Ligensa",
+    roomNumber: "224",
+    emails: ["sligensa@uni-muenster.de"],
+    phones: [],
+    chair: "Professur f\u00fcr Maschinelles Lernen und Data Engineering (Prof. Gieseke)",
+    image: "83525499",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Jan",
+    cfFamilyNames: "Pauls",
+    roomNumber: null,
+    emails: ["j_paul17@uni-muenster.de"],
+    phones: [],
+    chair: "Professur f\u00fcr Maschinelles Lernen und Data Engineering (Prof. Gieseke)",
+    image: "84139107",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Josef",
+    cfFamilyNames: "Ilisch",
+    roomNumber: null,
+    emails: ["j_ilis02@uni-muenster.de"],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Prof. Dr.",
+    cfFirstNames: "Dragos-Calin",
+    cfFamilyNames: "Vieru",
+    roomNumber: null,
+    emails: ["dragos.vieru@teluq.ca", "vierud@uni-muenster.de"],
+    phones: [],
+    chair: "Institut f\u00fcr Wirtschaftsinformatik",
+    image: "80524918",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Prof. Dr.",
+    cfFirstNames: "Herbert",
+    cfFamilyNames: "Kuchen",
+    roomNumber: "339",
+    emails: ["kuchen@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38251"],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: "56381740",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Matthias",
+    cfFamilyNames: "Neugebauer",
+    roomNumber: "327",
+    emails: ["matthias.neugebauer@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38268"],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: "83993303",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Nina",
+    cfFamilyNames: "Herrmann",
+    roomNumber: "329",
+    emails: ["nina.herrmann@wi.uni-muenster.de", "n_herr03@uni-muenster.de"],
+    phones: ["+49 251 83-38216"],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: "56367368",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Hanno",
+    cfFamilyNames: "Jansen",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Jonathan",
+    cfFamilyNames: "Neugebauer",
+    roomNumber: "327",
+    emails: ["jonathan.neugebauer@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38264"],
+    chair:
+      "Institut f\u00fcr Wirtschaftsinformatik - Mathematik f\u00fcr Wirtschaftswissenschaftler",
+    image: "83526315",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Simon",
+    cfFamilyNames: "Leistikow",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Frank",
+    cfFamilyNames: "Rehfeldt",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Julian",
+    cfFamilyNames: "Scheipers",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Oliver Ludger",
+    cfFamilyNames: "Preu\u00df",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Professur f\u00fcr Statistik und Optimierung (Prof. Trautmann)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Jan",
+    cfFamilyNames: "Ilisch",
+    roomNumber: null,
+    emails: ["j_ilis03@uni-muenster.de"],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Justus",
+    cfFamilyNames: "Dieckmann",
+    roomNumber: "334",
+    emails: ["justusdieckmann@wwu.de"],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Leon",
+    cfFamilyNames: "Westhof",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Anke Maria",
+    cfFamilyNames: "Makowski",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Janin",
+    cfFamilyNames: "Uedemann",
+    roomNumber: null,
+    emails: ["j_uede01@uni-muenster.de"],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Leo",
+    cfFamilyNames: "Zhang",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Rasim G\u00fcrkan",
+    cfFamilyNames: "Almaz",
+    roomNumber: null,
+    emails: ["r_alma01@uni-muenster.de"],
+    phones: [],
+    chair: "Professur f\u00fcr Maschinelles Lernen und Data Engineering (Prof. Gieseke)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Alexander Julian",
+    cfFamilyNames: "Nowakowski",
+    roomNumber: null,
+    emails: ["a_nowa11@uni-muenster.de"],
+    phones: [],
+    chair: "Professur f\u00fcr Maschinelles Lernen und Data Engineering (Prof. Gieseke)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Heinrich",
+    cfFamilyNames: "Kortsch",
+    roomNumber: null,
+    emails: ["hkortsch@uni-muenster.de"],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Neele Lara Joy",
+    cfFamilyNames: "Fraune",
+    roomNumber: null,
+    emails: ["nfraune@uni-muenster.de"],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Andre",
+    cfFamilyNames: "Evers",
+    roomNumber: null,
+    emails: ["a_ever09@uni-muenster.de"],
+    phones: [],
+    chair: "Professur f\u00fcr Maschinelles Lernen und Data Engineering (Prof. Gieseke)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Jona Phillip",
+    cfFamilyNames: "Abdinghoff",
+    roomNumber: null,
+    emails: ["j_abdi01@uni-muenster.de"],
+    phones: [],
+    chair: "Professur f\u00fcr Maschinelles Lernen und Data Engineering (Prof. Gieseke)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Matthias Sebastian",
+    cfFamilyNames: "Kollenbroich",
+    roomNumber: null,
+    emails: ["mkollenb@uni-muenster.de"],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: "84028248",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Dr.",
+    cfFirstNames: "August Erik",
+    cfFamilyNames: "Ernstsson",
+    roomNumber: "326",
+    emails: ["august.ernstsson@liu.se"],
+    phones: ["+49 251 83-38252"],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: "83987186",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Prof. Dr.",
+    cfFirstNames: "Gottfried",
+    cfFamilyNames: "Vossen",
+    roomNumber: "Dekanat: Raum 168",
+    emails: ["vossen@uni-muenster.de", "dekan@wiwi.uni-muenster.de"],
+    phones: ["+49 251 83-22911"],
+    chair: "Lehrstuhl f\u00fcr Informatik (Prof. Vossen)",
+    image: "80525450",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Holger",
+    cfFamilyNames: "Koelmann",
+    roomNumber: "119",
+    emails: [
+      "Holger.Koelmann@wiwi.uni-muenster.de",
+      "holger.koelmann@ercis.uni-muenster.de"
+    ],
+    phones: ["+49 251 83-38071", "+49 251 83-23690"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "56385792",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Laura",
+    cfFamilyNames: "Troost",
+    roomNumber: "329",
+    emails: ["laura.troost@wi.uni-muenster.de", "l_troo01@uni-muenster.de"],
+    phones: ["+49 251 83-38269"],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: "83584792",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Hendrik",
+    cfFamilyNames: "Winkelmann",
+    roomNumber: "326",
+    emails: ["hendrik.winkelmann@wi.uni-muenster.de"],
+    phones: ["+49 251 83 38214"],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: "71574431",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Dr.",
+    cfFirstNames: "Jens",
+    cfFamilyNames: "Lechtenb\u00f6rger",
+    roomNumber: "229",
+    emails: ["lechten@wi.uni-muenster.de", "jens.lechtenboerger@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38158"],
+    chair: "Professur f\u00fcr Maschinelles Lernen und Data Engineering (Prof. Gieseke)",
+    image: "80513641",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Marius",
+    cfFamilyNames: "K\u00fchnemund",
+    roomNumber: "326",
+    emails: ["marius.kuehnemund@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38252"],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: "71939563",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Maurice",
+    cfFamilyNames: "Krause",
+    roomNumber: "6",
+    emails: ["maurice.krause@uni-muenster.de"],
+    phones: ["+49 251 83-39358"],
+    chair: "Lehrstuhl f\u00fcr Informatik (Prof. Vossen)",
+    image: "71940265",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Simon",
+    cfFamilyNames: "Hartmann",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Julia",
+    cfFamilyNames: "Seither",
+    roomNumber: "234",
+    emails: ["julia.seither@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38150"],
+    chair: "Professur f\u00fcr Statistik und Optimierung (Prof. Trautmann)",
+    image: "56361217",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Simon",
+    cfFamilyNames: "Gaul",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Informatik (Prof. Vossen)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Carolin Julia",
+    cfFamilyNames: "Wortmann",
+    roomNumber: "702",
+    emails: ["carolin.wortmann@uni-muenster.de"],
+    phones: ["+49 251 83-38411"],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: "84141394",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Binh An Patrick",
+    cfFamilyNames: "Nguyen",
+    roomNumber: "120",
+    emails: ["b_nguy06@uni-muenster.de", "patrick.nguyen@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38073"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "84150934",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Dr.",
+    cfFirstNames: "Denis Mayr",
+    cfFamilyNames: "Lima Martins",
+    roomNumber: "227",
+    emails: ["denis.martins@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38157"],
+    chair: "Professur f\u00fcr Maschinelles Lernen und Data Engineering (Prof. Gieseke)",
+    image: "80514652",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Prof. Dr.",
+    cfFirstNames: "Fabian",
+    cfFamilyNames: "Gieseke",
+    roomNumber: "233",
+    emails: ["fabian.gieseke@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38151"],
+    chair: "Professur f\u00fcr Maschinelles Lernen und Data Engineering (Prof. Gieseke)",
+    image: "80513593",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Monika",
+    cfFamilyNames: "Rohe",
+    roomNumber: "134",
+    emails: ["monika.rohe@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38100"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "56396123",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Ann-Kathrin",
+    cfFamilyNames: "Meyer",
+    roomNumber: "201",
+    emails: ["ann-kathrin.meyer@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38054"],
+    chair:
+      "Professur f\u00fcr Digitale Innovation und der \u00f6ffentliche Sektor (Prof. Brandt)",
+    image: "80526319",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Prof. Dr.",
+    cfFirstNames: "Tobias",
+    cfFamilyNames: "Brandt",
+    roomNumber: "209",
+    emails: ["tobias.brandt@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38051"],
+    chair:
+      "Professur f\u00fcr Digitale Innovation und der \u00f6ffentliche Sektor (Prof. Brandt)",
+    image: "80527981",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Jonathan",
+    cfFamilyNames: "Pfaffenrot",
+    roomNumber: "202",
+    emails: ["jonathan.pfaffenrot@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38052"],
+    chair:
+      "Professur f\u00fcr Digitale Innovation und der \u00f6ffentliche Sektor (Prof. Brandt)",
+    image: "80524966",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Paul Frederic",
+    cfFamilyNames: "Sela",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair:
+      "Professur f\u00fcr Digitale Innovation und der \u00f6ffentliche Sektor (Prof. Brandt)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Niklas",
+    cfFamilyNames: "Korte",
+    roomNumber: "201",
+    emails: ["niklas.korte@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38055"],
+    chair:
+      "Professur f\u00fcr Digitale Innovation und der \u00f6ffentliche Sektor (Prof. Brandt)",
+    image: "83263141",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Shariga",
+    cfFamilyNames: "Sivanathan",
+    roomNumber: "202",
+    emails: ["shariga.sivanathan@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38053"],
+    chair:
+      "Professur f\u00fcr Digitale Innovation und der \u00f6ffentliche Sektor (Prof. Brandt)",
+    image: "80524990",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Dr.",
+    cfFirstNames: "Lea",
+    cfFamilyNames: "P\u00fcchel",
+    roomNumber: "210",
+    emails: ["lea.puechel@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38056"],
+    chair:
+      "Professur f\u00fcr Digitale Innovation und der \u00f6ffentliche Sektor (Prof. Brandt)",
+    image: "83285206",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Oguz",
+    cfFamilyNames: "Caymazer",
+    roomNumber: null,
+    emails: ["o_caym01@uni-muenster.de"],
+    phones: [],
+    chair:
+      "Professur f\u00fcr Digitale Innovation und der \u00f6ffentliche Sektor (Prof. Brandt)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Paul",
+    cfFamilyNames: "Kruse",
+    roomNumber: "122",
+    emails: ["paul.kruse@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38070"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "78220520",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Eduardo Francisco",
+    cfFamilyNames: "Israel",
+    roomNumber: "010",
+    emails: ["eduardo.israel@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38017"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "56382583",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Sebastian",
+    cfFamilyNames: "Henke",
+    roomNumber: "217",
+    emails: ["sebastian.henke@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38024"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "82860003",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Prof. Dr.-Ing.",
+    cfFirstNames: "Bernd",
+    cfFamilyNames: "Hellingrath",
+    roomNumber: "109",
+    emails: [
+      "bernd.hellingrath@ercis.uni-muenster.de",
+      "hellingrath@ercis.uni-muenster.de"
+    ],
+    phones: ["+49 251 83-38001", "+49 251-83-38001"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "80514122",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Dr.",
+    cfFirstNames: "Ann-Kristin",
+    cfFamilyNames: "Cordes",
+    roomNumber: "023",
+    emails: ["ann-kristin.cordes@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38088"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "71929905",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Dr.",
+    cfFirstNames: "Tobias",
+    cfFamilyNames: "Kreuter",
+    roomNumber: "156",
+    emails: ["tobias.kreuter@wiwi.uni-muenster.de", "tobias.kreuter@uni-muenster.de"],
+    phones: ["+49 251 83-22968", "+49 251 83-32326"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "82720081",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Dennis",
+    cfFamilyNames: "Horstkemper",
+    roomNumber: "214",
+    emails: ["dennis.horstkemper@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38021"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "80513977",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Luis Filipe",
+    cfFamilyNames: "de Araujo Pessoa",
+    roomNumber: null,
+    emails: ["filipe.pessoa@ercis.uni-muenster.de"],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "56405506",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Dr.",
+    cfFirstNames: "Jan",
+    cfFamilyNames: "Wessel",
+    roomNumber: "19",
+    emails: ["jan.wessel@wiwi.uni-muenster.de"],
+    phones: ["+49 251 83-22997"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "80526004",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Benedikt",
+    cfFamilyNames: "Hoffmeister",
+    roomNumber: "122",
+    emails: ["benedikt.hoffmeister@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38076"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "84439857",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Carmen",
+    cfFamilyNames: "Sicking",
+    roomNumber: "110",
+    emails: ["carmen.sicking@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38000"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "84004642",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Johannes",
+    cfFamilyNames: "Ponge",
+    roomNumber: "214",
+    emails: ["johannes.ponge@ercis.uni-muenster.de", "jponge@uni-muenster.de"],
+    phones: ["+49 251 83-38013"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "56360034",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Dr.",
+    cfFirstNames: "Adam",
+    cfFamilyNames: "Widera",
+    roomNumber: "101",
+    emails: ["adam.widera@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38011"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "71939918",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Michael",
+    cfFamilyNames: "Middelhoff",
+    roomNumber: "214",
+    emails: ["michael.middelhoff@ercis.uni-muenster.de", "mmidd_01@uni-muenster.de"],
+    phones: ["+49 251 83-38020"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Interorganisationssysteme (Prof. Klein)",
+    image: "78218770",
+    address: "Leonardo-Campus 11"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Christian",
+    cfFamilyNames: "Kalla",
+    roomNumber: "008",
+    emails: ["christian.kalla@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38002"],
+    chair:
+      "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Informationsmanagement (Prof. Becker)",
+    image: "56356245",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Niclas",
+    cfFamilyNames: "Rotering",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "71943335",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Till",
+    cfFamilyNames: "Sahlm\u00fcller",
+    roomNumber: "217",
+    emails: ["till.sahlmueller@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38022"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "56354305",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Kevin",
+    cfFamilyNames: "Wesendrup",
+    roomNumber: "117",
+    emails: ["kevin.wesendrup@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38014"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "80512872",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Frauke",
+    cfFamilyNames: "Hellweg",
+    roomNumber: "113",
+    emails: ["frauke.hellweg@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38018"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "71943527",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Lucas",
+    cfFamilyNames: "Stampe",
+    roomNumber: "301",
+    emails: ["lucas.stampe@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38204"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "80512944",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Edona",
+    cfFamilyNames: "Selimaj",
+    roomNumber: null,
+    emails: ["edona.selimaj@wiwi.uni-muenster.de"],
+    phones: ["+49 251 83-22057"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "82866718",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Michael",
+    cfFamilyNames: "Sch\u00fcngel",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "71575085",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Zoi",
+    cfFamilyNames: "Nikolarakis",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "78218370",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Lukas",
+    cfFamilyNames: "Schramm",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "80510826",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Janik",
+    cfFamilyNames: "Suer",
+    roomNumber: "113",
+    emails: ["Janik.Suer@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38006"],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "83282402",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Mich\u00e8le Priyanud",
+    cfFamilyNames: "Buranasujja",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "83212012",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Sophie Charlotte",
+    cfFamilyNames: "Dingenotto",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "83212049",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Esther",
+    cfFamilyNames: "Br\u00fcning",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: null,
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Maya",
+    cfFamilyNames: "Semsch",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "83211970",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Sarah Louise",
+    cfFamilyNames: "Mayers",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "83871972",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Enno Jos Georg",
+    cfFamilyNames: "Knollmeyer",
+    roomNumber: null,
+    emails: [],
+    phones: [],
+    chair: "Lehrstuhl f\u00fcr Wirtschaftsinformatik und Logistik (Prof. Hellingrath)",
+    image: "84083421",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Anja",
+    cfFamilyNames: "Ebbigmann",
+    roomNumber: "340",
+    emails: ["anja.ebbigmann@wi.uni-muenster.de"],
+    phones: ["+49 251 83-38250"],
+    chair: "Lehrstuhl f\u00fcr Praktische Informatik in der Wirtschaft (Prof. Kuchen)",
+    image: "56385115",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: "Prof. Dr.-Ing.",
+    cfFirstNames: "Thomas",
+    cfFamilyNames: "Hupperich",
+    roomNumber: "328",
+    emails: ["hupperich@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38230"],
+    chair: "Juniorprofessur f\u00fcr IT-Sicherheit (Prof. Hupperich)",
+    image: "82754850",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Henry Simon",
+    cfFamilyNames: "Hosseini",
+    roomNumber: "325",
+    emails: ["henry.hosseini@ercis.uni-muenster.de"],
+    phones: ["+49 251 83-38231"],
+    chair: "Juniorprofessur f\u00fcr IT-Sicherheit (Prof. Hupperich)",
+    image: "56357518",
+    address: "Leonardo-Campus 3"
+  },
+  {
+    academicTitle: null,
+    cfFirstNames: "Lukas",
+    cfFamilyNames: "Schmidt",
+    roomNumber: "334",
+    emails: ["lukas.schmidt@wi.uni-muenster.de"],
+    phones: [],
+    chair: "Juniorprofessur f\u00fcr IT-Sicherheit (Prof. Hupperich)",
+    image: "82864950",
+    address: "Leonardo-Campus 3"
   }
 ];
-
-export const sampleEmployees = data.filter((person, i, data) => {
-  return (
-    i ===
-    data.findIndex(
-      (e) => e.email === person.email && e.cfFamilyNames === person.cfFamilyNames
-    )
-  );
-});

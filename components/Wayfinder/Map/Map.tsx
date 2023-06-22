@@ -12,14 +12,11 @@ import { useMapContext } from "context/MapContext";
 
 // IMPORTS - UTIL_FUNCTIONS
 import {
-  getFloor,
   highlightFloor,
   setRoomHighlight,
-  mapTransitionConfig,
-  moveBuilding,
-  roomInBuilding,
-  animate_to
-} from "utils/mapTransformations";
+  moveBuilding
+} from "utils/Wayfinder/mapTransformations";
+import { animate_to, mapTransitionConfig } from "utils/constants";
 
 // IMPORTS - ASSETS
 // SVG
@@ -29,9 +26,10 @@ import {
   Leo3_Floor1,
   Leo3_Floor2,
   Leo3_Floor3
-} from "assets/images/map/floors_transformed_new";
+} from "assets/images/map/floors_transformed";
 // CSS
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
+import { roomInBuilding, getFloor } from "utils/Wayfinder/mapValidations";
 
 export function CampusMap() {
   const { t } = useTranslation("index");
@@ -68,27 +66,20 @@ export function CampusMap() {
   // This effect is triggered whenever mapContext.current_room changes. It manages highlighting the new room and making necessary adjustments.
   useEffect(() => {
     const { current_room: contextRoom, current_building: contextBuilding } = mapContext;
+    console.log(`New selection: ${contextRoom} in ${contextBuilding}`);
 
-    // No person selected -> No room to highlight
-    if (!contextRoom) {
-      // If there was a room highlighted -> Remove highlighting, Update state and return
-      if (current_room) setRoomHighlight(current_room, "leo3", false);
-      setRoom(undefined);
-      return;
+    // Remove old highlight
+    if (typeof current_room !== "undefined")
+      setRoomHighlight(current_room, current_building, false);
+
+    // update internal states
+    setRoom(contextRoom);
+    if (typeof contextBuilding !== "undefined") setBuilding(contextBuilding);
+
+    // Set new highlight
+    if (typeof contextRoom !== "undefined" && typeof contextBuilding !== "undefined") {
+      manageNewHighlight(contextRoom, contextBuilding);
     }
-
-    // New person was selected
-    // Remove highlighting on old room
-    if (current_room) {
-      setRoomHighlight(current_room, "leo3", false);
-    }
-
-    // If no context building -> Can't transition to anything
-    if (!contextBuilding) return;
-
-    // Highlight the new room
-    manageNewHighlight(contextRoom, contextBuilding);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mapContext.current_room, mapContext.current_building]);
 
   /**
@@ -100,7 +91,7 @@ export function CampusMap() {
    */
   const manageNewHighlight = useCallback(
     (room: string, b: CampusBuilding) => {
-      const already_in_correct_building = roomInBuilding(room, current_building);
+      const already_in_correct_building = roomInBuilding(b, current_building);
       const wait_for_building_switch = already_in_correct_building
         ? 0
         : mapTransitionConfig.animationDuration * 2;
@@ -135,7 +126,7 @@ export function CampusMap() {
         }
 
         setTimeout(() => {
-          setRoomHighlight(room, "leo3", true);
+          setRoomHighlight(room, b, true);
           setRoom(room);
         }, wait_for_floor_switch);
       }, wait_for_building_switch);
@@ -152,31 +143,26 @@ export function CampusMap() {
       </div>
       <div className={styles.floorWrapper}>
         <Leo3_Floor0
-          //@ts-ignore
           className={styles.floor}
           id={"map-leo3-floor0"}
           ref={leo3_elements[0]}
         />
         <Leo3_Floor1
-          //@ts-ignore
           className={styles.floor}
           id={"map-leo3-floor1"}
           ref={leo3_elements[1]}
         />
         <Leo3_Floor2
-          //@ts-ignore
           className={styles.floor}
           id={"map-leo3-floor2"}
           ref={leo3_elements[2]}
         />
         <Leo3_Floor3
-          //@ts-ignore
           className={styles.floor}
           id={"map-leo3-floor3"}
           ref={leo3_elements[3]}
         />
         <Leo11_Floor0
-          //@ts-ignore
           className={styles.floor}
           id={"map-leo11-floor0"}
           ref={leo11_elements[0]}

@@ -418,7 +418,7 @@ const SvgLeo11Floor0 = React.forwardRef<SVGSVGElement>(
         }}
       />
       <path
-        id="leo11-019b"
+        id="leo11-019"
         d="M524.526,151.556L503.285,126.583L491.039,135.386L496.205,141.414L489.221,146.389L505.295,165.142L524.526,151.556Z"
         style={{
           fill: "#435c8b"
@@ -466,7 +466,7 @@ const SvgLeo11Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
-        id="leo11-019a"
+        id="leo11-019"
         d="M489.221,146.389L483.767,150.312L478.505,144.188L465.684,153.373L486.924,178.25L505.295,165.142L489.221,146.389Z"
         style={{
           fill: "#435c8b"

@@ -11,11 +11,11 @@ import styles_wayfinder from "@/components/Wayfinder/Wayfinder.module.scss";
 import { useTranslation } from "next-i18next";
 import { SearchBar } from "./SearchBar/SearchBar";
 import PersonResult from "./PersonResult/PersonResult";
-import { CampusMap } from "./Map/CampusMap";
+import { CampusMap } from "./Map/Map";
 
 // IMPORTS - CONTEXT
 import { usePersonSearchContext } from "context/PersonContext";
-import { expand, collapse } from "utils/personCardsTransformations";
+import { expand, collapse } from "utils/Wayfinder/personCardsTransformations";
 import Fuse from "fuse.js";
 import { useSearchInputContext } from "context/SearchInputContext";
 import { WAYFINDER_CARD_ANIMATION_DURATION } from "utils/constants";

@@ -2,80 +2,11 @@
 import { RefObject } from "react";
 import { BuildingFloor, CampusBuilding } from "types/Campus";
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
-
-/**
- * Configuration for map transitions
- */
-export const mapTransitionConfig = {
-  animationDuration: 750,
-  map_x_offset: 5,
-  map_y_offset: 15,
-  focus_scaling: 1.1,
-  not_in_focus_opacity: 0.6,
-  map_focus_shadow:
-    "drop-shadow(4px 4px 6px rgba(50, 50, 93, 0.20)) drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.15))"
-};
-
-
-
-export function validateRoomNumber(room: string | number) {
-  const roomStr = room.toString();
-
-  const validRoomNumber = roomStr.match(/^\d{3}$/);
-  if (validRoomNumber) return validRoomNumber[0];
-
-  const sequenceOfThreeDigits = roomStr.match(/(?<!\d)\d{3}(?!\d)/);
-  if (sequenceOfThreeDigits) return sequenceOfThreeDigits[0];
-
-  return "";
-}
-
-/**
- * Get the floor level of a room as BuildingFloor value
- * @param room Number of the room
- * @returns Floor level as BuildingFloor value
- */
-export function getFloor(room: string | number): BuildingFloor {
-  const n = typeof room === "number" ? room : parseInt(room);
-
-  if (n < 100) return "floor0";
-  if (n < 200) return "floor1";
-  if (n < 300) return "floor2";
-  if (n < 400) return "floor3";
-  // base case
-  return "floor0";
-}
-
-/**
- * Get the floor level of a room as a number
- * @param room Number of the room
- * @returns Floor level as a number
- */
-export function getFloorNumber(room: string | number): number {
-  const floorString = getFloor(room);
-  const n_string = floorString.charAt(5);
-  const n = parseInt(n_string);
-
-  return n;
-}
-
-/**
- * Check if a room is in the current building
- * CURRENTLY ONLY CONFIGURED TO WORK FOR THE TEST-DATA
- * @param room Room number
- * @param current_building Current building
- * @returns Boolean indicating if the room is in the current building
- */
-export function roomInBuilding(room: string, current_building: CampusBuilding): boolean {
-  if (current_building === "leo11") return false;
-  return true;
-}
-
-export type out_of_frame_direction = "left" | "right";
-export enum animate_to {
-  LEO11 = "right",
-  LEO3 = "left"
-}
+import { mapTransitionConfig, out_of_frame_direction } from "utils/constants";
+import { Employee } from "types/Employee";
+import { getAddressID, validateRoomNumber } from "./mapValidations";
+import { MapData } from "context/MapContext";
+import { PersonData } from "context/PersonContext";
 
 /**
  * Move the building from old floors to new floors
@@ -205,10 +136,12 @@ function applyHighlightOnFloor(element: SVGSVGElement) {
 function removeHighlightFromFloor(element: SVGSVGElement, offset: number) {
   // Layer is 'under' new layer, push down
   if (offset < 0) {
-    element.style.transform = `translateX(${offset * mapTransitionConfig.map_x_offset
-      }%) translateY(${-offset * mapTransitionConfig.map_y_offset}%)`;
-    element.style.opacity = `${mapTransitionConfig.not_in_focus_opacity / Math.abs(offset * 2)
-      }`;
+    element.style.transform = `translateX(${
+      offset * mapTransitionConfig.map_x_offset
+    }%) translateY(${-offset * mapTransitionConfig.map_y_offset}%)`;
+    element.style.opacity = `${
+      mapTransitionConfig.not_in_focus_opacity / Math.abs(offset * 2)
+    }`;
     element.style.zIndex = "4";
   }
   // Layer is 'over' new layer, push up
@@ -217,4 +150,34 @@ function removeHighlightFromFloor(element: SVGSVGElement, offset: number) {
     element.style.opacity = `${mapTransitionConfig.not_in_focus_opacity}`;
     element.style.zIndex = "6";
   }
+}
+
+export function handleClickOnPerson(
+  person: Employee,
+  mapContext: MapData,
+  selectedPersonContext: PersonData
+) {
+  const previous_selection = {
+    person: selectedPersonContext.current_person,
+    building: mapContext.current_building,
+    room: mapContext.current_room
+  };
+
+  const clicked = {
+    person: person,
+    building: person.address ? getAddressID(person.address) : undefined,
+    room: person.roomNumber ? validateRoomNumber(person.roomNumber) : undefined
+  };
+
+  // Same person clicked -> remove from context
+  if (previous_selection.person === clicked.person) {
+    selectedPersonContext.setPerson(undefined);
+    mapContext.setBuilding(undefined);
+    mapContext.setRoom(undefined);
+    return;
+  }
+  // Other Person selected -> set context value
+  selectedPersonContext.setPerson(clicked.person)
+  mapContext.setBuilding(clicked.building)
+  mapContext.setRoom(clicked.room)
 }

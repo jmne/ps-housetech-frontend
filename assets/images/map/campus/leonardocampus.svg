@@ -26,10 +26,10 @@
         <g id="shape32-15" transform="matrix(1,0,0,1,303.632,-155.806)">
             <path id="path45" d="M0,1090.94L1.42,1105.11L152.21,1114.04L106.41,1065.06L88.02,1068.26L73.629,1066.65L63.23,1058.67L50.33,1036.83L0,1090.94Z" style="fill:rgb(157,187,97);fill-rule:nonzero;"/>
         </g>
-        <g id="shape299-17" transform="matrix(1,0,0,1,18.75,-688.486)">
+        <g id="campus-street-JohannKraneWeg" transform="matrix(1,0,0,1,18.75,-688.486)">
             <path id="path52" d="M344.81,937.521L175.75,1080.5L39.84,1114.04L0,1114.04L0,1096.37L46.81,1096.62L171.78,1065.19L335.62,926.291L419.33,837.461L429.24,847.031L344.81,937.521Z" style="fill:white;fill-rule:nonzero;stroke:rgb(89,89,89);stroke-width:0.75px;"/>
             <g id="text54" transform="matrix(0.7547,-0.6561,0.6561,0.7547,240.6,1021.58)">
-                <text x="0px" y="0px" style="font-family:'Helvetica';font-size:12px;">Johann-Krane-Weg</text>
+                <text x="0px" y="0px" style="font-family:'Helvetica';font-size:12px;">Johann-Krane-W<tspan x="90.499px 97.173px " y="0px 0px ">eg</tspan></text>
             </g>
         </g>
         <g id="shape14-20" transform="matrix(1,0,0,1,247.896,-822.235)">
@@ -532,9 +532,6 @@
         <g id="shape1576-355" transform="matrix(1,0,0,1,303.487,-112.526)">
             <path id="path892" d="M5.08,1110.94L5.08,1111.38L0.94,1111.38C0.98,1112 1.161,1112.47 1.501,1112.79C1.831,1113.11 2.301,1113.27 2.891,1113.27C3.231,1113.27 3.571,1113.23 3.891,1113.15C4.221,1113.07 4.551,1112.94 4.861,1112.77L4.861,1113.62C4.542,1113.75 4.201,1113.86 3.861,1113.93C3.521,1114 3.191,1114.04 2.841,1114.04C1.971,1114.04 1.271,1113.79 0.771,1113.29C0.251,1112.78 0.001,1112.08 0.001,1111.21C0.001,1110.32 0.24,1109.61 0.721,1109.08C1.211,1108.57 1.861,1108.3 2.691,1108.3C3.431,1108.3 4.011,1108.54 4.441,1109.01C4.86,1109.48 5.08,1110.12 5.08,1110.94ZM4.17,1110.68C4.17,1110.19 4.04,1109.8 3.77,1109.51C3.49,1109.21 3.14,1109.05 2.7,1109.05C2.19,1109.05 1.791,1109.2 1.48,1109.49C1.19,1109.77 1.02,1110.17 0.97,1110.68L4.17,1110.68L4.17,1110.68Z" style="fill:rgb(0,0,51);fill-rule:nonzero;"/>
         </g>
-        <g id="Leo-3" transform="matrix(1,0,0,1,459.19,-755.487)">
-            <path id="path897" d="M50.69,1044.84L37.59,1032.94L24.569,1047.24L0,1024.88L41.859,978.881L68.149,1002.81L64.819,1006.49L110.63,1048.19L114.659,1043.76L140.8,1067.53L98.48,1114.04L77.72,1095.16L89.47,1082.23L73.01,1067.29L61.27,1080.18L37.87,1058.91L50.69,1044.84Z" style="fill:rgb(133,35,57);fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
-        </g>
         <g id="shape360-359" transform="matrix(1,0,0,1,761.299,-491.71)">
             <path id="path902" d="M42.39,1100.17L29.61,1114.04L0,1086.73L12.021,1073.69L18.321,1079.5L41.901,1053.92L30.461,1043.37L45.482,1027.12L78.732,1057.77L61.412,1076.55L54.102,1069.8L33.572,1092.04L42.39,1100.17Z" style="fill:rgb(165,165,165);fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
         </g>
@@ -564,9 +561,6 @@
         </g>
         <g id="shape372-377" transform="matrix(1,0,0,1,131.506,-400.218)">
             <path id="path947" d="M180.9,1114.04L127.18,1062.71L116.05,1074.33L110.34,1068.85L121.5,1057.25L59.62,998.17L49.15,1008.92L44.88,1004.78L55.37,994.041L0,941.161L39.06,944.421L197.94,1096.23L180.9,1114.04Z" style="fill:rgb(165,165,165);fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
-        </g>
-        <g id="Leo-13" transform="matrix(1,0,0,1,131.506,-569.831)">
-            <path id="path952" d="M0,1110.77L66.57,1041.3L88.2,1062.1L39.06,1114.04L0,1110.77Z" style="fill:rgb(133,35,57);fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
         </g>
         <g id="shape374-381" transform="matrix(1,0,0,1,198.077,-621.765)">
             <path id="path957" d="M0,1093.23L21.63,1114.04L46.35,1088.88L25,1067.21L0,1093.23Z" style="fill:rgb(165,165,165);fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
@@ -619,9 +613,6 @@
         <g id="shape103-415" transform="matrix(1,0,0,1,549.877,-772.374)">
             <path id="path1037" d="M77.28,1020.81L0,946.711L25.58,920.041L102.84,994.141L86.55,1011.15L131.38,1055.22L145.29,1042.18L118.39,1017.28L128.981,1007L171.331,1047.9L146.971,1070.57L172.692,1095.84L153.662,1114.04L67.172,1030.64L77.28,1020.81Z" style="fill:rgb(216,216,216);fill-rule:nonzero;stroke:rgb(191,191,191);stroke-width:0.75px;"/>
         </g>
-        <g id="shape8-417" transform="matrix(1,0,0,1,695.639,-102.612)">
-            <path id="Leo-11" d="M0,1093.56L14.601,1065.15L31.361,1032.55L68.341,960.621L108.181,981.092L39.83,1114.04L0,1093.56Z" style="fill:rgb(133,35,57);fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
-        </g>
         <g id="group19-419" transform="matrix(1,0,0,1,94.435,-94.7566)">
             <g id="shape387-420" transform="matrix(1,0,0,1,278.981,-404.55)">
                 <path id="path1050" d="M0,1071.42L42.62,1114.04L76.8,1079.71L115.151,1112.61" style="fill:none;fill-rule:nonzero;stroke:rgb(38,38,38);stroke-width:1.5px;stroke-dasharray:10.5,7.5;"/>
@@ -668,14 +659,8 @@
             <path id="path1116" d="M87.92,983.261L88.869,984.191L108.71,1004.03L108.71,1004.04L87.35,1027.8L107.65,1046.04L117.13,1035.47L139.989,1056.01L134.33,1062.31L150.319,1076.67L155.42,1071L175.6,1089.12L167.789,1097.81L185.869,1114.04L222.55,1073.25L201.739,1054.54L196.01,1060.93L139.08,1009.77L145.67,1002.44L126.01,984.77L112.289,1000.04L93.63,981.481L91.63,979.241L105.069,964.691L81.259,942.711L78.099,946.151L51.619,921.701L55.25,917.801L35.609,899.711L0,938.301L14.739,952.431L25.63,941.011L37.63,951.881L27.13,962.381L44.98,979.801L54.38,969.601L67.59,981.781L56.94,993.341L68.66,1004.12L87.92,983.261Z" style="fill:rgb(165,165,165);fill-rule:nonzero;"/>
             <path id="path1118" d="M87.92,983.261L88.869,984.191L108.71,1004.03L108.71,1004.04L87.35,1027.8L107.65,1046.04L117.13,1035.47L139.989,1056.01L134.33,1062.31L150.319,1076.67L155.42,1071L175.6,1089.12L167.789,1097.81L185.869,1114.04L222.55,1073.25L201.739,1054.54L196.01,1060.93L139.08,1009.77L145.67,1002.44L126.01,984.77L112.289,1000.04L93.63,981.481L91.63,979.241L105.069,964.691L81.259,942.711L78.099,946.151L51.619,921.701L55.25,917.801L35.609,899.711L0,938.301L14.739,952.431L25.63,941.011L37.63,951.881L27.13,962.381L44.98,979.801L54.38,969.601L67.59,981.781L56.94,993.341L68.66,1004.12L87.92,983.261" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
         </g>
-        <g id="shape23-461" transform="matrix(1,0,0,1,425.901,-863.515)">
-            <path id="path1123" d="M0,1092.42L36.05,1052.28L60.119,1073.86L39.96,1096.71L24.06,1114.04L0,1092.42Z" style="fill:rgb(133,35,57);fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
-        </g>
         <g id="shape24-463" transform="matrix(-0.707107,0.707107,-0.707107,-0.707107,1407.91,1373.7)">
             <path id="path1128" d="M0.001,1114.04L27.651,1114.04" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
-        </g>
-        <g id="Leo-1" transform="matrix(1,0,0,1,531.999,-496.886)">
-            <path id="path1133" d="M68.62,1102.4L55.24,1089.39L30.84,1114.04L0,1085.4L60.57,1019.46L90.67,1048.1L72.9,1068.19L88.17,1082.85L68.62,1102.4Z" style="fill:rgb(133,35,57);fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
         </g>
         <g id="shape28-468" transform="matrix(1,0,0,1,79.6949,-19.0335)">
             <path id="path1138" d="M352.39,875.9L427.52,945.3L397.7,978.54L225.35,968.341L223.94,954.161L280.63,893.22L303.31,904.56L326.55,904.56L348.55,879.8L352.39,875.9ZM142.95,883.23L99.21,841.351L162,771.041L92.78,708.602L88.16,713.221L153.41,773.082L92.13,841.352L140.31,890.102L215.43,952.461L217.42,954.451L218.74,968.271L90.71,966.921L53.01,972.591L32.6,1000.94L10.72,1046.39L0,1107.23L6.52,1108.65L16.22,1050.32L114.8,1056.78L146.55,1056.78L146.55,1049.98L114.8,1049.98L18.16,1044.27L37.42,1004.34L56.41,977.98L90.43,972.871L223.94,974.861L399.69,985.351L433.51,948.281L467.72,958.422L669.51,1062.35L670.619,1060.33L646.019,1107.23L659.059,1114.04L724.249,985.351L712.908,979.681L672.738,1056.28L596.688,1017.66L706.678,793.162L708.657,777.002L699.307,750.07L681.727,730.23L657.767,689.271L667.557,671.271L677.477,642.351L676.057,626.761L668.977,611.74L665.367,607.361L706.888,563.501L703.958,560.57L686.008,579.591L571.72,474.801L623.54,423.721L909.92,699.9L930.569,679.252L324.569,93.851L300.469,112.161L619.319,419.651L567.449,470.881L369.6,286.631L402.91,251.721L398.27,246.921L344.13,303.481L325.98,286.611L300.15,250.611L295.74,255.331L320.03,290.861L339.001,308.461L315.03,331.711L304.72,321.471L277.8,317.791L254.55,327.141L171.65,412.671L147.52,383.381L141.03,388.871L165.72,418.781L136.96,448.451L100.06,451.86L45.07,505.161L44.5,543.14L41.1,557.31L45.34,579.931L54.43,600.681L346.68,870.63L346.71,870.65L346.68,870.63L344.26,873.581L324.57,897.47L303.31,897.47L282.05,886.13L206.65,815.271L146.79,879.4L142.95,883.23ZM439.25,941.99L627.87,726.261L653.45,695.7L676.06,734.479L693.64,753.75L702.43,777L700.159,791.17L590.42,1014.43L470.55,952.75L439.03,942.24L439.25,941.99ZM643.17,590.662L663.31,614.861L669.54,627.611L671.239,641.502L661.889,667.861L659.629,672.15L519.02,526.74L545.81,500.331L643.17,590.662ZM662.77,604.211L647.72,585.941L550.619,495.601L568.38,478.091L683.18,582.582L662.77,604.211ZM514.9,522.801L320.1,336.281L343.98,313.081L541.6,496.421L514.9,522.801ZM349.1,308.111L366.98,289.371L564.1,474.201L546.4,491.68L349.1,308.111ZM48.47,539.74L48.47,507.711L102.59,455.53L133.17,452.36L48.47,539.74ZM432.33,939.931L59.81,597.002L51.19,577.141L47.45,556.521L52.3,544.671L257.949,332.811L279.21,323.741L301.319,327.711L315.17,341.081L510.92,526.731L456.01,580.971L407.15,630.512L410.94,634.541L460.26,584.65L515.06,530.65L657.45,676.28L652.07,686.469L432.33,939.931ZM150.77,884.502L206.93,823.772L275.53,889.821L219.69,948.491L147.82,887.692L150.77,884.502Z" style="fill:white;fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
@@ -703,6 +688,109 @@
             <g id="text1174" transform="matrix(0.4695,-0.8829,0.8829,0.4695,27.0663,1078.43)">
                 <text x="0px" y="0px" style="font-family:'Helvetica';font-size:12px;">Philippistraße</text>
             </g>
+        </g>
+        <g id="campus-leo18-tag">
+            <g id="shape1577-482" transform="matrix(1,0,0,1,0,-743.528)">
+                <rect id="rect1181" x="0" y="1063.01" width="184.252" height="51.024" style="fill:rgb(133,35,57);stroke:black;stroke-width:0.75px;"/>
+                <g id="text1183" transform="matrix(1,0,0,1,8.2299,1084.33)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:18px;fill:white;">Leonardo-Campus 18</text>
+                </g>
+                <g id="text1185" transform="matrix(1,0,0,1,32.4399,1104.14)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:16px;fill:white;">Hörsaal Leo</text>
+                </g>
+                <g id="text1187" transform="matrix(1,0,0,1,120.775,1104.14)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:16px;fill:white;">18</text>
+                </g>
+                <g id="text1189" transform="matrix(1,0,0,1,137.557,1104.14)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:16px;fill:white;">.</text>
+                </g>
+                <g id="text1191" transform="matrix(1,0,0,1,143.432,1104.14)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:16px;fill:white;">3</text>
+                </g>
+            </g>
+            <g id="shape1578-489" transform="matrix(0.522232,0.852803,-0.852803,0.522232,1035.09,-211.277)">
+                <path id="path1196" d="M0.001,1114.04L156.621,1114.04" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
+            </g>
+        </g>
+        <g id="campus-leo18" transform="matrix(1,0,0,1,131.506,-569.831)">
+            <path id="path952" d="M0,1110.77L66.57,1041.3L88.2,1062.1L39.06,1114.04L0,1110.77Z" style="fill:rgb(133,35,57);fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
+        </g>
+        <g id="campus-leo11-tag">
+            <g id="shape1582-511" transform="matrix(1,0,0,1,813.543,-67.4087)">
+                <rect id="rect1246" x="0" y="1071.52" width="178.583" height="42.52" style="fill:rgb(133,35,57);stroke:black;stroke-width:0.75px;"/>
+                <g id="text1248" transform="matrix(1,0,0,1,5.3994,1098.18)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:18px;fill:white;">Leonardo-Campus 11</text>
+                </g>
+            </g>
+            <g id="shape1583-514" transform="matrix(0.531372,0.847139,-0.847139,0.531372,1710.46,358.683)">
+                <path id="path1253" d="M0.001,1114.04L88.14,1114.04" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
+            </g>
+        </g>
+        <g id="campus-leo11" transform="matrix(1,0,0,1,695.639,-102.612)">
+            <path id="path1042" d="M0,1093.56L14.601,1065.15L31.361,1032.55L68.341,960.621L108.181,981.092L39.83,1114.04L0,1093.56Z" style="fill:rgb(133,35,57);fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
+        </g>
+        <g id="campus-leo10-tag">
+            <g id="shape1585-520" transform="matrix(1,0,0,1,827.717,-706.677)">
+                <rect id="rect1265" x="0" y="1071.52" width="184.252" height="42.52" style="fill:rgb(133,35,57);stroke:black;stroke-width:0.75px;"/>
+                <g id="text1267" transform="matrix(1,0,0,1,17.5495,1087.98)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:16px;fill:white;">Leonardo-Campus 10</text>
+                </g>
+                <g id="text1269" transform="matrix(1,0,0,1,6.2702,1107.18)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:16px;fill:white;">Hörsäle Leo</text>
+                </g>
+                <g id="text1271" transform="matrix(1,0,0,1,94.9265,1107.18)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:16px;fill:white;">1 und Leo 2</text>
+                </g>
+            </g>
+            <g id="shape1586-524" transform="matrix(0.817294,-0.576221,0.576221,0.817294,-32.5218,-371.899)">
+                <path id="path1276" d="M0,1114.04L267.109,1114.04" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
+            </g>
+        </g>
+        <g id="campus-leo10" transform="matrix(1,0,0,1,531.999,-496.886)">
+            <path id="path1133" d="M68.62,1102.4L55.24,1089.39L30.84,1114.04L0,1085.4L60.57,1019.46L90.67,1048.1L72.9,1068.19L88.17,1082.85L68.62,1102.4Z" style="fill:rgb(133,35,57);fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
+        </g>
+        <g id="campus-leo3-tag">
+            <g id="shape1581-508" transform="matrix(1,0,0,1,694.488,-876.756)">
+                <rect id="rect1237" x="0" y="1071.52" width="170.079" height="42.52" style="fill:rgb(133,35,57);stroke:black;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;"/>
+                <g id="text1239" transform="matrix(1,0,0,1,4.19175,1090.17)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:18px;fill:white;">Leonardo-Campus 3</text>
+                </g>
+                <g id="text1239-9" transform="matrix(1,0,0,1,3.17265,1108.87)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:16.25px;fill:white;">WWU Centrum Europa</text>
+                </g>
+            </g>
+            <g id="shape1584-517" transform="matrix(0.938448,-0.345421,0.345421,0.938448,159.807,-775.698)">
+                <path id="path1258" d="M0,1114.04L159.7,1114.04" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
+            </g>
+        </g>
+        <g id="campus-leo3" transform="matrix(1,0,0,1,459.19,-755.487)">
+            <path id="path897" d="M50.69,1044.84L37.59,1032.94L24.569,1047.24L0,1024.88L41.859,978.881L68.149,1002.81L64.819,1006.49L110.63,1048.19L114.659,1043.76L140.8,1067.53L98.48,1114.04L77.72,1095.16L89.47,1082.23L73.01,1067.29L61.27,1080.18L37.87,1058.91L50.69,1044.84Z" style="fill:rgb(133,35,57);fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
+        </g>
+        <g id="campus-leo1-tag">
+            <g id="shape1579-492" transform="matrix(1,0,0,1,204.094,-1018.49)">
+                <rect id="rect1203" x="0" y="1029" width="170.079" height="85.04" style="fill:rgb(133,35,57);stroke:black;stroke-width:0.75px;"/>
+                <g id="text1205" transform="matrix(1,0,0,1,5.86,1048.12)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:18px;fill:white;">Leonardo-Campus 1</text>
+                </g>
+                <g id="text1207" transform="matrix(1,0,0,1,9.0397,1067.93)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:16px;fill:white;">Brasilien-Zentrum</text>
+                </g>
+                <g id="text1215" transform="matrix(1,0,0,1,62.9299,1087.13)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:16px;fill:white;">WI</text>
+                </g>
+                <g id="text1217" transform="matrix(1,0,0,1,81.0158,1087.13)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:16px;fill:white;">-</text>
+                </g>
+                <g id="text1219" transform="matrix(1,0,0,1,86.8908,1087.13)">
+                    <text x="0px" y="0px" style="font-family:'TrebuchetMS', 'Trebuchet MS', sans-serif;font-size:16px;fill:white;">AG</text>
+                </g>
+            </g>
+            <g id="shape1580-505" transform="matrix(0.670498,0.741911,-0.741911,0.670498,1166.68,-651.41)">
+                <path id="path1230" d="M0.001,1114.04L153.73,1114.04" style="fill:none;fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
+            </g>
+        </g>
+        <g id="campus-leo1" transform="matrix(1,0,0,1,425.901,-863.515)">
+            <path id="path1123" d="M0,1092.42L36.05,1052.28L60.119,1073.86L39.96,1096.71L24.06,1114.04L0,1092.42Z" style="fill:rgb(133,35,57);fill-rule:nonzero;stroke:black;stroke-width:0.75px;"/>
         </g>
     </g>
 </svg>
