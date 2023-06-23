@@ -1,13 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import styles from "./Map.module.scss";
 import { Leo11_Floor0 } from "assets/images/map/floors_transformed";
 import { useMapContext } from "context/MapContext";
-import {
-  minimizeBuilding,
-  maximizeCampus,
-  maximizeBuilding,
-  minimizeCampus
-} from "utils/Wayfinder/mapTransformations";
+import { minimizeBuilding, maximizeBuilding } from "utils/Wayfinder/mapTransformations";
 import { mapTransitionConfig } from "utils/constants";
 
 export function MapLeo11() {
@@ -54,13 +49,12 @@ export function MapLeo11() {
       );
     }
   }, [
-    mapContext.current,
+    mapContext,
     mapContext.leo11_building_on_campus,
     mapContext.leo11_building,
     mapContext.leo11_elements,
     mapContext.mapContainer,
     mapContext.campus_element,
-    mapContext.current
   ]);
 
   return (

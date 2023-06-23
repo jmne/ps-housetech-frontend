@@ -14,7 +14,10 @@ export function MapLeonardoCampus() {
     if (!campus) return;
 
     if (mapContext.current.area === "campus") {
-      const waitForLeo3Collapse = mapContext.previous.area === buildingNames.LEO3 ? mapTransitionConfig.animationDuration : 0
+      const waitForLeo3Collapse =
+        mapContext.previous.area === buildingNames.LEO3
+          ? mapTransitionConfig.animationDuration
+          : 0;
 
       setTimeout(() => {
         maximizeCampus(campus);
@@ -23,6 +26,7 @@ export function MapLeonardoCampus() {
       minimizeCampus(campus);
     }
   }, [
+    mapContext,
     mapContext.current,
     mapContext.mapContainer,
     mapContext.campus_element,

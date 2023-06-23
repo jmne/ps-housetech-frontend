@@ -23,7 +23,7 @@ function PersonResult({ person }: props) {
   const personRef = useRef(null);
   useEffect(() => {
     person.searchResultRef = personRef;
-  }, [personRef]);
+  }, [personRef, person]);
 
   return (
     <li

@@ -11,19 +11,12 @@ import {
   collapseFloorsOfBuilding,
   highlightFloor,
   maximizeBuilding,
-  minimizeBuilding,
-  setRoomHighlight
+  minimizeBuilding
 } from "utils/Wayfinder/mapTransformations";
 import { mapTransitionConfig } from "utils/constants";
 
 export function MapLeo3() {
   const mapContext = useMapContext();
-
-  useEffect(() => {
-    const element_leo3_on_campus = mapContext.leo3_building_on_campus?.current;
-    const element_leo3_building = mapContext.leo3_building?.current;
-    const element_mapContainer = mapContext.mapContainer?.current;
-  }, []);
 
   // Handle Change of shown area
   useEffect(() => {
@@ -31,11 +24,10 @@ export function MapLeo3() {
       mapContext.current.area === "leo3" && mapContext.previous.area !== "leo3";
     const areaGotOutOfFocus =
       mapContext.current.area !== "leo3" && mapContext.previous.area === "leo3";
-    const areaStayedInFocus =
-      mapContext.current.area === "leo3" && mapContext.previous.area === "leo3";
     const floorChanged =
-      (mapContext.current.floor !== mapContext.previous.floor || mapContext.current.area !== mapContext.previous.area) && mapContext.current.floor;
-    const roomChanged = mapContext.current.room !== mapContext.previous.room;
+      (mapContext.current.floor !== mapContext.previous.floor ||
+        mapContext.current.area !== mapContext.previous.area) &&
+      mapContext.current.floor;
 
     const element_leo3_on_campus = mapContext.leo3_building_on_campus?.current;
     const element_leo3_building = mapContext.leo3_building?.current;
@@ -53,9 +45,6 @@ export function MapLeo3() {
     const timeout_because_focusOnBuilding = areaJustGotInFocus
       ? mapTransitionConfig.animationDuration
       : 0;
-    const timeout_for_room = floorChanged
-      ? timeout_because_focusOnBuilding + mapTransitionConfig.animationDuration
-      : timeout_because_focusOnBuilding;
 
     if (areaJustGotInFocus) {
       maximizeBuilding(element_leo3_building);
@@ -84,7 +73,7 @@ export function MapLeo3() {
         highlightFloor(mapContext.current.floor, mapContext.leo3_elements);
       }, timeout_because_focusOnBuilding);
   }, [
-    mapContext.current,
+    mapContext,
     mapContext.leo3_building_on_campus,
     mapContext.leo3_building,
     mapContext.mapContainer,
@@ -100,7 +89,7 @@ export function MapLeo3() {
     ) {
       collapseFloorsOfBuilding(mapContext.leo3_elements);
     }
-  }, [mapContext.current.area]);
+  }, [mapContext, mapContext.current.area, mapContext.leo3_elements]);
 
   return (
     <div className={styles.mapElement} ref={mapContext.leo3_building}>

@@ -19,7 +19,6 @@ import { MapLeonardoCampus } from "./MapLeonardoCampus";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 import { setRoomHighlight } from "utils/Wayfinder/mapTransformations";
-import { Architects_Daughter } from "next/font/google";
 import { Controls } from "./Controls";
 
 export function CampusMap() {
@@ -29,7 +28,7 @@ export function CampusMap() {
 
   const resetLayout = useCallback(() => {
     mapContext.setCurrent(MAP_BASE_STATE);
-  }, [mapContext.setCurrent]);
+  }, [mapContext]);
 
   useEffect(() => {
     const handler = new IdleHandler({
@@ -37,7 +36,7 @@ export function CampusMap() {
       resetFunction: resetLayout
     });
     timeoutContext.manager?.addResetListener(handler);
-  }, [timeoutContext.manager]);
+  }, [timeoutContext.manager, resetLayout]);
 
   const [floorName, setFloorName] = useState<string | undefined>();
 
@@ -68,12 +67,12 @@ export function CampusMap() {
     ) {
       setRoomHighlight(mapContext.previous.room, mapContext.previous.area, false);
     }
-  }, [mapContext.current.room]);
+  }, [mapContext.current.room, mapContext]);
 
   useEffect(() => {
     console.log(mapContext.previous);
     console.log(mapContext.current);
-  }, [mapContext.previous, mapContext.current]);
+  }, [mapContext.previous, mapContext]);
 
   return (
     <div className={styles.container}>

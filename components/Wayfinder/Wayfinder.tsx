@@ -3,7 +3,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 // IMPORTS - HELPERS
 import { useEmployees } from "hooks/useEmployees";
-import { Employee } from "types/Employee";
 
 // IMPORTS - ASSETS
 import styles_index from "@/pages/index.module.scss";
@@ -15,20 +14,11 @@ import { CampusMap } from "./Map/Map";
 
 // IMPORTS - CONTEXT
 import { usePersonSearchContext } from "context/PersonContext";
-import {
-  expand,
-  collapse,
-  handleExpansion
-} from "utils/Wayfinder/personCardsTransformations";
 import Fuse from "fuse.js";
 import { useSearchInputContext } from "context/SearchInputContext";
-import { FUZZY_SEARCH_WEIGHTS, WAYFINDER_CARD_ANIMATION_DURATION } from "utils/constants";
+import { FUZZY_SEARCH_WEIGHTS } from "utils/constants";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
-
-interface personRef {
-  [id: string]: HTMLLIElement | null;
-}
 
 export function Wayfinder() {
   // Global state of the selected person in the list
