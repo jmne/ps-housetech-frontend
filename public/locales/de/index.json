@@ -10,8 +10,12 @@
             "mail": "E-Mail"
         },
         "map": {
+            "campus": "Leonardo Campus",
+            "leo1": "Leonardo Campus 1",
             "leo3": "Leonardo Campus 3",
+            "leo10": "Leonardo Campus 10",
             "leo11": "Leonardo Campus 11",
+            "leo18": "Leonardo Campus 18",
             "floor0": "Erdgeschoss",
             "floor1": "OG 1",
             "floor2": "OG 2",

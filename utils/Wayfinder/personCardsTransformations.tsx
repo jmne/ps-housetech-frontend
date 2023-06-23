@@ -2,11 +2,12 @@ import styles_wayfinder from "@/components/Wayfinder/Wayfinder.module.scss";
 import { MapData } from "context/MapContext";
 import { PersonData } from "context/PersonContext";
 import { Employee } from "types/Employee";
-import { getAddressID, validateRoomNumber } from "./mapValidations";
+import { getAddressID, getFloor, validateRoomNumber } from "./mapValidations";
 import {
   SEARCH_RESULT_COLLAPSED,
   SEARCH_RESULT_EXPANDED
 } from "@/components/Wayfinder/PersonResult/PersonResult";
+import { handleMapHighlighting } from "./mapTransformations";
 
 /**
  * Collapse the list element for the given person to hide all details.
@@ -52,8 +53,8 @@ export function handleClickOnPerson(
 ) {
   const previous_selection = {
     person: selectedPersonContext.current_person,
-    building: mapContext.current_building,
-    room: mapContext.current_room
+    building: mapContext.current.area,
+    room: mapContext.current.room
   };
 
   const clicked = {
@@ -67,14 +68,16 @@ export function handleClickOnPerson(
   // Same person clicked -> remove from context
   if (previous_selection.person === clicked.person) {
     selectedPersonContext.setPerson(undefined);
-    mapContext.setBuilding(undefined);
-    mapContext.setRoom(undefined);
+    mapContext.setCurrent({ room: undefined });
     handleExpansion(clicked.person, false, selectedPersonContext_OLD);
     return;
   }
   // Other Person selected -> set context value
   selectedPersonContext.setPerson(clicked.person);
-  mapContext.setBuilding(clicked.building);
-  mapContext.setRoom(clicked.room);
+  mapContext.setCurrent({
+    area: clicked.building,
+    floor: clicked.room ? getFloor(clicked.room) : undefined,
+    room: clicked.room
+  });
   handleExpansion(clicked.person, true, selectedPersonContext_OLD);
 }

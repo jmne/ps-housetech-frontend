@@ -13,10 +13,10 @@ export function validateRoomNumber(room: string | number) {
   return undefined;
 }
 
-export function getAddressID(address: addressValue){
-    if (address === "Leonardo-Campus 11") return buildingNames.LEO11
-    if (address === "Leonardo-Campus 3") return buildingNames.LEO3
-    else return undefined
+export function getAddressID(address: addressValue) {
+  if (address === "Leonardo-Campus 11") return buildingNames.LEO11;
+  if (address === "Leonardo-Campus 3") return buildingNames.LEO3;
+  else return undefined;
 }
 
 /**
@@ -24,7 +24,7 @@ export function getAddressID(address: addressValue){
  * @param room Number of the room
  * @returns Floor level as BuildingFloor value
  */
-export function getFloor(room: string | number): BuildingFloor {
+export function getFloor(room: number): BuildingFloor {
   const n = typeof room === "number" ? room : parseInt(room);
 
   if (n < 100) return "floor0";
@@ -40,7 +40,7 @@ export function getFloor(room: string | number): BuildingFloor {
  * @param room Number of the room
  * @returns Floor level as a number
  */
-export function getFloorNumber(room: string | number): number {
+export function getFloorNumber(room: number): number {
   const floorString = getFloor(room);
   const n_string = floorString.charAt(5);
   const n = parseInt(n_string);
@@ -55,7 +55,10 @@ export function getFloorNumber(room: string | number): number {
  * @param current_building Current building
  * @returns Boolean indicating if the room is in the current building
  */
-export function roomInBuilding(building_of_room: CampusBuilding, current_building: CampusBuilding): boolean {
-  if (building_of_room === current_building) return true
-  else return false
+export function roomInBuilding(
+  building_of_room: CampusBuilding,
+  current_building: CampusBuilding
+): boolean {
+  if (building_of_room === current_building) return true;
+  else return false;
 }

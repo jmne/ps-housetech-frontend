@@ -3,55 +3,49 @@ import { RefObject } from "react";
 import { BuildingFloor, CampusBuilding } from "types/Campus";
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
 import { mapTransitionConfig, out_of_frame_direction } from "utils/constants";
-import { Employee } from "types/Employee";
-import { getAddressID, validateRoomNumber } from "./mapValidations";
-import { MapData } from "context/MapContext";
-import { PersonData } from "context/PersonContext";
-import { handleExpansion } from "./personCardsTransformations";
 
+const getFloorStyleFromOffset = [
+  styles.floor__1below,
+  styles.floor__2below,
+  styles.floor__3below,
+  styles.floor__4below
+];
 
-
-/**
- * Move the building from old floors to new floors
- * @param old_floors Old floors
- * @param new_floors New floors
- * @param out_dir Direction of moving out of frame ("left" or "right")
- */
-export function moveBuilding(
-  old_floors: RefObject<SVGSVGElement>[],
-  new_floors: RefObject<SVGSVGElement>[],
-  out_dir: out_of_frame_direction
+export function minimizeBuilding(
+  building_onCampus: SVGGElement,
+  building: HTMLDivElement,
+  mapContainer: HTMLDivElement
 ) {
-  const floor_move_out = out_dir === "left" ? "translateX(-200%)" : "translateX(100%)";
+  const boundingBox_buildingOnCampus = building_onCampus.getBoundingClientRect();
+  const boundingBox_map = mapContainer.getBoundingClientRect();
 
-  // 'Collapse' old floors
-  old_floors.forEach((e) => {
-    const element = e.current;
-    if (!element) return;
+  const center_buildingOnCampus = {
+    x: boundingBox_buildingOnCampus.x + boundingBox_buildingOnCampus.width / 2,
+    y: boundingBox_buildingOnCampus.y + boundingBox_buildingOnCampus.height / 2
+  };
+  const center_building = {
+    x: boundingBox_map.width / 2,
+    y: boundingBox_map.height / 2
+  };
 
-    element.style.transform = "";
-    element.style.opacity = `${mapTransitionConfig.not_in_focus_opacity}`;
-  });
+  const building_offset_x =
+    center_buildingOnCampus.x - center_building.x - boundingBox_map.x;
+  const building_offset_y =
+    center_buildingOnCampus.y - center_building.y - boundingBox_map.y;
 
-  setTimeout(() => {
-    // Push old floors out of frame
-    old_floors.forEach((e) => {
-      const element = e.current;
-      if (!element) return;
+  building.style.transform = `translateX(${building_offset_x}px) translateY(${building_offset_y}px) scale(0)`;
+}
 
-      element.style.transform = floor_move_out;
-      element.style.opacity = `${mapTransitionConfig.not_in_focus_opacity}`;
-    });
+export function maximizeBuilding(building: HTMLDivElement) {
+  building.style.transform = "";
+}
 
-    // Move new floors into frame
-    new_floors.forEach((e) => {
-      const element = e.current;
-      if (!element) return;
+export function minimizeCampus(campus: SVGSVGElement) {
+  campus.style.opacity = "0";
+}
 
-      element.style.transform = "";
-      element.style.opacity = "100";
-    });
-  }, mapTransitionConfig.animationDuration);
+export function maximizeCampus(campus: SVGSVGElement) {
+  campus.style.opacity = "1";
 }
 
 /**
@@ -67,90 +61,73 @@ export function setRoomHighlight(
 ) {
   // Construct the SVG ID and get the element(s)
   // if e.g. wc is given, multiple elements are existing and floor is needed
-  const room_id = floor ? `${building}-${room}${floor}` : `${building}-${room}`;
+  const room_id = floor ? `${building}-${room}` : `${building}-${room}`;
+  console.log(room_id)
   const room_elements = document.querySelectorAll(`#${room_id}`);
   if (!room_elements || room_elements.length === 0) return;
 
-  // Room was selected before, remove highlight
   if (highlight === true) addRoomHighlight(room_elements);
-  // New selection, highlight room
   else removeRoomHighlight(room_elements);
 }
 
 function addRoomHighlight(elements: NodeListOf<Element>) {
   elements.forEach((e) => {
-    const classes = e.classList;
-    if (!classes.contains(styles.highlight)) classes.add(styles.highlight);
+    e.classList.value = styles.highlight;
   });
 }
 
 function removeRoomHighlight(elements: NodeListOf<Element>) {
   elements.forEach((e) => {
-    const classes = e.classList;
-    if (classes.contains(styles.highlight)) classes.remove(styles.highlight);
+    e.classList.value = "";
   });
 }
 
-/**
- * Move the correct floor into focus
- * @param new_floor New floor to be highlighted
- * @param building Current building
- * @param leo3_floors Refs to Leo3 floors
- * @param leo11_floor Ref to Leo11 floor
- */
 export function highlightFloor(
-  new_floor: BuildingFloor,
-  building: CampusBuilding,
-  leo3_floors: RefObject<SVGSVGElement>[],
-  leo11_floor: RefObject<SVGSVGElement>
+  floor_to_highlight: BuildingFloor,
+  building_floors: RefObject<SVGSVGElement>[]
 ) {
-  const floor_nr = new_floor.charAt(5);
+  const floor_nr = floor_to_highlight.charAt(5);
   const index_new_layer = parseInt(floor_nr);
 
-  if (building === "leo11" && new_floor === "floor0") {
-    const element = leo11_floor.current;
-    if (!element) return;
-
-    applyHighlightOnFloor(element);
-    return;
-  }
-
-  leo3_floors.forEach((element, index) => {
+  building_floors.forEach((element, index) => {
     const el = element.current;
     if (!el) return;
     // Layer is the target layer, set focus
     if (index === index_new_layer) {
-      applyHighlightOnFloor(el);
+      setFloorInFocus(el);
       return;
     }
 
     // If new layer is higher, diff < 0
     // If new layer is lower, diff > 0
     const diff = index - index_new_layer;
-    removeHighlightFromFloor(el, diff);
+    setFloorOutOfFocus(el, diff);
   });
 }
-function applyHighlightOnFloor(element: SVGSVGElement) {
-  element.style.transform = `scale(${mapTransitionConfig.focus_scaling})`;
-  element.style.zIndex = "5";
-  element.style.opacity = "100";
+
+export function collapseFloorsOfBuilding(
+  building_floors: RefObject<SVGSVGElement>[]
+){
+  building_floors.forEach((floor) => {
+    const element = floor.current
+    if (!element) return
+    element.classList.value = ""
+  })
 }
 
-function removeHighlightFromFloor(element: SVGSVGElement, offset: number) {
+function setFloorInFocus(element: SVGSVGElement) {
+  element.classList.value = styles.floor__focus;
+}
+
+function setFloorOutOfFocus(element: SVGSVGElement, offset: number) {
   // Layer is 'under' new layer, push down
   if (offset < 0) {
-    element.style.transform = `translateX(${
-      offset * mapTransitionConfig.map_x_offset
-    }%) translateY(${-offset * mapTransitionConfig.map_y_offset}%)`;
-    element.style.opacity = `${
-      mapTransitionConfig.not_in_focus_opacity / Math.abs(offset * 2)
-    }`;
-    element.style.zIndex = "4";
+    const offset_value = Math.abs(offset);
+    if (1 <= offset_value && offset_value <= getFloorStyleFromOffset.length)
+      element.classList.value = getFloorStyleFromOffset[offset_value - 1];
   }
   // Layer is 'over' new layer, push up
   else {
-    element.style.transform = "translateX(40%) translateY(-100%)";
-    element.style.opacity = `${mapTransitionConfig.not_in_focus_opacity}`;
-    element.style.zIndex = "6";
+    element.classList.value = styles.floor__above;
   }
 }
