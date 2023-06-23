@@ -62,7 +62,6 @@ export function setRoomHighlight(
   // Construct the SVG ID and get the element(s)
   // if e.g. wc is given, multiple elements are existing and floor is needed
   const room_id = floor ? `${building}-${room}` : `${building}-${room}`;
-  console.log(room_id)
   const room_elements = document.querySelectorAll(`#${room_id}`);
   if (!room_elements || room_elements.length === 0) return;
 

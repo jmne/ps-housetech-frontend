@@ -32,11 +32,45 @@ export function Controls() {
     });
   }
 
+  function handleHighlightLeo3() {
+    if (mapContext.current.room === buildingNames.LEO3) {
+      mapContext.setCurrent({
+        area: buildingNames.CAMPUS,
+        floor: undefined,
+        room: undefined
+      });
+    } else {
+      mapContext.setCurrent({
+        area: buildingNames.CAMPUS,
+        floor: undefined,
+        room: buildingNames.LEO3
+      });
+    }
+  }
+
+  function handleHighlightLeo11() {
+    if (mapContext.current.room === buildingNames.LEO11) {
+      mapContext.setCurrent({
+        area: buildingNames.CAMPUS,
+        floor: undefined,
+        room: undefined
+      });
+    } else {
+      mapContext.setCurrent({
+        area: buildingNames.CAMPUS,
+        floor: undefined,
+        room: buildingNames.LEO11
+      });
+    }
+  }
+
   if (mapContext.current.area === buildingNames.CAMPUS) {
     return (
       <div className={styles.controls}>
         <button onClick={handleShowLeo3}>Show Leo 3</button>
+        <button onClick={handleHighlightLeo3}>Where is Leo 3?</button>
         <button onClick={handleShowLeo11}>Show Leo 11</button>
+        <button onClick={handleHighlightLeo11}>Where is Leo 11?</button>
       </div>
     );
   } else if (mapContext.current.area === buildingNames.LEO3) {
