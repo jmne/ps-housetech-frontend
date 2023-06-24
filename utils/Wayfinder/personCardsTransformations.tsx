@@ -40,8 +40,8 @@ export function handleExpansion(
 }
 
 function setExpansion(person: Employee, expansion: boolean) {
-  if (expansion === true) expand(person);
-  else if (expansion === false) collapse(person);
+  if (expansion === true) requestAnimationFrame(() => expand(person));
+  else if (expansion === false) requestAnimationFrame(() => collapse(person));
 }
 
 export function handleClickOnPerson(

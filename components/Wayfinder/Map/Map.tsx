@@ -45,7 +45,7 @@ export function CampusMap() {
       getFloor(mapContext.current.room);
     }
 
-    setFloorName(floorName);
+    requestIdleCallback(() => setFloorName(floorName));
 
     const areaChanged = mapContext.current.area !== mapContext.previous.area;
     const floorChanged = mapContext.current.floor !== mapContext.previous.floor;

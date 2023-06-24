@@ -1,8 +1,8 @@
 // IMPORTS - BUILTINS
 import { RefObject } from "react";
-import { BuildingFloor, CampusBuilding } from "types/Campus";
+import { BuildingFloor, CampusBuilding, buildingNames } from "types/Campus";
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
-import { mapTransitionConfig, out_of_frame_direction } from "utils/constants";
+import { transitionClass, transitionFunction, transitionStyle } from "utils/animations";
 
 const getFloorStyleFromOffset = [
   styles.floor__1below,
@@ -11,65 +11,71 @@ const getFloorStyleFromOffset = [
   styles.floor__4below
 ];
 
-export function minimizeBuilding(
+export async function minimizeBuilding(
   building_onCampus: SVGGElement,
   building: HTMLDivElement,
   mapContainer: HTMLDivElement
 ) {
-  requestAnimationFrame(() => {
-    const boundingBox_buildingOnCampus = building_onCampus.getBoundingClientRect();
-    const boundingBox_map = mapContainer.getBoundingClientRect();
+  const boundingBox_buildingOnCampus = building_onCampus.getBoundingClientRect();
+  const boundingBox_map = mapContainer.getBoundingClientRect();
 
-    const center_buildingOnCampus = {
-      x: boundingBox_buildingOnCampus.x + boundingBox_buildingOnCampus.width / 2,
-      y: boundingBox_buildingOnCampus.y + boundingBox_buildingOnCampus.height / 2
-    };
-    const center_building = {
-      x: boundingBox_map.width / 2,
-      y: boundingBox_map.height / 2
-    };
+  const center_buildingOnCampus = {
+    x: boundingBox_buildingOnCampus.x + boundingBox_buildingOnCampus.width / 2,
+    y: boundingBox_buildingOnCampus.y + boundingBox_buildingOnCampus.height / 2
+  };
+  const center_building = {
+    x: boundingBox_map.width / 2,
+    y: boundingBox_map.height / 2
+  };
 
-    const building_offset_x =
-      center_buildingOnCampus.x - center_building.x - boundingBox_map.x;
-    const building_offset_y =
-      center_buildingOnCampus.y - center_building.y - boundingBox_map.y;
+  const building_offset_x =
+    center_buildingOnCampus.x - center_building.x - boundingBox_map.x;
+  const building_offset_y =
+    center_buildingOnCampus.y - center_building.y - boundingBox_map.y;
 
-    building.style.transform = `translateX(${building_offset_x}px) translateY(${building_offset_y}px) scale(0)`;
+  //const isLeo3 = building.id == buildingNames.LEO3
+  //${isLeo3 ? 'rotate(-20deg)' : 'rotate(-90deg)'}
+
+  return transitionStyle(building, {
+    transform: `translateX(${building_offset_x}px) translateY(${building_offset_y}px) scale(0)`
   });
 }
 
-export function maximizeBuilding(building: HTMLDivElement) {
-  requestAnimationFrame(() => {
-    building.style.transform = "";
-  });
+export async function maximizeBuilding(building: HTMLDivElement) {
+  return transitionStyle(building, { transform: "" });
 }
 
-export function minimizeCampus(campus: SVGSVGElement) {
-  requestAnimationFrame(() => {
-    campus.style.opacity = "0";
-  });
+export async function minimizeCampus(campus: SVGSVGElement) {
+  return transitionStyle(campus, { opacity: "0" });
 }
 
-export function maximizeCampus(campus: SVGSVGElement) {
-  requestAnimationFrame(() => {
-    campus.style.opacity = "1";
-  });
+export async function maximizeCampus(campus: SVGSVGElement) {
+  return transitionStyle(campus, { opacity: "1" });
 }
 
-export function setRoomHighlight(
+export async function setRoomHighlight(
   room: string | number,
   building: CampusBuilding,
   highlight: boolean,
   floor?: string
 ) {
-  requestAnimationFrame(() => {
-    const room_id = floor ? `${building}-${room}` : `${building}-${room}`;
-    const room_elements = document.querySelectorAll(`#${room_id}`);
-    if (!room_elements || room_elements.length === 0) return;
+  const room_id = floor ? `${building}-${room}` : `${building}-${room}`;
+  const room_elements = document.querySelectorAll(`#${room_id}`);
+  if (!room_elements || room_elements.length === 0)
+    return new Promise((resolve) => {
+      resolve(null);
+    });
 
-    if (highlight === true) addRoomHighlight(room_elements);
-    else removeRoomHighlight(room_elements);
-  });
+  if (highlight === true)
+    return transitionFunction(
+      room_elements[0],
+      addRoomHighlight.bind(null, room_elements)
+    );
+  else
+    return transitionFunction(
+      room_elements[0],
+      removeRoomHighlight.bind(null, room_elements)
+    );
 }
 
 function addRoomHighlight(elements: NodeListOf<Element>) {
@@ -84,37 +90,54 @@ function removeRoomHighlight(elements: NodeListOf<Element>) {
   });
 }
 
-export function highlightFloor(
+function highlightFloor_internal(
+  building_floors: RefObject<SVGSVGElement>[],
+  indexNewLayer: number
+) {
+  for (let index = 0; index < building_floors.length; index++) {
+    const el = building_floors[index].current;
+    if (!el) return;
+
+    if (index === indexNewLayer) {
+      setFloorInFocus(el);
+      continue;
+    }
+
+    const diff = index - indexNewLayer;
+    setFloorOutOfFocus(el, diff);
+  }
+}
+
+export async function highlightFloor(
   floor_to_highlight: BuildingFloor,
   building_floors: RefObject<SVGSVGElement>[]
 ) {
-  requestAnimationFrame(() => {
-    const floor_nr = floor_to_highlight.charAt(5);
-    const index_new_layer = parseInt(floor_nr);
+  const floor_nr = floor_to_highlight.charAt(5);
+  const index_new_layer = parseInt(floor_nr);
 
-    building_floors.forEach((element, index) => {
-      const el = element.current;
-      if (!el) return;
+  const transformation = highlightFloor_internal.bind(
+    null,
+    building_floors,
+    index_new_layer
+  );
 
-      if (index === index_new_layer) {
-        setFloorInFocus(el);
-        return;
-      }
-
-      const diff = index - index_new_layer;
-      setFloorOutOfFocus(el, diff);
-    });
-  });
+  return transitionFunction(building_floors[0].current, transformation);
 }
 
-export function collapseFloorsOfBuilding(building_floors: RefObject<SVGSVGElement>[]) {
-  requestAnimationFrame(() => {
-    building_floors.forEach((floor) => {
-      const element = floor.current;
-      if (!element) return;
-      element.classList.value = "";
-    });
-  });
+function collapseFloorsOfBuilding_internal(building_floors: RefObject<SVGSVGElement>[]) {
+  for (let index = 0; index < building_floors.length; index++) {
+    const element = building_floors[index].current;
+    if (!element) continue;
+    element.classList.value = "";
+  }
+}
+
+export async function collapseFloorsOfBuilding(
+  building_floors: RefObject<SVGSVGElement>[]
+) {
+  const transformation = collapseFloorsOfBuilding_internal.bind(null, building_floors);
+
+  return transitionFunction(building_floors[0].current, transformation);
 }
 
 function setFloorInFocus(element: SVGSVGElement) {

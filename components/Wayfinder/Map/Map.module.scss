@@ -53,10 +53,6 @@ $map_other_building_x_offset: 200%;
     grid-area: 1 / 1 / 3 / 3;
     display: grid;
 
-    * {
-      transition: all $animDuration ease-out;
-    }
-
     .controls {
       z-index: 20;
       grid-area: 1 / 1 / 1 / 1;
@@ -107,6 +103,12 @@ $map_other_building_x_offset: 200%;
       max-height: 100%;
 
       will-change: transform, opacity;
+      transition: opacity $animDuration ease-out,
+        transform $animDuration ease-in-out;
+
+      * {
+        transition: fill $animDuration ease-out, stroke $animDuration ease-out;
+      }
     }
 
     transition: opacity $animDuration ease-out,
@@ -116,27 +118,28 @@ $map_other_building_x_offset: 200%;
   .floor__above {
     transform: translateX($map_x_offset * -4) translateY(-100%);
     opacity: $map_not-focus_opacity;
-    z-index: 6;
+    //z-index: 6;
   }
 
   .floor__focus {
-    z-index: 5;
+    //z-index: 5;
     transform: scale($map_focus_scaling);
-    filter: drop-shadow(4px 4px 6px rgba(50, 50, 93, 0.20)) drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.15));
+
+    //filter: drop-shadow(4px 4px 6px rgba(50, 50, 93, 0.20)) drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.15));
   }
 
   @for $i from 1 through 4 {
     .floor__#{$i}below {
       transform: translateX($i * $map_x_offset) translateY($i * $map_y_offset);
       opacity: $map_not-focus_opacity / ($i);
-      z-index: 4;
+      //z-index: 4;
     }
   }
 
   .highlight {
     fill: g.$main-secondary !important;
     stroke: g.$main-secondary_dark !important;
-    
+
     * {
       fill: g.$main-secondary !important;
       stroke: g.$main-secondary_dark !important;
