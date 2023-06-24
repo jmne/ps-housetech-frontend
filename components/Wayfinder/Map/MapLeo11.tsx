@@ -1,10 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "./Map.module.scss";
 import { Leo11_Floor0 } from "assets/images/map/floors_transformed";
 import { useMapContext } from "context/MapContext";
 import { minimizeBuilding, maximizeBuilding } from "utils/Wayfinder/mapTransformations";
 import { mapTransitionConfig } from "utils/constants";
-import { getFloorIndex, getFloorNumber } from "utils/Wayfinder/mapValidations";
 
 export function MapLeo11() {
   const mapContext = useMapContext();

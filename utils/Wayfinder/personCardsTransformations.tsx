@@ -1,4 +1,3 @@
-import styles_wayfinder from "@/components/Wayfinder/Wayfinder.module.scss";
 import { MapData } from "context/MapContext";
 import { PersonData } from "context/PersonContext";
 import { Employee } from "types/Employee";
@@ -7,7 +6,6 @@ import {
   SEARCH_RESULT_COLLAPSED,
   SEARCH_RESULT_EXPANDED
 } from "@/components/Wayfinder/PersonResult/PersonResult";
-import { handleMapHighlighting } from "./mapTransformations";
 
 /**
  * Collapse the list element for the given person to hide all details.

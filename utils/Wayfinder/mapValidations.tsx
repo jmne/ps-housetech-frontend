@@ -24,7 +24,7 @@ export function getAddressID(address: addressValue) {
  * @param room Number of the room
  * @returns Floor level as BuildingFloor value
  */
-export function getFloor(room: number): BuildingFloor {
+export function getFloor(room: number | string): BuildingFloor {
   const n = typeof room === "number" ? room : parseInt(room);
 
   if (n < 100) return "floor0";

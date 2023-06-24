@@ -18,7 +18,7 @@ function PersonResult({ person }: props) {
   const mapContext = useMapContext();
   const selectedPersonContext = usePersonSearchContext();
   const phoneTranslation = t("wayfinder.search.phone");
-  const roomTranslation = t("wayfinder.search.room");
+  //const roomTranslation = t("wayfinder.search.room");
 
   const personRef = useRef(null);
   useEffect(() => {

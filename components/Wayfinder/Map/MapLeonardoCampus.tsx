@@ -27,7 +27,6 @@ export function MapLeonardoCampus() {
     }
   }, [
     mapContext,
-    mapContext.current,
     mapContext.mapContainer,
     mapContext.campus_element
   ]);

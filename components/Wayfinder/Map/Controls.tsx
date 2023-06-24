@@ -3,7 +3,7 @@ import styles from "@/components/Wayfinder/Map/Map.module.scss";
 import { buildingNames } from "types/Campus";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { getFloorIndex } from "utils/Wayfinder/mapValidations";
 
 function handleBackToCampus(mapContext: MapData, selectedPersonContext: PersonData) {
