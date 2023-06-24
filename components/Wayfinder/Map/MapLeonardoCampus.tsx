@@ -11,7 +11,6 @@ export function MapLeonardoCampus() {
 
   useEffect(() => {
     const campus = mapContext.campus_element?.current;
-    debugger;
     if (!campus) return;
 
     if (mapContext.current.area === buildingNames.CAMPUS) {

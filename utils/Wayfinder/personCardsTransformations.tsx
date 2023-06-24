@@ -76,7 +76,7 @@ export function handleClickOnPerson(
   selectedPersonContext.setPerson(clicked.person);
   mapContext.setCurrent({
     area: clicked.building,
-    floor: clicked.room ? getFloor(clicked.room) : undefined,
+    floor: clicked.room ? getFloor(clicked.room) : "floor0",
     room: clicked.room
   });
   handleExpansion(clicked.person, true, selectedPersonContext_OLD);

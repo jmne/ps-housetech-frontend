@@ -20,7 +20,6 @@ export function MapLeo3() {
 
   // Handle Change of shown area
   useEffect(() => {
-    debugger
     const areaJustGotInFocus =
       mapContext.current.area === "leo3" && mapContext.previous.area !== "leo3";
     const areaGotOutOfFocus =

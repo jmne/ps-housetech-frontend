@@ -9,7 +9,6 @@ import { getFloorIndex, getFloorNumber } from "utils/Wayfinder/mapValidations";
 export function MapLeo11() {
   const mapContext = useMapContext();
   useEffect(() => {
-    debugger;
     const element_leo11_on_campus = mapContext.leo11_building_on_campus?.current;
     const element_leo11_building = mapContext.leo11_building?.current;
     const element_mapContainer = mapContext.mapContainer?.current;
