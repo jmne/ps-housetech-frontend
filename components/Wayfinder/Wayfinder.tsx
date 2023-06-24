@@ -19,6 +19,7 @@ import { useSearchInputContext } from "context/SearchInputContext";
 import { FUZZY_SEARCH_WEIGHTS } from "utils/constants";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
+import { MapProvider } from "context/MapContext";
 
 export function Wayfinder() {
   // Global state of the selected person in the list
@@ -102,23 +103,25 @@ export function Wayfinder() {
   }, [selectedPersonContext.current_person]);
 
   return (
-    <section
-      className={[
-        styles_index.largeContainer,
-        styles_index.contentSection,
-        styles_wayfinder.container
-      ].join(" ")}
-    >
-      <div className={styles_wayfinder.searchSection}>
-        <SearchBar placeholder={t("wayfinder.title")} />
-        <ol ref={listRef}>
-          {filteredPersons.map((p) => {
-            const unique_id = `${p.cfFirstNames}${p.cfFamilyNames}`;
-            return <PersonResult person={p} key={unique_id} />;
-          })}
-        </ol>
-      </div>
-      <CampusMap />
-    </section>
+    <MapProvider>
+      <section
+        className={[
+          styles_index.largeContainer,
+          styles_index.contentSection,
+          styles_wayfinder.container
+        ].join(" ")}
+      >
+        <div className={styles_wayfinder.searchSection}>
+          <SearchBar placeholder={t("wayfinder.title")} />
+          <ol ref={listRef}>
+            {filteredPersons.map((p) => {
+              const unique_id = `${p.cfFirstNames}${p.cfFamilyNames}`;
+              return <PersonResult person={p} key={unique_id} />;
+            })}
+          </ol>
+        </div>
+        <CampusMap />
+      </section>
+    </MapProvider>
   );
 }

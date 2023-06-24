@@ -39,6 +39,7 @@ function usePrevious(init_state: any) {
   const [previousData, setPreviousData] = useState(init_state);
   const [currentData, setCurrentData] = useState(init_state);
 
+  debugger  
   const update = (new_state: any) => {
     setPreviousData({ ...currentData });
     setCurrentData({ ...currentData, ...new_state });

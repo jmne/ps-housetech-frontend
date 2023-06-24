@@ -34,6 +34,9 @@ export function getFloor(room: number): BuildingFloor {
   // base case
   return "floor0";
 }
+export function getFloorIndex(floor: BuildingFloor) {
+  return parseInt(floor.charAt(5));
+}
 
 /**
  * Get the floor level of a room as a number

@@ -11,9 +11,10 @@ export function MapLeonardoCampus() {
 
   useEffect(() => {
     const campus = mapContext.campus_element?.current;
+    debugger;
     if (!campus) return;
 
-    if (mapContext.current.area === "campus") {
+    if (mapContext.current.area === buildingNames.CAMPUS) {
       const waitForLeo3Collapse =
         mapContext.previous.area === buildingNames.LEO3
           ? mapTransitionConfig.animationDuration
@@ -29,8 +30,7 @@ export function MapLeonardoCampus() {
     mapContext,
     mapContext.current,
     mapContext.mapContainer,
-    mapContext.campus_element,
-    mapContext.current
+    mapContext.campus_element
   ]);
 
   return (

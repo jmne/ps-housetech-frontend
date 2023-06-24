@@ -20,6 +20,7 @@ export function MapLeo3() {
 
   // Handle Change of shown area
   useEffect(() => {
+    debugger
     const areaJustGotInFocus =
       mapContext.current.area === "leo3" && mapContext.previous.area !== "leo3";
     const areaGotOutOfFocus =
@@ -81,15 +82,15 @@ export function MapLeo3() {
   ]);
 
   // Handle changing of shown area
-  useEffect(() => {
-    // If leo3 *just* got moved out of focus -> Collapse floors
-    if (
-      mapContext.current.area !== "leo3" &&
-      mapContext.current.area !== mapContext.previous.area
-    ) {
-      collapseFloorsOfBuilding(mapContext.leo3_elements);
-    }
-  }, [mapContext, mapContext.current.area, mapContext.leo3_elements]);
+  //useEffect(() => {
+  //  // If leo3 *just* got moved out of focus -> Collapse floors
+  //  if (
+  //    mapContext.current.area !== "leo3" &&
+  //    mapContext.current.area !== mapContext.previous.area
+  //  ) {
+  //    collapseFloorsOfBuilding(mapContext.leo3_elements);
+  //  }
+  //}, [mapContext, mapContext.current.area, mapContext.leo3_elements]);
 
   return (
     <div className={styles.mapElement} ref={mapContext.leo3_building}>

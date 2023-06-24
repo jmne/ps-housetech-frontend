@@ -12,13 +12,12 @@ import { Wayfinder } from "@/components/Wayfinder/Wayfinder";
 
 // IMPORTS - CONTEXT
 import { SelectedPersonProvider } from "context/PersonContext";
-import { MapProvider } from "context/MapContext";
 import { Weather } from "@/components/Weather/Weather";
 import { News } from "@/components/News/News";
 import { useOverlayContext } from "context/OverlayContext";
 
 export default function Index() {
-  const overlayContext = useOverlayContext()
+  const overlayContext = useOverlayContext();
 
   return (
     <div className={styles.wrapper}>
@@ -30,11 +29,9 @@ export default function Index() {
             : styles.bodyWrapper
         }
       >
-        <MapProvider>
-          <SelectedPersonProvider>
-            <Wayfinder />
-          </SelectedPersonProvider>
-        </MapProvider>
+        <SelectedPersonProvider>
+          <Wayfinder />
+        </SelectedPersonProvider>
         <Weather />
         <Cafeteriaplan />
         <News />

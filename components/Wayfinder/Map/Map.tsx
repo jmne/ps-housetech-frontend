@@ -1,5 +1,5 @@
 // IMPORTS - REACT
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 // IMPORTS - NEXTJS
 import { useTranslation } from "next-i18next";
@@ -25,20 +25,19 @@ export function CampusMap() {
   const { t } = useTranslation("index");
   const mapContext = useMapContext();
   const timeoutContext = useTimeoutContext();
-
-  const resetLayout = useCallback(() => {
-    mapContext.setCurrent(MAP_BASE_STATE);
-  }, [mapContext]);
+  const [floorName, setFloorName] = useState<string | undefined>();
 
   useEffect(() => {
+    const resetLayout = () => {
+      mapContext.setCurrent(MAP_BASE_STATE);
+    };
+
     const handler = new IdleHandler({
       origin: "map",
       resetFunction: resetLayout
     });
     timeoutContext.manager?.addResetListener(handler);
-  }, [timeoutContext.manager, resetLayout]);
-
-  const [floorName, setFloorName] = useState<string | undefined>();
+  }, [timeoutContext.manager, mapContext]);
 
   useEffect(() => {
     var floorName = undefined;
@@ -68,11 +67,6 @@ export function CampusMap() {
       setRoomHighlight(mapContext.previous.room, mapContext.previous.area, false);
     }
   }, [mapContext.current.room, mapContext]);
-
-  useEffect(() => {
-    console.log(mapContext.previous);
-    console.log(mapContext.current);
-  }, [mapContext.previous, mapContext]);
 
   return (
     <div className={styles.container}>

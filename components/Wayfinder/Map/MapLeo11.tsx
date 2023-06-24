@@ -1,14 +1,15 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./Map.module.scss";
 import { Leo11_Floor0 } from "assets/images/map/floors_transformed";
 import { useMapContext } from "context/MapContext";
 import { minimizeBuilding, maximizeBuilding } from "utils/Wayfinder/mapTransformations";
 import { mapTransitionConfig } from "utils/constants";
+import { getFloorIndex, getFloorNumber } from "utils/Wayfinder/mapValidations";
 
 export function MapLeo11() {
   const mapContext = useMapContext();
-
   useEffect(() => {
+    debugger;
     const element_leo11_on_campus = mapContext.leo11_building_on_campus?.current;
     const element_leo11_building = mapContext.leo11_building?.current;
     const element_mapContainer = mapContext.mapContainer?.current;
@@ -54,11 +55,14 @@ export function MapLeo11() {
     mapContext.leo11_building,
     mapContext.leo11_elements,
     mapContext.mapContainer,
-    mapContext.campus_element,
+    mapContext.campus_element
   ]);
 
   return (
-    <div className={styles.mapElement} ref={mapContext.leo11_building}>
+    <div
+      className={styles.mapElement}
+      ref={mapContext.leo11_building}
+    >
       <Leo11_Floor0 ref={mapContext.leo11_elements[0]} />
     </div>
   );
