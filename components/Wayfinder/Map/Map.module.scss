@@ -105,6 +105,8 @@ $map_other_building_x_offset: 200%;
       height: 100%;
       max-width: 100%;
       max-height: 100%;
+
+      will-change: transform, opacity;
     }
 
     transition: opacity $animDuration ease-out,

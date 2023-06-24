@@ -5,10 +5,10 @@
   position: relative;
   transform-style: preserve-3d;
 
-  -webkit-transition: transform 0.4s;
-  -moz-transition: transform 0.4s;
-  -o-transition: transform 0.4s;
+
   transition: transform 0.4s;
+  will-change: transform;
+
 
   // background for information element + hidden easteregg background
   .background {
@@ -16,8 +16,6 @@
     background: g.$container-item;
     border-radius: g.$border-radius-base;
 
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
 
@@ -49,8 +47,6 @@
 
     box-shadow: g.$shadow-outer;
 
-    -webkit-transform: rotateX(90deg) translateZ(100px);
-    -moz-transform: rotateX(90deg) translateZ(100px);
     transform: rotateX(90deg) translateZ(100px);
   }
 
@@ -67,8 +63,6 @@
 
     box-shadow: g.$shadow-outer;
 
-    -webkit-transform: rotateY(0deg) translateZ(100px);
-    -moz-transform: rotateY(0deg) translateZ(100px);
     transform: rotateY(0deg) translateZ(100px);
 
     .vertical {
