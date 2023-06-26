@@ -81,7 +81,6 @@ export function MapLeo11() {
       }
     };
 
-    
     executeAnimations(animations);
   }, [
     mapContext,
@@ -93,7 +92,11 @@ export function MapLeo11() {
   ]);
 
   return (
-    <div className={styles.mapElement} ref={mapContext.leo11_building} id ={buildingNames.LEO3}>
+    <div
+      className={styles.mapElement}
+      ref={mapContext.leo11_building}
+      id={buildingNames.LEO3}
+    >
       <Leo11_Floor0 ref={mapContext.leo11_elements[0]} />
     </div>
   );

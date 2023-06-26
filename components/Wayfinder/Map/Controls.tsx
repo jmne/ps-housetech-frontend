@@ -3,8 +3,6 @@ import styles from "@/components/Wayfinder/Map/Map.module.scss";
 import { buildingNames } from "types/Campus";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
-import { useState } from "react";
-import { getFloorIndex } from "utils/Wayfinder/mapValidations";
 
 function handleBackToCampus(mapContext: MapData, selectedPersonContext: PersonData) {
   console.log(mapContext.campus_element);
@@ -65,47 +63,13 @@ function handleHighlightLeo11(mapContext: MapData) {
   }
 }
 
-function handleTouchEnd(
-  touchStart: number | undefined,
-  touchEnd: number,
-  mapContext: MapData
-) {
-  if (
-    mapContext.current.area !== "leo3" ||
-    typeof mapContext.current.floor === "undefined" ||
-    typeof touchStart === "undefined"
-  )
-    return;
-
-  if (typeof touchStart !== "number") return;
-  const goUp = touchStart - touchEnd < 20;
-
-  if (goUp) {
-    const nextFloorIndex = getFloorIndex(mapContext.current.floor) + 1;
-    if (nextFloorIndex > 3) return;
-    mapContext.setCurrent({ floor: `floor${nextFloorIndex}` });
-  } else {
-    const nextFloorIndex = getFloorIndex(mapContext.current.floor) - 1;
-    if (nextFloorIndex < 0) return;
-    mapContext.setCurrent({ floor: `floor${nextFloorIndex}` });
-  }
-}
-
 export function Controls() {
   const mapContext = useMapContext();
   const selectedPersonContext = usePersonSearchContext();
 
-  const [touchStart, setTouchStart] = useState<number | undefined>();
-
   return (
     <div
       className={styles.controls}
-      onMouseDown={(e) => {
-        setTouchStart(e.pageY);
-      }}
-      onMouseUp={(e) => {
-        handleTouchEnd(touchStart, e.pageY, mapContext);
-      }}
     >
       {mapContext.current.area !== buildingNames.LEO3 && (
         <button onClick={() => handleShowLeo3(mapContext, selectedPersonContext)}>

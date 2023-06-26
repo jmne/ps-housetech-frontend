@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Map.module.scss";
 import {
   Leo3_Floor0,
@@ -6,7 +6,7 @@ import {
   Leo3_Floor2,
   Leo3_Floor3
 } from "assets/images/map/floors_transformed";
-import { useMapContext } from "context/MapContext";
+import { MapData, useMapContext } from "context/MapContext";
 import {
   collapseFloorsOfBuilding,
   highlightFloor,
@@ -15,9 +15,51 @@ import {
 } from "utils/Wayfinder/mapTransformations";
 import { mapTransitionConfig } from "utils/constants";
 import { buildingNames } from "types/Campus";
+import { getFloorIndex } from "utils/Wayfinder/mapValidations";
+import { PersonData, usePersonSearchContext } from "context/PersonContext";
+import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
+
+function handleTouchEnd(
+  touchStart: number | undefined,
+  touchEnd: number,
+  mapContext: MapData,
+  personContext: PersonData
+) {
+  if (
+    mapContext.current.area !== "leo3" ||
+    typeof mapContext.current.floor === "undefined" ||
+    typeof touchStart === "undefined"
+  )
+    return;
+
+  if (typeof touchStart !== "number") return;
+  const goUp = touchStart - touchEnd < 20;
+
+  if (goUp) {
+    const nextFloorIndex = getFloorIndex(mapContext.current.floor) + 1;
+    if (nextFloorIndex > 3) return;
+    if (personContext.current_person) {
+      handleExpansion(personContext.current_person, false);
+      personContext.setPerson(undefined);
+    }
+    mapContext.setCurrent({ room: undefined, floor: `floor${nextFloorIndex}` });
+    return;
+  } else {
+    const nextFloorIndex = getFloorIndex(mapContext.current.floor) - 1;
+    if (nextFloorIndex < 0) return;
+    if (personContext.current_person) {
+      handleExpansion(personContext.current_person, false);
+      personContext.setPerson(undefined);
+    }
+    mapContext.setCurrent({ room: undefined, floor: `floor${nextFloorIndex}` });
+    return;
+  }
+}
 
 export function MapLeo3() {
   const mapContext = useMapContext();
+  const personContext = usePersonSearchContext();
+  const [touchStart, setTouchStart] = useState<number | undefined>();
 
   useEffect(() => {
     const element_leo3_on_campus = mapContext.leo3_building_on_campus?.current;
@@ -112,19 +154,17 @@ export function MapLeo3() {
     mapContext.campus_element
   ]);
 
-  // Handle changing of shown area
-  //useEffect(() => {
-  //  // If leo3 *just* got moved out of focus -> Collapse floors
-  //  if (
-  //    mapContext.current.area !== "leo3" &&
-  //    mapContext.current.area !== mapContext.previous.area
-  //  ) {
-  //    collapseFloorsOfBuilding(mapContext.leo3_elements);
-  //  }
-  //}, [mapContext, mapContext.current.area, mapContext.leo3_elements]);
-
   return (
-    <div className={styles.mapElement} ref={mapContext.leo3_building}>
+    <div
+      className={styles.mapElement}
+      ref={mapContext.leo3_building}
+      onMouseDown={(e) => {
+        setTouchStart(e.pageY);
+      }}
+      onMouseUp={(e) => {
+        handleTouchEnd(touchStart, e.pageY, mapContext, personContext);
+      }}
+    >
       <Leo3_Floor0 ref={mapContext.leo3_elements[0]} />
       <Leo3_Floor1 ref={mapContext.leo3_elements[1]} />
       <Leo3_Floor2 ref={mapContext.leo3_elements[2]} />

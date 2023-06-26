@@ -28,9 +28,10 @@ export function expand(person: Employee): void {
 export function handleExpansion(
   person: Employee,
   expansion: boolean,
-  selectedPersonContext: PersonData
+  selectedPersonContext?: PersonData
 ) {
   if (
+    selectedPersonContext &&
     typeof selectedPersonContext.current_person !== "undefined" &&
     selectedPersonContext.current_person !== person
   )

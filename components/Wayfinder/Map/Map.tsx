@@ -40,12 +40,7 @@ export function CampusMap() {
   }, [timeoutContext.manager, mapContext]);
 
   useEffect(() => {
-    var floorName = undefined;
-    if (typeof mapContext.current.room === "number") {
-      getFloor(mapContext.current.room);
-    }
-
-    requestIdleCallback(() => setFloorName(floorName));
+    if (mapContext.current.floor !== floorName) setFloorName(mapContext.current.floor);
 
     const areaChanged = mapContext.current.area !== mapContext.previous.area;
     const floorChanged = mapContext.current.floor !== mapContext.previous.floor;
@@ -66,7 +61,7 @@ export function CampusMap() {
     ) {
       setRoomHighlight(mapContext.previous.room, mapContext.previous.area, false);
     }
-  }, [mapContext.current.room, mapContext]);
+  }, [mapContext.current.room, mapContext.current.floor, mapContext]);
 
   return (
     <div className={styles.container}>
@@ -75,9 +70,9 @@ export function CampusMap() {
         {floorName ? <span>{t(`wayfinder.map.${floorName}`)}</span> : <></>}
       </div>
       <div className={styles.mapWrapper} ref={mapContext.mapContainer}>
-        <MapLeo11 />
         <MapLeonardoCampus />
         <MapLeo3 />
+        <MapLeo11 />
         <Controls />
       </div>
     </div>

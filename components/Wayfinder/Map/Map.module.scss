@@ -45,6 +45,7 @@ $map_other_building_x_offset: 200%;
   }
 
   .mapWrapper {
+    position: relative;
     min-height: 100%;
     min-width: 100%;
     max-height: 100%;
@@ -54,15 +55,16 @@ $map_other_building_x_offset: 200%;
     display: grid;
 
     .controls {
-      z-index: 20;
-      grid-area: 1 / 1 / 1 / 1;
+      z-index: 10;
+      position: absolute;
+      top: g.$margin-base;
+      right: g.$margin-base;
 
       display: grid;
       grid-template-columns: 1fr (g.$text-base * 7);
       grid-auto-rows: g.$text-base * 3;
 
       gap: g.$margin-base;
-      padding: g.$margin-base;
 
       >button {
         grid-column: 2;
