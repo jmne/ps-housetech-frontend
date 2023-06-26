@@ -78,7 +78,7 @@ function handleTouchEnd(
     return;
 
   if (typeof touchStart !== "number") return;
-  const goUp = touchStart - touchEnd < 0;
+  const goUp = touchStart - touchEnd < 20;
 
   if (goUp) {
     const nextFloorIndex = getFloorIndex(mapContext.current.floor) + 1;

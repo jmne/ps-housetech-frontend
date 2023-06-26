@@ -81,7 +81,7 @@ export function MapLeo11() {
       }
     };
 
-    debugger;
+    
     executeAnimations(animations);
   }, [
     mapContext,

@@ -160,18 +160,3 @@
     transform: rotateX(0deg);
   }
 }
-
-.hint {
-  animation-name: hint;
-  animation-duration: 500ms;
-  animation-iteration-count: 1;
-  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-@keyframes hint {
-  50% {
-  }
-
-  100% {
-  }
-}
