@@ -3,6 +3,7 @@ import { RefObject } from "react";
 import { BuildingFloor, CampusBuilding, buildingNames } from "types/Campus";
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
 import { transitionClass, transitionFunction, transitionStyle } from "utils/animations";
+import { MapData } from "context/MapContext";
 
 const getFloorStyleFromOffset = [
   styles.floor__1below,
@@ -152,4 +153,23 @@ function setFloorOutOfFocus(element: SVGSVGElement, offset: number) {
   } else {
     element.classList.value = styles.floor__above;
   }
+}
+
+export function addRoomClickListeners(
+  container: Element,
+  building: CampusBuilding,
+  floor: BuildingFloor | undefined,
+  mapContext: MapData
+) {
+  const allRoomElements = container.querySelectorAll(`[id*="${building}-"]`);
+  allRoomElements.forEach((element) => {
+    const roomNumber = element.id.split("-").slice(1).join("-");
+    element.addEventListener("click", () => {
+      mapContext.setCurrent({
+        area: building,
+        floor: floor,
+        room: roomNumber ? roomNumber : undefined
+      });
+    });
+  });
 }

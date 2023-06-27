@@ -1,4 +1,11 @@
-import { RefObject, createContext, useContext, useRef, useState } from "react";
+import {
+  RefObject,
+  createContext,
+  useCallback,
+  useContext,
+  useRef,
+  useState
+} from "react";
 import { CampusBuilding } from "types/Campus";
 import { MapState } from "types/Map";
 import { MAP_BASE_STATE } from "utils/constants";
@@ -39,10 +46,16 @@ function usePrevious(init_state: any) {
   const [previousData, setPreviousData] = useState(init_state);
   const [currentData, setCurrentData] = useState(init_state);
 
-  const update = (new_state: any) => {
-    setPreviousData({ ...currentData });
-    setCurrentData({ ...currentData, ...new_state });
-  };
+  const update = useCallback(
+    (new_state: any) => {
+      setCurrentData((value: any) => {
+        setPreviousData(value);
+        const filledState = { ...value, ...new_state };
+        return filledState;
+      });
+    },
+    [setPreviousData, setCurrentData]
+  );
 
   return [previousData, currentData, update];
 }

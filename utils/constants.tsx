@@ -45,5 +45,5 @@ export enum animate_to {
 export const MAP_BASE_STATE: MapState = {
   area: buildingNames.CAMPUS,
   floor: undefined,
-  room: `${buildingNames.CAMPUS}-${buildingNames.LEO3}`
+  room: undefined,
 };

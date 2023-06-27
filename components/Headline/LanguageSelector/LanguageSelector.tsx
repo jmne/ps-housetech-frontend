@@ -32,8 +32,6 @@ export function LanguageSelector() {
   }, [currentLang]);
 
   function switchLang() {
-    console.log(router.locale)
-    console.log(animationInProgress)
     if (animationInProgress) return;
     setAnimation(true);
     // Get DOM elements

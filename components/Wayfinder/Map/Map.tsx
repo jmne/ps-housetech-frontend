@@ -12,7 +12,6 @@ import { MAP_BASE_STATE, mapTransitionConfig } from "utils/constants";
 
 // CSS
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
-import { getFloor } from "utils/Wayfinder/mapValidations";
 import { MapLeo11 } from "./MapLeo11";
 import { MapLeo3 } from "./MapLeo3";
 import { MapLeonardoCampus } from "./MapLeonardoCampus";
@@ -49,11 +48,14 @@ export function CampusMap() {
       (floorChanged ? mapTransitionConfig.animationDuration : 0);
 
     if (mapContext.current.room && mapContext.current.area) {
-      setTimeout(() => {
-        if (!mapContext.current.room || !mapContext.current.area) return;
-        setRoomHighlight(mapContext.current.room, mapContext.current.area, true);
-      }, delay_roomHighlight);
+      if (delay_roomHighlight > 0) {
+        setTimeout(() => {
+          if (!mapContext.current.room || !mapContext.current.area) return;
+          setRoomHighlight(mapContext.current.room, mapContext.current.area, true);
+        }, delay_roomHighlight);
+      } else setRoomHighlight(mapContext.current.room, mapContext.current.area, true);
     }
+
     if (
       mapContext.previous.room &&
       mapContext.previous.area &&
@@ -67,7 +69,7 @@ export function CampusMap() {
     <div className={styles.container}>
       <div className={styles.title}>
         <h2>{t(`wayfinder.map.${mapContext.current.area}`)}</h2>
-        {floorName ? <span>{t(`wayfinder.map.${floorName}`)}</span> : <></>}
+        {floorName && <span>{t(`wayfinder.map.${floorName}`)}</span>}
       </div>
       <div className={styles.mapWrapper} ref={mapContext.mapContainer}>
         <MapLeonardoCampus />

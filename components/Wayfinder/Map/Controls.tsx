@@ -5,9 +5,6 @@ import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 
 function handleBackToCampus(mapContext: MapData, selectedPersonContext: PersonData) {
-  console.log(mapContext.campus_element);
-  console.log(mapContext.leo3_building);
-
   if (selectedPersonContext.current_person)
     handleExpansion(selectedPersonContext.current_person, false, selectedPersonContext);
   mapContext.setCurrent({
@@ -68,9 +65,7 @@ export function Controls() {
   const selectedPersonContext = usePersonSearchContext();
 
   return (
-    <div
-      className={styles.controls}
-    >
+    <div className={styles.controls}>
       {mapContext.current.area !== buildingNames.LEO3 && (
         <button onClick={() => handleShowLeo3(mapContext, selectedPersonContext)}>
           Show Leo 3
@@ -93,6 +88,15 @@ export function Controls() {
             Where is Leo 11?
           </button>
         </>
+      )}
+      {mapContext.current.area && mapContext.current.room && (
+        <div className={styles.selectionInformation}>
+          <h3>{mapContext.current.room}</h3>
+          <span>{mapContext.current.area}</span>
+          <button onClick={() => mapContext.setCurrent({ room: undefined })}>
+            reset
+          </button>
+        </div>
       )}
     </div>
   );

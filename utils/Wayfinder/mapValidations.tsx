@@ -34,6 +34,22 @@ export function getFloor(room: number | string): BuildingFloor {
   // base case
   return "floor0";
 }
+
+export function getFloorFromIndex(index: number): BuildingFloor {
+  switch (index) {
+    case 0:
+      return "floor0";
+    case 1:
+      return "floor1";
+    case 2:
+      return "floor2";
+    case 3:
+      return "floor3";
+    default:
+      return "floor0";
+  }
+}
+
 export function getFloorIndex(floor: BuildingFloor) {
   return parseInt(floor.charAt(5));
 }

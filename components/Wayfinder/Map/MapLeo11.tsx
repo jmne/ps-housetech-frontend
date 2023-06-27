@@ -2,14 +2,25 @@ import { useEffect } from "react";
 import styles from "./Map.module.scss";
 import { Leo11_Floor0 } from "assets/images/map/floors_transformed";
 import { useMapContext } from "context/MapContext";
-import { minimizeBuilding, maximizeBuilding } from "utils/Wayfinder/mapTransformations";
+import {
+  minimizeBuilding,
+  maximizeBuilding,
+  addRoomClickListeners
+} from "utils/Wayfinder/mapTransformations";
 import { mapTransitionConfig } from "utils/constants";
-import { buildingNames } from "types/Campus";
+import { BuildingFloor, buildingNames } from "types/Campus";
 
 export function MapLeo11() {
   const mapContext = useMapContext();
 
   useEffect(() => {
+    mapContext.leo11_elements.forEach((element, index) => {
+      const container = element.current;
+      const floor: BuildingFloor = "floor0";
+      if (!container) return;
+      addRoomClickListeners(container, buildingNames.LEO11, floor, mapContext);
+    });
+
     const element_leo11_on_campus = mapContext.leo11_building_on_campus?.current;
     const element_leo11_building = mapContext.leo11_building?.current;
     const element_mapContainer = mapContext.mapContainer?.current;

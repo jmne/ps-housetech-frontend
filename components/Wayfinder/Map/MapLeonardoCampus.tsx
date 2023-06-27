@@ -2,12 +2,23 @@ import styles from "./Map.module.scss";
 import { useEffect } from "react";
 import LeonardoCampus from "assets/images/map/campus_transformed/leonardocampus";
 import { useMapContext } from "context/MapContext";
-import { maximizeCampus, minimizeCampus } from "utils/Wayfinder/mapTransformations";
+import {
+  addRoomClickListeners,
+  maximizeCampus,
+  minimizeCampus
+} from "utils/Wayfinder/mapTransformations";
 import { mapTransitionConfig } from "utils/constants";
 import { buildingNames } from "types/Campus";
 
 export function MapLeonardoCampus() {
   const mapContext = useMapContext();
+
+  useEffect(() => {
+    const container = mapContext.campus_element?.current;
+    if (!container) return;
+    const floor = undefined;
+    addRoomClickListeners(container, buildingNames.CAMPUS, floor, mapContext);
+  }, []);
 
   useEffect(() => {
     const campus = mapContext.campus_element?.current;

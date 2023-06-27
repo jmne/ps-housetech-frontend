@@ -20,7 +20,6 @@ const SvgLeo11Floor0 = React.forwardRef<SVGSVGElement>(
       ref={ref}
     >
       <path
-        id="leo11-floor"
         d="M80.576,363.102L137.696,427.015L588.153,106.204L531.798,40.09L80.576,363.102Z"
         style={{
           fill: "#95989d"

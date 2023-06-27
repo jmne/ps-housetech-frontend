@@ -61,20 +61,20 @@ $map_other_building_x_offset: 200%;
       right: g.$margin-base;
 
       display: grid;
-      grid-template-columns: 1fr (g.$text-base * 7);
+      grid-template-columns: g.$text-base * 7;
       grid-auto-rows: g.$text-base * 3;
 
       gap: g.$margin-base;
 
-      >button {
-        grid-column: 2;
+      button {
+        grid-column: 1;
 
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
 
-        border: g.$border-base solid g.$main-primary;
+        border: g.$border-base solid g.$text-primary;
         border-radius: g.$border-radius-small;
         background-color: g.$main-primary-tint;
 
@@ -82,7 +82,40 @@ $map_other_building_x_offset: 200%;
         backdrop-filter: blur(10px);
 
         font-size: g.$text-base;
-        color: g.$main-primary_dark;
+      }
+
+      .selectionInformation {
+        border-radius: g.$border-radius-small;
+
+        box-shadow: g.$shadow-outer__light;
+        backdrop-filter: blur(10px);
+        border: g.$border-base solid g.$background;
+
+        grid-column: 1;
+        grid-row: span 2;
+        padding: g.$margin-small;
+
+        display: grid;
+        grid-auto-rows: auto;
+
+        button {
+          background: g.$warning_tint;
+          backdrop-filter: blur(4px);
+        }
+
+        * {
+          text-align: center;
+          width: 100%;
+        }
+
+        h3 {
+          padding: 0;
+          margin: 0;
+          margin-block-start: g.$margin-base;
+        }
+        span {
+
+        }
       }
     }
   }
@@ -124,11 +157,9 @@ $map_other_building_x_offset: 200%;
   .floor__above {
     transform: translateX($map_x_offset * -4) translateY(-100%);
     opacity: $map_not-focus_opacity;
-    //z-index: 6;
   }
 
   .floor__focus {
-    //z-index: 5;
     transform: scale($map_focus_scaling);
 
     //filter: drop-shadow(4px 4px 6px rgba(50, 50, 93, 0.20)) drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.15));
@@ -138,7 +169,6 @@ $map_other_building_x_offset: 200%;
     .floor__#{$i}below {
       transform: translateX($i * $map_x_offset) translateY($i * $map_y_offset);
       opacity: $map_not-focus_opacity / ($i);
-      //z-index: 4;
     }
   }
 

@@ -8,14 +8,15 @@ import {
 } from "assets/images/map/floors_transformed";
 import { MapData, useMapContext } from "context/MapContext";
 import {
+  addRoomClickListeners,
   collapseFloorsOfBuilding,
   highlightFloor,
   maximizeBuilding,
   minimizeBuilding
 } from "utils/Wayfinder/mapTransformations";
 import { mapTransitionConfig } from "utils/constants";
-import { buildingNames } from "types/Campus";
-import { getFloorIndex } from "utils/Wayfinder/mapValidations";
+import { BuildingFloor, CampusBuilding, buildingNames } from "types/Campus";
+import { getFloorFromIndex, getFloorIndex } from "utils/Wayfinder/mapValidations";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 
@@ -33,7 +34,11 @@ function handleTouchEnd(
     return;
 
   if (typeof touchStart !== "number") return;
-  const goUp = touchStart - touchEnd < 20;
+  const swipeDistance = touchStart - touchEnd;
+  const goUp = swipeDistance < 0;
+  const swipeThreshhold = Math.abs(touchStart - touchEnd) > 40;
+
+  if (!swipeThreshhold) return;
 
   if (goUp) {
     const nextFloorIndex = getFloorIndex(mapContext.current.floor) + 1;
@@ -60,6 +65,15 @@ export function MapLeo3() {
   const mapContext = useMapContext();
   const personContext = usePersonSearchContext();
   const [touchStart, setTouchStart] = useState<number | undefined>();
+
+  useEffect(() => {
+    mapContext.leo3_elements.forEach((element, index) => {
+      const container = element.current;
+      const floor = getFloorFromIndex(index);
+      if (!container) return;
+      addRoomClickListeners(container, buildingNames.LEO3, floor, mapContext);
+    });
+  }, []);
 
   useEffect(() => {
     const element_leo3_on_campus = mapContext.leo3_building_on_campus?.current;
