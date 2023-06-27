@@ -1,3 +1,4 @@
+import { TFunction, useTranslation } from "next-i18next";
 import {
   BuildingFloor,
   CampusBuilding,
@@ -123,16 +124,36 @@ export function getCampusBuildingDisplayName(building: CampusBuilding) {
 export function getPersonForRoom(
   building: CampusBuilding,
   room: string,
-  persons: Employee[]
+  persons: Employee[],
+  t: TFunction
 ) {
-  const personsInFilter = persons.filter((person) => {
+  if (building === buildingNames.CAMPUS) {
+    switch (room) {
+      case buildingNames.LEO1:
+        return [t("wayfinder.map.brazil_center"), t("wayfinder.map.wi_ag")];
+      case buildingNames.LEO3:
+        return [t("wayfinder.map.wwu_center_europe")];
+      case buildingNames.LEO10:
+        return [`${t("wayfinder.map.lecture_hall")} Leo 1`, `${t("wayfinder.map.lecture_hall")} Leo 2`];
+      case buildingNames.LEO11:
+        return undefined;
+      case buildingNames.LEO18:
+        return [`${t("wayfinder.map.lecture_hall")} Leo 18.3`];
+      default:
+        return undefined;
+    }
+  }
+
+  const personsInFilter = [];
+
+  for (const person of persons) {
     if (
       getAddressID(person.address) === building &&
       person.roomNumber &&
       person.roomNumber.includes(room)
     )
-      return person;
-  });
+      personsInFilter.push(`${person.cfFirstNames} ${person.cfFamilyNames}`);
+  }
 
   if (personsInFilter.length > 0) return personsInFilter;
   else return undefined;

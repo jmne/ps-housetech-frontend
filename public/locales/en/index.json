@@ -3,7 +3,7 @@
         "title": "Department of Information Systems"
     },
     "wayfinder": {
-        "title": "Search for any Person, or Department here...",
+        "title": "Person xy, Department xy",
         "search": {
             "room": "Room",
             "phone": "Phone",
@@ -19,7 +19,11 @@
             "floor0": "Floor 0",
             "floor1": "Floor 1",
             "floor2": "Floor 2",
-            "floor3": "Floor 3"
+            "floor3": "Floor 3",
+            "brazil_center": "Brazil Center",
+            "wi_ag": "WI-AG",
+            "wwu_center_europe": "WWU Center Europe",
+            "lecture_hall": "Lecture Hall"
         },
         "controls": {
             "visit": "Visit",

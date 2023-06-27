@@ -3,7 +3,7 @@
         "title": "Institut für Wirtschaftsinformatik"
     },
     "wayfinder": {
-        "title": "Wo ist?",
+        "title": "Person xy, Fachbereich xy",
         "search": {
             "room": "Raum",
             "phone": "Tel.",
@@ -19,7 +19,11 @@
             "floor0": "Erdgeschoss",
             "floor1": "OG 1",
             "floor2": "OG 2",
-            "floor3": "OG 3"
+            "floor3": "OG 3",
+            "brazil_center": "Brasilien Zentrum",
+            "wi_ag": "WI-AG",
+            "wwu_center_europe": "WWU Zentrum Europa",
+            "lecture_hall": "Hörsaal"
         },
         "controls": {
             "visit": "Besuche...",
