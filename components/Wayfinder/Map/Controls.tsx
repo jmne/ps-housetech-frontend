@@ -3,6 +3,7 @@ import styles from "@/components/Wayfinder/Map/Map.module.scss";
 import { CampusBuilding, buildingNames } from "types/Campus";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { collapse, handleExpansion } from "utils/Wayfinder/personCardsTransformations";
+import { useTranslation } from "next-i18next";
 
 function handleBackToCampus(mapContext: MapData, selectedPersonContext: PersonData) {
   if (selectedPersonContext.current_person)
@@ -45,13 +46,14 @@ function handleCampusBuildingHighlight(mapContext: MapData, building: CampusBuil
 }
 
 export function Controls() {
+  const { t } = useTranslation("index");
   const mapContext = useMapContext();
   const selectedPersonContext = usePersonSearchContext();
 
   return (
     <div className={styles.controls}>
       <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
-        <h3>Visit</h3>
+        <h3>{t("wayfinder.controls.visit")}</h3>
         {mapContext.current.area !== buildingNames.LEO3 && (
           <button onClick={() => handleShowLeo3(mapContext, selectedPersonContext)}>
             Leo 3
@@ -64,13 +66,13 @@ export function Controls() {
         )}
         {mapContext.current.area !== buildingNames.CAMPUS && (
           <button onClick={() => handleBackToCampus(mapContext, selectedPersonContext)}>
-            Back to Campus
+            {t("wayfinder.controls.back_to_campus")}
           </button>
         )}
       </div>
       {mapContext.current.area === buildingNames.CAMPUS && (
         <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
-          <h3>Where is?</h3>
+          <h3>{t("wayfinder.controls.where_is")}</h3>
           <button
             onClick={() => handleCampusBuildingHighlight(mapContext, buildingNames.LEO1)}
           >
@@ -103,13 +105,13 @@ export function Controls() {
           className={styles.removeHighlightButton}
           onClick={() => {
             if (selectedPersonContext.current_person) {
-              collapse(selectedPersonContext.current_person)
-              selectedPersonContext.setPerson(undefined)
+              collapse(selectedPersonContext.current_person);
+              selectedPersonContext.setPerson(undefined);
             }
-            mapContext.setCurrent({ room: undefined })
+            mapContext.setCurrent({ room: undefined });
           }}
         >
-          Remove highlight
+          {t("wayfinder.controls.remove_highlight")}
         </button>
       )}
     </div>

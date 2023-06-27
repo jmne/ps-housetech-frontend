@@ -20,6 +20,12 @@
             "floor1": "OG 1",
             "floor2": "OG 2",
             "floor3": "OG 3"
+        },
+        "controls": {
+            "visit": "Besuche...",
+            "where_is": "Wo ist?",
+            "back_to_campus": "Zum Campus",
+            "remove_highlight": "Markierung entfernen"
         }
     },
     "busplan": {

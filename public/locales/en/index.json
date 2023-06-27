@@ -3,7 +3,7 @@
         "title": "Department of Information Systems"
     },
     "wayfinder": {
-        "title": "Where is?",
+        "title": "Search for any Person, or Department here...",
         "search": {
             "room": "Room",
             "phone": "Phone",
@@ -20,6 +20,12 @@
             "floor1": "Floor 1",
             "floor2": "Floor 2",
             "floor3": "Floor 3"
+        },
+        "controls": {
+            "visit": "Visit",
+            "where_is": "Where is?",
+            "back_to_campus": "Back to Campus",
+            "remove_highlight": "Remove Highlight"
         }
     },
     "busplan": {
