@@ -13,6 +13,8 @@ $map_other_building_x_offset: 200%;
 .container {
   display: grid;
 
+  grid-template-columns: auto 1fr auto;
+
   min-height: 100%;
   min-width: 100%;
 
@@ -21,53 +23,39 @@ $map_other_building_x_offset: 200%;
     margin-inline-start: $floorname_padding;
 
     grid-area: 1 / 1 / 1 / 1;
-
-    height: g.$icon-base;
     width: fit-content;
-
-    display: flex;
-    flex-direction: column;
+    height: fit-content;
 
     z-index: 15;
 
-    h2 {
-      font-weight: 400;
-      font-size: g.$text-base;
-      margin: 0;
-      padding: 0;
-    }
-
-    span {
-      font-size: g.$text-small;
-      font-weight: 500;
-      color: g.$text-secondary;
-    }
-  }
-
-  .mapWrapper {
-    position: relative;
-    min-height: 100%;
-    min-width: 100%;
-    max-height: 100%;
-    max-width: 100%;
-
-    grid-area: 1 / 1 / 3 / 3;
-    display: grid;
-
-    .controls {
-      z-index: 10;
-      position: absolute;
-      top: g.$margin-base;
-      right: g.$margin-base;
-
+    .selectionInformation {
       display: grid;
-      grid-template-columns: g.$text-base * 7;
-      grid-auto-rows: g.$text-base * 3;
+      grid-auto-rows: auto;
 
-      gap: g.$margin-base;
+      h2 {
+        font-weight: 400;
+        font-size: g.$text-base;
+        margin: 0;
+        padding: 0;
+      }
+
+      span {
+        font-size: g.$text-small;
+        font-weight: 500;
+        color: g.$text-secondary;
+      }
+
+      p {
+        font-weight: 500;
+        font-size: g.$text-sm;
+        margin: 0;
+        margin-block-start: g.$margin-small;
+      }
 
       button {
-        grid-column: 1;
+        margin-block-start: g.$margin-small;
+        height: g.$icon-sm;
+
 
         display: flex;
         flex-direction: row;
@@ -76,49 +64,98 @@ $map_other_building_x_offset: 200%;
 
         border: g.$border-base solid g.$text-primary;
         border-radius: g.$border-radius-small;
-        background-color: g.$main-primary-tint;
 
         box-shadow: g.$shadow-outer__light;
-        backdrop-filter: blur(10px);
 
         font-size: g.$text-base;
+
+        background: g.$warning_tint;
+        backdrop-filter: blur(4px);
       }
 
-      .selectionInformation {
-        border-radius: g.$border-radius-small;
+      * {
+        text-align: center;
+        width: 100%;
+      }
 
-        box-shadow: g.$shadow-outer__light;
-        backdrop-filter: blur(10px);
-        border: g.$border-base solid g.$background;
+      h3 {
+        padding: 0;
+        margin: 0;
+        margin-block: g.$margin-small;
+      }
 
-        grid-column: 1;
-        grid-row: span 2;
-        padding: g.$margin-small;
-
-        display: grid;
-        grid-auto-rows: auto;
-
-        button {
-          background: g.$warning_tint;
-          backdrop-filter: blur(4px);
-        }
-
-        * {
-          text-align: center;
-          width: 100%;
-        }
-
-        h3 {
-          padding: 0;
-          margin: 0;
-          margin-block-start: g.$margin-base;
-        }
-        span {
-
-        }
+      .personInRoom {
+        color: g.$text-primary;
       }
     }
   }
+
+  .controls {
+    margin-block-start: g.$margin-base;
+    margin-inline-end: g.$margin-base;
+
+    z-index: 10;
+    grid-column: 3 / 4;
+    grid-row: 1 / 3;
+
+    display: flex;
+    flex-direction: column;
+    width: g.$text-base * 10;
+    max-height: 100%;
+
+
+    gap: g.$margin-base;
+
+    h3 {
+      margin: g.$margin-small;
+      text-align: center;
+    }
+
+    button {
+      min-height: g.$icon-base;
+
+      grid-column: 1;
+      padding-block: g.$margin-small;
+      padding-inline: g.$margin-base;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      border: g.$border-base solid g.$main-primary;
+      border-radius: g.$border-radius-small;
+      background-color: g.$main-primary-tint;
+
+      box-shadow: g.$shadow-outer__light;
+
+      font-size: g.$text-base;
+      font-weight: 400;
+    }
+
+    .buttonsForCampus {
+      grid-column: 1;
+      grid-row: span 1;
+
+      display: grid;
+      grid-auto-rows: auto;
+      gap: g.$margin-base;
+
+      height: fit-content;
+    }
+  }
+}
+
+.mapWrapper {
+  position: relative;
+  min-height: 100%;
+  min-width: 100%;
+  max-height: 100%;
+  max-width: 100%;
+
+  grid-area: 1 / 1 / 3 / 3;
+  display: grid;
+
 
   .mapElement {
     min-width: 0;
@@ -180,5 +217,25 @@ $map_other_building_x_offset: 200%;
       fill: g.$main-secondary !important;
       stroke: g.$main-secondary_dark !important;
     }
+  }
+}
+
+.glassCard {
+  border-radius: g.$border-radius-small;
+
+  box-shadow: g.$shadow-outer__light;
+  backdrop-filter: blur(10px);
+  border: g.$border-base solid g.$background;
+
+  padding: g.$margin-base;
+}
+
+@keyframes blendIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }

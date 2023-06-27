@@ -19,12 +19,31 @@ import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 import { setRoomHighlight } from "utils/Wayfinder/mapTransformations";
 import { Controls } from "./Controls";
+import { buildingNames } from "types/Campus";
+import { getPersonForRoom, getRoomDisplayName } from "utils/Wayfinder/mapValidations";
+import { Employee } from "types/Employee";
 
-export function CampusMap() {
+interface props {
+  allPersons: Employee[];
+}
+
+export function CampusMap({ allPersons }: props) {
   const { t } = useTranslation("index");
   const mapContext = useMapContext();
   const timeoutContext = useTimeoutContext();
   const [floorName, setFloorName] = useState<string | undefined>();
+  const [personsInSelectedRoom, setPersonsInSelectedRoom] = useState<
+    Employee[] | undefined
+  >();
+
+  useEffect(() => {
+    if (!mapContext.current.area || !mapContext.current.room)
+      setPersonsInSelectedRoom(undefined);
+    else
+      setPersonsInSelectedRoom(
+        getPersonForRoom(mapContext.current.area, mapContext.current.room, allPersons)
+      );
+  });
 
   useEffect(() => {
     const resetLayout = () => {
@@ -39,21 +58,10 @@ export function CampusMap() {
   }, [timeoutContext.manager, mapContext]);
 
   useEffect(() => {
-    if (mapContext.current.floor !== floorName) setFloorName(mapContext.current.floor);
-
-    const areaChanged = mapContext.current.area !== mapContext.previous.area;
-    const floorChanged = mapContext.current.floor !== mapContext.previous.floor;
-    const delay_roomHighlight =
-      (areaChanged ? mapTransitionConfig.animationDuration : 0) +
-      (floorChanged ? mapTransitionConfig.animationDuration : 0);
+    if (mapContext.current.floor) setFloorName(mapContext.current.floor);
 
     if (mapContext.current.room && mapContext.current.area) {
-      if (delay_roomHighlight > 0) {
-        setTimeout(() => {
-          if (!mapContext.current.room || !mapContext.current.area) return;
-          setRoomHighlight(mapContext.current.room, mapContext.current.area, true);
-        }, delay_roomHighlight);
-      } else setRoomHighlight(mapContext.current.room, mapContext.current.area, true);
+      setRoomHighlight(mapContext.current.room, mapContext.current.area, true);
     }
 
     if (
@@ -68,15 +76,35 @@ export function CampusMap() {
   return (
     <div className={styles.container}>
       <div className={styles.title}>
-        <h2>{t(`wayfinder.map.${mapContext.current.area}`)}</h2>
-        {floorName && <span>{t(`wayfinder.map.${floorName}`)}</span>}
+        <div className={[styles.selectionInformation, styles.glassCard].join(" ")}>
+          <h2>{t(`wayfinder.map.${mapContext.current.area}`)}</h2>
+          <span>
+            {floorName && mapContext.current.area !== buildingNames.CAMPUS
+              ? t(`wayfinder.map.${floorName}`)
+              : ""}
+          </span>
+          {mapContext.current.room && (
+            <>
+              <p>{getRoomDisplayName(mapContext.current.room)}</p>
+              {personsInSelectedRoom &&
+                personsInSelectedRoom.map((person) => (
+                  <span className={styles.personInRoom}>
+                    {person.cfFirstNames} {person.cfFamilyNames}
+                  </span>
+                ))}
+              <button onClick={() => mapContext.setCurrent({ room: undefined })}>
+                Reset
+              </button>
+            </>
+          )}
+        </div>
       </div>
       <div className={styles.mapWrapper} ref={mapContext.mapContainer}>
         <MapLeonardoCampus />
         <MapLeo3 />
         <MapLeo11 />
-        <Controls />
       </div>
+      <Controls />
     </div>
   );
 }

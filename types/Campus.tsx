@@ -9,3 +9,18 @@ export enum buildingNames {
   LEO18 = "leo18",
   CAMPUS = "campus"
 }
+
+export function isCampusBuilding(data: any): data is CampusBuilding {
+  if (
+    [
+      buildingNames.LEO1,
+      buildingNames.LEO3,
+      buildingNames.LEO10,
+      buildingNames.LEO11,
+      buildingNames.LEO18,
+      buildingNames.CAMPUS
+    ].includes(data)
+  )
+    return true;
+  return false;
+}

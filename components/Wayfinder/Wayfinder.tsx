@@ -122,7 +122,7 @@ export function Wayfinder() {
             })}
           </ol>
         </div>
-        <CampusMap />
+        <CampusMap allPersons={persons ? persons : []}/>
       </section>
     </MapProvider>
   );

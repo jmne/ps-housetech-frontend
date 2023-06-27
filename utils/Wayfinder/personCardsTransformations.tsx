@@ -6,6 +6,7 @@ import {
   SEARCH_RESULT_COLLAPSED,
   SEARCH_RESULT_EXPANDED
 } from "@/components/Wayfinder/PersonResult/PersonResult";
+import { buildingNames } from "types/Campus";
 
 /**
  * Collapse the list element for the given person to hide all details.
@@ -56,10 +57,17 @@ export function handleClickOnPerson(
     room: mapContext.current.room
   };
 
+  const validatedRoomNumber = person.roomNumber
+    ? validateRoomNumber(person.roomNumber)
+    : undefined;
+
   const clicked = {
     person: person,
-    building: person.address ? getAddressID(person.address) : undefined,
-    room: person.roomNumber ? validateRoomNumber(person.roomNumber) : undefined
+    building:
+      person.address && validatedRoomNumber
+        ? getAddressID(person.address)
+        : buildingNames.CAMPUS,
+    room: validatedRoomNumber
   };
 
   const selectedPersonContext_OLD = { ...selectedPersonContext };

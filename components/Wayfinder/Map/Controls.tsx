@@ -1,6 +1,6 @@
 import { MapData, useMapContext } from "context/MapContext";
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
-import { buildingNames } from "types/Campus";
+import { CampusBuilding, buildingNames } from "types/Campus";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 
@@ -28,8 +28,8 @@ function handleShowLeo11(mapContext: MapData, selectedPersonContext: PersonData)
   });
 }
 
-function handleHighlightLeo3(mapContext: MapData) {
-  if (mapContext.current.room === buildingNames.LEO3) {
+function handleCampusBuildingHighlight(mapContext: MapData, building: CampusBuilding) {
+  if (mapContext.current.room === building) {
     mapContext.setCurrent({
       area: buildingNames.CAMPUS,
       floor: undefined,
@@ -39,23 +39,7 @@ function handleHighlightLeo3(mapContext: MapData) {
     mapContext.setCurrent({
       area: buildingNames.CAMPUS,
       floor: undefined,
-      room: buildingNames.LEO3
-    });
-  }
-}
-
-function handleHighlightLeo11(mapContext: MapData) {
-  if (mapContext.current.room === buildingNames.LEO11) {
-    mapContext.setCurrent({
-      area: buildingNames.CAMPUS,
-      floor: undefined,
-      room: undefined
-    });
-  } else {
-    mapContext.setCurrent({
-      area: buildingNames.CAMPUS,
-      floor: undefined,
-      room: buildingNames.LEO11
+      room: building
     });
   }
 }
@@ -66,35 +50,51 @@ export function Controls() {
 
   return (
     <div className={styles.controls}>
-      {mapContext.current.area !== buildingNames.LEO3 && (
-        <button onClick={() => handleShowLeo3(mapContext, selectedPersonContext)}>
-          Show Leo 3
-        </button>
-      )}
-      {mapContext.current.area !== buildingNames.LEO11 && (
-        <button onClick={() => handleShowLeo11(mapContext, selectedPersonContext)}>
-          Show Leo 11
-        </button>
-      )}
-      {mapContext.current.area !== buildingNames.CAMPUS && (
-        <button onClick={() => handleBackToCampus(mapContext, selectedPersonContext)}>
-          Back to Campus
-        </button>
-      )}
-      {mapContext.current.area === buildingNames.CAMPUS && (
-        <>
-          <button onClick={() => handleHighlightLeo3(mapContext)}>Where is Leo 3?</button>
-          <button onClick={() => handleHighlightLeo11(mapContext)}>
-            Where is Leo 11?
+      <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
+        <h3>Visit</h3>
+        {mapContext.current.area !== buildingNames.LEO3 && (
+          <button onClick={() => handleShowLeo3(mapContext, selectedPersonContext)}>
+            Leo 3
           </button>
-        </>
-      )}
-      {mapContext.current.area && mapContext.current.room && (
-        <div className={styles.selectionInformation}>
-          <h3>{mapContext.current.room}</h3>
-          <span>{mapContext.current.area}</span>
-          <button onClick={() => mapContext.setCurrent({ room: undefined })}>
-            reset
+        )}
+        {mapContext.current.area !== buildingNames.LEO11 && (
+          <button onClick={() => handleShowLeo11(mapContext, selectedPersonContext)}>
+            Leo 11
+          </button>
+        )}
+        {mapContext.current.area !== buildingNames.CAMPUS && (
+          <button onClick={() => handleBackToCampus(mapContext, selectedPersonContext)}>
+            Back to Campus
+          </button>
+        )}
+      </div>
+      {mapContext.current.area === buildingNames.CAMPUS && (
+        <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
+          <h3>Where is?</h3>
+          <button
+            onClick={() => handleCampusBuildingHighlight(mapContext, buildingNames.LEO1)}
+          >
+            Leo 1
+          </button>
+          <button
+            onClick={() => handleCampusBuildingHighlight(mapContext, buildingNames.LEO3)}
+          >
+            Leo 3
+          </button>
+          <button
+            onClick={() => handleCampusBuildingHighlight(mapContext, buildingNames.LEO10)}
+          >
+            Leo 10
+          </button>
+          <button
+            onClick={() => handleCampusBuildingHighlight(mapContext, buildingNames.LEO11)}
+          >
+            Leo 11
+          </button>
+          <button
+            onClick={() => handleCampusBuildingHighlight(mapContext, buildingNames.LEO18)}
+          >
+            Leo 18
           </button>
         </div>
       )}

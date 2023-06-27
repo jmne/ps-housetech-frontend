@@ -1,11 +1,19 @@
-import { BuildingFloor, CampusBuilding, buildingNames } from "types/Campus";
-import { addressValue } from "types/Employee";
+import {
+  BuildingFloor,
+  CampusBuilding,
+  buildingNames,
+  isCampusBuilding
+} from "types/Campus";
+import { Employee, addressValue } from "types/Employee";
 
 export function validateRoomNumber(room: string | number) {
   const roomStr = room.toString();
 
   const validRoomNumber = roomStr.match(/^\d{3}$/);
-  if (validRoomNumber) return validRoomNumber[0];
+  if (validRoomNumber) {
+    if (parseInt(validRoomNumber[0]) >= 400) return undefined;
+    return validRoomNumber[0];
+  }
 
   const sequenceOfThreeDigits = roomStr.match(/(?<!\d)\d{3}(?!\d)/);
   if (sequenceOfThreeDigits) return sequenceOfThreeDigits[0];
@@ -80,4 +88,52 @@ export function roomInBuilding(
 ): boolean {
   if (building_of_room === current_building) return true;
   else return false;
+}
+
+export function getRoomDisplayName(room: string) {
+  const validatedRoomNumber = validateRoomNumber(room);
+  if (validatedRoomNumber) return validatedRoomNumber;
+
+  if (isCampusBuilding(room)) return getCampusBuildingDisplayName(room);
+
+  const lowerCase = room.toLowerCase();
+  if (lowerCase.includes("wc")) return "WC";
+  if (lowerCase.includes("hausmeister")) return "Hausmeister";
+
+  return "";
+}
+
+export function getCampusBuildingDisplayName(building: CampusBuilding) {
+  switch (building) {
+    case buildingNames.CAMPUS:
+      return "Campus";
+    case buildingNames.LEO1:
+      return "Leo 1";
+    case buildingNames.LEO3:
+      return "Leo 3";
+    case buildingNames.LEO10:
+      return "Leo 10";
+    case buildingNames.LEO11:
+      return "Leo 11";
+    case buildingNames.LEO18:
+      return "Leo 18";
+  }
+}
+
+export function getPersonForRoom(
+  building: CampusBuilding,
+  room: string,
+  persons: Employee[]
+) {
+  const personsInFilter = persons.filter((person) => {
+    if (
+      getAddressID(person.address) === building &&
+      person.roomNumber &&
+      person.roomNumber.includes(room)
+    )
+      return person;
+  });
+
+  if (personsInFilter.length > 0) return personsInFilter;
+  else return undefined;
 }
