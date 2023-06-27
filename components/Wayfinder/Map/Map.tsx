@@ -22,7 +22,6 @@ import { Controls } from "./Controls";
 import { buildingNames } from "types/Campus";
 import { getPersonForRoom, getRoomDisplayName } from "utils/Wayfinder/mapValidations";
 import { Employee } from "types/Employee";
-import { useRouter } from "next/router";
 
 interface props {
   allPersons: Employee[];
@@ -36,15 +35,20 @@ export function CampusMap({ allPersons }: props) {
   const [placesAndPeopleInSelectedRoom, setPlacesAndPeopleInSelectedRoom] = useState<
     string[] | undefined
   >();
+  const [roomDisplayName, setRoomDisplayName] = useState<string | undefined>();
 
   useEffect(() => {
     if (!mapContext.current.area || !mapContext.current.room)
       setPlacesAndPeopleInSelectedRoom(undefined);
-    else
+    else {
       setPlacesAndPeopleInSelectedRoom(
         getPersonForRoom(mapContext.current.area, mapContext.current.room, allPersons, t)
       );
-  }, [mapContext.current.area, mapContext.current.room]);
+      const roomName = getRoomDisplayName(mapContext.current.room);
+      if (roomName) setRoomDisplayName(roomName);
+      else setRoomDisplayName(undefined);
+    }
+  }, [mapContext.current.area, mapContext.current.room, allPersons, mapContext, t]);
 
   useEffect(() => {
     const resetLayout = () => {
@@ -86,7 +90,7 @@ export function CampusMap({ allPersons }: props) {
           </span>
           {mapContext.current.room && (
             <>
-              <p>{getRoomDisplayName(mapContext.current.room)}</p>
+              {roomDisplayName && <p>{roomDisplayName}</p>}
               {placesAndPeopleInSelectedRoom &&
                 placesAndPeopleInSelectedRoom.map((name, index) => (
                   <span className={styles.personInRoom} key={index}>

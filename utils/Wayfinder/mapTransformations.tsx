@@ -1,8 +1,8 @@
 // IMPORTS - BUILTINS
 import { RefObject } from "react";
-import { BuildingFloor, CampusBuilding, buildingNames } from "types/Campus";
+import { BuildingFloor, CampusBuilding } from "types/Campus";
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
-import { transitionClass, transitionFunction, transitionStyle } from "utils/animations";
+import { transitionFunction, transitionStyle } from "utils/animations";
 import { MapData } from "context/MapContext";
 
 const getFloorStyleFromOffset = [
@@ -122,6 +122,8 @@ export async function highlightFloor(
     index_new_layer
   );
 
+  if (!building_floors[0].current) return;
+
   return transitionFunction(building_floors[0].current, transformation);
 }
 
@@ -137,6 +139,8 @@ export async function collapseFloorsOfBuilding(
   building_floors: RefObject<SVGSVGElement>[]
 ) {
   const transformation = collapseFloorsOfBuilding_internal.bind(null, building_floors);
+
+  if (!building_floors[0].current) return;
 
   return transitionFunction(building_floors[0].current, transformation);
 }

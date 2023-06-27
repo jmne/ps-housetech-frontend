@@ -35,11 +35,6 @@ export function MapLeonardoCampus() {
     const animations: (() => Promise<unknown>)[] = [];
 
     if (transitionToCampus) {
-      const waitForLeo3Collapse =
-        mapContext.previous.area === buildingNames.LEO3
-          ? mapTransitionConfig.animationDuration
-          : 0;
-
       animations.push(maximizeCampus.bind(null, campus));
     } else if (transitionFromCampus) {
       animations.push(minimizeCampus.bind(null, campus));

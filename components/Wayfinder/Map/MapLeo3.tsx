@@ -15,7 +15,7 @@ import {
   minimizeBuilding
 } from "utils/Wayfinder/mapTransformations";
 import { mapTransitionConfig } from "utils/constants";
-import { BuildingFloor, CampusBuilding, buildingNames } from "types/Campus";
+import { buildingNames } from "types/Campus";
 import { getFloorFromIndex, getFloorIndex } from "utils/Wayfinder/mapValidations";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
@@ -108,10 +108,6 @@ export function MapLeo3() {
       !element_campus
     )
       return;
-
-    const timeout_because_focusOnBuilding = areaJustGotInFocus
-      ? mapTransitionConfig.animationDuration
-      : 0;
 
     const animations: (() => Promise<unknown>)[] = [];
 

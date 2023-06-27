@@ -7,14 +7,13 @@ import {
   maximizeBuilding,
   addRoomClickListeners
 } from "utils/Wayfinder/mapTransformations";
-import { mapTransitionConfig } from "utils/constants";
 import { BuildingFloor, buildingNames } from "types/Campus";
 
 export function MapLeo11() {
   const mapContext = useMapContext();
 
   useEffect(() => {
-    mapContext.leo11_elements.forEach((element, index) => {
+    mapContext.leo11_elements.forEach((element) => {
       const container = element.current;
       const floor: BuildingFloor = "floor0";
       if (!container) return;
@@ -58,10 +57,6 @@ export function MapLeo11() {
     const animations: (() => Promise<unknown>)[] = [];
 
     if (areaJustGotInFocus) {
-      const timeout_because_leo3_collapse =
-        mapContext.previous.area === buildingNames.LEO3
-          ? mapTransitionConfig.animationDuration
-          : 0;
       animations.push(maximizeBuilding.bind(null, element_leo11_building));
     } else if (areaGotOutOfFocus) {
       animations.push(
