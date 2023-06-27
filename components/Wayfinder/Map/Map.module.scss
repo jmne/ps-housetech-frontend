@@ -1,66 +1,235 @@
 @use "/assets/scss/constants.scss" as g;
 
-$animDuration: 0.75s;
+$animDuration: 500ms;
 $floorname_padding: g.$margin-base;
 
-$map_x_offset: -10%;
-$map_y_offset: 20%;
-$map_not-focus_opacity: 15%;
+$map_x_offset: -5%;
+$map_y_offset: 15%;
+$map_not-focus_opacity: 60%;
+$map_focus_scaling: 1.1;
 
 $map_other_building_x_offset: 200%;
 
 .container {
   display: grid;
 
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto 1fr;
+
   min-height: 100%;
+  height: 100%;
+  max-height: 100%;
+
   min-width: 100%;
+  width: 100%;
+  max-width: 100%;
 
   .title {
     margin-block-start: $floorname_padding;
     margin-inline-start: $floorname_padding;
 
     grid-area: 1 / 1 / 1 / 1;
-
-    height: g.$icon-base;
     width: fit-content;
+    height: fit-content;
+
+    z-index: 15;
+
+    .selectionInformation {
+      display: grid;
+      grid-auto-rows: auto;
+
+      h2 {
+        font-weight: 400;
+        font-size: g.$text-base;
+        margin: 0;
+        padding: 0;
+      }
+
+      span {
+        font-size: g.$text-small;
+        font-weight: 500;
+        color: g.$text-secondary;
+      }
+
+      p {
+        font-weight: 500;
+        font-size: g.$text-sm;
+        margin: 0;
+        margin-block-start: g.$margin-small;
+      }
+
+      * {
+        text-align: center;
+        width: 100%;
+      }
+
+      h3 {
+        padding: 0;
+        margin: 0;
+        margin-block: g.$margin-small;
+      }
+
+      .personInRoom {
+        color: g.$text-primary;
+      }
+    }
+  }
+
+  .controls {
+    margin-block-start: g.$margin-base;
+    margin-inline-end: g.$margin-base;
+
+    z-index: 10;
+    grid-column: 3 / 4;
+    grid-row: 1 / 3;
 
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
 
-    h2 {
-      font-weight: 400;
-      font-size: g.$text-base;
-      margin: 0;
-      padding: 0;
-    }
-
-    span {
-      font-size: g.$text-small;
-      color: g.$text-secondary;
-    }
-  }
-
-  .floorWrapper {
-    min-height: 100%;
-    min-width: 100%;
     max-height: 100%;
-    max-width: 100%;
+    min-width: 11rem;
 
-    grid-area: 1 / 1 / 3 / 3;
-    display: grid;
 
-    * {
-      transition: all $animDuration ease-out;
+    gap: g.$margin-base;
+
+    h3 {
+      margin: g.$margin-small;
+      text-align: center;
+    }
+
+    button {
+      min-height: g.$icon-base;
+
+      grid-column: 1;
+      padding-block: g.$margin-small;
+      padding-inline: g.$margin-base;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      border: g.$border-base solid g.$main-primary;
+      border-radius: g.$border-radius-small;
+      background-color: g.$main-primary-tint;
+
+      box-shadow: g.$shadow-outer__light;
+
+      font-size: g.$text-base;
+      font-weight: 400;
+    }
+
+    .buttonsForCampus {
+      grid-column: 1;
+      grid-row: span 1;
+
+      display: grid;
+      grid-auto-rows: auto;
+      gap: g.$margin-small;
+
+      height: fit-content;
+    }
+
+    .removeHighlightButton {
+      margin-inline: g.$margin-base;
+      background: g.$warning_tint;
+      border: g.$border-base solid g.$accent1;
+      font-size: g.$text-small;
     }
   }
+}
 
-  .floor {
+.mapWrapper {
+  position: relative;
+  min-height: 100%;
+  min-width: 100%;
+  max-height: 100%;
+  max-width: 100%;
+
+  grid-area: 1 / 1 / 3 / 3;
+  display: grid;
+
+
+  .mapElement {
+    min-width: 0;
+    min-height: 0;
     width: 100%;
     height: 100%;
+    max-width: 100%;
+    max-height: 100%;
     grid-area: 1 / 1 / 1 / 1;
+
+    display: grid;
+
+    >* {
+      grid-area: 1 / 1 / 1 / 1;
+
+      min-width: 0;
+      min-height: 0;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+
+      will-change: transform, opacity;
+      transition: opacity $animDuration ease-out,
+        transform $animDuration ease-in-out;
+
+      * {
+        transition: fill $animDuration ease-out, stroke $animDuration ease-out;
+      }
+    }
+
+    transition: opacity $animDuration ease-out,
+    transform $animDuration ease-in-out;
+  }
+
+  .floor__above {
+    transform: translateX($map_x_offset * -4) translateY(-100%);
+    opacity: $map_not-focus_opacity;
+  }
+
+  .floor__focus {
+    transform: scale($map_focus_scaling);
+
+    //filter: drop-shadow(4px 4px 6px rgba(50, 50, 93, 0.20)) drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.15));
+  }
+
+  @for $i from 1 through 4 {
+    .floor__#{$i}below {
+      transform: translateX($i * $map_x_offset) translateY($i * $map_y_offset);
+      opacity: $map_not-focus_opacity / ($i);
+    }
   }
 
   .highlight {
     fill: g.$main-secondary !important;
+    stroke: g.$main-secondary_dark !important;
+
+    * {
+      fill: g.$main-secondary !important;
+      stroke: g.$main-secondary_dark !important;
+    }
+  }
+}
+
+.glassCard {
+  border-radius: g.$border-radius-small;
+
+  box-shadow: g.$shadow-outer__light;
+  backdrop-filter: blur(10px);
+  border: g.$border-base solid g.$background;
+
+  padding: g.$margin-base;
+}
+
+@keyframes blendIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }

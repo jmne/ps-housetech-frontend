@@ -20,7 +20,6 @@ const SvgLeo3Floor1 = React.forwardRef<SVGSVGElement>(
       viewBox="0 0 614.25 447"
     >
       <path
-        id="leo3-floor1"
         d="M596.31,148.05L537.04,190.94L512.21,173.03L234.23,369.937L258.93,387.752L200.38,429.226L18.375,300.36L78.1,257.36L145.07,305.65L246.95,233.11L203.74,201.96L275.99,150.12L319.6,181.57L423.05,108.75L356.2,60.54L416.47,18.37L596.31,148.05Z"
         style={{
           fill: "#95989d"
@@ -296,7 +295,7 @@ const SvgLeo3Floor1 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
-        id="leo3-113"
+        id="leo3-114"
         d="M348.87,192.09L396.72,158.05L464.67,206.71L416.33,240.73L348.87,192.09Z"
         style={{
           fill: "#fafafa"
