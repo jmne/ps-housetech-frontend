@@ -98,6 +98,14 @@ export function Controls() {
           </button>
         </div>
       )}
+      {mapContext.current.room && (
+        <button
+          className={styles.removeHighlightButton}
+          onClick={() => mapContext.setCurrent({ room: undefined })}
+        >
+          Remove highlight
+        </button>
+      )}
     </div>
   );
 }

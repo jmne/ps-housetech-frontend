@@ -52,27 +52,6 @@ $map_other_building_x_offset: 200%;
         margin-block-start: g.$margin-small;
       }
 
-      button {
-        margin-block-start: g.$margin-small;
-        height: g.$icon-sm;
-
-
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-
-        border: g.$border-base solid g.$text-primary;
-        border-radius: g.$border-radius-small;
-
-        box-shadow: g.$shadow-outer__light;
-
-        font-size: g.$text-base;
-
-        background: g.$warning_tint;
-        backdrop-filter: blur(4px);
-      }
-
       * {
         text-align: center;
         width: 100%;
@@ -139,9 +118,16 @@ $map_other_building_x_offset: 200%;
 
       display: grid;
       grid-auto-rows: auto;
-      gap: g.$margin-base;
+      gap: g.$margin-small;
 
       height: fit-content;
+    }
+
+    .removeHighlightButton {
+      margin-inline: g.$margin-base;
+      background: g.$warning_tint;
+      border: g.$border-base solid g.$accent1;
+      font-size: g.$text-small;
     }
   }
 }

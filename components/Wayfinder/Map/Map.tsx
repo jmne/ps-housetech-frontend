@@ -8,7 +8,7 @@ import { useTranslation } from "next-i18next";
 import { useMapContext } from "context/MapContext";
 
 // IMPORTS - CONSTANTS
-import { MAP_BASE_STATE, mapTransitionConfig } from "utils/constants";
+import { MAP_BASE_STATE } from "utils/constants";
 
 // CSS
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
@@ -43,7 +43,7 @@ export function CampusMap({ allPersons }: props) {
       setPersonsInSelectedRoom(
         getPersonForRoom(mapContext.current.area, mapContext.current.room, allPersons)
       );
-  });
+  }, [mapContext.current.area, mapContext.current.room]);
 
   useEffect(() => {
     const resetLayout = () => {
@@ -87,14 +87,11 @@ export function CampusMap({ allPersons }: props) {
             <>
               <p>{getRoomDisplayName(mapContext.current.room)}</p>
               {personsInSelectedRoom &&
-                personsInSelectedRoom.map((person) => (
-                  <span className={styles.personInRoom}>
+                personsInSelectedRoom.map((person, index) => (
+                  <span className={styles.personInRoom} key={index}>
                     {person.cfFirstNames} {person.cfFamilyNames}
                   </span>
                 ))}
-              <button onClick={() => mapContext.setCurrent({ room: undefined })}>
-                Reset
-              </button>
             </>
           )}
         </div>
