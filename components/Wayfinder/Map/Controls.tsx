@@ -2,7 +2,7 @@ import { MapData, useMapContext } from "context/MapContext";
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
 import { CampusBuilding, buildingNames } from "types/Campus";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
-import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
+import { collapse, handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 
 function handleBackToCampus(mapContext: MapData, selectedPersonContext: PersonData) {
   if (selectedPersonContext.current_person)
@@ -101,7 +101,13 @@ export function Controls() {
       {mapContext.current.room && (
         <button
           className={styles.removeHighlightButton}
-          onClick={() => mapContext.setCurrent({ room: undefined })}
+          onClick={() => {
+            if (selectedPersonContext.current_person) {
+              collapse(selectedPersonContext.current_person)
+              selectedPersonContext.setPerson(undefined)
+            }
+            mapContext.setCurrent({ room: undefined })
+          }}
         >
           Remove highlight
         </button>
