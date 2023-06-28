@@ -3,19 +3,33 @@
         "title": "Department of Information Systems"
     },
     "wayfinder": {
-        "title": "Where is?",
+        "title": "Person xy, Department xy",
         "search": {
             "room": "Room",
             "phone": "Phone",
             "mail": "Mail"
         },
         "map": {
+            "campus": "Leonardo Campus",
+            "leo1": "Leonardo Campus 1",
             "leo3": "Leonardo Campus 3",
+            "leo10": "Leonardo Campus 10",
             "leo11": "Leonardo Campus 11",
+            "leo18": "Leonardo Campus 18",
             "floor0": "Floor 0",
             "floor1": "Floor 1",
             "floor2": "Floor 2",
-            "floor3": "Floor 3"
+            "floor3": "Floor 3",
+            "brazil_center": "Brazil Center",
+            "wi_ag": "WI-AG",
+            "wwu_center_europe": "WWU Center Europe",
+            "lecture_hall": "Lecture Hall"
+        },
+        "controls": {
+            "visit": "Visit",
+            "where_is": "Where is?",
+            "back_to_campus": "Back to Campus",
+            "remove_highlight": "Remove Highlight"
         }
     },
     "busplan": {

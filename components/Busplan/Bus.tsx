@@ -10,6 +10,7 @@ import styles from "@/components/Busplan/Bus.module.scss";
 import IconInward from "assets/images/icon_city.svg";
 import IconOutward from "assets/images/icon_forrest.svg";
 import icon_bus from "assets/images/bus.png";
+import { getColumn, getRow, handleClick } from "./animations";
 
 type Direction = "inward" | "outward";
 
@@ -18,15 +19,6 @@ interface BusProps {
   direction: Direction;
   index: number;
 }
-
-// Array used since 'index' is a number
-const getColumn = [styles.first, styles.second, styles.third];
-
-// Dict to use 'direction' string as key
-const getRow = {
-  inward: styles.inward,
-  outward: styles.outward
-};
 
 /**
  *
@@ -39,13 +31,11 @@ export default function Bus({ bus, direction, index }: BusProps) {
   const column = getColumn[index];
   const row = getRow[direction];
   const delayed = bus.minutes_delay >= 5;
-
   const time_styling = delayed ? [styles.time, styles.delay].join(" ") : styles.time;
 
   // Used for animation
   const [h_halft, setHeight] = useState(0);
   const ref = useRef<HTMLInputElement>(null);
-  const [animRunning, setAnimation] = useState(false);
 
   // Setup of 3d transformations for rotate-animation
   useEffect(() => {
@@ -66,54 +56,10 @@ export default function Bus({ bus, direction, index }: BusProps) {
     }
   }, [h_halft, column, row]);
 
-  // Applies classes to the information div & hidden easteregg div to trigger the animation.
-  // -> Chance to rotate or wiggle
-  function easteregg() {
-    // Cancel if an animation is already running
-    if (animRunning === true) return;
-
-    // get container and apply animation
-    const elem = document.getElementById(`busContainer${column}${row}`);
-    if (!elem) return;
-    setAnimation(true);
-
-    // Wiggle snippet
-    const wiggle = (duration: number) => {
-      setTimeout(() => {
-        elem.style.transform = `translateZ(-${h_halft}px) rotateX(${10 + 5 * rand}deg)`;
-        setTimeout(() => {
-          elem.style.transform = `translateZ(-${h_halft}px)`;
-          setAnimation(false);
-        }, 400);
-      }, duration);
-    };
-
-    // Start animation variant based on chance
-    var hint = false;
-    const rand = Math.random();
-    if (rand > 0.3) {
-      hint = true;
-      elem.style.transform = `translateZ(-${h_halft}px) rotateX(-${10 + 30 * rand}deg)`;
-    } else
-      elem.style.transform = `translateZ(-${h_halft}px) rotateX(-${
-        90 + 15 + 5 * rand
-      }deg)`;
-
-    // Revert effects -> Different timing based on animation
-    if (hint) {
-      wiggle(400);
-    } else {
-      setTimeout(() => {
-        elem.style.transform = `translateZ(-${h_halft}px) rotateX(-90deg)`;
-        wiggle(1000);
-      }, 400);
-    }
-  }
-
   return (
     <div
       className={[styles.container, column, row].join(" ")}
-      onClick={easteregg}
+      onClick={() => handleClick(ref, h_halft)}
       id={`busContainer${column}${row}`}
       ref={ref}
     >

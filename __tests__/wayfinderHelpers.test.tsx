@@ -1,4 +1,5 @@
-import { getFloor, getFloorNumber, validateRoomNumber } from 'utils/mapTransformations';
+import { validateRoomNumber, getFloor, getFloorNumber } from "utils/Wayfinder/mapValidations";
+
 
 describe('Map transformation helpers', () => {
     it('should return the correct 3-digit room number when valid', () => {
@@ -13,11 +14,11 @@ describe('Map transformation helpers', () => {
     });
 
     it('should return empty string when no valid room number', () => {
-        expect(validateRoomNumber('leo3-J B')).toBe('');
-        expect(validateRoomNumber('V')).toBe('');
-        expect(validateRoomNumber('Heisenbergstr. 2, Raum')).toBe('');
-        expect(validateRoomNumber('1234')).toBe('');
-        expect(validateRoomNumber('34')).toBe('');
+        expect(validateRoomNumber('leo3-J B')).toBe(undefined);
+        expect(validateRoomNumber('V')).toBe(undefined);
+        expect(validateRoomNumber('Heisenbergstr. 2, Raum')).toBe(undefined);
+        expect(validateRoomNumber('1234')).toBe(undefined);
+        expect(validateRoomNumber('34')).toBe(undefined);
     });
 
     it('should return correct BuildingFloor value for getFloor', () => {

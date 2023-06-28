@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { Employee } from "types/Employee";
 
-interface PersonData {
+export interface PersonData {
   current_person: Employee | undefined;
   setPerson: Function;
 }
