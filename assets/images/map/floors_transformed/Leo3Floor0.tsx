@@ -65,6 +65,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         }}
       />
       <path
+        id="leo3-002"
         d="M494.9,160.74L536.88,191.01L566.83,169.62L525.06,139.51L494.9,160.74Z"
         style={{
           fill: "#fafafa"
@@ -128,7 +129,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
-        id="room-022"
+        id="leo3-022"
         d="M281.47,336.47L214.03,287.85L166.78,321.31L234.23,369.937L281.47,336.47Z"
         style={{
           fill: "#435c8b"
@@ -167,6 +168,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-020"
         d="M281.47,336.47L329.54,302.42L261.65,253.47L214.03,287.85L281.47,336.47Z"
         style={{
           fill: "#fafafa"
@@ -264,6 +266,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-019"
         d="M329.54,302.42L371.84,272.47L305.06,223.49L261.65,253.47L329.54,302.42Z"
         style={{
           fill: "#fafafa"
@@ -319,6 +322,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-hausmeister"
         d="M566.98,169.55L596.31,148.05L554.95,118.23L525.22,139.43L566.98,169.55Z"
         style={{
           fill: "#fafafa"
@@ -412,6 +416,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-wc0"
         d="M511.52,149.08L554.95,118.23L537.24,105.46L493.71,136.3L511.52,149.08Z"
         style={{
           fill: "#fafafa"
@@ -441,6 +446,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-wc0"
         d="M537.24,105.46L526.45,97.68L482.87,128.37L493.71,136.3L537.24,105.46Z"
         style={{
           fill: "#fafafa"
@@ -470,6 +476,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-008"
         d="M482.95,66.32L450.48,42.9L406.82,73.82L439.59,97.16L482.95,66.32Z"
         style={{
           fill: "#435c8b"
@@ -508,6 +515,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-009"
         d="M450.48,42.9L416.47,18.37L373.02,49.15L406.82,73.82L450.48,42.9Z"
         style={{
           fill: "#435c8b"
@@ -546,6 +554,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-010"
         d="M406.82,73.82L390.43,85.43L356.2,60.54L373.02,49.15L406.82,73.82Z"
         style={{
           fill: "#435c8b"
@@ -584,6 +593,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-017"
         d="M282.81,207.82L319.91,181.8L275.99,150.12L239.15,176.56L282.81,207.82Z"
         style={{
           fill: "#435c8b"
@@ -622,6 +632,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-018"
         d="M282.81,207.82L246.95,233.11L203.74,201.96L239.15,176.56L282.81,207.82Z"
         style={{
           fill: "#435c8b"
@@ -660,6 +671,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-034"
         d="M112.44,282.34L94.68,294.92L60.332,270.15L78.1,257.36L112.44,282.34Z"
         style={{
           fill: "#435c8b"
@@ -698,6 +710,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-033"
         d="M60.332,270.15L18.375,300.36L52.735,324.69L94.68,294.92L60.332,270.15Z"
         style={{
           fill: "#435c8b"
@@ -736,6 +749,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-032"
         d="M52.735,324.69L85.429,347.834L127.24,318.28L94.68,294.92L52.735,324.69Z"
         style={{
           fill: "#435c8b"
@@ -774,7 +788,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
-        id="room-023"
+        id="leo3-023"
         d="M234.23,369.937L204.15,391.197L228.89,409.033L258.93,387.752L234.23,369.937Z"
         style={{
           fill: "#435c8b"
@@ -813,7 +827,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
-        id="room-024"
+        id="leo3-024"
         d="M228.89,409.033L186.96,378.801L158.1,399.288L200.38,429.226L228.89,409.033Z"
         style={{
           fill: "#435c8b"
@@ -852,6 +866,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-027"
         d="M158.1,399.288L199.01,370.365L181.3,357.592L140.22,386.687L158.1,399.288Z"
         style={{
           fill: "#435c8b"
@@ -890,6 +905,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-wc0"
         d="M181.3,357.592L170.64,349.634L129.41,378.972L140.22,386.687L181.3,357.592Z"
         style={{
           fill: "#fafafa"
@@ -919,6 +935,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-029"
         d="M170.64,349.634L149.03,334.01L107.53,363.485L129.41,378.972L170.64,349.634Z"
         style={{
           fill: "#435c8b"
@@ -957,6 +974,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-az0"
         d="M482.87,128.37L496.65,118.79L474.77,103.06L461.36,112.78L482.87,128.37Z"
         style={{
           fill: "#fafafa"
@@ -986,6 +1004,7 @@ const SvgLeo3Floor0 = React.forwardRef<SVGSVGElement>(
         />
       </g>
       <path
+        id="leo3-013"
         d="M371.68,272.54L416.18,240.81L464.52,206.78L512.05,173.11L444.52,124.41L396.57,158.12L348.72,192.16L304.91,223.56L371.68,272.54Z"
         style={{
           fill: "#fafafa"

@@ -3,78 +3,59 @@ import { useTranslation } from "next-i18next";
 import { useMapContext } from "context/MapContext";
 import { usePersonSearchContext } from "context/PersonContext";
 import styles from "@/components/Wayfinder/Wayfinder.module.scss";
-import { forwardRef, useCallback } from "react";
-import { validateRoomNumber } from "utils/mapTransformations";
+import { Fragment, useEffect, useRef } from "react";
+import { handleClickOnPerson } from "utils/Wayfinder/personCardsTransformations";
 
-interface Props {
+interface props {
   person: Employee;
 }
 
-const PersonResult = forwardRef<HTMLLIElement, Props>(({ person }, ref) => {
+export const SEARCH_RESULT_COLLAPSED = styles.person;
+export const SEARCH_RESULT_EXPANDED = [styles.person, styles.expanded].join(" ");
+
+function PersonResult({ person }: props) {
   const { t } = useTranslation("index");
   const mapContext = useMapContext();
   const selectedPersonContext = usePersonSearchContext();
-
-  const setSelection = useCallback(() => {
-    if (selectedPersonContext.current_person === person) {
-      selectedPersonContext.setPerson(undefined);
-      mapContext.setRoom(undefined);
-      mapContext.setBuilding(undefined);
-    } else {
-      selectedPersonContext.setPerson(person);
-      
-      if (!person.roomNumber) return
-      const validRoomNumber = validateRoomNumber(person.roomNumber)
-      if (validRoomNumber == "") return
-      mapContext.setRoom(validRoomNumber);
-      mapContext.setBuilding("leo3");
-    }
-  }, [person, mapContext, selectedPersonContext]);
-
   const phoneTranslation = t("wayfinder.search.phone");
-  const roomTranslation = t("wayfinder.search.room");
+  //const roomTranslation = t("wayfinder.search.room");
+
+  const personRef = useRef(null);
+  useEffect(() => {
+    person.searchResultRef = personRef;
+  }, [personRef, person]);
 
   return (
     <li
-      className={styles.person}
-      id={`${person.cfFamilyNames}${person.phone}${person.chair}`}
-      onClick={setSelection}
-      ref={ref}
+      className={SEARCH_RESULT_COLLAPSED}
+      onClick={() => handleClickOnPerson(person, mapContext, selectedPersonContext)}
+      ref={personRef}
     >
       <span>{`${person.cfFirstNames} ${person.cfFamilyNames}`}</span>
       <span className={styles.caption}>{person.chair}</span>
       <div className={styles.hidden}>
-        {person.phone ? (
-          <>
-            <span className={styles.attribute}>{phoneTranslation}</span>
-            <span className={styles.caption}>{person.phone}</span>
-            <br />
-          </>
-        ) : (
-          <></>
-        )}
-        {person.email ? (
-          <>
-            <span className={styles.attribute}>Mail</span>
-            <span className={styles.caption}>{person.email}</span>
-            <br />
-          </>
-        ) : (
-          <></>
-        )}
-        {person.phone ? (
-          <>
-            <span className={styles.attribute}>{roomTranslation}</span>
-            <span className={styles.caption}>{person.roomNumber}</span>
-            <br />
-          </>
-        ) : (
-          <></>
-        )}
+        {person.phones.map((phoneNumer, index) => {
+          return (
+            <Fragment key={index}>
+              <span className={styles.attribute}>{phoneTranslation}</span>
+              <span className={styles.caption}>{phoneNumer}</span>
+              <br />
+            </Fragment>
+          );
+        })}
+        {person.emails.map((mailAddress, index) => {
+          return (
+            <Fragment key={index}>
+              <span className={styles.attribute}>Mail</span>
+              <span className={styles.caption}>{mailAddress}</span>
+              <br />
+            </Fragment>
+          );
+        })}
       </div>
     </li>
   );
-});
+}
 
 PersonResult.displayName = "PersonResult";
 export default PersonResult;
