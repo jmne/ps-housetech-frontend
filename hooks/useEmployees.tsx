@@ -7,18 +7,14 @@ import { Employee, sampleEmployees, sortKeysEmployee } from "types/Employee";
 import { useMemo, useState } from "react";
 
 const revalidate_busplan = 20;
-const url = "ps-housetech.uni-muenster.de/api/bus";
+const url = "https://ps-housetech.uni-muenster.de:444/api/cris";
 
 /**
  * Fetch all Employees
  * @returns Employee[]
  */
 export function useEmployees() {
-  // const { data, isLoading, error } = useSWR<Employee[]>
+  const { data, isLoading, error } = useSWR<Employee[]>(url, fetcher);
 
-  const data = sampleEmployees;
-  const isLoading = false;
-  const error = undefined;
-
-  return data;
+  return {data, isLoading, error};
 }

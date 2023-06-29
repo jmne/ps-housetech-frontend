@@ -14,7 +14,7 @@ import { useTimeoutContext } from "context/TimeoutContext";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 
 export function Events() {
-  const { data } = useEvents();
+  const { data, isLoading, error } = useEvents();
   const timeoutContext = useTimeoutContext();
   const [swiperInstance, setSwiperInstance] = useState<SwiperClass>();
 
@@ -30,6 +30,9 @@ export function Events() {
 
     if (timeoutContext.manager) timeoutContext.manager.addResetListener(handler);
   }, [timeoutContext.manager, swiperInstance]);
+
+  if (isLoading) return(<span>Loading...</span>)
+  if (error) return(<span>Some error</span>)
 
   return (
     <>

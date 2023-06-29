@@ -6,18 +6,14 @@ import { fetcher } from "utils/basicFetcher";
 // IMPORTS - ASSETS
 
 //const revalidate_events = 20;
-//const url = "ps-housetech.uni-muenster.de/api/events";
+const url = "https://ps-housetech.uni-muenster.de:444/api/drupal/event";
 
 /**
  * Fetch all Events
  * @returns Event[]
  */
 export function useEvents() {
-  // const { data, isLoading, error } = useSWR<Event[]>
-
-  const data = sampleEvents;
-  const isLoading = false;
-  const error = undefined;
+  const { data, isLoading, error } = useSWR<Event[]>(url, fetcher)
 
   return { data, isLoading, error };
 }

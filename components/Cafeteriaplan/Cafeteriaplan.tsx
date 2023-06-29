@@ -2,12 +2,9 @@
 
 // IMPORTS - BUILTINS
 import useCafeteriaplan from "hooks/useCafeteriaplan";
-import { useEffect, useState, useRef, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Navigation, Virtual } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// IMPORTS - COMPONENTS
-import Dish from "@/components/Cafeteriaplan/Dish";
 
 // IMPORTS - ASSETS
 import { useTranslation } from "next-i18next";
@@ -48,18 +45,21 @@ export default function Cafeteriaplan() {
   const { data, isLoading, error } = useCafeteriaplan();
   const router = useRouter();
 
-  const olRef = useRef<HTMLOListElement>(null);
-  const timer = useRef<number>();
-
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>();
-  const [currentIndex, setCurrentIndex] = useState<number | undefined>();
+  const [selectedDate, setSelectedDate] = useState<Date>();
+  const [currentIndex, setCurrentIndex] = useState<number>();
   const [swiperInstance, setSwiperInstance] = useState();
 
   useEffect(() => {
+    if (!data) return;
     if (typeof currentIndex !== "undefined" && data[currentIndex].date)
       setSelectedDate(data[currentIndex].date);
     else setSelectedDate(undefined);
   }, [currentIndex, data]);
+
+  useEffect(() => {
+    if (!data) return;
+    setCurrentIndex(index_of_today);
+  }, [data]);
 
   const index_of_today = useMemo(() => {
     if (typeof data !== "undefined") {
@@ -72,32 +72,25 @@ export default function Cafeteriaplan() {
     } else return 0;
   }, [data]);
 
-  function resetLayout() {
-    const current_time = new Date();
+  useEffect(() => {
+    function resetLayout() {
+      const current_time = new Date();
 
-    var target_index = index_of_today;
+      if (!data) return;
+      var target_index = index_of_today;
 
-    if (current_time.getHours() >= 15) {
-      const next_index = getIndexForDate(
-        data,
-        new Date(current_time.getTime() + 86400000)
-      );
-      if (next_index !== -1) target_index = next_index;
+      if (current_time.getHours() >= 15) {
+        const next_index = getIndexForDate(
+          data,
+          new Date(current_time.getTime() + 86400000)
+        );
+        if (next_index !== -1) target_index = next_index;
+      }
+
+      //@ts-ignore
+      if (swiperInstance) swiperInstance.slideTo(target_index);
     }
 
-    //@ts-ignore
-    if (swiperInstance) swiperInstance.slideTo(target_index);
-  }
-
-  useEffect(() => {
-    const handler = new IdleHandler({
-      origin: "cafeteriaplan",
-      resetFunction: resetLayout
-    });
-    if (timeoutContext.manager) timeoutContext.manager.addResetListener(handler);
-  }, [timeoutContext.manager]);
-
-  useEffect(() => {
     const handler = new IdleHandler({
       origin: "cafeteriaplan",
       resetFunction: resetLayout
@@ -126,32 +119,35 @@ export default function Cafeteriaplan() {
           </span>
         </div>
       </div>
-
-      <Swiper
-        modules={[Virtual, Navigation]}
-        navigation={true}
-        className={cafeteriaStyles.swiperContainer}
-        slidesPerView={1}
-        onActiveIndexChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
-        initialSlide={index_of_today}
-        loop={false}
-        //@ts-ignore
-        onSwiper={(swiper) => setSwiperInstance(swiper)}
-      >
-        {data.map((foodplan, index) => {
-          return (
-            <SwiperSlide key={index} virtualIndex={index}>
-              {foodplan.item ? (
-                <Foodplan data={foodplan.item} />
-              ) : (
-                <p className={cafeteriaStyles.missingDataString}>
-                  {t("cafeteria_plan.no_data_for_day")}
-                </p>
-              )}
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+      {isLoading && <span>Data is loading...</span>}
+      {error && <span>Some error occurred</span>}
+      {data && (
+        <Swiper
+          modules={[Virtual, Navigation]}
+          navigation={true}
+          className={cafeteriaStyles.swiperContainer}
+          slidesPerView={1}
+          onActiveIndexChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
+          initialSlide={index_of_today}
+          loop={false}
+          //@ts-ignore
+          onSwiper={(swiper) => setSwiperInstance(swiper)}
+        >
+          {data.map((foodplan, index) => {
+            return (
+              <SwiperSlide key={index} virtualIndex={index}>
+                {foodplan.item ? (
+                  <Foodplan data={foodplan.item} />
+                ) : (
+                  <p className={cafeteriaStyles.missingDataString}>
+                    {t("cafeteria_plan.no_data_for_day")}
+                  </p>
+                )}
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      )}
     </section>
   );
 }
