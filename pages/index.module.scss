@@ -19,7 +19,7 @@
   display: grid;
   flex-grow: 1;
   grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: 1fr 33%;
   gap: g.$margin-base;
 
   .contentSection {
@@ -36,13 +36,13 @@
     padding: 0;
 
     grid-row: span 2;
-    grid-column: span 5;
+    grid-column: span 1;
   }
 
   .weatherContainer {
     display: grid;
     grid-row: span 1;
-    grid-column: span 3;
+    grid-column: span 1;
     padding: 0;
 
     position: relative;
@@ -54,7 +54,7 @@
 
   .newsContainer{
     grid-row: span 1;
-    grid-column: span 5;
+    grid-column: span 1;
 
     display: grid;
     grid-template-rows: fit-content 1fr;
@@ -65,7 +65,7 @@
     flex-direction: column;
     display: flex;
     grid-row: span 1;
-    grid-column: span 3;
+    grid-column: span 1;
   }
 
   //transition: opacity linear 0.1s;

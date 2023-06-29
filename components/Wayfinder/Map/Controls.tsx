@@ -100,20 +100,6 @@ export function Controls() {
           </button>
         </div>
       )}
-      {mapContext.current.room && (
-        <button
-          className={styles.removeHighlightButton}
-          onClick={() => {
-            if (selectedPersonContext.current_person) {
-              collapse(selectedPersonContext.current_person);
-              selectedPersonContext.setPerson(undefined);
-            }
-            mapContext.setCurrent({ room: undefined });
-          }}
-        >
-          {t("wayfinder.controls.remove_highlight")}
-        </button>
-      )}
     </div>
   );
 }

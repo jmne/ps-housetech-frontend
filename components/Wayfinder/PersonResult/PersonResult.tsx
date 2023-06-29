@@ -6,7 +6,12 @@ import styles from "@/components/Wayfinder/Wayfinder.module.scss";
 import { Fragment, useEffect, useRef } from "react";
 import { handleClickOnPerson } from "utils/Wayfinder/personCardsTransformations";
 import Image from "next/image";
-import { fetchImage } from "requests/fetchImage";
+import IconAccount from "assets/images/icon_account.svg";
+import IconPlus from "assets/images/icon_plus.svg";
+import IconMinus from "assets/images/icon_minus.svg";
+import IconCall from "assets/images/icon_call.svg";
+import IconMail from "assets/images/icon_mail.svg";
+import IconLocation from "assets/images/icon_location.svg";
 
 interface props {
   person: Employee;
@@ -22,10 +27,10 @@ function PersonResult({ person }: props) {
   const phoneTranslation = t("wayfinder.search.phone");
   //const roomTranslation = t("wayfinder.search.room");
 
-  const personRef = useRef(null);
+  const personRef = useRef<HTMLLIElement>(null);
   useEffect(() => {
     person.searchResultRef = personRef;
-  }, [personRef, person]);
+  }, [personRef]);
 
   return (
     <li
@@ -39,44 +44,54 @@ function PersonResult({ person }: props) {
             <Image
               src={`${url}${person.image}`}
               alt="profile picture"
-              sizes="100px"
+              sizes="250px"
               style={{ objectFit: "cover" }}
               fill
             />
-          ) : undefined}
+          ) : (
+            <IconAccount />
+          )}
         </div>
         <div className={styles.shortInfo}>
           <span>{`${person.cfFirstNames} ${person.cfFamilyNames}`}</span>
           <span className={styles.caption}>{person.chair}</span>
         </div>
       </div>
-      <div className={styles.hidden}>
-        {person.phones.map((phoneNumer, index) => {
-          return (
-            <Fragment key={index}>
-              <span className={styles.attribute}>{phoneTranslation}</span>
-              <span className={styles.caption}>{phoneNumer}</span>
-              <br />
-            </Fragment>
-          );
-        })}
-        {person.emails.map((mailAddress, index) => {
-          return (
-            <Fragment key={index}>
-              <span className={styles.attribute}>Mail</span>
-              <span className={styles.caption}>{mailAddress}</span>
-              <br />
-            </Fragment>
-          );
-        })}
-        {person.roomNumber && (
-          <>
-            <span className={styles.attribute}>Room</span>
-            <span className={styles.caption}>{person.roomNumber}</span>
-            <br />
-          </>
-        )}
-      </div>
+      {person.phones.length > 0 || person.emails.length > 0 || person.roomNumber ? (
+        <div className={styles.hidden}>
+          {person.phones.map((phoneNumer, index) => {
+            return (
+              <Fragment key={index}>
+                <IconCall className={styles.attribute}/>
+                <span className={styles.caption}>{phoneNumer}</span>
+              </Fragment>
+            );
+          })}
+          {person.emails.map((mailAddress, index) => {
+            return (
+              <Fragment key={index}>
+                <IconMail className={styles.attribute}/>
+                <span className={styles.caption}>{mailAddress}</span>
+              </Fragment>
+            );
+          })}
+          {person.roomNumber && (
+            <>
+              <IconLocation className={styles.attribute}/>
+              <span className={styles.caption}>{person.roomNumber}</span>
+            </>
+          )}
+        </div>
+      ) : (
+        <div className={styles.hidden}>
+          <span className={styles.caption}>No more information available</span>
+        </div>
+      )}
+      {(person.phones.length > 0 || person.emails.length > 0 || person.roomNumber) && (
+        <div className={styles.toggleIcon}>
+          <IconPlus />
+        </div>
+      )}
     </li>
   );
 }

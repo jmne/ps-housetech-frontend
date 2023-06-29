@@ -20,18 +20,25 @@ export function MapLeo11() {
       addRoomClickListeners(container, buildingNames.LEO11, floor, mapContext);
     });
 
-    const element_leo11_on_campus = mapContext.leo11_building_on_campus?.current;
-    const element_leo11_building = mapContext.leo11_building?.current;
-    const element_mapContainer = mapContext.mapContainer?.current;
+    requestAnimationFrame(() => {
+      const element_leo11_on_campus = mapContext.leo11_building_on_campus?.current;
+      const element_leo11_building = mapContext.leo11_building?.current;
+      const element_mapContainer = mapContext.mapContainer?.current;
 
-    if (!element_leo11_on_campus || !element_leo11_building || !element_mapContainer)
-      return;
+      if (
+        !element_leo11_on_campus ||
+        !element_leo11_building ||
+        !element_mapContainer ||
+        mapContext.current.area === buildingNames.LEO11
+      )
+        return;
 
-    minimizeBuilding(
-      element_leo11_on_campus,
-      element_leo11_building,
-      element_mapContainer
-    );
+      minimizeBuilding(
+        element_leo11_on_campus,
+        element_leo11_building,
+        element_mapContainer
+      );
+    });
   }, []);
 
   useEffect(() => {

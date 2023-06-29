@@ -6,7 +6,7 @@ $animDuration: 0.75s;
   position: relative;
 
   display: grid;
-  grid-template-columns: max(30%, 350px) 1fr;
+  grid-template-columns: clamp(350px, 30%, 650px) 1fr;
   grid-template-rows: 1fr;
 
   min-height: 0;
@@ -41,20 +41,13 @@ $animDuration: 0.75s;
     align-items: center;
     gap: g.$margin-small;
 
-    border: 2px solid g.$main-primary;
+    border: g.$border-base solid g.$main-primary;
     box-shadow: g.$shadow-outer;
 
     transition: transform 0.1s ease-out 0s, filter 0.1s ease-out;
 
     &:focus-within {
-      filter: drop-shadow(0 0.4rem 0.4rem rgba(g.$main-primary, 0.5));
-
-      input {
-        filter: none;
-      }
-
       transform: scale(1.05);
-      //background-color: g.$main-primary-tint;
     }
   }
 
@@ -89,6 +82,8 @@ $animDuration: 0.75s;
     align-items: center;
 
     outline: none;
+
+    overflow: hidden;
   }
 
   ol {
@@ -108,6 +103,8 @@ $animDuration: 0.75s;
 }
 
 .person {
+  position: relative;
+
   display: grid;
   grid-template-rows: auto auto;
 
@@ -140,12 +137,40 @@ $animDuration: 0.75s;
   .imageWrapper {
     position: relative;
     border-radius: g.$border-radius-base;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:has(svg) {
+      background-color: g.$background;
+    }
+
     img {
       object-fit: contain;
       border-radius: g.$border-radius-base;
       height: 100%;
       width: fit-content;
+    }
+
+    svg {
+      width: g.$icon-base;
+      height: g.$icon-base;
+
+      fill: g.$main-primary;
+    }
+  }
+
+  .toggleIcon {
+    position: absolute;
+
+    bottom: g.$margin-small;
+    right: g.$margin-small;
+
+    svg {
+      width: g.$icon-small;
+      height: g.$icon-small;
+
+      fill: g.$main-primary;
     }
   }
 
@@ -157,6 +182,7 @@ $animDuration: 0.75s;
     .caption {
       overflow: hidden;
       text-overflow: ellipsis;
+      font-weight: 500;
     }
   }
 
@@ -166,8 +192,10 @@ $animDuration: 0.75s;
   }
 
   .attribute {
-    font-size: g.$text-small;
-    margin-inline-end: g.$margin-small;
+    width: g.$icon-small;
+    height: g.$icon-small;
+
+    fill: g.$main-secondary;
   }
 
   .hidden {
@@ -177,8 +205,20 @@ $animDuration: 0.75s;
     overflow: hidden;
     opacity: 0;
 
+    display: grid;
+    grid-template-columns: auto 1fr;
+    row-gap: g.$margin-small;
+    column-gap: g.$margin-small;
+
+    padding-inline-start: g.$margin-small;
+
     .caption {
-      font-weight: 600;
+      grid-column: 2;
+
+    }
+
+    .attribute {
+      grid-column: 1;
     }
   }
 
