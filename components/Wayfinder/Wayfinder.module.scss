@@ -6,7 +6,7 @@ $animDuration: 0.75s;
   position: relative;
 
   display: grid;
-  grid-template-columns: min(30%, 600px) 1fr;
+  grid-template-columns: clamp(350px, 30%, 650px) 1fr;
   grid-template-rows: 1fr;
 
   min-height: 0;
@@ -41,19 +41,13 @@ $animDuration: 0.75s;
     align-items: center;
     gap: g.$margin-small;
 
-    border: 2px solid g.$main-primary;
+    border: g.$border-base solid g.$main-primary;
     box-shadow: g.$shadow-outer;
 
     transition: transform 0.1s ease-out 0s, filter 0.1s ease-out;
 
     &:focus-within {
-      filter: drop-shadow(0 0.4rem 0.4rem rgba(g.$main-primary, 0.5));
-
-      input {
-        filter: none;
-      }
       transform: scale(1.05);
-      //background-color: g.$main-primary-tint;
     }
   }
 
@@ -88,6 +82,8 @@ $animDuration: 0.75s;
     align-items: center;
 
     outline: none;
+
+    overflow: hidden;
   }
 
   ol {
@@ -107,13 +103,13 @@ $animDuration: 0.75s;
 }
 
 .person {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  position: relative;
+
+  display: grid;
+  grid-template-rows: auto auto;
 
   margin-block-start: g.$margin-small;
-  padding-inline: g.$margin-small;
-  padding-block: g.$margin-base;
+  padding: g.$margin-small;
 
   list-style-type: none;
   box-shadow: g.$shadow-outer;
@@ -130,42 +126,109 @@ $animDuration: 0.75s;
     margin-block-end: g.$margin-base;
   }
 
+  .header {
+    display: grid;
+    grid-template-columns: calc(5rem/1.3) auto;
+    height: 5rem;
+
+    gap: g.$margin-small;
+  }
+
+  .imageWrapper {
+    position: relative;
+    border-radius: g.$border-radius-base;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:has(svg) {
+      background-color: g.$background;
+    }
+
+    img {
+      object-fit: contain;
+      border-radius: g.$border-radius-base;
+      height: 100%;
+      width: fit-content;
+    }
+
+    svg {
+      width: g.$icon-base;
+      height: g.$icon-base;
+
+      fill: g.$main-primary;
+    }
+  }
+
+  .toggleIcon {
+    position: absolute;
+
+    bottom: g.$margin-small;
+    right: g.$margin-small;
+
+    svg {
+      width: g.$icon-small;
+      height: g.$icon-small;
+
+      fill: g.$main-primary;
+    }
+  }
+
+  .shortInfo {
+    display: grid;
+    align-self: center;
+    grid-template-rows: 1fr auto;
+
+    .caption {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 500;
+    }
+  }
+
   .caption {
     color: g.$text-secondary;
     font-size: g.$text-small;
   }
 
   .attribute {
-    font-size: g.$text-small;
-    margin-inline-end: g.$margin-small;
+    width: g.$icon-small;
+    height: g.$icon-small;
+
+    fill: g.$main-secondary;
   }
 
   .hidden {
-    // Sliding out
-    transition: height $animDuration $animDuration,
-      margin-block-start $animDuration $animDuration, opacity ($animDuration/2) 0s;
-
     min-height: 0px;
     height: 0px;
 
     overflow: hidden;
     opacity: 0;
 
+    display: grid;
+    grid-template-columns: auto 1fr;
+    row-gap: g.$margin-small;
+    column-gap: g.$margin-small;
+
+    padding-inline-start: g.$margin-small;
+
     .caption {
-      font-weight: 600;
+      grid-column: 2;
+
+    }
+
+    .attribute {
+      grid-column: 1;
     }
   }
 
   &.expanded {
     .hidden {
-      // Sliding in
-      transition: height $animDuration 0s, margin-block-start $animDuration 0s,
-        opacity ($animDuration/2) $animDuration;
       visibility: visible;
       margin-block-start: g.$margin-base;
       opacity: 100;
 
-      height: 10rem;
+      height: auto;
     }
   }
 }

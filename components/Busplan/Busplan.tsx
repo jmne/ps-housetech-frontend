@@ -43,6 +43,7 @@ export default function Busplan() {
 
   // Data is initially 0 when waiting for the API response -> retrigger splitBusses when data changes
   useEffect(() => {
+    if (!data) return;
     if (isLoading) return;
     if (error) return;
     const { inward, outward } = splitBusses(data);
@@ -57,14 +58,20 @@ export default function Busplan() {
       <div className={indexStyles.cardHeadline}>
         <h2>{t("busplan.title")}</h2>
       </div>
-      <ol className={busStyles.busplan}>
-        {busses_inward.map((bus, index) => (
-          <Bus bus={bus} direction={"inward"} index={index} key={index} />
-        ))}
-        {busses_outward.map((bus, index) => (
-          <Bus bus={bus} direction={"outward"} index={index} key={index} />
-        ))}
-      </ol>
+      {isLoading ? (
+        <span>Data is loading...</span>
+      ) : error ? (
+        <span>Oops, some error occurred :(</span>
+      ) : (
+        <ol className={busStyles.busplan}>
+          {busses_inward.map((bus, index) => (
+            <Bus bus={bus} direction={"inward"} index={index} key={index} />
+          ))}
+          {busses_outward.map((bus, index) => (
+            <Bus bus={bus} direction={"outward"} index={index} key={index} />
+          ))}
+        </ol>
+      )}
     </section>
   );
 }
