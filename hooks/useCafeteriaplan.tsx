@@ -9,8 +9,8 @@ import { Foodplan } from "types/Foodplan";
 import { convertFoodplan } from "utils/cafeteriahelper";
 import { useMemo } from "react";
 
-const revalidate_cafeteriaplan = 20;
 const url = "https://ps-housetech.uni-muenster.de:444/api/mensa";
+const options = { refreshInterval: 10 * 60 * 1000 };
 
 /**
  *

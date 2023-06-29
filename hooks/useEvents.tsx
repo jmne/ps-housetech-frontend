@@ -7,13 +7,14 @@ import { fetcher } from "utils/basicFetcher";
 
 //const revalidate_events = 20;
 const url = "https://ps-housetech.uni-muenster.de:444/api/drupal/event";
+const options = { refreshInterval: 5 * 60 * 1000 };
 
 /**
  * Fetch all Events
  * @returns Event[]
  */
 export function useEvents() {
-  const { data, isLoading, error } = useSWR<Event[]>(url, fetcher)
+  const { data, isLoading, error } = useSWR<Event[]>(url, fetcher, options);
 
   return { data, isLoading, error };
 }
