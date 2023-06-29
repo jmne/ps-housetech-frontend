@@ -85,7 +85,6 @@ $map_other_building_x_offset: 200%;
 
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
 
     max-height: 100%;
     min-width: 11rem;
@@ -110,7 +109,7 @@ $map_other_building_x_offset: 200%;
       justify-content: center;
       align-items: center;
 
-      border: g.$border-base solid g.$main-primary;
+      border: none;
       border-radius: g.$border-radius-small;
       background-color: g.$main-primary-tint;
 

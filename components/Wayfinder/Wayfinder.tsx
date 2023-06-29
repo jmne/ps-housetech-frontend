@@ -98,10 +98,10 @@ export function Wayfinder() {
     )
       return;
 
-    const scroll_by = contextPersonElement.offsetTop - listRef.current.scrollTop - 5;
-    requestAnimationFrame(() =>
-      listRef.current?.scrollBy({ top: scroll_by, behavior: "smooth" })
-    );
+    requestAnimationFrame(() => {
+      const scroll_by = contextPersonElement.offsetTop - listRef.current.scrollTop - 5;
+      listRef.current?.scrollBy({ top: scroll_by, behavior: "smooth" });
+    });
   }, [selectedPersonContext.current_person]);
 
   return (
