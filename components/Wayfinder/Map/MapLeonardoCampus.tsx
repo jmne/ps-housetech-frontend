@@ -7,7 +7,6 @@ import {
   maximizeCampus,
   minimizeCampus
 } from "utils/Wayfinder/mapTransformations";
-import { mapTransitionConfig } from "utils/constants";
 import { buildingNames } from "types/Campus";
 
 export function MapLeonardoCampus() {

@@ -2,7 +2,7 @@ import { MapData, useMapContext } from "context/MapContext";
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
 import { CampusBuilding, buildingNames } from "types/Campus";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
-import { collapse, handleExpansion } from "utils/Wayfinder/personCardsTransformations";
+import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 import { useTranslation } from "next-i18next";
 
 function handleBackToCampus(mapContext: MapData, selectedPersonContext: PersonData) {
@@ -99,20 +99,6 @@ export function Controls() {
             Leo 18
           </button>
         </div>
-      )}
-      {mapContext.current.room && (
-        <button
-          className={styles.removeHighlightButton}
-          onClick={() => {
-            if (selectedPersonContext.current_person) {
-              collapse(selectedPersonContext.current_person);
-              selectedPersonContext.setPerson(undefined);
-            }
-            mapContext.setCurrent({ room: undefined });
-          }}
-        >
-          {t("wayfinder.controls.remove_highlight")}
-        </button>
       )}
     </div>
   );

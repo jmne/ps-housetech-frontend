@@ -7,6 +7,7 @@ jest.mock("context/SearchInputContext");
 describe("Keyboard and Key components", () => {
   beforeEach(() => {
     useSearchInputContext.mockReturnValue({
+      active: true,
       input: "",
       setInput: jest.fn()
     });
@@ -20,7 +21,7 @@ describe("Keyboard and Key components", () => {
     ];
     const special_keys = ["clear", "space", "backspace"];
 
-    render(<Keyboard />);
+    render(<Keyboard visible/>);
 
     keys.forEach((row) => {
       row.forEach((value) => {
@@ -35,6 +36,7 @@ describe("Keyboard and Key components", () => {
   test("Key component triggers setInput correctly on click", () => {
     const setInput = jest.fn();
     useSearchInputContext.mockReturnValue({
+      active: true,
       input: "",
       setInput
     });
@@ -48,6 +50,7 @@ describe("Keyboard and Key components", () => {
   test("Key component handles 'backspace' correctly", () => {
     const setInput = jest.fn();
     useSearchInputContext.mockReturnValue({
+      active: true,
       input: "A",
       setInput
     });
@@ -61,6 +64,7 @@ describe("Keyboard and Key components", () => {
   test("Key component handles 'clear' correctly", () => {
     const setInput = jest.fn();
     useSearchInputContext.mockReturnValue({
+      active: true,
       input: "A",
       setInput
     });
@@ -74,6 +78,7 @@ describe("Keyboard and Key components", () => {
   test("Key component handles 'space' correctly", () => {
     const setInput = jest.fn();
     useSearchInputContext.mockReturnValue({
+      active: true,
       input: "",
       setInput
     });
