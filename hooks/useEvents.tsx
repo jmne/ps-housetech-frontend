@@ -7,7 +7,7 @@ import { fetcher } from "utils/basicFetcher";
 
 //const revalidate_events = 20;
 const url = "https://ps-housetech.uni-muenster.de:444/api/drupal/event";
-const options = { refreshInterval: 5 * 60 * 1000 };
+const options = { refreshInterval: 10 * 60 * 1000 };
 
 /**
  * Fetch all Events
