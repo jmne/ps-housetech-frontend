@@ -33,7 +33,7 @@ export function Wayfinder() {
   const listRef = useRef<HTMLOListElement>(null);
 
   // Get data for the list of Persons
-  const persons = useEmployees();
+  const { data: persons, isLoading, error } = useEmployees();
   const [filteredPersons, setFilteredPersons] = useState(persons);
   // Setup fuse for fuzzy search
   const fuse = useMemo(() => {
@@ -115,14 +115,21 @@ export function Wayfinder() {
       >
         <div className={styles_wayfinder.searchSection}>
           <SearchBar placeholder={t("wayfinder.title")} />
-          <ol ref={listRef}>
-            {filteredPersons.map((p) => {
-              const unique_id = `${p.cfFirstNames}${p.cfFamilyNames}`;
-              return <PersonResult person={p} key={unique_id} />;
-            })}
-          </ol>
+          {isLoading ? (
+            <span>Data is loading...</span>
+          ) : error ? (
+            <span>Some error...</span>
+          ) : undefined}
+          {filteredPersons && (
+            <ol ref={listRef}>
+              {filteredPersons.map((p) => {
+                const unique_id = `${p.cfFirstNames}${p.cfFamilyNames}`;
+                return <PersonResult person={p} key={unique_id} />;
+              })}
+            </ol>
+          )}
         </div>
-        <CampusMap allPersons={persons ? persons : []}/>
+        <CampusMap allPersons={persons ? persons : []} />
       </section>
     </MapProvider>
   );
