@@ -1,27 +1,28 @@
+"use client";
+
 // IMPORT - BUILTINS
 import useSWR from "swr";
 import { fetcher } from "utils/basicFetcher";
 
 // IMPORTS - ASSETS
-import { sample_foodplan } from "types/Foodplan";
+import { Foodplan } from "types/Foodplan";
 import { convertFoodplan } from "utils/cafeteriahelper";
-import { useState } from "react";
+import { useMemo } from "react";
 
-const revalidate_cafeteriaplan = 20;
-const url = "ps-housetech.uni-muenster.de/api/mensa";
+const url = "https://ps-housetech.uni-muenster.de:444/api/mensa";
+const options = { refreshInterval: 10 * 60 * 1000 };
 
 /**
  *
  * @returns Data regarding the next busses
  */
 export default function useCafeteriaplan() {
-  // const { data, isLoading, error } = useSWR<Busride>(url, fetcher);
+  const { data: d, isLoading, error } = useSWR<Foodplan[]>(url, fetcher);
 
-  const [d, setD] = useState(convertFoodplan(sample_foodplan))
-
-  const data = d;
-  const isLoading = false;
-  const error = undefined;
+  const data = useMemo(() => {
+    if (!d) return undefined;
+    else return convertFoodplan(d);
+  }, [d]);
 
   return { data, isLoading, error };
 }

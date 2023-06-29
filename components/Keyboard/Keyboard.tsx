@@ -11,12 +11,13 @@ export function Key({ keycode }: helperProps) {
 
   const searchContext = useSearchInputContext();
   function handleKey(e: Event) {
+    if (!searchContext.active) return;
     if (keycode == "clear") clearInput();
     else if (keycode == "space") appendInput(" ");
     else if (keycode == "backspace") removeChar();
     else appendInput(keycode);
 
-    e.preventDefault()
+    e.preventDefault();
   }
 
   function appendInput(newKey: string) {
@@ -38,7 +39,7 @@ export function Key({ keycode }: helperProps) {
     searchContext.setInput("");
   }
   return (
-    // @ts-ignore
+    //@ts-ignore
     <button className={styles.key} onMouseDown={(e) => handleKey(e)}>
       {isLetter ? keycode.toUpperCase() : keycode}
     </button>
@@ -46,45 +47,44 @@ export function Key({ keycode }: helperProps) {
 }
 
 interface KeyboardProps {
-  visible: boolean
+  visible: boolean;
 }
 
 function Keyboard({ visible }: KeyboardProps) {
-
   const innerKeyboard = useMemo(() => {
     const keys = [
       ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ü"],
       ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä"],
       ["y", "x", "c", "v", "b", "n", "m", "-"],
-      ["clear", "space", "backspace"],
-    ]
+      ["clear", "space", "backspace"]
+    ];
 
     return (
       <>
-        {
-          keys.map((row, index) => {
-            return (
-              <div className={styles.row} key={index}>
-                {row.map((keycode) => (
-                  <Key keycode={keycode} key={keycode} />
-                ))}
-              </div>
-            );
-          })
-        }
+        {keys.map((row, index) => {
+          return (
+            <div className={styles.row} key={index}>
+              {row.map((keycode) => (
+                <Key keycode={keycode} key={keycode} />
+              ))}
+            </div>
+          );
+        })}
       </>
-    )
-  }, [])
+    );
+  }, []);
 
   return (
     <article
-      className={visible ? [styles.container, styles.visible].join(" ") : styles.container}
+      className={
+        visible ? [styles.container, styles.visible].join(" ") : styles.container
+      }
       id="keyboard"
       data-testid="keyboard"
     >
       {innerKeyboard}
     </article>
-  )
+  );
 }
 
 Keyboard.displayName = "Keyboard";

@@ -2,7 +2,7 @@ import { buildingNames } from "types/Campus";
 import { MapState } from "types/Map";
 
 // Global timeout duration -> When no interaction for the specified time, the site is resetted to the specified base-states
-export const TIMEOUT_DURATION = 60; // seconds
+export const TIMEOUT_DURATION = 30; // seconds
 
 // Wayfinder
 export const WAYFINDER_CARD_ANIMATION_DURATION = 250; // milliseconds
@@ -45,5 +45,5 @@ export enum animate_to {
 export const MAP_BASE_STATE: MapState = {
   area: buildingNames.CAMPUS,
   floor: undefined,
-  room: undefined,
+  room: undefined
 };

@@ -85,7 +85,6 @@ $map_other_building_x_offset: 200%;
 
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
 
     max-height: 100%;
     min-width: 11rem;
@@ -112,7 +111,7 @@ $map_other_building_x_offset: 200%;
 
       border: g.$border-base solid g.$main-primary;
       border-radius: g.$border-radius-small;
-      background-color: g.$main-primary-tint;
+      background-color: g.$container-item;
 
       box-shadow: g.$shadow-outer__light;
 
@@ -212,6 +211,43 @@ $map_other_building_x_offset: 200%;
       stroke: g.$main-secondary_dark !important;
     }
   }
+
+  .leo3Wrapper {
+    position: relative;
+
+    .floorNavigationButton {
+      z-index: 15;
+
+      position: absolute;
+      width: 100%;
+      height: 10%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: none;
+      background-color: transparent;
+
+      svg {
+        fill: g.$main-primary;
+        width: g.$icon-xm;
+        height: g.$icon-xm;
+      }
+
+      &.up {
+        top: 0px;
+
+        &:active{
+          animation: moveUp 0.5s linear 0s 1;
+        }
+      }
+
+      &.down {
+        bottom: 0px;
+      }
+    }
+  }
 }
 
 .glassCard {
@@ -231,5 +267,17 @@ $map_other_building_x_offset: 200%;
 
   to {
     opacity: 1;
+  }
+}
+
+@keyframes moveUp {
+  50% {
+    transform: translateY(-0.5rem);
+  }
+}
+
+@keyframes moveDown {
+  50% {
+    transform: translateY(0.5rem);
   }
 }
