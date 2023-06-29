@@ -1,5 +1,4 @@
 import { Employee } from "types/Employee";
-import { useTranslation } from "next-i18next";
 import { useMapContext } from "context/MapContext";
 import { usePersonSearchContext } from "context/PersonContext";
 import styles from "@/components/Wayfinder/Wayfinder.module.scss";
@@ -8,7 +7,6 @@ import { handleClickOnPerson } from "utils/Wayfinder/personCardsTransformations"
 import Image from "next/image";
 import IconAccount from "assets/images/icon_account.svg";
 import IconPlus from "assets/images/icon_plus.svg";
-import IconMinus from "assets/images/icon_minus.svg";
 import IconCall from "assets/images/icon_call.svg";
 import IconMail from "assets/images/icon_mail.svg";
 import IconLocation from "assets/images/icon_location.svg";
@@ -21,16 +19,13 @@ export const SEARCH_RESULT_COLLAPSED = styles.person;
 export const SEARCH_RESULT_EXPANDED = [styles.person, styles.expanded].join(" ");
 const url = "https://ps-housetech.uni-muenster.de:444/api/picture/";
 function PersonResult({ person }: props) {
-  const { t } = useTranslation("index");
   const mapContext = useMapContext();
   const selectedPersonContext = usePersonSearchContext();
-  const phoneTranslation = t("wayfinder.search.phone");
-  //const roomTranslation = t("wayfinder.search.room");
 
   const personRef = useRef<HTMLLIElement>(null);
   useEffect(() => {
     person.searchResultRef = personRef;
-  }, [personRef]);
+  }, [person, personRef]);
 
   return (
     <li
@@ -62,7 +57,7 @@ function PersonResult({ person }: props) {
           {person.phones.map((phoneNumer, index) => {
             return (
               <Fragment key={index}>
-                <IconCall className={styles.attribute}/>
+                <IconCall className={styles.attribute} />
                 <span className={styles.caption}>{phoneNumer}</span>
               </Fragment>
             );
@@ -70,14 +65,14 @@ function PersonResult({ person }: props) {
           {person.emails.map((mailAddress, index) => {
             return (
               <Fragment key={index}>
-                <IconMail className={styles.attribute}/>
+                <IconMail className={styles.attribute} />
                 <span className={styles.caption}>{mailAddress}</span>
               </Fragment>
             );
           })}
           {person.roomNumber && (
             <>
-              <IconLocation className={styles.attribute}/>
+              <IconLocation className={styles.attribute} />
               <span className={styles.caption}>{person.roomNumber}</span>
             </>
           )}

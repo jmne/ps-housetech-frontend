@@ -2,7 +2,7 @@ import { MapData, useMapContext } from "context/MapContext";
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
 import { CampusBuilding, buildingNames } from "types/Campus";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
-import { collapse, handleExpansion } from "utils/Wayfinder/personCardsTransformations";
+import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 import { useTranslation } from "next-i18next";
 
 function handleBackToCampus(mapContext: MapData, selectedPersonContext: PersonData) {

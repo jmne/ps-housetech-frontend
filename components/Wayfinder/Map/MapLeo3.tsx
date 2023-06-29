@@ -84,9 +84,7 @@ export function MapLeo3() {
       if (!container) return;
       addRoomClickListeners(container, buildingNames.LEO3, floor, mapContext);
     });
-  }, []);
 
-  useEffect(() => {
     requestAnimationFrame(() => {
       const element_leo3_on_campus = mapContext.leo3_building_on_campus?.current;
       const element_leo3_building = mapContext.leo3_building?.current;
@@ -202,7 +200,7 @@ export function MapLeo3() {
       {mapContext.current.floor !== "floor3" && (
         <button
           className={[styles.floorNavigationButton, styles.up].join(" ")}
-          onMouseDown={(e) => floorUp(mapContext, personContext)}
+          onMouseDown={() => floorUp(mapContext, personContext)}
         >
           <ArrowUp />
         </button>
@@ -210,7 +208,7 @@ export function MapLeo3() {
       {mapContext.current.floor !== "floor0" && (
         <button
           className={[styles.floorNavigationButton, styles.down].join(" ")}
-          onMouseDown={(e) => floorDown(mapContext, personContext)}
+          onMouseDown={() => floorDown(mapContext, personContext)}
         >
           <ArrowDown />
         </button>

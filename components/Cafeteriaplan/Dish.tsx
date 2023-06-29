@@ -1,5 +1,4 @@
 // IMPORTS - BUILTINS
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 // IMPORTS - ASSETS
@@ -14,7 +13,6 @@ import icon_fish from "assets/images/foodicons/fish.png";
 import icon_vegetarian from "assets/images/foodicons/vegetarian.png";
 import icon_vegan from "assets/images/foodicons/vegan.png";
 import icon_alcohol from "assets/images/foodicons/alcohol.png";
-import { info } from "sass";
 
 const getIcon = {
   Gfl: icon_chicken,

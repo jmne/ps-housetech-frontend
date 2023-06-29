@@ -47,19 +47,7 @@ export default function Cafeteriaplan() {
 
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [currentIndex, setCurrentIndex] = useState<number>();
-  const [swiperInstance, setSwiperInstance] = useState();
-
-  useEffect(() => {
-    if (!data) return;
-    if (typeof currentIndex !== "undefined" && data[currentIndex].date)
-      setSelectedDate(data[currentIndex].date);
-    else setSelectedDate(undefined);
-  }, [currentIndex, data]);
-
-  useEffect(() => {
-    if (!data) return;
-    setCurrentIndex(index_of_today);
-  }, [data]);
+  const [swiperInstance, setSwiperInstance] = useState<typeof Swiper>();
 
   const index_of_today = useMemo(() => {
     if (typeof data !== "undefined") {
@@ -71,6 +59,18 @@ export default function Cafeteriaplan() {
       else return 0;
     } else return 0;
   }, [data]);
+
+  useEffect(() => {
+    if (!data) return;
+    if (typeof currentIndex !== "undefined" && data[currentIndex].date)
+      setSelectedDate(data[currentIndex].date);
+    else setSelectedDate(undefined);
+  }, [currentIndex, data]);
+
+  useEffect(() => {
+    if (!data) return;
+    setCurrentIndex(index_of_today);
+  }, [data, index_of_today]);
 
   useEffect(() => {
     function resetLayout() {
@@ -96,7 +96,7 @@ export default function Cafeteriaplan() {
       resetFunction: resetLayout
     });
     if (timeoutContext.manager) timeoutContext.manager.addResetListener(handler);
-  }, [timeoutContext.manager]);
+  }, [timeoutContext.manager, data, index_of_today, swiperInstance]);
 
   return (
     <section
