@@ -35,7 +35,9 @@ export default function Bus({ bus, direction, index }: BusProps) {
 
   // Used for animation
   const [h_halft, setHeight] = useState(0);
-  const ref = useRef<HTMLInputElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const refInfo = useRef<HTMLDivElement>(null);
+  const refEasteregg = useRef<HTMLDivElement>(null);
 
   // Setup of 3d transformations for rotate-animation
   useEffect(() => {
@@ -44,15 +46,9 @@ export default function Bus({ bus, direction, index }: BusProps) {
 
   useEffect(() => {
     if (h_halft > 0) {
-      document.getElementById(
-        `busContainer${column}${row}`
-      )!.style.transform = `translateZ(-${h_halft}px)`;
-      document.getElementById(
-        `busInfo${column}${row}`
-      )!.style.transform = `rotateY(0deg) translateZ(${h_halft}px)`;
-      document.getElementById(
-        `busEasteregg${column}${row}`
-      )!.style.transform = `rotateX(90deg) translateZ(${h_halft}px)`;
+      ref.current!.style.transform = `translateZ(-${h_halft}px)`;
+      refInfo.current!.style.transform = `rotateY(0deg) translateZ(${h_halft}px)`;
+      refEasteregg.current!.style.transform = `rotateX(90deg) translateZ(${h_halft}px)`;
     }
   }, [h_halft, column, row]);
 
@@ -69,6 +65,7 @@ export default function Bus({ bus, direction, index }: BusProps) {
       <div
         className={[styles.background, styles.easteregg].join(" ")}
         id={`busEasteregg${column}${row}`}
+        ref={refEasteregg}
       >
         <span>Good ride</span>
         <Image src={icon_bus} alt={"Bus"} fill={false} className={styles.iconBus} />
@@ -80,6 +77,7 @@ export default function Bus({ bus, direction, index }: BusProps) {
       <div
         className={[styles.bus, styles.background].join(" ")}
         id={`busInfo${column}${row}`}
+        ref={refInfo}
       >
         <div className={styles.vertical}>
           <div className={styles.lineWrapper}>
