@@ -30,9 +30,10 @@
   flex-direction: row;
   object-fit: contain;
   justify-content: flex-end;
+  gap: g.$margin-small;
 
   img {
-    width: g.$text-large;
-    height: g.$text-large;
+    width: g.$icon-base;
+    height: g.$icon-base;
   }
 }
