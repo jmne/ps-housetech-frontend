@@ -117,6 +117,14 @@ $map_other_building_x_offset: 200%;
 
       font-size: g.$text-base;
       font-weight: 400;
+
+      will-change: transform;
+
+      transition: transform 0.1s ease-out;
+
+      &:active {
+        transform: scale(0.97);
+      }
     }
 
     .buttonsForCampus {
@@ -229,6 +237,8 @@ $map_other_building_x_offset: 200%;
       border: none;
       background-color: transparent;
 
+      transition: transform 0.1s ease-in-out;
+
       svg {
         fill: g.$main-primary;
         width: g.$icon-xm;
@@ -238,13 +248,17 @@ $map_other_building_x_offset: 200%;
       &.up {
         top: 0px;
 
-        &:active{
-          animation: moveUp 0.5s linear 0s 1;
+        &:active {
+          transform: translateY(-0.5rem);
         }
       }
 
       &.down {
         bottom: 0px;
+
+        &:active {
+          transform: translateY(0.5rem);
+        }
       }
     }
   }
@@ -267,17 +281,5 @@ $map_other_building_x_offset: 200%;
 
   to {
     opacity: 1;
-  }
-}
-
-@keyframes moveUp {
-  50% {
-    transform: translateY(-0.5rem);
-  }
-}
-
-@keyframes moveDown {
-  50% {
-    transform: translateY(0.5rem);
   }
 }
