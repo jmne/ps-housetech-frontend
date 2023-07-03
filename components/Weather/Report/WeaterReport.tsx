@@ -89,17 +89,23 @@ const sampleForecastNextDays: forecastDay[] = [
 ];
 
 export function WeatherReport() {
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const [currentTime, setCurrentTime] = useState<Date>();
+  const [currentMinutes, setCurrentMinutes] = useState<number | string>();
   const router = useRouter();
 
-  const currentMinutes =
-    currentTime.getMinutes() < 10
-      ? `0${currentTime.getMinutes()}`
-      : currentTime.getMinutes();
+  useEffect(() => {
+    const now = new Date();
+    setCurrentTime(now);
+    setCurrentMinutes(now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes());
+  }, []);
 
   useEffect(() => {
     setInterval(() => {
-      setCurrentTime(new Date());
+      const now = new Date();
+      setCurrentTime(now);
+      setCurrentMinutes(
+        now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes()
+      );
     }, 5000);
   }, [currentTime]);
 
@@ -141,9 +147,13 @@ export function WeatherReport() {
         <div className={styles.information}>
           <div className={styles.time}>
             <span>
-              {getWeekday(currentTime, "long", router.locale ? router.locale : "en-gb")}
+              {currentTime
+                ? getWeekday(currentTime, "long", router.locale ? router.locale : "en-gb")
+                : "Someday"}
             </span>
-            <span>{`${currentTime.getHours()}:${currentMinutes}`}</span>
+            <span>
+              {currentTime ? `${currentTime.getHours()}:${currentMinutes}` : "00:00"}
+            </span>
           </div>
           <div className={styles.weather}>
             <span style={{ color: getTemperatureColor(sampleCurrentWeather.temp) }}>

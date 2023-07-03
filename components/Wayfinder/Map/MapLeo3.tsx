@@ -110,9 +110,11 @@ export function MapLeo3() {
   useEffect(() => {
     requestAnimationFrame(() => {
       const areaJustGotInFocus =
-        mapContext.current.area === "leo3" && mapContext.previous.area !== "leo3";
+        mapContext.current.area === buildingNames.LEO3 &&
+        mapContext.previous.area !== buildingNames.LEO3;
       const areaGotOutOfFocus =
-        mapContext.current.area !== "leo3" && mapContext.previous.area === "leo3";
+        mapContext.current.area !== buildingNames.LEO3 &&
+        mapContext.previous.area === buildingNames.LEO3;
       const floorChanged =
         mapContext.current.floor !== mapContext.previous.floor ||
         mapContext.current.area !== mapContext.previous.area;
@@ -136,18 +138,6 @@ export function MapLeo3() {
         animations.push(maximizeBuilding.bind(null, element_leo3_building));
       } else if (areaGotOutOfFocus) {
         animations.push(collapseFloorsOfBuilding.bind(null, mapContext.leo3_elements));
-        animations.push(
-          minimizeBuilding.bind(
-            null,
-            element_leo3_on_campus,
-            element_leo3_building,
-            element_mapContainer
-          )
-        );
-      } else if (
-        mapContext.current.area !== buildingNames.LEO3 &&
-        mapContext.previous.area === buildingNames.LEO3
-      ) {
         animations.push(
           minimizeBuilding.bind(
             null,
