@@ -3,8 +3,8 @@ export type Origin =
   | "map"
   | "busplan"
   | "cafeteriaplan"
-  | "news"
   | "events"
+  | "instagram"
   | "overlay"
   | "index";
 
