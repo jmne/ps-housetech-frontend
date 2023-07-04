@@ -12,6 +12,7 @@ export function Instagram() {
   const { data, isLoading, error } = useInstagram();
   const timeoutContext = useTimeoutContext();
   const [swiperInstance, setSwiperInstance] = useState<SwiperClass>();
+  console.log(error)
 
   useEffect(() => {
     function resetLayout() {
@@ -40,12 +41,15 @@ export function Instagram() {
             <div className={styles.postContainer}>
               <div className={styles.stateDescription}>
                 {isLoading && <span>Instagram posts are loading...</span>}
-                {error && <span>Sorry, there was an error while loading the Instagram posts</span>}
+                {error && (
+                  <span>Sorry, there was an error while loading the Instagram posts</span>
+                )}
               </div>
             </div>
           </SwiperSlide>
         )}
-        {data &&
+        {!error &&
+          data &&
           data.map((post, index) => {
             return (
               <SwiperSlide key={post.timestamp} virtualIndex={index}>
