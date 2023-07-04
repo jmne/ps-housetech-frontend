@@ -5,6 +5,7 @@ import styles from "./News.module.scss";
 import { useTranslation } from "next-i18next";
 import { useSearchInputContext } from "context/SearchInputContext";
 import Keyboard from "@/components/Keyboard/Keyboard";
+import { Instagram } from "./Instagram/Instagram";
 
 export function News() {
   const { t } = useTranslation("index");
@@ -22,7 +23,7 @@ export function News() {
         <h2>{t("news.events.title")}</h2>
       </div>
       <Events />
-
+      <Instagram />
       <Keyboard visible={searchInputContext.active} />
     </section>
   );

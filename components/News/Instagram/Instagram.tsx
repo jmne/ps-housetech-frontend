@@ -1,20 +1,15 @@
-import { Navigation, Virtual } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { SwiperClass } from "swiper/react";
-
-import { useEvents } from "hooks/useEvents";
-import { EventCard } from "./Event";
-import styles from "./Events.module.scss";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import { useEffect, useState } from "react";
 import { useTimeoutContext } from "context/TimeoutContext";
+import { useInstagram } from "hooks/useInstagram";
+import { useState, useEffect } from "react";
+import { Virtual, Navigation } from "swiper";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 
-export function Events() {
-  const { data, isLoading, error } = useEvents();
+import styles from "./Instagram.module.scss";
+import { Post } from "./Post";
+
+export function Instagram() {
+  const { data, isLoading, error } = useInstagram();
   const timeoutContext = useTimeoutContext();
   const [swiperInstance, setSwiperInstance] = useState<SwiperClass>();
 
@@ -24,7 +19,7 @@ export function Events() {
     }
 
     const handler = new IdleHandler({
-      origin: "events",
+      origin: "instagram",
       resetFunction: resetLayout
     });
 
@@ -42,19 +37,19 @@ export function Events() {
       >
         {(isLoading || error) && (
           <SwiperSlide>
-            <div className={styles.eventContainer}>
+            <div className={styles.postContainer}>
               <div className={styles.stateDescription}>
-                {isLoading && <span>Events are loading...</span>}
-                {error && <span>Sorry, there was an error while loading the Events</span>}
+                {isLoading && <span>Instagram posts are loading...</span>}
+                {error && <span>Sorry, there was an error while loading the Instagram posts</span>}
               </div>
             </div>
           </SwiperSlide>
         )}
         {data &&
-          data.map((event, index) => {
+          data.map((post, index) => {
             return (
-              <SwiperSlide key={event.id} virtualIndex={index}>
-                <EventCard data={event} />
+              <SwiperSlide key={post.timestamp} virtualIndex={index}>
+                <Post post={post} />
               </SwiperSlide>
             );
           })}
