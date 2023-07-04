@@ -139,6 +139,7 @@ $topContainerHeight: 15rem;
 
         >p {
             margin-block-start: $topContainerHeight + g.$margin-large;
+            line-height: 1.5;
         }
 
         >* {
