@@ -6,36 +6,6 @@ import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
 
-function handleBackToCampus(mapContext: MapData, selectedPersonContext: PersonData) {
-  if (selectedPersonContext.current_person) {
-    handleExpansion(selectedPersonContext.current_person, false, selectedPersonContext);
-    selectedPersonContext.setPerson(undefined);
-  }
-  mapContext.setCurrent({
-    area: buildingNames.CAMPUS,
-    floor: undefined,
-    room: undefined
-  });
-}
-function handleShowLeo3(mapContext: MapData, selectedPersonContext: PersonData) {
-  if (selectedPersonContext.current_person) {
-    handleExpansion(selectedPersonContext.current_person, false, selectedPersonContext);
-    selectedPersonContext.setPerson(undefined);
-  }
-  mapContext.setCurrent({ area: buildingNames.LEO3, floor: "floor0", room: undefined });
-}
-function handleShowLeo11(mapContext: MapData, selectedPersonContext: PersonData) {
-  if (selectedPersonContext.current_person) {
-    handleExpansion(selectedPersonContext.current_person, false, selectedPersonContext);
-    selectedPersonContext.setPerson(undefined);
-  }
-  mapContext.setCurrent({
-    area: buildingNames.LEO11,
-    floor: "floor0",
-    room: undefined
-  });
-}
-
 function handleCampusBuildingHighlight(mapContext: MapData, building: CampusBuilding) {
   if (mapContext.current.room === building) {
     mapContext.setCurrent({
@@ -52,6 +22,35 @@ function handleCampusBuildingHighlight(mapContext: MapData, building: CampusBuil
   }
 }
 
+function handleAreaChange(
+  mapContext: MapData,
+  selectedPersonContext: PersonData,
+  area: CampusBuilding
+) {
+  if (selectedPersonContext.current_person) {
+    handleExpansion(selectedPersonContext.current_person, false, selectedPersonContext);
+    selectedPersonContext.setPerson(undefined);
+  }
+  if (area === buildingNames.CAMPUS)
+    mapContext.setCurrent({
+      area: buildingNames.CAMPUS,
+      floor: undefined,
+      room: undefined
+    });
+  else if (area === buildingNames.LEO3)
+    mapContext.setCurrent({
+      area: buildingNames.LEO3,
+      floor: "floor0",
+      room: undefined
+    });
+  else if (area === buildingNames.LEO11)
+    mapContext.setCurrent({
+      area: buildingNames.LEO11,
+      floor: "floor0",
+      room: undefined
+    });
+}
+
 export function Controls() {
   const { t } = useTranslation("index");
   const mapContext = useMapContext();
@@ -63,17 +62,29 @@ export function Controls() {
         <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
           <h3>{t("wayfinder.controls.visit")}</h3>
           {mapContext.current.area !== buildingNames.LEO3 && (
-            <button onClick={() => handleShowLeo3(mapContext, selectedPersonContext)}>
+            <button
+              onClick={() =>
+                handleAreaChange(mapContext, selectedPersonContext, buildingNames.LEO3)
+              }
+            >
               Leo 3
             </button>
           )}
           {mapContext.current.area !== buildingNames.LEO11 && (
-            <button onClick={() => handleShowLeo11(mapContext, selectedPersonContext)}>
+            <button
+              onClick={() =>
+                handleAreaChange(mapContext, selectedPersonContext, buildingNames.LEO11)
+              }
+            >
               Leo 11
             </button>
           )}
           {mapContext.current.area !== buildingNames.CAMPUS && (
-            <button onClick={() => handleBackToCampus(mapContext, selectedPersonContext)}>
+            <button
+              onClick={() =>
+                handleAreaChange(mapContext, selectedPersonContext, buildingNames.CAMPUS)
+              }
+            >
               {t("wayfinder.controls.back_to_campus")}
             </button>
           )}
