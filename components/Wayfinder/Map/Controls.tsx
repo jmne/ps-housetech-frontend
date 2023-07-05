@@ -67,7 +67,7 @@ export function Controls() {
                 handleAreaChange(mapContext, selectedPersonContext, buildingNames.LEO3)
               }
             >
-              Leo 3
+              LC 3
             </button>
           )}
           {mapContext.current.area !== buildingNames.LEO11 && (
@@ -76,7 +76,7 @@ export function Controls() {
                 handleAreaChange(mapContext, selectedPersonContext, buildingNames.LEO11)
               }
             >
-              Leo 11
+              LC 11
             </button>
           )}
           {mapContext.current.area !== buildingNames.CAMPUS && (
@@ -85,47 +85,80 @@ export function Controls() {
                 handleAreaChange(mapContext, selectedPersonContext, buildingNames.CAMPUS)
               }
             >
-              {t("wayfinder.controls.back_to_campus")}
+              Campus
             </button>
           )}
         </div>
         {mapContext.current.area === buildingNames.CAMPUS && (
           <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
-            <h3>{t("wayfinder.controls.where_is")}</h3>
+            <h3>{t("wayfinder.controls.highlight_building")}</h3>
             <button
               onClick={() =>
                 handleCampusBuildingHighlight(mapContext, buildingNames.LEO1)
               }
             >
-              Leo 1
+              1
             </button>
             <button
               onClick={() =>
                 handleCampusBuildingHighlight(mapContext, buildingNames.LEO3)
               }
             >
-              Leo 3
+              3
             </button>
             <button
               onClick={() =>
                 handleCampusBuildingHighlight(mapContext, buildingNames.LEO10)
               }
             >
-              Leo 10
+              10
             </button>
             <button
               onClick={() =>
                 handleCampusBuildingHighlight(mapContext, buildingNames.LEO11)
               }
             >
-              Leo 11
+              11
             </button>
             <button
               onClick={() =>
                 handleCampusBuildingHighlight(mapContext, buildingNames.LEO18)
               }
             >
-              Leo 18
+              18
+            </button>
+          </div>
+        )}
+        {mapContext.current.area === buildingNames.CAMPUS && (
+          <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
+            <h3>{t("wayfinder.controls.highlight_lecture_hall_building")}</h3>
+            <button
+              onClick={() =>
+                handleCampusBuildingHighlight(mapContext, buildingNames.LEO10)
+              }
+            >
+              Leo 1
+            </button>
+            <button
+              onClick={() =>
+                handleCampusBuildingHighlight(mapContext, buildingNames.LEO10)
+              }
+            >
+              Leo 2
+            </button>
+            <button
+              onClick={() =>
+                handleCampusBuildingHighlight(mapContext, buildingNames.LEO10)
+              }
+            >
+              Leo 3
+            </button>
+            <button
+              onClick={() =>
+                handleCampusBuildingHighlight(mapContext, buildingNames.LEO18)
+              }
+            >
+              Leo 18.3
             </button>
           </div>
         )}
