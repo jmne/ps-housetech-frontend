@@ -8,7 +8,8 @@ import Bus from "@/components/Busplan/Bus";
 
 // IMPORTS - ASSETS
 import indexStyles from "@/pages/index.module.scss";
-import busStyles from "@/components/Busplan/Busplan.module.scss";
+import busplanStyles from "@/components/Busplan/Busplan.module.scss";
+import busStyles from "@/components/Busplan/Bus.module.scss";
 import { Busride } from "types/Busride";
 
 /**
@@ -58,19 +59,28 @@ export default function Busplan() {
       <div className={indexStyles.cardHeadline}>
         <h2>{t("busplan.title")}</h2>
       </div>
-      {isLoading ? (
-        <span>Data is loading...</span>
-      ) : error ? (
-        <span>Oops, some error occurred :(</span>
-      ) : (
-        <ol className={busStyles.busplan}>
-          {busses_inward.map((bus, index) => (
-            <Bus bus={bus} direction={"inward"} index={index} key={index} />
-          ))}
-          {busses_outward.map((bus, index) => (
-            <Bus bus={bus} direction={"outward"} index={index} key={index} />
-          ))}
-        </ol>
+      <ol className={busplanStyles.busplan}>
+        {isLoading && !error && (
+          <span className={busStyles.message}>Bus plan is loading...</span>
+        )}
+        {error && (
+          <span className={busStyles.message}>
+            Sorry, there was an error while loading the bus plan
+          </span>
+        )}
+        {!error && data && data.length > 0 && (
+          <>
+            {busses_inward.map((bus, index) => (
+              <Bus bus={bus} direction={"inward"} index={index} key={index} />
+            ))}
+            {busses_outward.map((bus, index) => (
+              <Bus bus={bus} direction={"outward"} index={index} key={index} />
+            ))}
+          </>
+        )}
+      </ol>
+      {!error && data && data.length > 0 && (
+        <span className={busStyles.message}>No Busses incoming</span>
       )}
     </section>
   );
