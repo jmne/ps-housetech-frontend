@@ -24,11 +24,11 @@ import { getPersonForRoom, getRoomDisplayName } from "utils/Wayfinder/mapValidat
 import { Employee } from "types/Employee";
 import { useMapElements } from "context/MapElements";
 
-interface props {
+export interface MapProps {
   allPersons: Employee[];
 }
 
-export function CampusMap({ allPersons }: props) {
+export function CampusMap({ allPersons }: MapProps) {
   const { t } = useTranslation("index");
   const mapContext = useMapContext();
   const mapElements = useMapElements();
@@ -65,6 +65,7 @@ export function CampusMap({ allPersons }: props) {
   }, [timeoutContext.manager, mapContext]);
 
   useEffect(() => {
+    
     if (mapContext.current.floor) setFloorName(mapContext.current.floor);
 
     if (mapContext.current.room && mapContext.current.area) {
