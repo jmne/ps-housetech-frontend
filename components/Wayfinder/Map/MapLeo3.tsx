@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { MutableRefObject, Ref, memo, useEffect, useRef, useState } from "react";
 import styles from "./Map.module.scss";
 import {
   Leo3_Floor0,
@@ -74,6 +74,7 @@ function floorDown(mapContext: MapData, personContext: PersonData) {
 }
 
 export const MapLeo3 = memo(() => {
+  const animationIdRef = useRef(0);
   const mapContext = useMapContext();
   const mapElements = useMapElements();
   const personContext = usePersonSearchContext();
@@ -111,6 +112,9 @@ export const MapLeo3 = memo(() => {
   // Handle Change of shown area
   useEffect(() => {
     requestAnimationFrame(() => {
+      const currentAnimationID = animationIdRef.current + 1;
+      animationIdRef.current = animationIdRef.current + 1;
+
       const areaJustGotInFocus =
         mapContext.current.area === buildingNames.LEO3 &&
         mapContext.previous.area !== buildingNames.LEO3;
@@ -161,12 +165,17 @@ export const MapLeo3 = memo(() => {
 
       if (animations.length === 0) return;
 
-      const executeAnimations = async (animations: (() => Promise<unknown>)[]) => {
+      const executeAnimations = async (
+        animations: (() => Promise<unknown>)[],
+        animID: number,
+        mapAnimationIDRef: MutableRefObject<number>
+      ) => {
         for (let index = 0; index < animations.length; index++) {
+          if (animID !== mapAnimationIDRef.current) return;
           await animations[index]();
         }
       };
-      executeAnimations(animations);
+      executeAnimations(animations, currentAnimationID, animationIdRef);
     });
   }, [
     mapContext,

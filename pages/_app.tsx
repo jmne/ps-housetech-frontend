@@ -19,7 +19,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
   <TimeoutProvider>
     <OverlayProvider>
       <SearchInputProvider>
-        <main className={inter.className}>
+        <main className={inter.className} id="app-wrapper">
           <Component {...pageProps} />
         </main>
       </SearchInputProvider>

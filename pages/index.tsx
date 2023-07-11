@@ -20,7 +20,7 @@ export default function Index() {
   const overlayContext = useOverlayContext();
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id="index-wrapper">
       <Headline />
       <div
         className={
