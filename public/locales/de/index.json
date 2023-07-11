@@ -29,7 +29,9 @@
             "visit": "Besuche...",
             "where_is": "Wo ist?",
             "back_to_campus": "Zum Campus",
-            "remove_highlight": "Markierung entfernen"
+            "remove_highlight": "Markierung entfernen",
+            "highlight_building": "Gebäude finden",
+            "highlight_lecture_hall_building": "Raum finden"
         }
     },
     "busplan": {
