@@ -1,4 +1,12 @@
-import { MutableRefObject, Ref, memo, useEffect, useRef, useState } from "react";
+import {
+  MutableRefObject,
+  Ref,
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from "react";
 import styles from "./Map.module.scss";
 import {
   Leo3_Floor0,
@@ -79,6 +87,25 @@ export const MapLeo3 = memo(() => {
   const mapElements = useMapElements();
   const personContext = usePersonSearchContext();
   const [touchStart, setTouchStart] = useState<number | undefined>();
+
+  const handleFloorUp = useCallback(() => {
+    floorUp(mapContext, personContext);
+  }, [mapContext, personContext]);
+
+  const handleFloorDown = useCallback(() => {
+    floorDown(mapContext, personContext);
+  }, [mapContext, personContext]);
+
+  const handleMouseDown = useCallback((e: any) => {
+    setTouchStart(e.pageY);
+  }, []);
+
+  const handleMouseUp = useCallback(
+    (e) => {
+      handleTouchEnd(touchStart, e.pageY, mapContext, personContext);
+    },
+    [touchStart, mapContext, personContext]
+  );
 
   useEffect(() => {
     mapElements.leo3_elements.forEach((element, index) => {
@@ -191,17 +218,13 @@ export const MapLeo3 = memo(() => {
     <div
       className={[styles.mapElement, styles.leo3Wrapper].join(" ")}
       ref={mapElements.leo3_building}
-      onMouseDown={(e) => {
-        setTouchStart(e.pageY);
-      }}
-      onMouseUp={(e) => {
-        handleTouchEnd(touchStart, e.pageY, mapContext, personContext);
-      }}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
     >
       {mapContext.current.floor !== "floor3" && (
         <button
           className={[styles.floorNavigationButton, styles.up].join(" ")}
-          onMouseDown={() => floorUp(mapContext, personContext)}
+          onMouseDown={handleFloorUp}
         >
           <ArrowUp />
         </button>
@@ -209,7 +232,7 @@ export const MapLeo3 = memo(() => {
       {mapContext.current.floor !== "floor0" && (
         <button
           className={[styles.floorNavigationButton, styles.down].join(" ")}
-          onMouseDown={() => floorDown(mapContext, personContext)}
+          onMouseDown={handleFloorDown}
         >
           <ArrowDown />
         </button>

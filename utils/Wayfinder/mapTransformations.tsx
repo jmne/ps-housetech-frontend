@@ -166,8 +166,6 @@ export function addRoomClickListeners(
   floor: BuildingFloor | undefined,
   mapContext: MapData
 ) {
-  const allRoomElements = container.querySelectorAll(`[id*="${building}-"]`);
-
   if (building === buildingNames.CAMPUS) {
     const egg1 = container.querySelector(`[id=egg1]`);
     const egg2 = container.querySelector(`[id=egg2]`);
@@ -189,14 +187,23 @@ export function addRoomClickListeners(
     });
   }
 
-  allRoomElements.forEach((element) => {
-    const roomNumber = element.id.split("-").slice(1).join("-");
-    element.addEventListener("click", () => {
+  container.addEventListener("click", (event) => {
+    let targetElement = event.target as HTMLElement;
+
+    if (
+      targetElement.parentElement &&
+      targetElement.parentElement.id.includes(`${building}-`)
+    ) {
+      targetElement = targetElement.parentElement;
+    }
+    if (targetElement && targetElement.id.includes(`${building}-`)) {
+      // Check if the clicked element is one of the room elements
+      const roomNumber = targetElement.id.split("-").slice(1).join("-");
       mapContext.setCurrent({
         area: building,
         floor: floor,
         room: roomNumber ? roomNumber : undefined
       });
-    });
+    }
   });
 }
