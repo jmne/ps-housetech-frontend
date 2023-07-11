@@ -29,7 +29,9 @@
             "visit": "Visit",
             "where_is": "Where is?",
             "back_to_campus": "Back to Campus",
-            "remove_highlight": "Remove Highlight"
+            "remove_highlight": "Remove Highlight",
+            "highlight_building": "Find Building",
+            "highlight_lecture_hall_building": "Find Lecture Hall"
         }
     },
     "busplan": {
