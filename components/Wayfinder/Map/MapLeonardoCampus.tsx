@@ -1,5 +1,5 @@
 import styles from "./Map.module.scss";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import LeonardoCampus from "assets/images/map/campus_transformed/leonardocampus";
 import { useMapContext } from "context/MapContext";
 import {
@@ -8,19 +8,21 @@ import {
   minimizeCampus
 } from "utils/Wayfinder/mapTransformations";
 import { buildingNames } from "types/Campus";
+import { useMapElements } from "context/MapElements";
 
-export function MapLeonardoCampus() {
+export const MapLeonardoCampus = memo(() => {
   const mapContext = useMapContext();
+  const mapElements = useMapElements();
 
   useEffect(() => {
-    const container = mapContext.campus_element?.current;
+    const container = mapElements.campus_element?.current;
     if (!container) return;
     const floor = undefined;
     addRoomClickListeners(container, buildingNames.CAMPUS, floor, mapContext);
   }, []);
 
   useEffect(() => {
-    const campus = mapContext.campus_element?.current;
+    const campus = mapElements.campus_element?.current;
     if (!campus) return;
 
     const transitionToCampus =
@@ -46,11 +48,11 @@ export function MapLeonardoCampus() {
     };
 
     executeAnimations(animations);
-  }, [mapContext, mapContext.mapContainer, mapContext.campus_element]);
+  }, [mapContext, mapElements.mapContainer, mapElements.campus_element]);
 
   return (
     <div className={styles.mapElement}>
-      <LeonardoCampus ref={mapContext.campus_element} />
+      <LeonardoCampus />
     </div>
   );
-}
+});

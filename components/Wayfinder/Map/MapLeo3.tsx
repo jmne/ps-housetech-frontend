@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import styles from "./Map.module.scss";
 import {
   Leo3_Floor0,
@@ -20,6 +20,7 @@ import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 import ArrowUp from "assets/images/icon_arrow_up.svg";
 import ArrowDown from "assets/images/icon_arrow_down.svg";
+import { useMapElements } from "context/MapElements";
 
 function handleTouchEnd(
   touchStart: number | undefined,
@@ -72,13 +73,14 @@ function floorDown(mapContext: MapData, personContext: PersonData) {
   mapContext.setCurrent({ room: undefined, floor: `floor${nextFloorIndex}` });
 }
 
-export function MapLeo3() {
+export const MapLeo3 = memo(() => {
   const mapContext = useMapContext();
+  const mapElements = useMapElements();
   const personContext = usePersonSearchContext();
   const [touchStart, setTouchStart] = useState<number | undefined>();
 
   useEffect(() => {
-    mapContext.leo3_elements.forEach((element, index) => {
+    mapElements.leo3_elements.forEach((element, index) => {
       const container = element.current;
       const floor = getFloorFromIndex(index);
       if (!container) return;
@@ -86,9 +88,9 @@ export function MapLeo3() {
     });
 
     requestAnimationFrame(() => {
-      const element_leo3_on_campus = mapContext.leo3_building_on_campus?.current;
-      const element_leo3_building = mapContext.leo3_building?.current;
-      const element_mapContainer = mapContext.mapContainer?.current;
+      const element_leo3_on_campus = mapElements.leo3_building_on_campus?.current;
+      const element_leo3_building = mapElements.leo3_building?.current;
+      const element_mapContainer = mapElements.mapContainer?.current;
 
       if (
         !element_leo3_on_campus ||
@@ -119,10 +121,10 @@ export function MapLeo3() {
         mapContext.current.floor !== mapContext.previous.floor ||
         mapContext.current.area !== mapContext.previous.area;
 
-      const element_leo3_on_campus = mapContext.leo3_building_on_campus?.current;
-      const element_leo3_building = mapContext.leo3_building?.current;
-      const element_mapContainer = mapContext.mapContainer?.current;
-      const element_campus = mapContext.campus_element?.current;
+      const element_leo3_on_campus = mapElements.leo3_building_on_campus?.current;
+      const element_leo3_building = mapElements.leo3_building?.current;
+      const element_mapContainer = mapElements.mapContainer?.current;
+      const element_campus = mapElements.campus_element?.current;
 
       if (
         !element_leo3_on_campus ||
@@ -137,7 +139,7 @@ export function MapLeo3() {
       if (areaJustGotInFocus) {
         animations.push(maximizeBuilding.bind(null, element_leo3_building));
       } else if (areaGotOutOfFocus) {
-        animations.push(collapseFloorsOfBuilding.bind(null, mapContext.leo3_elements));
+        animations.push(collapseFloorsOfBuilding.bind(null, mapElements.leo3_elements));
         animations.push(
           minimizeBuilding.bind(
             null,
@@ -153,7 +155,7 @@ export function MapLeo3() {
           highlightFloor.bind(
             null,
             mapContext.current.floor ? mapContext.current.floor : "floor0",
-            mapContext.leo3_elements
+            mapElements.leo3_elements
           )
         );
 
@@ -170,16 +172,16 @@ export function MapLeo3() {
     mapContext,
     mapContext.current.area,
     mapContext.current.floor,
-    mapContext.leo3_building_on_campus,
-    mapContext.leo3_building,
-    mapContext.mapContainer,
-    mapContext.campus_element
+    mapElements.leo3_building_on_campus,
+    mapElements.leo3_building,
+    mapElements.mapContainer,
+    mapElements.campus_element
   ]);
 
   return (
     <div
       className={[styles.mapElement, styles.leo3Wrapper].join(" ")}
-      ref={mapContext.leo3_building}
+      ref={mapElements.leo3_building}
       onMouseDown={(e) => {
         setTouchStart(e.pageY);
       }}
@@ -203,10 +205,10 @@ export function MapLeo3() {
           <ArrowDown />
         </button>
       )}
-      <Leo3_Floor0 ref={mapContext.leo3_elements[0]} />
-      <Leo3_Floor1 ref={mapContext.leo3_elements[1]} />
-      <Leo3_Floor2 ref={mapContext.leo3_elements[2]} />
-      <Leo3_Floor3 ref={mapContext.leo3_elements[3]} />
+      <Leo3_Floor0 />
+      <Leo3_Floor1 />
+      <Leo3_Floor2 />
+      <Leo3_Floor3 />
     </div>
   );
-}
+});

@@ -1,6 +1,6 @@
 import { useTimeoutContext } from "context/TimeoutContext";
 import { useInstagram } from "hooks/useInstagram";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { Virtual, Navigation } from "swiper";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
@@ -8,11 +8,10 @@ import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import styles from "./Instagram.module.scss";
 import { Post } from "./Post";
 
-export function Instagram() {
+export const Instagram = memo(() => {
   const { data, isLoading, error } = useInstagram();
   const timeoutContext = useTimeoutContext();
   const [swiperInstance, setSwiperInstance] = useState<SwiperClass>();
-  console.log(error)
 
   useEffect(() => {
     function resetLayout() {
@@ -60,4 +59,4 @@ export function Instagram() {
       </Swiper>
     </>
   );
-}
+});

@@ -1,4 +1,4 @@
-import { TFunction, useTranslation } from "next-i18next";
+import { TFunction } from "next-i18next";
 import {
   BuildingFloor,
   CampusBuilding,

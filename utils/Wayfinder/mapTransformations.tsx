@@ -165,6 +165,7 @@ export function addRoomClickListeners(
   floor: BuildingFloor | undefined,
   mapContext: MapData
 ) {
+  debugger
   const allRoomElements = container.querySelectorAll(`[id*="${building}-"]`);
   allRoomElements.forEach((element) => {
     const roomNumber = element.id.split("-").slice(1).join("-");

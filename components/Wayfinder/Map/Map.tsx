@@ -22,6 +22,7 @@ import { Controls } from "./Controls";
 import { buildingNames } from "types/Campus";
 import { getPersonForRoom, getRoomDisplayName } from "utils/Wayfinder/mapValidations";
 import { Employee } from "types/Employee";
+import { useMapElements } from "context/MapElements";
 
 interface props {
   allPersons: Employee[];
@@ -30,6 +31,7 @@ interface props {
 export function CampusMap({ allPersons }: props) {
   const { t } = useTranslation("index");
   const mapContext = useMapContext();
+  const mapElements = useMapElements();
   const timeoutContext = useTimeoutContext();
   const [floorName, setFloorName] = useState<string | undefined>();
   const [placesAndPeopleInSelectedRoom, setPlacesAndPeopleInSelectedRoom] = useState<
@@ -101,7 +103,7 @@ export function CampusMap({ allPersons }: props) {
           )}
         </div>
       </div>
-      <div className={styles.mapWrapper} ref={mapContext.mapContainer}>
+      <div className={styles.mapWrapper} ref={mapElements.mapContainer}>
         <MapLeonardoCampus />
         <MapLeo3 />
         <MapLeo11 />

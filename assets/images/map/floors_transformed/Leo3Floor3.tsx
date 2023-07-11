@@ -1,7 +1,9 @@
+import { useMapElements } from "context/MapElements";
 import * as React from "react";
 import type { SVGProps } from "react";
-const SvgLeo3Floor3 = React.forwardRef<SVGSVGElement>(
-  (props: SVGProps<SVGSVGElement>, ref) => (
+const SvgLeo3Floor3 = React.memo((props: SVGProps<SVGSVGElement>) => {
+  const mapElements = useMapElements();
+  return (
     <svg
       width="100%"
       height="100%"
@@ -17,7 +19,7 @@ const SvgLeo3Floor3 = React.forwardRef<SVGSVGElement>(
         strokeMiterlimit: 10
       }}
       {...props}
-      ref={ref}
+      ref={mapElements.leo3_elements[3]}
     >
       <path
         d="M596.31,148.05L537.04,190.94L512.21,173.03L234.23,369.937L258.93,387.752L200.38,429.226L18.375,300.36L78.1,257.36L145.07,305.65L246.95,233.11L203.74,201.96L275.99,150.12L319.6,181.57L423.05,108.75L356.2,60.54L416.47,18.37L596.31,148.05Z"
@@ -1390,6 +1392,6 @@ const SvgLeo3Floor3 = React.forwardRef<SVGSVGElement>(
         }}
       />
     </svg>
-  )
-);
+  );
+});
 export default SvgLeo3Floor3;
