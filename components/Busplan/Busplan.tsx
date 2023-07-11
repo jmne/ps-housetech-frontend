@@ -79,7 +79,7 @@ export default function Busplan() {
           </>
         )}
       </ol>
-      {!error && data && data.length > 0 && (
+      {!error && data && data.length === 0 && (
         <span className={busStyles.message}>No Busses incoming</span>
       )}
     </section>
