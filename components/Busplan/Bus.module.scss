@@ -98,6 +98,24 @@
 
 // Used for positioning the items in the grid
 
+.message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: g.$margin-sm;
+  background: g.$container-item;
+  border-radius: g.$border-radius-base;
+
+  box-shadow: g.$shadow-outer;
+
+  grid-column: span 2;
+  grid-row: span 1;
+
+  color: g.$text-secondary;
+  
+}
+
 .inward {
   grid-column: 1;
 }
