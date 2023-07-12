@@ -10,6 +10,13 @@
   flex-direction: column;
   padding: g.$margin-base;
   gap: g.$margin-base;
+
+  background-color: g.$background;
+
+  transition: background-color .5s ease;
+  -webkit-transition: background-color .5s ease;
+  -o-transition: background-color .5s ease;
+  -moz-transition: background-color .5s ease;
 }
 
 .bodyWrapper {
@@ -30,6 +37,8 @@
     box-shadow: g.$shadow-outer__light;
     border-radius: g.$border-radius-base;
     overflow: hidden;
+
+    backdrop-filter: blur(20px);
   }
 
   .largeContainer {
@@ -47,12 +56,12 @@
 
     position: relative;
 
-    & > * {
+    &>* {
       grid-area: 1 / 1 / 1 / 1;
     }
   }
 
-  .newsContainer{
+  .newsContainer {
     grid-row: span 1;
     grid-column: span 1;
 
@@ -64,7 +73,7 @@
   .smallContainer {
     grid-row: span 1;
     grid-column: span 1;
-    
+
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 2rem 1fr;
@@ -109,28 +118,28 @@
   box-shadow: g.$shadow-outer;
 
   .close {
-      position: absolute;
-      border: none;
-      border-radius: g.$border-radius-small;
-      background: g.$container;
+    position: absolute;
+    border: none;
+    border-radius: g.$border-radius-small;
+    background: g.$container;
 
-      box-shadow: g.$shadow-outer;
+    box-shadow: g.$shadow-outer;
 
-      overflow: hidden;
-      
-      fill: g.$text-primary;
+    overflow: hidden;
 
-      top: 0px;
-      right: 0px;
-      transform: translateX(calc(100% + g.$margin-base)) translateY(- g.$border-base);
+    fill: g.$text-primary;
 
-      cursor: pointer;
+    top: 0px;
+    right: 0px;
+    transform: translateX(calc(100% + g.$margin-base)) translateY(- g.$border-base);
 
-      svg {
-        z-index: 2;
+    cursor: pointer;
 
-        width: g.$icon-xm;
-        height: g.$icon-xm;
-      }
+    svg {
+      z-index: 2;
+
+      width: g.$icon-xm;
+      height: g.$icon-xm;
     }
+  }
 }

@@ -2,7 +2,7 @@ import { Employee } from "types/Employee";
 import { useMapContext } from "context/MapContext";
 import { usePersonSearchContext } from "context/PersonContext";
 import styles from "@/components/Wayfinder/Wayfinder.module.scss";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState, memo } from "react";
 import { handleClickOnPerson } from "utils/Wayfinder/personCardsTransformations";
 import Image from "next/image";
 import IconAccount from "assets/images/icon_account.svg";
@@ -19,7 +19,7 @@ interface props {
 export const SEARCH_RESULT_COLLAPSED = styles.person;
 export const SEARCH_RESULT_EXPANDED = [styles.person, styles.expanded].join(" ");
 const url = "https://ps-housetech.uni-muenster.de:444/api/picture/";
-function PersonResult({ person }: props) {
+const PersonResult = memo(({ person }: props) => {
   const mapContext = useMapContext();
   const selectedPersonContext = usePersonSearchContext();
   const [imageID, setImageID] = useState(person.image);
@@ -95,7 +95,7 @@ function PersonResult({ person }: props) {
       )}
     </li>
   );
-}
+});
 
 PersonResult.displayName = "PersonResult";
 export default PersonResult;

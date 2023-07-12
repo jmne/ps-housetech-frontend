@@ -45,12 +45,9 @@ export function Key({ keycode }: helperProps) {
     </button>
   );
 }
+function Keyboard() {
+  const searchInputContext = useSearchInputContext();
 
-interface KeyboardProps {
-  visible: boolean;
-}
-
-function Keyboard({ visible }: KeyboardProps) {
   const innerKeyboard = useMemo(() => {
     const keys = [
       ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ü"],
@@ -77,7 +74,9 @@ function Keyboard({ visible }: KeyboardProps) {
   return (
     <article
       className={
-        visible ? [styles.container, styles.visible].join(" ") : styles.container
+        searchInputContext.active
+          ? [styles.container, styles.visible].join(" ")
+          : styles.container
       }
       id="keyboard"
       data-testid="keyboard"

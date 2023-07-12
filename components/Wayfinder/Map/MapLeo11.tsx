@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import styles from "./Map.module.scss";
 import { Leo11_Floor0 } from "assets/images/map/floors_transformed";
 import { useMapContext } from "context/MapContext";
@@ -8,12 +8,14 @@ import {
   addRoomClickListeners
 } from "utils/Wayfinder/mapTransformations";
 import { BuildingFloor, buildingNames } from "types/Campus";
+import { useMapElements } from "context/MapElements";
 
-export function MapLeo11() {
+const MapLeo11 = memo(() => {
   const mapContext = useMapContext();
+  const mapElements = useMapElements();
 
   useEffect(() => {
-    mapContext.leo11_elements.forEach((element) => {
+    mapElements.leo11_elements.forEach((element) => {
       const container = element.current;
       const floor: BuildingFloor = "floor0";
       if (!container) return;
@@ -21,9 +23,9 @@ export function MapLeo11() {
     });
 
     requestAnimationFrame(() => {
-      const element_leo11_on_campus = mapContext.leo11_building_on_campus?.current;
-      const element_leo11_building = mapContext.leo11_building?.current;
-      const element_mapContainer = mapContext.mapContainer?.current;
+      const element_leo11_on_campus = mapElements.leo11_building_on_campus?.current;
+      const element_leo11_building = mapElements.leo11_building?.current;
+      const element_mapContainer = mapElements.mapContainer?.current;
 
       if (
         !element_leo11_on_campus ||
@@ -39,13 +41,14 @@ export function MapLeo11() {
         element_mapContainer
       );
     });
+    //@ts-ignore
   }, []);
 
   useEffect(() => {
-    const element_leo11_on_campus = mapContext.leo11_building_on_campus?.current;
-    const element_leo11_building = mapContext.leo11_building?.current;
-    const element_mapContainer = mapContext.mapContainer?.current;
-    const element_campus = mapContext.campus_element?.current;
+    const element_leo11_on_campus = mapElements.leo11_building_on_campus?.current;
+    const element_leo11_building = mapElements.leo11_building?.current;
+    const element_mapContainer = mapElements.mapContainer?.current;
+    const element_campus = mapElements.campus_element?.current;
     if (
       !element_leo11_on_campus ||
       !element_leo11_building ||
@@ -98,19 +101,22 @@ export function MapLeo11() {
   }, [
     mapContext,
     mapContext.current.area,
-    mapContext.leo11_building_on_campus,
-    mapContext.leo11_building,
-    mapContext.mapContainer,
-    mapContext.campus_element
+    mapElements.leo11_building_on_campus,
+    mapElements.leo11_building,
+    mapElements.mapContainer,
+    mapElements.campus_element
   ]);
 
   return (
     <div
       className={styles.mapElement}
-      ref={mapContext.leo11_building}
+      ref={mapElements.leo11_building}
       id={buildingNames.LEO3}
     >
-      <Leo11_Floor0 ref={mapContext.leo11_elements[0]} />
+      <Leo11_Floor0 />
     </div>
   );
-}
+});
+
+MapLeo11.displayName = "Leo-11 Map";
+export default MapLeo11;

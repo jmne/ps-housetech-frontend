@@ -1,4 +1,4 @@
-import { TFunction, useTranslation } from "next-i18next";
+import { TFunction } from "next-i18next";
 import {
   BuildingFloor,
   CampusBuilding,
@@ -136,7 +136,8 @@ export function getPersonForRoom(
       case buildingNames.LEO10:
         return [
           `${t("wayfinder.map.lecture_hall")} Leo 1`,
-          `${t("wayfinder.map.lecture_hall")} Leo 2`
+          `${t("wayfinder.map.lecture_hall")} Leo 2`,
+          `${t("wayfinder.map.lecture_hall")} Leo 3`
         ];
       case buildingNames.LEO11:
         return undefined;

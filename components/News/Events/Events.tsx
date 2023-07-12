@@ -9,11 +9,11 @@ import styles from "./Events.module.scss";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useTimeoutContext } from "context/TimeoutContext";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 
-export function Events() {
+const Events = memo(() => {
   const { data, isLoading, error } = useEvents();
   const timeoutContext = useTimeoutContext();
   const [swiperInstance, setSwiperInstance] = useState<SwiperClass>();
@@ -61,4 +61,7 @@ export function Events() {
       </Swiper>
     </>
   );
-}
+});
+
+Events.displayName = "Events"
+export default Events
