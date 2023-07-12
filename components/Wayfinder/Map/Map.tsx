@@ -12,9 +12,9 @@ import { MAP_BASE_STATE } from "utils/constants";
 
 // CSS
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
-import { MapLeo11 } from "./MapLeo11";
-import { MapLeo3 } from "./MapLeo3";
-import { MapLeonardoCampus } from "./MapLeonardoCampus";
+import MapLeo11 from "./MapLeo11";
+import MapLeo3 from "./MapLeo3";
+import MapLeonardoCampus from "./MapLeonardoCampus";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 import { setRoomHighlight } from "utils/Wayfinder/mapTransformations";
@@ -22,14 +22,16 @@ import { Controls } from "./Controls";
 import { buildingNames } from "types/Campus";
 import { getPersonForRoom, getRoomDisplayName } from "utils/Wayfinder/mapValidations";
 import { Employee } from "types/Employee";
+import { useMapElements } from "context/MapElements";
 
-interface props {
+export interface MapProps {
   allPersons: Employee[];
 }
 
-export function CampusMap({ allPersons }: props) {
+export function CampusMap({ allPersons }: MapProps) {
   const { t } = useTranslation("index");
   const mapContext = useMapContext();
+  const mapElements = useMapElements();
   const timeoutContext = useTimeoutContext();
   const [floorName, setFloorName] = useState<string | undefined>();
   const [placesAndPeopleInSelectedRoom, setPlacesAndPeopleInSelectedRoom] = useState<
@@ -101,7 +103,7 @@ export function CampusMap({ allPersons }: props) {
           )}
         </div>
       </div>
-      <div className={styles.mapWrapper} ref={mapContext.mapContainer}>
+      <div className={styles.mapWrapper} ref={mapElements.mapContainer}>
         <MapLeonardoCampus />
         <MapLeo3 />
         <MapLeo11 />

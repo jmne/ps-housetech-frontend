@@ -1,9 +1,11 @@
 // IMPORTS - BUILTINS
 import { RefObject } from "react";
-import { BuildingFloor, CampusBuilding } from "types/Campus";
+import { BuildingFloor, CampusBuilding, buildingNames } from "types/Campus";
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
 import { transitionFunction, transitionStyle } from "utils/animations";
 import { MapData } from "context/MapContext";
+import { getPersonForRoom } from "./mapValidations";
+import { Employee } from "types/Employee";
 
 const getFloorStyleFromOffset = [
   styles.floor__1below,
@@ -66,7 +68,6 @@ export async function setRoomHighlight(
     return new Promise((resolve) => {
       resolve(null);
     });
-
   if (highlight === true)
     return transitionFunction(
       room_elements[0],
@@ -165,15 +166,44 @@ export function addRoomClickListeners(
   floor: BuildingFloor | undefined,
   mapContext: MapData
 ) {
-  const allRoomElements = container.querySelectorAll(`[id*="${building}-"]`);
-  allRoomElements.forEach((element) => {
-    const roomNumber = element.id.split("-").slice(1).join("-");
-    element.addEventListener("click", () => {
+  if (building === buildingNames.CAMPUS) {
+    const egg1 = container.querySelector(`[id=egg1]`);
+    const egg2 = container.querySelector(`[id=egg2]`);
+    const egg3 = container.querySelector(`[id=egg3]`);
+    const egg4 = container.querySelector(`[id=egg4]`);
+
+    egg1?.addEventListener("click", () => {
+      setTimeout(() => {
+        const body = document.getElementById("index-wrapper");
+        if (body) body.style.backgroundColor = "#f0f0f0";
+      }, 10000);
+
+      const body = document.getElementById("index-wrapper");
+      const appWrapper = document.getElementById("app-wrapper");
+      if (body) body.style.backgroundColor = "#f0f0f000";
+      if (appWrapper)
+        appWrapper.style.background =
+          "conic-gradient(at 14% 50%, #0000 221.25deg, white 222deg 318deg, #0000 318.25deg),conic-gradient(at 23% 50%, #0000 221.25deg, #ffa6b9 222deg 318deg, #0000 318.25deg),conic-gradient(at 32% 50%, #0000 221.25deg, #00d2ff 222deg 318deg, #0000 318.25deg),conic-gradient(at 41% 50%, #0000 221.25deg, #753000 222deg 318deg, #0000 318.25deg),conic-gradient(at 50% 50%, #0000 221.25deg, black 222deg 318deg, #0000 318.25deg),linear-gradient(red 0 16.66%, orange 0 33.33%, yellow 0 50%, green 0 66.66%, blue 0 83.33%, indigo 0)";
+    });
+  }
+
+  container.addEventListener("click", (event) => {
+    let targetElement = event.target as HTMLElement;
+
+    if (
+      targetElement.parentElement &&
+      targetElement.parentElement.id.includes(`${building}-`)
+    ) {
+      targetElement = targetElement.parentElement;
+    }
+    if (targetElement && targetElement.id.includes(`${building}-`)) {
+      // Check if the clicked element is one of the room elements
+      const roomNumber = targetElement.id.split("-").slice(1).join("-");
       mapContext.setCurrent({
         area: building,
         floor: floor,
         room: roomNumber ? roomNumber : undefined
       });
-    });
+    }
   });
 }

@@ -6,7 +6,7 @@ export function transitionStyle(
   elem: HTMLElement | SVGSVGElement,
   styleProps: styleProps
 ) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     function handleTransitionEnd() {
       resolve(elem);
     }
@@ -20,7 +20,7 @@ export function transitionStyle(
 }
 
 export function transitionClass(elem: HTMLElement | SVGSVGElement, className: string) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     function handleTransitionEnd() {
       resolve(elem);
     }
