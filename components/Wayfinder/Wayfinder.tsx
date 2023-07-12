@@ -20,6 +20,7 @@ import { FUZZY_SEARCH_WEIGHTS } from "utils/constants";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 import { MapProvider } from "context/MapContext";
+import { MapElementsProvider } from "context/MapElements";
 
 export function Wayfinder() {
   // Global state of the selected person in the list
@@ -106,32 +107,34 @@ export function Wayfinder() {
   }, [selectedPersonContext.current_person]);
 
   return (
-    <MapProvider>
-      <section
-        className={[
-          styles_index.largeContainer,
-          styles_index.contentSection,
-          styles_wayfinder.container
-        ].join(" ")}
-      >
-        <div className={styles_wayfinder.searchSection}>
-          <SearchBar placeholder={t("wayfinder.title")} />
-          {isLoading ? (
-            <span>Data is loading...</span>
-          ) : error ? (
-            <span>Some error...</span>
-          ) : undefined}
-          {filteredPersons && (
-            <ol ref={listRef}>
-              {filteredPersons.map((p) => {
-                const unique_id = `${p.cfFirstNames}${p.cfFamilyNames}`;
-                return <PersonResult person={p} key={unique_id} />;
-              })}
-            </ol>
-          )}
-        </div>
-        <CampusMap allPersons={persons ? persons : []} />
-      </section>
-    </MapProvider>
+    <MapElementsProvider>
+      <MapProvider>
+        <section
+          className={[
+            styles_index.largeContainer,
+            styles_index.contentSection,
+            styles_wayfinder.container
+          ].join(" ")}
+        >
+          <div className={styles_wayfinder.searchSection}>
+            <SearchBar placeholder={t("wayfinder.title")} />
+            {isLoading ? (
+              <span>Data is loading...</span>
+            ) : error ? (
+              <span>Some error...</span>
+            ) : undefined}
+            {filteredPersons && (
+              <ol ref={listRef}>
+                {filteredPersons.map((p) => {
+                  const unique_id = `${p.cfFirstNames}${p.cfFamilyNames}`;
+                  return <PersonResult person={p} key={unique_id} />;
+                })}
+              </ol>
+            )}
+          </div>
+          <CampusMap allPersons={persons ? persons : []} />
+        </section>
+      </MapProvider>
+    </MapElementsProvider>
   );
 }

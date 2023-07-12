@@ -189,9 +189,9 @@ $map_other_building_x_offset: 200%;
       transition: opacity $animDuration ease-out,
         transform $animDuration ease-in-out;
 
-      * {
-        transition: fill $animDuration ease-out, stroke $animDuration ease-out;
-      }
+      //* {
+        //transition: fill $animDuration ease, stroke $animDuration ease;
+      //}
     }
 
     transition: opacity $animDuration ease-out,
@@ -217,12 +217,12 @@ $map_other_building_x_offset: 200%;
   }
 
   .highlight {
-    fill: g.$main-secondary !important;
-    stroke: g.$main-secondary_dark !important;
+    fill: g.$accent1_light !important;
+    stroke: g.$accent1_dark !important;
 
     * {
-      fill: g.$main-secondary !important;
-      stroke: g.$main-secondary_dark !important;
+      fill: g.$accent1_light !important;
+      stroke: g.$accent1_dark !important;
     }
   }
 
