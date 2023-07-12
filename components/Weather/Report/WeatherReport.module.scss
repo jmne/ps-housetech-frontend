@@ -48,19 +48,6 @@
             height: fit-content;
 
             margin-inline: g.$margin-base;
-
-            img {
-                min-height: 0;
-                min-width: 0;
-                height: g.$icon-sm;
-                width: g.$icon-sm;
-                max-height: 100%;
-                max-width: 100%;
-
-                object-fit: contain;
-
-                filter: drop-shadow(0 2px 2px g.$text-secondary)
-            }
         }
     }
 
@@ -77,23 +64,10 @@
             width: fit-content;
 
             display: grid;
-            grid-template-columns: auto auto auto;
+            grid-template-columns: auto auto auto auto;
             align-items: center;
             gap: g.$margin-small;
             overflow: hidden;
-
-            img {
-                min-height: 0;
-                min-width: 0;
-                height: g.$icon-sm;
-                width: g.$icon-sm;
-                max-height: 100%;
-                max-width: 100%;
-
-                object-fit: contain;
-
-                filter: drop-shadow(0 2px 2px g.$text-secondary)
-            }
         }
     }
 
@@ -108,7 +82,7 @@
 
         .information {
             grid-area: 1 / 1 / 2 / 2;
-            
+
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -120,7 +94,7 @@
                 justify-content: center;
                 align-items: flex-end;
                 gap: g.$margin-small;
-            
+
                 font-size: g.$text-medium;
             }
 
@@ -129,10 +103,6 @@
                 justify-content: center;
                 align-items: flex-start;
                 gap: g.$margin-small;
-            }
-
-            .rainPrecipation {
-                color: #2361d4;
             }
         }
 
@@ -152,7 +122,24 @@
         }
     }
 
+    .precipitation {
+        color: #2361d4;
+    }
+
     .muted {
         color: g.$text-secondary;
     }
+}
+
+.iconSmall {
+    min-height: 0;
+    min-width: 0;
+    height: g.$icon-sm;
+    width: g.$icon-sm;
+    max-height: 100%;
+    max-width: 100%;
+
+    object-fit: contain;
+
+    filter: drop-shadow(0 2px 2px g.$text-secondary)
 }
