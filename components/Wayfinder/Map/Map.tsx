@@ -12,9 +12,9 @@ import { MAP_BASE_STATE } from "utils/constants";
 
 // CSS
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
-import { MapLeo11 } from "./MapLeo11";
-import { MapLeo3 } from "./MapLeo3";
-import { MapLeonardoCampus } from "./MapLeonardoCampus";
+import MapLeo11 from "./MapLeo11";
+import MapLeo3 from "./MapLeo3";
+import MapLeonardoCampus from "./MapLeonardoCampus";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 import { setRoomHighlight } from "utils/Wayfinder/mapTransformations";
@@ -65,7 +65,6 @@ export function CampusMap({ allPersons }: MapProps) {
   }, [timeoutContext.manager, mapContext]);
 
   useEffect(() => {
-    
     if (mapContext.current.floor) setFloorName(mapContext.current.floor);
 
     if (mapContext.current.room && mapContext.current.area) {

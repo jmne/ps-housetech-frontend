@@ -8,7 +8,7 @@ import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import styles from "./Instagram.module.scss";
 import { Post } from "./Post";
 
-export const Instagram = memo(() => {
+const Instagram = memo(() => {
   const { data, isLoading, error } = useInstagram();
   const timeoutContext = useTimeoutContext();
   const [swiperInstance, setSwiperInstance] = useState<SwiperClass>();
@@ -60,3 +60,6 @@ export const Instagram = memo(() => {
     </>
   );
 });
+
+Instagram.displayName = "Instagram"
+export default Instagram

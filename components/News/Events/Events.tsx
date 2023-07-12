@@ -13,7 +13,7 @@ import { memo, useEffect, useState } from "react";
 import { useTimeoutContext } from "context/TimeoutContext";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 
-export const Events = memo(() => {
+const Events = memo(() => {
   const { data, isLoading, error } = useEvents();
   const timeoutContext = useTimeoutContext();
   const [swiperInstance, setSwiperInstance] = useState<SwiperClass>();
@@ -62,3 +62,6 @@ export const Events = memo(() => {
     </>
   );
 });
+
+Events.displayName = "Events"
+export default Events

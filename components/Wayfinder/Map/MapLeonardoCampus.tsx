@@ -10,7 +10,7 @@ import {
 import { buildingNames } from "types/Campus";
 import { useMapElements } from "context/MapElements";
 
-export const MapLeonardoCampus = memo(() => {
+const MapLeonardoCampus = memo(() => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
 
@@ -56,3 +56,6 @@ export const MapLeonardoCampus = memo(() => {
     </div>
   );
 });
+
+MapLeonardoCampus.displayName = "Leonardo-Campus Map";
+export default MapLeonardoCampus;

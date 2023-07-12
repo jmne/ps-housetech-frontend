@@ -1,12 +1,4 @@
-import {
-  MutableRefObject,
-  Ref,
-  memo,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from "react";
+import { MutableRefObject, memo, useCallback, useEffect, useRef, useState } from "react";
 import styles from "./Map.module.scss";
 import {
   Leo3_Floor0,
@@ -81,7 +73,7 @@ function floorDown(mapContext: MapData, personContext: PersonData) {
   mapContext.setCurrent({ room: undefined, floor: `floor${nextFloorIndex}` });
 }
 
-export const MapLeo3 = memo(() => {
+const MapLeo3 = memo(() => {
   const animationIdRef = useRef(0);
   const mapContext = useMapContext();
   const mapElements = useMapElements();
@@ -135,6 +127,7 @@ export const MapLeo3 = memo(() => {
         element_mapContainer
       );
     });
+    //@ts-ignore
   }, []);
 
   // Handle Change of shown area
@@ -209,6 +202,7 @@ export const MapLeo3 = memo(() => {
     mapContext,
     mapContext.current.area,
     mapContext.current.floor,
+    mapElements.leo3_elements,
     mapElements.leo3_building_on_campus,
     mapElements.leo3_building,
     mapElements.mapContainer,
@@ -245,3 +239,6 @@ export const MapLeo3 = memo(() => {
     </div>
   );
 });
+
+MapLeo3.displayName = "Leo-3 Map";
+export default MapLeo3;

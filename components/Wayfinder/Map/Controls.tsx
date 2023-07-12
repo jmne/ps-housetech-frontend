@@ -164,7 +164,7 @@ export function Controls() {
         )}
       </div>
     );
-  }, [mapContext.current.area]);
+  }, [mapContext.current.area, mapContext, selectedPersonContext, t]);
 
   return buttons;
 }

@@ -10,7 +10,7 @@ import {
 import { BuildingFloor, buildingNames } from "types/Campus";
 import { useMapElements } from "context/MapElements";
 
-export const MapLeo11 = memo(() => {
+const MapLeo11 = memo(() => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
 
@@ -41,6 +41,7 @@ export const MapLeo11 = memo(() => {
         element_mapContainer
       );
     });
+    //@ts-ignore
   }, []);
 
   useEffect(() => {
@@ -116,3 +117,6 @@ export const MapLeo11 = memo(() => {
     </div>
   );
 });
+
+MapLeo11.displayName = "Leo-11 Map";
+export default MapLeo11;
