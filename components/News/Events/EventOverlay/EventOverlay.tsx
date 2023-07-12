@@ -12,10 +12,10 @@ import { useEffect, useRef } from "react";
 
 interface props {
   event: Event;
+  setOverlayOpen: Function;
 }
 
-export function EventOverlay({ event }: props) {
-  const overlayContext = useOverlayContext();
+export function EventOverlay({ event, setOverlayOpen }: props) {
   const descriptionRef = useRef<HTMLParagraphElement>(null);
 
   const date = new Date(event.start_date);
@@ -28,7 +28,7 @@ export function EventOverlay({ event }: props) {
   }, [descriptionRef, event.description]);
 
   function handleClose() {
-    overlayContext.setOverlay(undefined);
+    setOverlayOpen(false);
   }
 
   return (
