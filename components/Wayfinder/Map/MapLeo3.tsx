@@ -88,22 +88,23 @@ export const MapLeo3 = memo(() => {
   const personContext = usePersonSearchContext();
   const [touchStart, setTouchStart] = useState<number | undefined>();
 
-  const handleFloorUp = useCallback(() => {
-    floorUp(mapContext, personContext);
-  }, [mapContext, personContext]);
+  const handleFloorUp = useCallback(
+    () => floorUp(mapContext, personContext),
+    [mapContext, personContext]
+  );
 
-  const handleFloorDown = useCallback(() => {
-    floorDown(mapContext, personContext);
-  }, [mapContext, personContext]);
+  const handleFloorDown = useCallback(
+    () => floorDown(mapContext, personContext),
+    [mapContext, personContext]
+  );
 
-  const handleMouseDown = useCallback((e: any) => {
-    setTouchStart(e.pageY);
-  }, []);
+  const handleMouseDown = useCallback(
+    (e: any) => setTouchStart(e.pageY),
+    [setTouchStart]
+  );
 
   const handleMouseUp = useCallback(
-    (e) => {
-      handleTouchEnd(touchStart, e.pageY, mapContext, personContext);
-    },
+    (e: any) => handleTouchEnd(touchStart, e.pageY, mapContext, personContext),
     [touchStart, mapContext, personContext]
   );
 
