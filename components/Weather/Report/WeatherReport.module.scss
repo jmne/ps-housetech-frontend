@@ -1,5 +1,7 @@
 @use "/assets/scss/constants.scss" as g;
 
+$small-icon: g.$icon-sm;
+
 .container {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -25,41 +27,49 @@
         background-color: g.$container-item;
         border-radius: g.$border-radius-base;
         box-shadow: g.$shadow-outer;
-        padding: g.$margin-small;
+        padding: g.$margin-sm;
     }
 
     .forecastToday {
         grid-area: 2 / 1 / 4 / 2;
 
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-auto-rows: 1fr;
+        display: flex;
+        flex-direction: column;
         align-items: center;
+        justify-content: space-between;
+
+        flex-wrap: nowrap;
+
 
         // contain the forecasts for each hour
         >div {
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 1fr 1fr auto;
-            align-items: center;
-
-            gap: g.$margin-small;
-
+            width: 100%;
             height: fit-content;
 
-            margin-inline: g.$margin-base;
+            display: grid;
+            grid-auto-columns: 1fr;
+            align-items: center;
 
-            img {
-                min-height: 0;
-                min-width: 0;
-                height: g.$icon-sm;
-                width: g.$icon-sm;
-                max-height: 100%;
-                max-width: 100%;
+            overflow-y: hidden;
 
-                object-fit: contain;
+            .time {
+                grid-column: 1;
+                justify-self: flex-start;
+            }
 
-                filter: drop-shadow(0 2px 2px g.$text-secondary)
+            .temp {
+                grid-column: 2;
+                justify-self: center;
+            }
+
+            .precipitation {
+                grid-column: 3;
+                justify-self: center;
+            }
+
+            .iconSmall {
+                grid-column: 4;
+                justify-self: flex-end;
             }
         }
     }
@@ -70,6 +80,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         justify-items: center;
+        align-items: center;
 
         >div {
             position: relative;
@@ -77,24 +88,39 @@
             width: fit-content;
 
             display: grid;
-            grid-template-columns: auto auto auto;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
             align-items: center;
-            gap: g.$margin-small;
+            column-gap: g.$margin-small;
             overflow: hidden;
 
-            img {
-                min-height: 0;
-                min-width: 0;
-                height: g.$icon-sm;
-                width: g.$icon-sm;
-                max-height: 100%;
-                max-width: 100%;
+            .day {
+                grid-area: 1 / 1 / 2 / 3;
+                justify-self: center;
+            }
 
-                object-fit: contain;
+            .bottom {
+                position: relative;
 
-                filter: drop-shadow(0 2px 2px g.$text-secondary)
+                grid-area: 2 / 1 / 3 / 3;
+                display: inline-flex;
+
+                align-items: center;
+                justify-content: center;
+                gap: g.$margin-small;
+
+                padding-inline-end: calc(g.$margin-small + $small-icon);
+
+                .iconSmall {
+                    position: absolute;
+                    right: 0px;
+                }
             }
         }
+    }
+
+    .message {
+        grid-template-columns: 1fr;
     }
 
     .currentWeather {
@@ -108,19 +134,19 @@
 
         .information {
             grid-area: 1 / 1 / 2 / 2;
-            
+
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: g.$text-sm;
+            font-size: g.$text-medium;
 
             .time {
                 display: inline-flex;
                 justify-content: center;
                 align-items: flex-end;
                 gap: g.$margin-small;
-            
+
                 font-size: g.$text-medium;
             }
 
@@ -130,17 +156,15 @@
                 align-items: flex-start;
                 gap: g.$margin-small;
             }
+        }
 
-            .rainPrecipation {
-                color: #2361d4;
-            }
+        .fallback {
+            grid-area: 1 / 1 / 2 / 3;
         }
 
         img {
             grid-area: 1 / 2 / 3 / 3;
 
-            min-height: 0;
-            min-width: 0;
             height: 100%;
             width: 100%;
             max-height: 100%;
@@ -152,7 +176,20 @@
         }
     }
 
+    .precipitation {
+        color: #2361d4;
+    }
+
     .muted {
         color: g.$text-secondary;
     }
+}
+
+.iconSmall {
+    height: $small-icon;
+    width: $small-icon;
+
+    object-fit: contain;
+
+    filter: drop-shadow(0 2px 2px g.$text-secondary)
 }
