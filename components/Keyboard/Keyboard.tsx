@@ -2,6 +2,9 @@ import { useSearchInputContext } from "context/SearchInputContext";
 import styles from "@/components/Keyboard/Keyboard.module.scss";
 import { useMemo } from "react";
 
+import IconDelete from "assets/images/icon_delete.svg";
+import IconBackspace from "assets/images/icon_backspace.svg";
+
 interface helperProps {
   keycode: string;
 }
@@ -38,6 +41,25 @@ export function Key({ keycode }: helperProps) {
   function clearInput() {
     searchContext.setInput("");
   }
+
+  if (keycode === "clear"){
+    return (
+      //@ts-ignore
+      <button className={styles.key} onMouseDown={(e) => handleKey(e)}>
+        <IconDelete className={styles.icon}/>
+      </button>
+    );
+  }
+
+  if (keycode === "backspace") {
+    return (
+      //@ts-ignore
+      <button className={styles.key} onMouseDown={(e) => handleKey(e)}>
+        <IconBackspace className={styles.icon}/>
+      </button>
+    );
+  }
+
   return (
     //@ts-ignore
     <button className={styles.key} onMouseDown={(e) => handleKey(e)}>
@@ -73,11 +95,7 @@ function Keyboard() {
 
   return (
     <article
-      className={
-        searchInputContext.active
-          ? [styles.container, styles.visible].join(" ")
-          : styles.container
-      }
+      className={searchInputContext.active ? [styles.container, styles.visible].join(" ") : styles.container}
       id="keyboard"
       data-testid="keyboard"
     >
