@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 
 import chroma from "chroma-js";
 import useWeather from "hooks/useWeather";
+import { FallbackWeatherReport } from "./Fallback";
 
 const tempGradient = chroma.scale([
   "#3677FF",
@@ -38,6 +39,8 @@ function getWeekday(day: Date, length: "short" | "long", locale: string) {
   return weekday;
 }
 
+const popThreshhold = 0.10;
+
 export function WeatherReport() {
   const [currentTime, setCurrentTime] = useState<Date>();
   const [currentMinutes, setCurrentMinutes] = useState<number | string>();
@@ -60,61 +63,28 @@ export function WeatherReport() {
     }, 5000);
   }, [currentTime]);
 
-  if (isLoading || error || !data) {
-    return <span>Loading... or error...</span>;
+  if (isLoading) {
+    return (
+      <FallbackWeatherReport
+        currentMinutes={currentMinutes}
+        currentTime={currentTime}
+        message="Loading weather data"
+      />
+    );
+  } else if (error || !data) {
+    return (
+      <FallbackWeatherReport
+        currentMinutes={currentMinutes}
+        currentTime={currentTime}
+        message="Loading weather data failed"
+      />
+    );
   }
 
   return (
     <div className={styles.container}>
       <h2>Weather Report</h2>
 
-      <div className={styles.forecastToday}>
-        {data.hourly.map((item, index) => {
-          if (index >= 5) return;
-          return (
-            <div key={`${item.time}${item.temp.toFixed(0)}`}>
-              <span className={styles.muted}>{`${parseInt(
-                item.time.split(":")[0]
-              )}`}</span>
-              <span style={{ color: getTemperatureColor(item.temp) }}>
-                {item.temp.toFixed(0)}°
-              </span>
-              <img
-                src={getIconURL(item.icon, 2)}
-                className={styles.iconSmall}
-                alt={"weather icon"}
-              />
-            </div>
-          );
-        })}
-      </div>
-      <div className={styles.forecastNextDays}>
-        {data.daily.map((item, index) => {
-          if (index > 2) return;
-          const weekday = getWeekday(
-            new Date(item.day),
-            "short",
-            router.locale ? router.locale : "en-gb"
-          );
-
-          return (
-            <div key={`${item.day}${item.temp}${item.icon}`}>
-              <span className={styles.muted}>{weekday}</span>
-              <span style={{ color: getTemperatureColor(item.temp) }}>
-                {item.temp.toFixed(0)}°
-              </span>
-              {item.pop > 0.25 && (
-                <span className={styles.precipitation}>{item.pop * 100}%</span>
-              )}
-              <img
-                src={getIconURL(item.icon, 2)}
-                className={styles.iconSmall}
-                alt={"weather icon"}
-              />
-            </div>
-          );
-        })}
-      </div>
       <div className={styles.currentWeather}>
         <div className={styles.information}>
           <div className={styles.time}>
@@ -134,6 +104,63 @@ export function WeatherReport() {
           </div>
         </div>
         <img src={getIconURL(data.current[0].icon, 4)} alt={"weather icon"} />
+      </div>
+
+      <div className={styles.forecastToday}>
+        {data.hourly.map((item, index) => {
+          if (index >= 5) return;
+          return (
+            <div key={`${item.time}${item.temp.toFixed(0)}`}>
+              <span
+                className={[styles.muted, styles.time].join(" ")}
+              >{`${item.time}`}</span>
+              <span
+                className={styles.temp}
+                style={{ color: getTemperatureColor(item.temp) }}
+              >
+                {item.temp.toFixed(0)}°
+              </span>
+              <span className={styles.precipitation}>{(item.pop * 100).toFixed(0)}%</span>
+              <img
+                src={getIconURL(item.icon, 2)}
+                className={styles.iconSmall}
+                alt={"weather icon"}
+              />
+            </div>
+          );
+        })}
+      </div>
+      <div className={styles.forecastNextDays}>
+        {data.daily.map((item, index) => {
+          if (index > 3 || index === 0) return;
+          const weekday = getWeekday(
+            new Date(item.day),
+            "short",
+            router.locale ? router.locale : "en-gb"
+          );
+
+          return (
+            <div key={`${item.day}${item.temp}${item.icon}`}>
+              <span className={[styles.muted, styles.day].join(" ")}>{weekday}</span>
+
+              <div className={styles.bottom}>
+                <span style={{ color: getTemperatureColor(item.temp) }}>
+                  {item.temp.toFixed(0)}°
+                </span>
+                {item.pop > popThreshhold && (
+                  <span className={styles.precipitation}>
+                    {(item.pop * 100).toFixed(0)}%
+                  </span>
+                )}
+                <img
+                  src={getIconURL(item.icon, 2)}
+                  className={styles.iconSmall}
+                  alt={"weather icon"}
+                />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
