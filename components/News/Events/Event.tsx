@@ -9,7 +9,6 @@ import { useState } from "react";
 import IconClock from "assets/images/icon_clock.svg";
 import IconLocation from "assets/images/icon_location.svg";
 import IconEvent from "assets/images/event.svg";
-import { useOverlayContext } from "context/OverlayContext";
 import { EventOverlay } from "./EventOverlay/EventOverlay";
 
 interface props {
@@ -22,8 +21,6 @@ export function EventCard({ data }: props) {
   const date = new Date(data.start_date);
   const dateFormatted = date.toLocaleDateString("de-de");
   const time = date.toLocaleTimeString("de-de").slice(0, 5);
-
-  const overlayContext = useOverlayContext();
 
   return (
     <Dialog.Root open={overlayOpen} onOpenChange={setOverlayOpen}>

@@ -1,4 +1,3 @@
-import { useOverlayContext } from "context/OverlayContext";
 import { Event } from "types/Events";
 
 import styles from "./EventOverlay.module.scss";
