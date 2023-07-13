@@ -8,7 +8,6 @@ import "../assets/scss/global.scss";
 import { Inter } from "next/font/google";
 import { SearchInputProvider } from "context/SearchInputContext";
 import { TimeoutProvider } from "context/TimeoutContext";
-import { OverlayProvider } from "context/OverlayContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,13 +16,11 @@ const inter = Inter({
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <TimeoutProvider>
-    <OverlayProvider>
       <SearchInputProvider>
         <main className={inter.className} id="app-wrapper">
           <Component {...pageProps} />
         </main>
       </SearchInputProvider>
-    </OverlayProvider>
   </TimeoutProvider>
 );
 
