@@ -1,4 +1,4 @@
-image: node:18
+image: zivgitlab.wwu.io/ml-de/teaching/ps-housetech/ps-housetech-backend:node20
 
 cache:
   key:
