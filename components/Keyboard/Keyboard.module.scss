@@ -30,7 +30,7 @@ $quarterBorder: calc(g.$border-base / 4);
   padding: g.$margin-small;
 
   &.visible {
-    z-index:3;
+    z-index: 3;
     animation: create 0.2s ease-out 0s 1;
     opacity: 100;
   }
@@ -40,6 +40,10 @@ $quarterBorder: calc(g.$border-base / 4);
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
+
+  &:last-child{
+    grid-template-columns: 1fr 2fr 1fr;
+  }
 }
 
 .key {
@@ -62,6 +66,12 @@ $quarterBorder: calc(g.$border-base / 4);
   &:active {
     box-shadow: g.$shadow-inner-light;
   }
+}
+
+.icon {
+  fill: g.$text-primary;
+  height: g.$icon-sm;
+  width: g.$icon-sm;
 }
 
 @keyframes create {
