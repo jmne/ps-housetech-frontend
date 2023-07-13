@@ -1,4 +1,3 @@
-import { useOverlayContext } from "context/OverlayContext";
 import { Post } from "types/Instagram";
 import IconClock from "assets/images/icon_clock.svg";
 import IconClose from "assets/images/icon_close.svg";
@@ -9,15 +8,15 @@ import { useState } from "react";
 
 interface props {
   post: Post;
+  setOverlayOpen: Function;
 }
 
-export function InstagramOverlay({ post }: props) {
+export function InstagramOverlay({ post, setOverlayOpen }: props) {
   const [date] = useState(new Date(post.timestamp));
   const router = useRouter();
-  const overlayContext = useOverlayContext();
 
   function handleClose() {
-    overlayContext.setOverlay(undefined);
+    setOverlayOpen(false);
   }
 
   return (

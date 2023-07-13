@@ -14,21 +14,12 @@ import { Wayfinder } from "@/components/Wayfinder/Wayfinder";
 import { SelectedPersonProvider } from "context/PersonContext";
 import { Weather } from "@/components/Weather/Weather";
 import { News } from "@/components/News/News";
-import { useOverlayContext } from "context/OverlayContext";
 
 export default function Index() {
-  const overlayContext = useOverlayContext();
-
   return (
     <div className={styles.wrapper} id="index-wrapper">
       <Headline />
-      <div
-        className={
-          overlayContext.current_overlay
-            ? [styles.bodyWrapper, styles.bodyMuted].join(" ")
-            : styles.bodyWrapper
-        }
-      >
+      <div className={styles.bodyWrapper}>
         <SelectedPersonProvider>
           <Wayfinder />
         </SelectedPersonProvider>
@@ -37,7 +28,6 @@ export default function Index() {
         <News />
         <Busplan />
       </div>
-      {overlayContext.current_overlay ? overlayContext.current_overlay : undefined}
     </div>
   );
 }
