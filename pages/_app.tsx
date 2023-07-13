@@ -8,7 +8,6 @@ import "../assets/scss/global.scss";
 import { Inter } from "next/font/google";
 import { SearchInputProvider } from "context/SearchInputContext";
 import { TimeoutProvider } from "context/TimeoutContext";
-import { OverlayProvider } from "context/OverlayContext";
 
 const inter = Inter({
   subsets: ["latin"],
