@@ -34,7 +34,6 @@ export function Wayfinder() {
   const { t } = useTranslation("index");
 
   const listRef = useRef<HTMLOListElement>(null);
-  const [arrowVisible, setArrowVisible] = useState(true);
 
   // Get data for the list of Persons
   const { data: persons, isLoading, error } = useEmployees();
@@ -52,7 +51,7 @@ export function Wayfinder() {
   }, [listRef.current]);
 
   const scrollToTop = useCallback(
-    (behavior: "smooth" | "instant") => {
+    (behavior: any) => {
       if (listRef.current)
         listRef.current.scrollBy({
           top: -listRef.current.scrollTop,
