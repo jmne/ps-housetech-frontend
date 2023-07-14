@@ -1,12 +1,13 @@
 @use "/assets/scss/constants.scss" as g;
 
 $animDuration: 0.75s;
+$searchWidth: 350px;
 
 .container {
   position: relative;
 
   display: grid;
-  grid-template-columns: clamp(350px, 30%, 650px) 1fr;
+  grid-template-columns: $searchWidth 1fr;
   grid-template-rows: 1fr;
 
   min-height: 0;
@@ -20,6 +21,8 @@ $animDuration: 0.75s;
 }
 
 .searchSection {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -95,10 +98,27 @@ $animDuration: 0.75s;
 
     min-height: 0px;
     overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+
+    >* {
+      scroll-snap-align: start;
+    }
 
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+
+  .arrowDown {
+    position: absolute;
+    z-index: 2;
+    bottom: g.$margin-small;
+    left: calc($searchWidth / 2 - g.$icon-base/2 + g.$margin-base);
+
+    height: g.$icon-base;
+    width: g.$icon-base;
+
+    fill: g.$main-primary;
   }
 }
 

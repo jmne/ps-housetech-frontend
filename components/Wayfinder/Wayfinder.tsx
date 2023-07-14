@@ -1,5 +1,5 @@
 // IMPORTS - BUILTINS
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 // IMPORTS - HELPERS
 import { useEmployees } from "hooks/useEmployees";
@@ -11,6 +11,8 @@ import { useTranslation } from "next-i18next";
 import { SearchBar } from "./SearchBar/SearchBar";
 import PersonResult from "./PersonResult/PersonResult";
 import { CampusMap } from "./Map/Map";
+
+import ArrowDown from "assets/images/icon_arrow_down.svg";
 
 // IMPORTS - CONTEXT
 import { usePersonSearchContext } from "context/PersonContext";
@@ -42,16 +44,27 @@ export function Wayfinder() {
     return new Fuse(persons, FUZZY_SEARCH_WEIGHTS);
   }, [persons]);
 
+  const handleScroll = useCallback(() => {
+    if (!listRef.current) return;
+
+    listRef.current.scrollBy({ top: 20, behavior: "smooth" });
+  }, [listRef.current]);
+
+  const scrollToTop = useCallback(
+    (behavior: any) => {
+      if (listRef.current)
+        listRef.current.scrollBy({
+          top: -listRef.current.scrollTop,
+          behavior: behavior
+        });
+    },
+    [listRef.current]
+  );
+
   // Define reset function and add it to the global timeout-handler
   useEffect(() => {
     const resetLayout = () => {
-      const scrollToTop = () => {
-        if (listRef.current)
-          listRef.current.scrollBy({
-            top: -listRef.current.scrollTop,
-            behavior: "smooth"
-          });
-      };
+      scrollToTop("smooth");
 
       const actions = [
         selectedPersonContext.setPerson.bind(null, undefined),
@@ -80,9 +93,11 @@ export function Wayfinder() {
   useEffect(() => {
     if (searchInputContext.input === "") {
       setFilteredPersons(persons);
-      return;
-    }
-    setFilteredPersons(fuse.search(searchInputContext.input).map((e) => e.item));
+    } else setFilteredPersons(fuse.search(searchInputContext.input).map((e) => e.item));
+
+    setTimeout(() => {
+      scrollToTop("instant");
+    });
   }, [persons, searchInputContext.input, fuse]);
 
   // When a person was clicked in the list -> Scroll to the person
@@ -131,6 +146,7 @@ export function Wayfinder() {
                 })}
               </ol>
             )}
+            <ArrowDown className={styles_wayfinder.arrowDown} onClick={handleScroll} />
           </div>
           <CampusMap allPersons={persons ? persons : []} />
         </section>
