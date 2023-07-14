@@ -20,7 +20,7 @@ export function InstagramOverlay({ post, setOverlayOpen }: props) {
   }
 
   return (
-    <article className={[indexStyles.overlayContainer, styles.container].join(" ")}>
+    <article className={[indexStyles.overlayContainer, styles.container].join(" ")} onMouseDown={(e) => e.preventDefault()}>
       <div className={styles.imageContainer}>
         <img src={post.media_url} alt="Picture" />
       </div>
