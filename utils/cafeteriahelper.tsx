@@ -6,7 +6,7 @@ export function getIndexForDate(data: FoodplanConverted[], date: Date) {
       element.date.getFullYear() === date.getFullYear() &&
       element.date.getMonth() === date.getMonth() &&
       element.date.getDate() === date.getDate();
-      
+
     return isSameDate;
   });
   return index;
@@ -27,6 +27,11 @@ export function convertFoodplan(data: Foodplan[]): FoodplanConverted[] {
   // Iterate through each date between the start and end dates
   let currentDate = startDate;
   while (currentDate <= endDate) {
+    if ([0, 6].includes(currentDate.getUTCDay())) {
+      currentDate.setTime(currentDate.getTime() + 86400000);
+      continue;
+    }
+
     // Check if the current date exists in the original array
     const entry = data.find(
       (item: { date: string }) => item.date == currentDate.toISOString().split("T")[0]
@@ -40,14 +45,13 @@ export function convertFoodplan(data: Foodplan[]): FoodplanConverted[] {
         date: new Date(currentDate.getTime())
       };
 
-      filledMenuArray.push(dish)
+      filledMenuArray.push(dish);
     } else {
       // Otherwise, create a placeholder menu item for the missing date
       const dish = {
         item: undefined,
         date: new Date(currentDate.getTime())
       };
-
       filledMenuArray.push(dish);
     }
 
