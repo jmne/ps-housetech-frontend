@@ -40,6 +40,8 @@ $small-icon: g.$icon-sm;
 
         flex-wrap: nowrap;
 
+        padding-inline-end: g.$margin-medium;
+
 
         // contain the forecasts for each hour
         >div {
@@ -47,29 +49,26 @@ $small-icon: g.$icon-sm;
             height: fit-content;
 
             display: grid;
-            grid-auto-columns: 1fr;
+            grid-template-columns: 3rem 1fr g.$icon-small;
+            gap: g.$margin-small;
             align-items: center;
-
-            overflow-y: hidden;
 
             .time {
                 grid-column: 1;
                 justify-self: flex-start;
             }
 
-            .temp {
+            .data {
                 grid-column: 2;
-                justify-self: center;
-            }
 
-            .precipitation {
-                grid-column: 3;
-                justify-self: center;
+                display: flex;
+                justify-content: center;
+                gap: g.$margin-small;
             }
 
             .iconSmall {
-                grid-column: 4;
-                justify-self: flex-end;
+                grid-column: 3;
+                margin-inline-end: g.$margin-small;
             }
         }
     }
