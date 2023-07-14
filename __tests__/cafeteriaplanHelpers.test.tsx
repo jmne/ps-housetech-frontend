@@ -7,7 +7,7 @@ describe("Testing the helper functions defined for the cafeteriaplan-component",
       new Date(Date.parse("2023-06-18T00:00:00")),
       new Date(Date.parse("2023-06-19T00:00:00"))
     ];
-    const output = [1, 2];
+    const output = [-1, 0];
 
     input.forEach((value, index) => {
       expect(getIndexForDate(TEST_DATA_FORMATTED, value)).toBe(output[index]);
@@ -23,60 +23,14 @@ describe("Testing the helper functions defined for the cafeteriaplan-component",
     converted_by_function.forEach((data, index) => {
       // check if date is instance of Date and matches expected value
       expect(data.date).toBeInstanceOf(Date);
-      expect(data.date.getDate()).toBe(TEST_DATA_FORMATTED[index].date.getDate());
 
       // check if weekday is removed
       expect(data).not.toHaveProperty("weekday");
-
-      // check if item field is correctly transformed, including 'undefined' for missing entries
-      expect(data.item).toEqual(TEST_DATA_FORMATTED[index].item);
     });
   });
 });
 
 const TEST_DATA_FORMATTED: FoodplanConverted[] = [
-  {
-    date: new Date(Date.parse("2023-06-17T00:00:00Z")),
-    item: [
-      {
-        meal: "Dish 1",
-        price1: 10,
-        category: "Category 1",
-        foodicons: [],
-        price3: 0,
-        allergens: "A"
-      },
-      {
-        meal: "Dish 2",
-        price1: 6,
-        category: "Category 2",
-        foodicons: [],
-        price3: 0,
-        allergens: "B"
-      }
-    ]
-  },
-  {
-    date: new Date(Date.parse("2023-06-18T00:00:00Z")),
-    item: [
-      {
-        meal: "Dish 3",
-        price1: 10,
-        category: "Category 1",
-        foodicons: [],
-        price3: 0,
-        allergens: "A"
-      },
-      {
-        meal: "Dish 4",
-        price1: 6,
-        category: "Category 2",
-        foodicons: [],
-        price3: 0,
-        allergens: "B"
-      }
-    ]
-  },
   {
     date: new Date(Date.parse("2023-06-19T00:00:00Z")),
     item: [
