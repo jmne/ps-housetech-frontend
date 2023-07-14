@@ -39,7 +39,7 @@ function getWeekday(day: Date, length: "short" | "long", locale: string) {
   return weekday;
 }
 
-const popThreshhold = 0.10;
+const popThreshhold = 0.1;
 
 export function WeatherReport() {
   const [currentTime, setCurrentTime] = useState<Date>();
@@ -114,13 +114,19 @@ export function WeatherReport() {
               <span
                 className={[styles.muted, styles.time].join(" ")}
               >{`${item.time}`}</span>
-              <span
-                className={styles.temp}
-                style={{ color: getTemperatureColor(item.temp) }}
-              >
-                {item.temp.toFixed(0)}°
-              </span>
-              <span className={styles.precipitation}>{(item.pop * 100).toFixed(0)}%</span>
+              <div className={styles.data}>
+                <span
+                  className={styles.temp}
+                  style={{ color: getTemperatureColor(item.temp) }}
+                >
+                  {item.temp.toFixed(0)}°
+                </span>
+                {item.pop >= popThreshhold && (
+                  <span className={styles.precipitation}>
+                    {(item.pop * 100).toFixed(0)}%
+                  </span>
+                )}
+              </div>
               <img
                 src={getIconURL(item.icon, 2)}
                 className={styles.iconSmall}

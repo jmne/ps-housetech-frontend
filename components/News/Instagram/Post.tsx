@@ -1,6 +1,6 @@
 import { Post as PostType } from "types/Instagram";
 import styles from "./Instagram.module.scss";
-import indexStyles from "@/pages/index.module.scss"
+import indexStyles from "@/pages/index.module.scss";
 
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -41,10 +41,10 @@ export function Post({ post }: props) {
         </div>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className={indexStyles.overlayBackground} />
-        <Dialog.Content asChild>
+        <Dialog.Content>
           <InstagramOverlay post={post} setOverlayOpen={setOverlayOpen} />
         </Dialog.Content>
+        <Dialog.Overlay className={indexStyles.overlayBackground} />
       </Dialog.Portal>
     </Dialog.Root>
   );

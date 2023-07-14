@@ -26,7 +26,7 @@
   display: grid;
   flex-grow: 1;
   grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: 1fr 33%;
+  grid-template-columns: 1fr 35%;
   gap: g.$margin-base;
 
   .contentSection {
@@ -101,7 +101,7 @@
 }
 
 .overlayContainer {
-  z-index: 1;
+  z-index: 2;
 
   position: absolute;
 
@@ -147,7 +147,7 @@
 }
 
 .overlayBackground {
-  z-index: 1;
+  z-index: 0;
 
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
