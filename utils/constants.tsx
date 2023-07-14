@@ -19,10 +19,6 @@ export const FUZZY_SEARCH_WEIGHTS = {
       weight: 1
     },
     {
-      name: "chair",
-      weight: 1
-    },
-    {
       name: "roomNumber",
       weight: 0.5
     }
