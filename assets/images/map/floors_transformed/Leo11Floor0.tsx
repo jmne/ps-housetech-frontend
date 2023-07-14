@@ -268,7 +268,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-003">
+      <g id="leo11-003">
         <path
           d="m204.77 316.31-79.42 57.03-22.2-26.4 79.13-56.84 22.49 26.21Z"
           style={{
@@ -308,7 +308,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-wc0">
+      <g id="leo11-wc0">
         <path
           d="m125.35 373.34-21.9 15.7-22.87-25.94 22.58-16.17 22.2 26.41Z"
           style={{
@@ -324,7 +324,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-019b">
+      <g id="leo11-019b">
         <path
           d="m524.53 151.56-21.24-24.98-12.25 8.8 5.16 6.03-6.98 4.98 16.07 18.75 19.24-13.58Z"
           style={{
@@ -362,7 +362,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-019a">
+      <g id="leo11-019a">
         <path
           d="m489.22 146.39-5.45 3.92-5.26-6.12-12.83 9.18 21.24 24.88 18.38-13.1-16.08-18.76Z"
           style={{
@@ -400,7 +400,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-021">
+      <g id="leo11-021">
         <path
           d="m461.57 196.24-21.34-24.78-13.97 9.95 5.27 6.12-6.6 4.6L441 210.96l20.57-14.73Z"
           style={{
@@ -431,7 +431,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-022">
+      <g id="leo11-022">
         <path
           d="m424.92 192.12-5.07 3.73-5.16-6.21-14.36 10.23 21.34 24.78L441 210.97l-16.08-18.85Z"
           style={{
@@ -462,7 +462,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-026">
+      <g id="leo11-026">
         <path
           d="m323.5 294.6 20.38-14.45-21.24-25.07-14.44 10.33 5.35 6.22-6.22 4.3 16.18 18.67Z"
           style={{
@@ -493,7 +493,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-027">
+      <g id="leo11-027">
         <path
           d="m307.33 275.94-5.16 3.63-5.26-6.12-14.74 10.53 21.34 24.78 20-14.16-16.18-18.66Z"
           style={{
@@ -524,7 +524,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-034">
+      <g id="leo11-034">
         <path
           d="m137.7 427.01-21.82-24.68 40.57-28.9 21.34 24.88-40.1 28.7Z"
           style={{
@@ -540,7 +540,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-033">
+      <g id="leo11-033">
         <path
           d="m161.9 379.85 15.88 18.46 26.6-18.85-15.97-18.65-26.5 19.04Z"
           style={{
@@ -556,7 +556,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-032">
+      <g id="leo11-032">
         <path
           d="m204.38 379.46 20.48-14.54-16.27-18.66-20.18 14.55 15.97 18.65Z"
           style={{
@@ -572,7 +572,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-031">
+      <g id="leo11-031">
         <path
           d="m224.86 364.92 13.97-9.86-16.17-18.75-14.07 9.95 16.27 18.66Z"
           style={{
@@ -588,7 +588,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-028">
+      <g id="leo11-028">
         <path
           d="m265.24 336.12 38.27-27.36-21.34-24.78L244 311.15l21.25 24.97Z"
           style={{
@@ -605,7 +605,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-025">
+      <g id="leo11-025">
         <path
           d="m343.88 280.15 18.85-13.5-21.33-24.77-18.76 13.2 21.24 25.07Z"
           style={{
@@ -622,7 +622,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-024">
+      <g id="leo11-024">
         <path
           d="m341.4 241.88 18.94-13.59 21.34 24.88-18.95 13.49-21.33-24.78Z"
           style={{
@@ -639,7 +639,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-023">
+      <g id="leo11-023">
         <path
           d="m421.67 224.65-21.34-24.78-39.99 28.42 21.34 24.88 40-28.52Z"
           style={{
@@ -656,7 +656,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-017">
+      <g id="leo11-017">
         <path
           d="m543.28 98.07 23.82-16.93 21.05 25.06-23.53 16.75-21.34-24.88Z"
           style={{
@@ -673,7 +673,7 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="leo3-018">
+      <g id="leo11-018">
         <path
           d="m543.28 98.07-40 28.51 21.25 24.98 40.09-28.61-21.34-24.88Z"
           style={{
