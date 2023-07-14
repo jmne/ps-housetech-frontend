@@ -89,7 +89,7 @@ const SvgLeo3Floor3 = React.memo((props: SVGProps<SVGSVGElement>) => {
           />
         </g>
       </g>
-      <g id="leo3-wc31">
+      <g id="leo3-wc3">
         <path
           d="m537.24 105.46-10.79-7.78-43.58 30.69 10.84 7.93 43.53-30.84Z"
           style={{
@@ -439,7 +439,7 @@ const SvgLeo3Floor3 = React.memo((props: SVGProps<SVGSVGElement>) => {
           />
         </g>
       </g>
-      <g id="leo3-wc32">
+      <g id="leo3-wc3">
         <path
           d="m181.3 357.6-10.66-7.97-41.23 29.34 10.81 7.72 41.08-29.1Z"
           style={{
