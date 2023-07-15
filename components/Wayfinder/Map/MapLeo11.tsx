@@ -5,9 +5,9 @@ import { useMapContext } from "context/MapContext";
 import {
   minimizeBuilding,
   maximizeBuilding,
-  addRoomClickListeners
+  buildingClickHandler
 } from "utils/Wayfinder/mapTransformations";
-import { BuildingFloor, buildingNames } from "types/Campus";
+import { buildingNames } from "types/Campus";
 import { useMapElements } from "context/MapElements";
 
 const MapLeo11 = memo(() => {
@@ -15,32 +15,23 @@ const MapLeo11 = memo(() => {
   const mapElements = useMapElements();
 
   useEffect(() => {
-    mapElements.leo11_elements.forEach((element) => {
-      const container = element.current;
-      const floor: BuildingFloor = "floor0";
-      if (!container) return;
-      addRoomClickListeners(container, buildingNames.LEO11, floor, mapContext);
-    });
+    const element_leo11_on_campus = mapElements.leo11_building_on_campus?.current;
+    const element_leo11_building = mapElements.leo11_building?.current;
+    const element_mapContainer = mapElements.mapContainer?.current;
 
-    requestAnimationFrame(() => {
-      const element_leo11_on_campus = mapElements.leo11_building_on_campus?.current;
-      const element_leo11_building = mapElements.leo11_building?.current;
-      const element_mapContainer = mapElements.mapContainer?.current;
+    if (
+      !element_leo11_on_campus ||
+      !element_leo11_building ||
+      !element_mapContainer ||
+      mapContext.current.area === buildingNames.LEO11
+    )
+      return;
 
-      if (
-        !element_leo11_on_campus ||
-        !element_leo11_building ||
-        !element_mapContainer ||
-        mapContext.current.area === buildingNames.LEO11
-      )
-        return;
-
-      minimizeBuilding(
-        element_leo11_on_campus,
-        element_leo11_building,
-        element_mapContainer
-      );
-    });
+    minimizeBuilding(
+      element_leo11_on_campus,
+      element_leo11_building,
+      element_mapContainer
+    );
     //@ts-ignore
   }, []);
 
@@ -113,7 +104,11 @@ const MapLeo11 = memo(() => {
       ref={mapElements.leo11_building}
       id={buildingNames.LEO3}
     >
-      <Leo11_Floor0 />
+      <Leo11_Floor0
+        onClick={(e) =>
+          buildingClickHandler(e, buildingNames.LEO11, "floor0", mapContext.setCurrent)
+        }
+      />
     </div>
   );
 });

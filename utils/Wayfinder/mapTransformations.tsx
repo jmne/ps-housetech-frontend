@@ -160,50 +160,47 @@ function setFloorOutOfFocus(element: SVGSVGElement, offset: number) {
   }
 }
 
-export function addRoomClickListeners(
-  container: Element,
+function egg1Handler() {
+  setTimeout(() => {
+    const body = document.getElementById("index-wrapper");
+    if (body) body.style.backgroundColor = "#f0f0f0";
+  }, 10000);
+
+  const body = document.getElementById("index-wrapper");
+  const appWrapper = document.getElementById("app-wrapper");
+  if (body) body.style.backgroundColor = "#f0f0f000";
+  if (appWrapper)
+    appWrapper.style.background =
+      "conic-gradient(at 14% 50%, #0000 221.25deg, white 222deg 318deg, #0000 318.25deg),conic-gradient(at 23% 50%, #0000 221.25deg, #ffa6b9 222deg 318deg, #0000 318.25deg),conic-gradient(at 32% 50%, #0000 221.25deg, #00d2ff 222deg 318deg, #0000 318.25deg),conic-gradient(at 41% 50%, #0000 221.25deg, #753000 222deg 318deg, #0000 318.25deg),conic-gradient(at 50% 50%, #0000 221.25deg, black 222deg 318deg, #0000 318.25deg),linear-gradient(red 0 16.66%, orange 0 33.33%, yellow 0 50%, green 0 66.66%, blue 0 83.33%, indigo 0)";
+}
+
+export function buildingClickHandler(
+  event: any,
   building: CampusBuilding,
   floor: BuildingFloor | undefined,
-  mapContext: MapData
+  setMapData: Function
 ) {
-  if (building === buildingNames.CAMPUS) {
-    const egg1 = container.querySelector(`[id=egg1]`);
-    const egg2 = container.querySelector(`[id=egg2]`);
-    const egg3 = container.querySelector(`[id=egg3]`);
-    const egg4 = container.querySelector(`[id=egg4]`);
+  let targetElement = event.target as HTMLElement;
 
-    egg1?.addEventListener("click", () => {
-      setTimeout(() => {
-        const body = document.getElementById("index-wrapper");
-        if (body) body.style.backgroundColor = "#f0f0f0";
-      }, 10000);
-
-      const body = document.getElementById("index-wrapper");
-      const appWrapper = document.getElementById("app-wrapper");
-      if (body) body.style.backgroundColor = "#f0f0f000";
-      if (appWrapper)
-        appWrapper.style.background =
-          "conic-gradient(at 14% 50%, #0000 221.25deg, white 222deg 318deg, #0000 318.25deg),conic-gradient(at 23% 50%, #0000 221.25deg, #ffa6b9 222deg 318deg, #0000 318.25deg),conic-gradient(at 32% 50%, #0000 221.25deg, #00d2ff 222deg 318deg, #0000 318.25deg),conic-gradient(at 41% 50%, #0000 221.25deg, #753000 222deg 318deg, #0000 318.25deg),conic-gradient(at 50% 50%, #0000 221.25deg, black 222deg 318deg, #0000 318.25deg),linear-gradient(red 0 16.66%, orange 0 33.33%, yellow 0 50%, green 0 66.66%, blue 0 83.33%, indigo 0)";
-    });
+  if (
+    targetElement.parentElement &&
+    targetElement.parentElement.id.includes(`${building}-`)
+  ) {
+    targetElement = targetElement.parentElement;
   }
 
-  container.addEventListener("click", (event) => {
-    let targetElement = event.target as HTMLElement;
+  if (building === "campus" && targetElement.id.includes("egg1")) {
+    egg1Handler();
+    return;
+  }
 
-    if (
-      targetElement.parentElement &&
-      targetElement.parentElement.id.includes(`${building}-`)
-    ) {
-      targetElement = targetElement.parentElement;
-    }
-    if (targetElement && targetElement.id.includes(`${building}-`)) {
-      // Check if the clicked element is one of the room elements
-      const roomNumber = targetElement.id.split("-").slice(1).join("-");
-      mapContext.setCurrent({
-        area: building,
-        floor: floor,
-        room: roomNumber ? roomNumber : undefined
-      });
-    }
-  });
+  if (targetElement && targetElement.id.includes(`${building}-`)) {
+    // Check if the clicked element is one of the room elements
+    const roomNumber = targetElement.id.split("-").slice(1).join("-");
+    setMapData({
+      area: building,
+      floor: floor,
+      room: roomNumber ? roomNumber : undefined
+    });
+  }
 }
