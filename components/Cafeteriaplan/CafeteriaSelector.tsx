@@ -38,6 +38,7 @@ export function CafeteriaSelector({ state, setState }: props) {
                   className={styles.selectItem}
                   //@ts-ignore
                   value={cafeteria}
+                  key={cafeteria}
                 >
                   {t(`cafeteria_plan.cafeteria.${cafeteria}`)}
                 </SelectItem>
@@ -59,7 +60,7 @@ const SelectItem = forwardRef(
   ({ children, className, ...props }: selectItem, forwardedRef) => {
     return (
       <Select.Item
-        className={styles.selectItem}
+        className={[styles.selectItem, className].join(" ")}
         {...props}
         //@ts-ignore
         ref={forwardedRef}
@@ -72,3 +73,5 @@ const SelectItem = forwardRef(
     );
   }
 );
+
+SelectItem.displayName = "Select Item"

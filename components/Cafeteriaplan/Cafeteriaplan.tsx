@@ -1,19 +1,14 @@
 "use client";
 
 // IMPORTS - BUILTINS
-import useCafeteriaplan, { AllCafeterias, Cafeteria } from "hooks/useCafeteriaplan";
+import useCafeteriaplan, { Cafeteria } from "hooks/useCafeteriaplan";
 import {
   useEffect,
   useState,
-  useMemo,
-  forwardRef,
-  PropsWithRef,
-  PropsWithChildren
+  useMemo
 } from "react";
 import { Navigation, Virtual } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import * as Select from "@radix-ui/react-select";
-import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 
 // IMPORTS - ASSETS
 import { useTranslation } from "next-i18next";
