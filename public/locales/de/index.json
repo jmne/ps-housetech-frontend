@@ -39,7 +39,14 @@
     },
     "cafeteria_plan": {
         "title": "Mensaplan",
-        "no_data_for_day": "Scheinbar gibt es keinen Mensaplan für diesen Tag"
+        "no_data_for_day": "Scheinbar gibt es keinen Mensaplan für diesen Tag",
+        "cafeteria": {
+            "aasee": "Aasee",
+            "bispinghof": "Bispinghof",
+            "ring": "Mensa am Ring",
+            "davinci": "DaVinci",
+            "select_cafeteria": "Selection"
+        }
     },
     "news": {
         "title": "Aktuelles",

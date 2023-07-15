@@ -1,14 +1,13 @@
 "use client";
 
 // IMPORTS - BUILTINS
-import useCafeteriaplan from "hooks/useCafeteriaplan";
+import useCafeteriaplan, { Cafeteria } from "hooks/useCafeteriaplan";
 import { useEffect, useState, useMemo } from "react";
 import { Navigation, Virtual } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // IMPORTS - ASSETS
 import { useTranslation } from "next-i18next";
-import indexStyles from "@/pages/index.module.scss";
 import cafeteriaStyles from "@/components/Cafeteriaplan/Cafeteriaplan.module.scss";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -22,6 +21,11 @@ import { getIndexForDate } from "utils/cafeteriahelper";
 import { getWeekday } from "utils/dateHelpers";
 import { useRouter } from "next/router";
 import { Foodplan } from "./Foodplan";
+
+//
+import * as Card from "@/components/Card";
+import { CafeteriaSelector } from "./CafeteriaSelector";
+import { Fallback } from "./Fallback";
 
 export function getDayOfWeek(day: Date) {
   const daysOfWeek = [
@@ -40,9 +44,11 @@ export function getDayOfWeek(day: Date) {
 }
 
 export default function Cafeteriaplan() {
+  const [selectedCafeteria, setSelectedCafeteria] = useState<Cafeteria>("davinci");
+
   const { t } = useTranslation("index");
   const timeoutContext = useTimeoutContext();
-  const { data, isLoading, error } = useCafeteriaplan();
+  const { data, isLoading, error } = useCafeteriaplan(selectedCafeteria);
   const router = useRouter();
 
   const [selectedDate, setSelectedDate] = useState<Date>();
@@ -99,55 +105,64 @@ export default function Cafeteriaplan() {
   }, [timeoutContext.manager, data, index_of_today, swiperInstance]);
 
   return (
-    <section
-      className={[
-        indexStyles.smallContainer,
-        indexStyles.contentSection,
-        cafeteriaStyles.shadowFix
-      ].join(" ")}
+    <Card.Container
+      className={[cafeteriaStyles.shadowFix].join(" ")}
+      placement="smallMiddle"
     >
-      <div
-        className={[indexStyles.cardHeadline, cafeteriaStyles.headlineMargin].join(" ")}
-      >
-        <h2>{t("cafeteria_plan.title")}</h2>
-        <div className={cafeteriaStyles.date}>
+      <Card.Headline>
+        <Card.Title>{t("cafeteria_plan.title")}</Card.Title>
+        <Card.Middle className={cafeteriaStyles.select}>
+          <CafeteriaSelector state={selectedCafeteria} setState={setSelectedCafeteria} />
+        </Card.Middle>
+        <Card.End className={cafeteriaStyles.date}>
           <span className={cafeteriaStyles.dateText}>
             {selectedDate && getWeekday(selectedDate, "long", router.locale)}
           </span>
           <span className={cafeteriaStyles.dateNumber}>
             {selectedDate && selectedDate.toLocaleDateString("de-de")}
           </span>
-        </div>
-      </div>
-      {isLoading && <span>Data is loading...</span>}
-      {error && <span>Some error occurred</span>}
-      {data && (
-        <Swiper
-          modules={[Virtual, Navigation]}
-          navigation={true}
-          className={cafeteriaStyles.swiperContainer}
-          slidesPerView={1}
-          onActiveIndexChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
-          initialSlide={index_of_today}
-          loop={false}
-          //@ts-ignore
-          onSwiper={(swiper) => setSwiperInstance(swiper)}
-        >
-          {data.map((foodplan, index) => {
-            return (
-              <SwiperSlide key={index} virtualIndex={index}>
-                {foodplan.item ? (
-                  <Foodplan data={foodplan.item} />
-                ) : (
-                  <p className={cafeteriaStyles.missingDataString}>
-                    {t("cafeteria_plan.no_data_for_day")}
-                  </p>
-                )}
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      )}
-    </section>
+        </Card.End>
+      </Card.Headline>
+      <Card.Content>
+        {isLoading && (
+          <Fallback>
+            Loading the foodplan for {t(`cafeteria_plan.cafeteria.${selectedCafeteria}`)}
+          </Fallback>
+        )}
+        {error && (
+          <Fallback>
+            There was an error loading the foodplans for{" "}
+            {t(`cafeteria_plan.cafeteria.${selectedCafeteria}`)}
+          </Fallback>
+        )}
+        {data && (
+          <Swiper
+            modules={[Virtual, Navigation]}
+            navigation={true}
+            className={cafeteriaStyles.swiperContainer}
+            slidesPerView={1}
+            onActiveIndexChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
+            initialSlide={index_of_today}
+            loop={false}
+            //@ts-ignore
+            onSwiper={(swiper) => setSwiperInstance(swiper)}
+          >
+            {data.map((foodplan, index) => {
+              return (
+                <SwiperSlide key={index} virtualIndex={index}>
+                  {foodplan.item ? (
+                    <Foodplan data={foodplan.item} />
+                  ) : (
+                    <p className={cafeteriaStyles.missingDataString}>
+                      {t("cafeteria_plan.no_data_for_day")}
+                    </p>
+                  )}
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        )}
+      </Card.Content>
+    </Card.Container>
   );
 }
