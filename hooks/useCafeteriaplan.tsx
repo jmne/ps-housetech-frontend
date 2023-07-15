@@ -20,7 +20,7 @@ export type Cafeteria = "davinci" | "aasee" | "bispinghof" | "ring";
  * @returns Data regarding the next busses
  */
 export default function useCafeteriaplan(cafeteria: Cafeteria) {
-  const { data: d, isLoading, error } = useSWR<Foodplan[]>(`${url}`, fetcher);
+  const { data: d, isLoading, error } = useSWR<Foodplan[]>(`${url}/${cafeteria}`, fetcher);
   // /${cafeteria}
   const data = useMemo(() => {
     if (!d) return undefined;

@@ -2,11 +2,7 @@
 
 // IMPORTS - BUILTINS
 import useCafeteriaplan, { Cafeteria } from "hooks/useCafeteriaplan";
-import {
-  useEffect,
-  useState,
-  useMemo
-} from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Navigation, Virtual } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -29,6 +25,7 @@ import { Foodplan } from "./Foodplan";
 //
 import * as Card from "@/components/Card";
 import { CafeteriaSelector } from "./CafeteriaSelector";
+import { Fallback } from "./Fallback";
 
 export function getDayOfWeek(day: Date) {
   const daysOfWeek = [
@@ -47,12 +44,12 @@ export function getDayOfWeek(day: Date) {
 }
 
 export default function Cafeteriaplan() {
+  const [selectedCafeteria, setSelectedCafeteria] = useState<Cafeteria>("davinci");
+
   const { t } = useTranslation("index");
   const timeoutContext = useTimeoutContext();
-  const { data, isLoading, error } = useCafeteriaplan("davinci");
+  const { data, isLoading, error } = useCafeteriaplan(selectedCafeteria);
   const router = useRouter();
-
-  const [selectedCafeteria, setSelectedCafeteria] = useState<Cafeteria>("davinci");
 
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [currentIndex, setCurrentIndex] = useState<number>();
@@ -127,8 +124,17 @@ export default function Cafeteriaplan() {
         </Card.End>
       </Card.Headline>
       <Card.Content>
-        {isLoading && <span>Data is loading...</span>}
-        {error && <span>Some error occurred</span>}
+        {isLoading && (
+          <Fallback>
+            Loading the foodplan for {t(`cafeteria_plan.cafeteria.${selectedCafeteria}`)}
+          </Fallback>
+        )}
+        {error && (
+          <Fallback>
+            There was an error loading the foodplans for{" "}
+            {t(`cafeteria_plan.cafeteria.${selectedCafeteria}`)}
+          </Fallback>
+        )}
         {data && (
           <Swiper
             modules={[Virtual, Navigation]}

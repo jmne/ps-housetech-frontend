@@ -44,6 +44,32 @@
   }
 }
 
+.fallbackContainer {
+  margin: g.$margin-base;
+
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.fallbackMessage {
+  grid-area: 1 / 1 / 2 / 2;
+
+  display: flex;
+  align-items: center;
+
+  padding: g.$margin-base;
+
+  background-color: g.$container-item;
+  box-shadow: g.$shadow-outer;
+
+  color: g.$text-secondary;
+
+  border-radius: g.$border-radius-base;
+}
+
 .swiperContainer {
   height: 100%;
   width: 100%;
