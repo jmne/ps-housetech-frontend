@@ -1,9 +1,8 @@
 type Foodicons = "Gfl" | "Sch" | "Rin" | "Fis" | "Vgt" | "Vgn" | "Alk";
 
 export interface Dish {
-  category: string;
   meal: string;
-  foodicons: Foodicons[];
+  foodicons: Foodicons[] | null;
   price1: number;
   price3: number;
   allergens: string;
@@ -33,7 +32,15 @@ function formatDateForData(d: Date) {
 
 const today = new Date();
 
-export const sample_foodplan: Foodplan[] = [
+interface Testdata extends Omit<Foodplan, "item"> {
+  item: TestDish[] | undefined;
+}
+
+interface TestDish extends Dish {
+  category: string;
+}
+
+export const sample_foodplan: Testdata[] = [
   {
     item: [
       {

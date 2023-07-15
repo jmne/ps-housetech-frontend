@@ -12,13 +12,16 @@ import { useMemo } from "react";
 const url = "https://ps-housetech.uni-muenster.de:444/api/mensa";
 const options = { refreshInterval: 10 * 60 * 1000 };
 
+export const AllCafeterias: Cafeteria[] = ["davinci", "aasee", "bispinghof", "ring"];
+export type Cafeteria = "davinci" | "aasee" | "bispinghof" | "ring";
+
 /**
  *
  * @returns Data regarding the next busses
  */
-export default function useCafeteriaplan() {
-  const { data: d, isLoading, error } = useSWR<Foodplan[]>(url, fetcher);
-
+export default function useCafeteriaplan(cafeteria: Cafeteria) {
+  const { data: d, isLoading, error } = useSWR<Foodplan[]>(`${url}/${cafeteria}`, fetcher);
+  // /${cafeteria}
   const data = useMemo(() => {
     if (!d) return undefined;
     else return convertFoodplan(d);
