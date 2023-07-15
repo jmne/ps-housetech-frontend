@@ -8,7 +8,7 @@ import {
 } from "assets/images/map/floors_transformed";
 import { MapData, useMapContext } from "context/MapContext";
 import {
-  addRoomClickListeners,
+  buildingClickHandler,
   collapseFloorsOfBuilding,
   highlightFloor,
   maximizeBuilding,
@@ -101,103 +101,88 @@ const MapLeo3 = memo(() => {
   );
 
   useEffect(() => {
-    mapElements.leo3_elements.forEach((element, index) => {
-      const container = element.current;
-      const floor = getFloorFromIndex(index);
-      if (!container) return;
-      addRoomClickListeners(container, buildingNames.LEO3, floor, mapContext);
-    });
+    const element_leo3_on_campus = mapElements.leo3_building_on_campus?.current;
+    const element_leo3_building = mapElements.leo3_building?.current;
+    const element_mapContainer = mapElements.mapContainer?.current;
 
-    requestAnimationFrame(() => {
-      const element_leo3_on_campus = mapElements.leo3_building_on_campus?.current;
-      const element_leo3_building = mapElements.leo3_building?.current;
-      const element_mapContainer = mapElements.mapContainer?.current;
+    if (
+      !element_leo3_on_campus ||
+      !element_leo3_building ||
+      !element_mapContainer ||
+      mapContext.current.area === buildingNames.LEO3
+    )
+      return;
 
-      if (
-        !element_leo3_on_campus ||
-        !element_leo3_building ||
-        !element_mapContainer ||
-        mapContext.current.area === buildingNames.LEO3
-      )
-        return;
-
-      minimizeBuilding(
-        element_leo3_on_campus,
-        element_leo3_building,
-        element_mapContainer
-      );
-    });
+    minimizeBuilding(element_leo3_on_campus, element_leo3_building, element_mapContainer);
     //@ts-ignore
   }, []);
 
   // Handle Change of shown area
   useEffect(() => {
-    requestAnimationFrame(() => {
-      const currentAnimationID = animationIdRef.current + 1;
-      animationIdRef.current = animationIdRef.current + 1;
+    const currentAnimationID = animationIdRef.current + 1;
+    animationIdRef.current = animationIdRef.current + 1;
 
-      const areaJustGotInFocus =
-        mapContext.current.area === buildingNames.LEO3 &&
-        mapContext.previous.area !== buildingNames.LEO3;
-      const areaGotOutOfFocus =
-        mapContext.current.area !== buildingNames.LEO3 &&
-        mapContext.previous.area === buildingNames.LEO3;
-      const floorChanged =
-        mapContext.current.floor !== mapContext.previous.floor ||
-        mapContext.current.area !== mapContext.previous.area;
+    const areaJustGotInFocus =
+      mapContext.current.area === buildingNames.LEO3 &&
+      mapContext.previous.area !== buildingNames.LEO3;
+    const areaGotOutOfFocus =
+      mapContext.current.area !== buildingNames.LEO3 &&
+      mapContext.previous.area === buildingNames.LEO3;
+    const floorChanged =
+      mapContext.current.floor !== mapContext.previous.floor ||
+      mapContext.current.area !== mapContext.previous.area;
 
-      const element_leo3_on_campus = mapElements.leo3_building_on_campus?.current;
-      const element_leo3_building = mapElements.leo3_building?.current;
-      const element_mapContainer = mapElements.mapContainer?.current;
-      const element_campus = mapElements.campus_element?.current;
+    const element_leo3_on_campus = mapElements.leo3_building_on_campus?.current;
+    const element_leo3_building = mapElements.leo3_building?.current;
+    const element_mapContainer = mapElements.mapContainer?.current;
+    const element_campus = mapElements.campus_element?.current;
 
-      if (
-        !element_leo3_on_campus ||
-        !element_leo3_building ||
-        !element_mapContainer ||
-        !element_campus
-      )
-        return;
+    if (
+      !element_leo3_on_campus ||
+      !element_leo3_building ||
+      !element_mapContainer ||
+      !element_campus
+    )
+      return;
 
-      const animations: (() => Promise<unknown>)[] = [];
+    const animations: (() => Promise<unknown>)[] = [];
 
-      if (areaJustGotInFocus) {
-        animations.push(maximizeBuilding.bind(null, element_leo3_building));
-      } else if (areaGotOutOfFocus) {
-        animations.push(collapseFloorsOfBuilding.bind(null, mapElements.leo3_elements));
-        animations.push(
-          minimizeBuilding.bind(
-            null,
-            element_leo3_on_campus,
-            element_leo3_building,
-            element_mapContainer
-          )
-        );
+    if (areaJustGotInFocus) {
+      animations.push(maximizeBuilding.bind(null, element_leo3_building));
+    } else if (areaGotOutOfFocus) {
+      animations.push(collapseFloorsOfBuilding.bind(null, mapElements.leo3_elements));
+      animations.push(
+        minimizeBuilding.bind(
+          null,
+          element_leo3_on_campus,
+          element_leo3_building,
+          element_mapContainer
+        )
+      );
+    }
+
+    if (mapContext.current.area === buildingNames.LEO3 && floorChanged)
+      animations.push(
+        highlightFloor.bind(
+          null,
+          mapContext.current.floor ? mapContext.current.floor : "floor0",
+          mapElements.leo3_elements
+        )
+      );
+
+    if (animations.length === 0) return;
+
+    const executeAnimations = async (
+      animations: (() => Promise<unknown>)[],
+      animID: number,
+      mapAnimationIDRef: MutableRefObject<number>
+    ) => {
+      for (let index = 0; index < animations.length; index++) {
+        if (animID !== mapAnimationIDRef.current) return;
+        await animations[index]();
       }
-
-      if (mapContext.current.area === buildingNames.LEO3 && floorChanged)
-        animations.push(
-          highlightFloor.bind(
-            null,
-            mapContext.current.floor ? mapContext.current.floor : "floor0",
-            mapElements.leo3_elements
-          )
-        );
-
-      if (animations.length === 0) return;
-
-      const executeAnimations = async (
-        animations: (() => Promise<unknown>)[],
-        animID: number,
-        mapAnimationIDRef: MutableRefObject<number>
-      ) => {
-        for (let index = 0; index < animations.length; index++) {
-          if (animID !== mapAnimationIDRef.current) return;
-          await animations[index]();
-        }
-      };
-      executeAnimations(animations, currentAnimationID, animationIdRef);
-    });
+    };
+    executeAnimations(animations, currentAnimationID, animationIdRef);
   }, [
     mapContext,
     mapContext.current.area,
@@ -232,10 +217,26 @@ const MapLeo3 = memo(() => {
           <ArrowDown />
         </button>
       )}
-      <Leo3_Floor0 />
-      <Leo3_Floor1 />
-      <Leo3_Floor2 />
-      <Leo3_Floor3 />
+      <Leo3_Floor0
+        onClick={(e) =>
+          buildingClickHandler(e, buildingNames.LEO3, "floor0", mapContext.setCurrent)
+        }
+      />
+      <Leo3_Floor1
+        onClick={(e) =>
+          buildingClickHandler(e, buildingNames.LEO3, "floor1", mapContext.setCurrent)
+        }
+      />
+      <Leo3_Floor2
+        onClick={(e) =>
+          buildingClickHandler(e, buildingNames.LEO3, "floor2", mapContext.setCurrent)
+        }
+      />
+      <Leo3_Floor3
+        onClick={(e) =>
+          buildingClickHandler(e, buildingNames.LEO3, "floor3", mapContext.setCurrent)
+        }
+      />
     </div>
   );
 });

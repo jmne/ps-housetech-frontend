@@ -54,13 +54,17 @@ export function WeatherReport() {
   }, []);
 
   useEffect(() => {
-    setInterval(() => {
+    const clockIncrementer = setInterval(() => {
       const now = new Date();
       setCurrentTime(now);
       setCurrentMinutes(
         now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes()
       );
     }, 5000);
+
+    return () => {
+      clearInterval(clockIncrementer);
+    };
   }, [currentTime]);
 
   if (isLoading) {
