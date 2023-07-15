@@ -40,7 +40,7 @@ export default function DishCard({ dish }: DishProps) {
         </span>
       </div>
       <div className={styles.icons}>
-        {dish.foodicons.map((icon, iconIndex) => (
+        {dish.foodicons && dish.foodicons.map((icon, iconIndex) => (
           <Image
             src={getIcon[icon]}
             alt={"Foodicon"}
