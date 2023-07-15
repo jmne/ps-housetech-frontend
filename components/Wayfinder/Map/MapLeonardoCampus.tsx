@@ -3,7 +3,7 @@ import { memo, useEffect } from "react";
 import LeonardoCampus from "assets/images/map/campus_transformed/leonardocampus";
 import { useMapContext } from "context/MapContext";
 import {
-  addRoomClickListeners,
+  buildingClickHandler,
   maximizeCampus,
   minimizeCampus
 } from "utils/Wayfinder/mapTransformations";
@@ -13,13 +13,6 @@ import { useMapElements } from "context/MapElements";
 const MapLeonardoCampus = memo(() => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
-
-  useEffect(() => {
-    const container = mapElements.campus_element?.current;
-    if (!container) return;
-    const floor = undefined;
-    addRoomClickListeners(container, buildingNames.CAMPUS, floor, mapContext);
-  }, []);
 
   useEffect(() => {
     const campus = mapElements.campus_element?.current;
@@ -52,7 +45,11 @@ const MapLeonardoCampus = memo(() => {
 
   return (
     <div className={styles.mapElement}>
-      <LeonardoCampus />
+      <LeonardoCampus
+        onClick={(e) =>
+          buildingClickHandler(e, buildingNames.CAMPUS, undefined, mapContext.setCurrent)
+        }
+      />
     </div>
   );
 });
