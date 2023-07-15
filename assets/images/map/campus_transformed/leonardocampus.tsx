@@ -80,7 +80,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             }}
           />
         </g>
-        <g id="egg4" transform="matrix(1,0,0,1,252.834,-535.362)">
+        <g id="campus-egg4" transform="matrix(1,0,0,1,252.834,-535.362)">
           <path
             id="path35"
             d="M54.25,1101L50.82,1108.08L43.72,1113.57L30.89,1114.04L13.95,1105.8L6.14,1096.5L0,1085.89L6.4,1073.53L13.27,1069.87L32.95,1089.55L49.889,1095.25L54.25,1101Z"
@@ -1028,7 +1028,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             }}
           />
         </g>
-        <g id="egg2" transform="matrix(1,0,0,1,864.182,-472.21)">
+        <g id="campus-egg2" transform="matrix(1,0,0,1,864.182,-472.21)">
           <path
             id="path415"
             d="M0,1090.28L11.771,1077.45L37.67,1101.62L25.9,1114.04L0,1090.28Z"
@@ -2348,7 +2348,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             }}
           />
         </g>
-        <g id="egg1" transform="matrix(1,0,0,1,401.463,-30.5537)">
+        <g id="campus-egg1" transform="matrix(1,0,0,1,401.463,-30.5537)">
           <path
             id="path962"
             d="M2.23,1083.88L0,1106.43L76.86,1114.04L79.1,1091.51L2.23,1083.88Z"
@@ -2478,7 +2478,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             }}
           />
         </g>
-        <g id="egg3" transform="matrix(1,0,0,1,735.573,-662.823)">
+        <g id="campus-egg3" transform="matrix(1,0,0,1,735.573,-662.823)">
           <path
             id="path1017"
             d="M0,1024.64L84.84,1114.04L107.24,1092.79L22.42,1003.39L0,1024.64Z"
@@ -3013,7 +3013,11 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             />
           </g>
         </g>
-        <g id="campus-leo11" transform="matrix(1,0,0,1,695.639,-102.612)" ref={mapElements.leo11_building_on_campus}>
+        <g
+          id="campus-leo11"
+          transform="matrix(1,0,0,1,695.639,-102.612)"
+          ref={mapElements.leo11_building_on_campus}
+        >
           <path
             id="path1042"
             d="M0,1093.56L14.601,1065.15L31.361,1032.55L68.341,960.621L108.181,981.092L39.83,1114.04L0,1093.56Z"
@@ -3166,7 +3170,11 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             />
           </g>
         </g>
-        <g id="campus-leo3" transform="matrix(1,0,0,1,459.19,-755.487)" ref={mapElements.leo3_building_on_campus}>
+        <g
+          id="campus-leo3"
+          transform="matrix(1,0,0,1,459.19,-755.487)"
+          ref={mapElements.leo3_building_on_campus}
+        >
           <path
             id="path897"
             d="M50.69,1044.84L37.59,1032.94L24.569,1047.24L0,1024.88L41.859,978.881L68.149,1002.81L64.819,1006.49L110.63,1048.19L114.659,1043.76L140.8,1067.53L98.48,1114.04L77.72,1095.16L89.47,1082.23L73.01,1067.29L61.27,1080.18L37.87,1058.91L50.69,1044.84Z"
