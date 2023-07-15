@@ -109,11 +109,12 @@
   line-height: g.$text-base;
   color: g.$text-primary;
 
-  padding-inline: g.$margin-base;
+  padding-inline-start: g.$margin-base;
 
   .title {
     font-weight: 500;
     margin-block: g.$margin-small;
+    margin-block-start: g.$margin-base;
     padding: g.$margin-small;
   }
 }
