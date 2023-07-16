@@ -10,6 +10,9 @@ import useWeather from "hooks/useWeather";
 import { FallbackWeatherReport } from "./Fallback";
 import { useTranslation } from "next-i18next";
 
+
+import * as Card from "@/components/Card"
+
 const tempGradient = chroma.scale([
   "#3677FF",
   "#1BD4E4",
@@ -89,9 +92,7 @@ export function WeatherReport() {
   }
 
   return (
-    <div className={styles.container}>
-      <h2>{t("weather.title_report")}</h2>
-
+    <Card.Content className={styles.container}>
       <div className={styles.currentWeather}>
         <div className={styles.information}>
           <div className={styles.time}>
@@ -175,6 +176,6 @@ export function WeatherReport() {
           );
         })}
       </div>
-    </div>
+  </Card.Content>
   );
 }

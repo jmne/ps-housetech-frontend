@@ -1,13 +1,16 @@
-import indexStyles from "@/pages/index.module.scss";
-import styles from "./Weather.module.scss"
 import { WeatherReport } from "./Report/WeaterReport";
+import * as Card from "@/components/Card";
+import { useTranslation } from "next-i18next";
 
 export function Weather() {
+  const { t } = useTranslation("index");
+
   return (
-    <section
-      className={[indexStyles.contentSection, indexStyles.weatherContainer, styles.container].join(" ")}
-    >
-    <WeatherReport />
-    </section>
+    <Card.Container placement="smallTop">
+      <Card.Headline>
+        <Card.Title>{t("weather.title_report")}</Card.Title>
+      </Card.Headline>
+      <WeatherReport />
+    </Card.Container>
   );
 }

@@ -101,7 +101,7 @@
 }
 
 .overlayContainer {
-  z-index: 2;
+  z-index: 3;
 
   position: absolute;
 
@@ -147,7 +147,7 @@
 }
 
 .overlayBackground {
-  z-index: 0;
+  z-index: 2;
 
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;

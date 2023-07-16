@@ -8,6 +8,8 @@ import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import styles from "./Instagram.module.scss";
 import { Post } from "./Post";
 
+import * as Card from "@/components/Card";
+
 const Instagram = memo(() => {
   const { data, isLoading, error } = useInstagram();
   const timeoutContext = useTimeoutContext();
@@ -27,39 +29,36 @@ const Instagram = memo(() => {
   }, [timeoutContext.manager, swiperInstance]);
 
   return (
-    <>
-      <Swiper
-        modules={[Virtual, Navigation]}
-        navigation={true}
-        className={styles.swiperContainer}
-        loop={true}
-        onSwiper={(swiper) => setSwiperInstance(swiper)}
-      >
-        {(isLoading || error) && (
-          <SwiperSlide>
-            <div className={styles.postContainer}>
-              <div className={styles.stateDescription}>
-                {isLoading && <span>Instagram posts are loading...</span>}
-                {error && (
-                  <span>Sorry, there was an error while loading the Instagram posts</span>
-                )}
-              </div>
+    <Swiper
+      modules={[Virtual, Navigation]}
+      navigation={true}
+      className={styles.swiperContainer}
+      loop={true}
+      onSwiper={(swiper) => setSwiperInstance(swiper)}
+    >
+      {(isLoading || error) && (
+        <SwiperSlide>
+          <div className={styles.postContainer}>
+            <div className={styles.stateDescription}>
+              {isLoading && <span>Instagram posts are loading...</span>}
+              {error && (
+                <span>Sorry, there was an error while loading the Instagram posts</span>
+              )}
             </div>
-          </SwiperSlide>
-        )}
-        {!error &&
-          data &&
-          data.map((post, index) => {
-            return (
-              <SwiperSlide key={post.timestamp} virtualIndex={index}>
-                <Post post={post} />
-              </SwiperSlide>
-            );
-          })}
-      </Swiper>
-    </>
+          </div>
+        </SwiperSlide>
+      )}
+      {data &&
+        data.map((post, index) => {
+          return (
+            <SwiperSlide key={post.timestamp} virtualIndex={index}>
+              <Post post={post} />
+            </SwiperSlide>
+          );
+        })}
+    </Swiper>
   );
 });
 
-Instagram.displayName = "Instagram"
-export default Instagram
+Instagram.displayName = "Instagram";
+export default Instagram;
