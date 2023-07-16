@@ -101,3 +101,9 @@
 
   }
 }
+
+@media screen and (max-width: 992px) {
+  .swiperContainer {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+}
