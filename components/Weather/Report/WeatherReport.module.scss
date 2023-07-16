@@ -4,24 +4,13 @@ $small-icon: g.$icon-sm;
 
 .container {
     display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: 2rem 1fr calc(33% - 2.5 * g.$margin-small);
+    grid-template-columns: 2fr 5fr;
+    grid-template-rows: 2fr 1fr;
 
     padding: g.$margin-base;
     gap: g.$margin-small;
 
     overflow-y: hidden;
-
-    h2 {
-        grid-area: 1 / 1 / 2 / 2;
-
-        font-size: g.$text-base;
-        font-weight: 400;
-        margin: 0;
-        padding: 0;
-
-        margin-block-end: g.$margin-base;
-    }
 
     >div {
         background-color: g.$container-item;
@@ -31,7 +20,7 @@ $small-icon: g.$icon-sm;
     }
 
     .forecastToday {
-        grid-area: 2 / 1 / 4 / 2;
+        grid-area: 1 / 1 / 3 / 2;
 
         display: flex;
         flex-direction: column;
@@ -74,7 +63,7 @@ $small-icon: g.$icon-sm;
     }
 
     .forecastNextDays {
-        grid-area: 3 / 2 / 4 / 3;
+        grid-area: 2 / 2 / 3 / 3;
 
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -127,7 +116,7 @@ $small-icon: g.$icon-sm;
         grid-template-columns: 1fr 30%;
         grid-template-rows: 1fr;
 
-        grid-area: 2 / 2 / 3 / 3;
+        grid-area: 1 / 2 / 2 / 3;
 
         overflow: hidden;
 

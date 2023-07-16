@@ -4,7 +4,7 @@ html,
 body {
   background-color: g.$background;
   color: g.$text-primary;
-  font-size: calc(11px + 0.37vw);
+  font-size: calc(10px + 0.37vw);
   font-family: 'Inter';
 }
 
@@ -21,12 +21,6 @@ div#__next>main {
 * {
   box-sizing: border-box;
   user-select: none;
-}
-
-h2 {
-  font-size: g.$text-medium;
-  font-weight: 700;
-  margin-block: g.$margin-large;
 }
 
 p {

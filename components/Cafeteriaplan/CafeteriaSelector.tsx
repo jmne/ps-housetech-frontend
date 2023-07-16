@@ -74,4 +74,4 @@ const SelectItem = forwardRef(
   }
 );
 
-SelectItem.displayName = "Select Item"
+SelectItem.displayName = "Select Item";

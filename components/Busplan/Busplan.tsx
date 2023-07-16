@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 
 // IMPORTS - COMPONENTS
 import Bus from "@/components/Busplan/Bus";
+import * as Card from "@/components/Card";
 
 // IMPORTS - ASSETS
-import indexStyles from "@/pages/index.module.scss";
 import busplanStyles from "@/components/Busplan/Busplan.module.scss";
 import busStyles from "@/components/Busplan/Bus.module.scss";
 import { Busride } from "types/Busride";
@@ -53,13 +53,11 @@ export default function Busplan() {
   }, [data, isLoading, error]);
 
   return (
-    <section
-      className={[indexStyles.smallContainer, indexStyles.contentSection].join(" ")}
-    >
-      <div className={indexStyles.cardHeadline}>
-        <h2>{t("busplan.title")}</h2>
-      </div>
-      <ol className={busplanStyles.busplan}>
+    <Card.Container placement="smallBottom">
+      <Card.Headline>
+        <Card.Title>{t("busplan.title")}</Card.Title>
+      </Card.Headline>
+      <Card.Content as="ol" className={busplanStyles.busplan}>
         {isLoading && !error && (
           <span className={busStyles.message}>Bus plan is loading...</span>
         )}
@@ -78,10 +76,10 @@ export default function Busplan() {
             ))}
           </>
         )}
-      </ol>
-      {!error && data && data.length === 0 && (
-        <span className={busStyles.message}>No Busses incoming</span>
-      )}
-    </section>
+        {!error && data && data.length === 0 && (
+          <span className={busStyles.message}>No Busses incoming</span>
+        )}
+      </Card.Content>
+    </Card.Container>
   );
 }

@@ -16,7 +16,7 @@ type containerClasses = {
 
 const containerType: containerClasses = {
   large: styles.large,
-  medium: styles.medium,
+  medium: styles.middle,
   smallTop: styles.smallTop,
   smallMiddle: styles.smallMiddle,
   smallBottom: styles.smallBottom

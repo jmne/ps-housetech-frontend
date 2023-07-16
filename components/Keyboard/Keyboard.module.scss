@@ -20,12 +20,12 @@ $quarterBorder: calc(g.$border-base / 4);
   box-sizing: border-box;
   overflow: hidden;
 
-  box-shadow: g.$shadow-outer;
-
   opacity: 0;
 
   transition: opacity 200ms ease-out;
   background-color: g.$container-item;
+
+  border-radius: g.$border-radius-base;
 
   padding: g.$margin-small;
 
