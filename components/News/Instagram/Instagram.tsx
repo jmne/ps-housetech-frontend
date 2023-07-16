@@ -8,8 +8,6 @@ import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import styles from "./Instagram.module.scss";
 import { Post } from "./Post";
 
-import * as Card from "@/components/Card";
-
 const Instagram = memo(() => {
   const { data, isLoading, error } = useInstagram();
   const timeoutContext = useTimeoutContext();

@@ -49,7 +49,7 @@ export function Wayfinder() {
     if (!listRef.current) return;
 
     listRef.current.scrollBy({ top: 20, behavior: "smooth" });
-  }, [listRef.current]);
+  }, [listRef]);
 
   const scrollToTop = useCallback(
     (behavior: any) => {
@@ -59,7 +59,7 @@ export function Wayfinder() {
           behavior: behavior
         });
     },
-    [listRef.current]
+    [listRef]
   );
 
   // Define reset function and add it to the global timeout-handler
@@ -84,6 +84,7 @@ export function Wayfinder() {
     const handler = new IdleHandler({ origin: "wayfinder", resetFunction: resetLayout });
     if (timeoutContext.manager) timeoutContext.manager.addResetListener(handler);
   }, [
+    scrollToTop,
     searchInputContext.setActive,
     selectedPersonContext.setPerson,
     searchInputContext.setInput,
@@ -99,7 +100,7 @@ export function Wayfinder() {
     setTimeout(() => {
       scrollToTop("instant");
     });
-  }, [persons, searchInputContext.input, fuse]);
+  }, [persons, searchInputContext.input, fuse, scrollToTop]);
 
   // When a person was clicked in the list -> Scroll to the person
   useEffect(() => {

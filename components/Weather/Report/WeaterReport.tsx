@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 import chroma from "chroma-js";
 import useWeather from "hooks/useWeather";
 import { FallbackWeatherReport } from "./Fallback";
-import { useTranslation } from "next-i18next";
 
 
 import * as Card from "@/components/Card"
@@ -46,8 +45,6 @@ function getWeekday(day: Date, length: "short" | "long", locale: string) {
 const popThreshhold = 0.1;
 
 export function WeatherReport() {
-  const {t} = useTranslation("index")
-
   const [currentTime, setCurrentTime] = useState<Date>();
   const [currentMinutes, setCurrentMinutes] = useState<number | string>();
   const { data, isLoading, error } = useWeather();
