@@ -48,8 +48,10 @@
 
     h1 {
       font-weight: bold;
-      font-size: g.$text-medium; //smaller
+      font-size: g.$text-large; 
       margin: 0;
+
+      letter-spacing: .02rem;
     }
   }
 }

@@ -17,12 +17,14 @@ $headerHeight: 2rem;
   background-color: g.$container;
   box-shadow: g.$shadow-outer__light;
 
+  //backdrop-filter: blur(20px); -> Breaks radix-ui;
+
   &.large {
     grid-area: 1 / 1 / 3 / 2;
   }
 
   &.middle {
-    grid-area: 2 / 1 / 3 / 2;
+    grid-area: 3 / 1 / 4 / 2;
   }
 
   &.smallTop {
@@ -69,12 +71,12 @@ $headerHeight: 2rem;
     align-items: center;
     align-self: center;
     min-height: 0;
-    height: 0rem;
+    height: .5rem;
   }
 
   .title {
-    font-size: g.$text-base;
-    font-weight: 600;
+    font-size: g.$text-sm;
+    font-weight: 500;
 
     height: fit-content;
 
@@ -88,5 +90,29 @@ $headerHeight: 2rem;
 
   .end {
     grid-area: 1 / 3 / 2 / 4;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .container {
+    &.large {
+      grid-area: 1 / 1 / 2 / 2;
+    }
+
+    &.middle {
+      grid-area: 2 / 1 / 3 / 2;
+    }
+
+    &.smallTop {
+      grid-area: 3 / 1 / 4 / 2;
+    }
+
+    &.smallMiddle {
+      grid-area: 4 / 1 / 5 / 2;
+    }
+
+    &.smallBottom {
+      grid-area: 5 / 1 / 6 / 2;
+    }
   }
 }

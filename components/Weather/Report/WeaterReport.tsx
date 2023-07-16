@@ -8,7 +8,9 @@ import { useRouter } from "next/router";
 import chroma from "chroma-js";
 import useWeather from "hooks/useWeather";
 import { FallbackWeatherReport } from "./Fallback";
-import { useTranslation } from "next-i18next";
+
+
+import * as Card from "@/components/Card"
 
 const tempGradient = chroma.scale([
   "#3677FF",
@@ -43,8 +45,6 @@ function getWeekday(day: Date, length: "short" | "long", locale: string) {
 const popThreshhold = 0.1;
 
 export function WeatherReport() {
-  const {t} = useTranslation("index")
-
   const [currentTime, setCurrentTime] = useState<Date>();
   const [currentMinutes, setCurrentMinutes] = useState<number | string>();
   const { data, isLoading, error } = useWeather();
@@ -89,9 +89,7 @@ export function WeatherReport() {
   }
 
   return (
-    <div className={styles.container}>
-      <h2>{t("weather.title_report")}</h2>
-
+    <Card.Content className={styles.container}>
       <div className={styles.currentWeather}>
         <div className={styles.information}>
           <div className={styles.time}>
@@ -175,6 +173,6 @@ export function WeatherReport() {
           );
         })}
       </div>
-    </div>
+  </Card.Content>
   );
 }

@@ -7,7 +7,7 @@ $searchWidth: 350px;
   position: relative;
 
   display: grid;
-  grid-template-columns: $searchWidth 1fr;
+  grid-template-columns: auto 1fr;
   grid-template-rows: 1fr;
 
   min-height: 0;
@@ -25,7 +25,7 @@ $searchWidth: 350px;
 
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 22rem;
   min-height: 0px;
 
   z-index: 10;

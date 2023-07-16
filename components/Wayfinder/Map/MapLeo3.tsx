@@ -15,7 +15,7 @@ import {
   minimizeBuilding
 } from "utils/Wayfinder/mapTransformations";
 import { buildingNames } from "types/Campus";
-import { getFloorFromIndex, getFloorIndex } from "utils/Wayfinder/mapValidations";
+import { getFloorIndex } from "utils/Wayfinder/mapValidations";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 import ArrowUp from "assets/images/icon_arrow_up.svg";
