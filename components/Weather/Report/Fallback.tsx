@@ -2,6 +2,8 @@ import { getWeekday } from "utils/dateHelpers";
 import styles from "./WeatherReport.module.scss";
 import { useRouter } from "next/router";
 
+import * as Card from "@/components/Card";
+
 interface props {
   currentTime: Date | undefined;
   currentMinutes: string | number | undefined;
@@ -11,8 +13,7 @@ interface props {
 export function FallbackWeatherReport({ currentTime, currentMinutes, message }: props) {
   const router = useRouter();
   return (
-    <div className={styles.container}>
-      <h2>Weather Report</h2>
+    <Card.Content className={styles.container}>
       <div className={styles.currentWeather}>
         <div className={[styles.information, styles.fallback].join(" ")}>
           <div className={styles.time}>
@@ -29,6 +30,6 @@ export function FallbackWeatherReport({ currentTime, currentMinutes, message }: 
       </div>
       <div className={[styles.forecastNextDays, styles.message].join(" ")}>{message}</div>
       <div className={styles.forecastToday}></div>
-    </div>
+    </Card.Content>
   );
 }

@@ -5,7 +5,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useEmployees } from "hooks/useEmployees";
 
 // IMPORTS - ASSETS
-import styles_index from "@/pages/index.module.scss";
 import styles_wayfinder from "@/components/Wayfinder/Wayfinder.module.scss";
 import { useTranslation } from "next-i18next";
 import { SearchBar } from "./SearchBar/SearchBar";
@@ -23,6 +22,8 @@ import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 import { MapProvider } from "context/MapContext";
 import { MapElementsProvider } from "context/MapElements";
+
+import * as Card from "@/components/Card";
 
 export function Wayfinder() {
   // Global state of the selected person in the list
@@ -48,7 +49,7 @@ export function Wayfinder() {
     if (!listRef.current) return;
 
     listRef.current.scrollBy({ top: 20, behavior: "smooth" });
-  }, [listRef.current]);
+  }, [listRef]);
 
   const scrollToTop = useCallback(
     (behavior: any) => {
@@ -58,7 +59,7 @@ export function Wayfinder() {
           behavior: behavior
         });
     },
-    [listRef.current]
+    [listRef]
   );
 
   // Define reset function and add it to the global timeout-handler
@@ -83,6 +84,7 @@ export function Wayfinder() {
     const handler = new IdleHandler({ origin: "wayfinder", resetFunction: resetLayout });
     if (timeoutContext.manager) timeoutContext.manager.addResetListener(handler);
   }, [
+    scrollToTop,
     searchInputContext.setActive,
     selectedPersonContext.setPerson,
     searchInputContext.setInput,
@@ -98,7 +100,7 @@ export function Wayfinder() {
     setTimeout(() => {
       scrollToTop("instant");
     });
-  }, [persons, searchInputContext.input, fuse]);
+  }, [persons, searchInputContext.input, fuse, scrollToTop]);
 
   // When a person was clicked in the list -> Scroll to the person
   useEffect(() => {
@@ -115,7 +117,7 @@ export function Wayfinder() {
       return;
 
     requestAnimationFrame(() => {
-      if (!listRef.current) return;
+      if (!listRef.current || !contextPersonElement) return;
       const scroll_by = contextPersonElement.offsetTop - listRef.current.scrollTop - 5;
       listRef.current.scrollBy({ top: scroll_by, behavior: "smooth" });
     });
@@ -124,13 +126,7 @@ export function Wayfinder() {
   return (
     <MapElementsProvider>
       <MapProvider>
-        <section
-          className={[
-            styles_index.largeContainer,
-            styles_index.contentSection,
-            styles_wayfinder.container
-          ].join(" ")}
-        >
+        <Card.Container placement="large" className={styles_wayfinder.container}>
           <div className={styles_wayfinder.searchSection}>
             <SearchBar placeholder={t("wayfinder.title")} />
             {isLoading ? (
@@ -149,7 +145,7 @@ export function Wayfinder() {
             <ArrowDown className={styles_wayfinder.arrowDown} onClick={handleScroll} />
           </div>
           <CampusMap allPersons={persons ? persons : []} />
-        </section>
+        </Card.Container>
       </MapProvider>
     </MapElementsProvider>
   );
