@@ -17,6 +17,8 @@ $headerHeight: 2rem;
   background-color: g.$container;
   box-shadow: g.$shadow-outer__light;
 
+  overflow: hidden;
+
   //backdrop-filter: blur(20px); -> Breaks radix-ui;
 
   &.large {
