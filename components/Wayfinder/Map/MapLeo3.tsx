@@ -15,13 +15,12 @@ import {
   minimizeBuilding
 } from "utils/Wayfinder/mapTransformations";
 import { buildingNames } from "types/Campus";
-import { animationAllowed, getFloorIndex } from "utils/Wayfinder/mapValidations";
+import { getFloorIndex } from "utils/Wayfinder/mapValidations";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 import ArrowUp from "assets/images/icon_arrow_up.svg";
 import ArrowDown from "assets/images/icon_arrow_down.svg";
 import { useMapElements } from "context/MapElements";
-import { useToastContext } from "context/ToastContext";
 
 function handleTouchEnd(
   touchStart: number | undefined,
@@ -79,22 +78,21 @@ const MapLeo3 = memo(() => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
   const personContext = usePersonSearchContext();
-  const toastContext = useToastContext();
   const [touchStart, setTouchStart] = useState<number | undefined>();
 
-  function animationActive() {
+  const animationActive = useCallback(() => {
     if (!mapContext.animationActiveLeo3) {
       return;
     }
     mapContext.animationActiveLeo3.current = true;
-  }
+  },[mapContext])
 
-  function animationFinished() {
+  const animationFinished = useCallback(() => {
     if (!mapContext.animationActiveLeo3) {
       return;
     }
     mapContext.animationActiveLeo3.current = false;
-  }
+  },[mapContext])
 
   const handleFloorUp = useCallback(() => {
     floorUp(mapContext, personContext);
@@ -209,7 +207,9 @@ const MapLeo3 = memo(() => {
     mapElements.leo3_building_on_campus,
     mapElements.leo3_building,
     mapElements.mapContainer,
-    mapElements.campus_element
+    mapElements.campus_element,
+    animationActive,
+    animationFinished
   ]);
 
   return (

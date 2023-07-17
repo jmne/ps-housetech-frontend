@@ -18,7 +18,7 @@ export function ToastContextProvider({ children }: PropsWithChildren) {
   const [info, setInfo] = useState<ToastInformation | undefined>(undefined);
 
   const pushToast = useCallback(
-    (newToast: ToastInformation) => {
+    (newToast: ToastInformation | undefined) => {
       setInfo(newToast);
     },
     [setInfo]

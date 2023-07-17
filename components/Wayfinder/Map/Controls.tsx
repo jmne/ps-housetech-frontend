@@ -63,57 +63,57 @@ export function Controls() {
     () =>
       animationAllowed(mapContext, toastContext) &&
       handleAreaChange(mapContext, selectedPersonContext, buildingNames.LEO3),
-    [mapContext, selectedPersonContext, animationAllowed]
+    [mapContext, selectedPersonContext, toastContext]
   );
   const handleAreaChangeLeo11 = useCallback(
     () =>
       animationAllowed(mapContext, toastContext) &&
       handleAreaChange(mapContext, selectedPersonContext, buildingNames.LEO11),
-    [mapContext, selectedPersonContext, animationAllowed]
+    [mapContext, selectedPersonContext, toastContext]
   );
   const handleAreaChangeCampus = useCallback(
     () =>
       animationAllowed(mapContext, toastContext) &&
       handleAreaChange(mapContext, selectedPersonContext, buildingNames.CAMPUS),
-    [mapContext, selectedPersonContext, animationAllowed]
+    [mapContext, selectedPersonContext, toastContext]
   );
 
   const handleCampusBuildingHighlightLeo1 = useCallback(
     () =>
       animationAllowed(mapContext, toastContext) &&
       handleCampusBuildingHighlight(mapContext, buildingNames.LEO1),
-    [mapContext, animationAllowed]
+    [mapContext, toastContext]
   );
   const handleCampusBuildingHighlightLeo3 = useCallback(
     () =>
       animationAllowed(mapContext, toastContext) &&
       handleCampusBuildingHighlight(mapContext, buildingNames.LEO3),
-    [mapContext, animationAllowed]
+    [mapContext, toastContext]
   );
   const handleCampusBuildingHighlightLeo10 = useCallback(
     () =>
       animationAllowed(mapContext, toastContext) &&
       handleCampusBuildingHighlight(mapContext, buildingNames.LEO10),
-    [mapContext, animationAllowed]
+    [mapContext, toastContext]
   );
   const handleCampusBuildingHighlightLeo11 = useCallback(
     () =>
       animationAllowed(mapContext, toastContext) &&
       handleCampusBuildingHighlight(mapContext, buildingNames.LEO11),
-    [mapContext, animationAllowed]
+    [mapContext, toastContext]
   );
   const handleCampusBuildingHighlightLeo18 = useCallback(
     () =>
       animationAllowed(mapContext, toastContext) &&
       handleCampusBuildingHighlight(mapContext, buildingNames.LEO18),
-    [mapContext, animationAllowed]
+    [mapContext, toastContext]
   );
 
   const handleCampusBuildingHighlightLeo10ForAll = useCallback(
     () =>
       animationAllowed(mapContext, toastContext) &&
       handleCampusBuildingHighlight(mapContext, buildingNames.LEO10),
-    [mapContext, animationAllowed]
+    [mapContext, toastContext]
   );
 
   const buttons = useMemo(() => {
@@ -153,9 +153,7 @@ export function Controls() {
       </div>
     );
   }, [
-    mapContext.current.area,
     mapContext,
-    selectedPersonContext,
     t,
     handleAreaChangeLeo3,
     handleAreaChangeLeo11,

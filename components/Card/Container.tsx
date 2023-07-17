@@ -10,11 +10,8 @@ interface containerProps extends cardElementProps {
 }
 
 type containerOptions = "large" | "medium" | "smallTop" | "smallMiddle" | "smallBottom";
-type containerClasses = {
-  [key in containerOptions]: string;
-};
 
-const containerType: containerClasses = {
+const containerType = {
   large: styles.large,
   medium: styles.middle,
   smallTop: styles.smallTop,

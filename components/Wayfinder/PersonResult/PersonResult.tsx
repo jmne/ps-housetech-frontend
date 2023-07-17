@@ -30,7 +30,7 @@ const PersonResult = memo(({ person }: props) => {
   const handleClick = useCallback(() => {
     animationAllowed(mapContext, toastContext) &&
       handleClickOnPerson(person, mapContext, selectedPersonContext);
-  }, [mapContext]);
+  }, [mapContext, person, selectedPersonContext, toastContext]);
 
   const personRef = useRef<HTMLLIElement>(null);
   useEffect(() => {
