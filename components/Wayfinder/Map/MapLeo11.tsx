@@ -14,6 +14,20 @@ const MapLeo11 = memo(() => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
 
+  function animationActive() {
+    if (!mapContext.animationActiveLeo11) {
+      return;
+    }
+    mapContext.animationActiveLeo11.current = true;
+  }
+
+  function animationFinished() {
+    if (!mapContext.animationActiveLeo11) {
+      return;
+    }
+    mapContext.animationActiveLeo11.current = false;
+  }
+
   useEffect(() => {
     const element_leo11_on_campus = mapElements.leo11_building_on_campus?.current;
     const element_leo11_building = mapElements.leo11_building?.current;
@@ -83,9 +97,11 @@ const MapLeo11 = memo(() => {
     }
 
     const executeAnimations = async (animations: (() => Promise<unknown>)[]) => {
+      animationActive()
       for (let index = 0; index < animations.length; index++) {
         await animations[index]();
       }
+      animationFinished()
     };
 
     executeAnimations(animations);

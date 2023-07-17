@@ -15,12 +15,13 @@ import {
   minimizeBuilding
 } from "utils/Wayfinder/mapTransformations";
 import { buildingNames } from "types/Campus";
-import { getFloorIndex } from "utils/Wayfinder/mapValidations";
+import { animationAllowed, getFloorIndex } from "utils/Wayfinder/mapValidations";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 import ArrowUp from "assets/images/icon_arrow_up.svg";
 import ArrowDown from "assets/images/icon_arrow_down.svg";
 import { useMapElements } from "context/MapElements";
+import { useToastContext } from "context/ToastContext";
 
 function handleTouchEnd(
   touchStart: number | undefined,
@@ -78,17 +79,30 @@ const MapLeo3 = memo(() => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
   const personContext = usePersonSearchContext();
+  const toastContext = useToastContext();
   const [touchStart, setTouchStart] = useState<number | undefined>();
 
-  const handleFloorUp = useCallback(
-    () => floorUp(mapContext, personContext),
-    [mapContext, personContext]
-  );
+  function animationActive() {
+    if (!mapContext.animationActiveLeo3) {
+      return;
+    }
+    mapContext.animationActiveLeo3.current = true;
+  }
 
-  const handleFloorDown = useCallback(
-    () => floorDown(mapContext, personContext),
-    [mapContext, personContext]
-  );
+  function animationFinished() {
+    if (!mapContext.animationActiveLeo3) {
+      return;
+    }
+    mapContext.animationActiveLeo3.current = false;
+  }
+
+  const handleFloorUp = useCallback(() => {
+    floorUp(mapContext, personContext);
+  }, [mapContext, personContext]);
+
+  const handleFloorDown = useCallback(() => {
+    floorDown(mapContext, personContext);
+  }, [mapContext, personContext]);
 
   const handleMouseDown = useCallback(
     (e: any) => setTouchStart(e.pageY),
@@ -96,7 +110,9 @@ const MapLeo3 = memo(() => {
   );
 
   const handleMouseUp = useCallback(
-    (e: any) => handleTouchEnd(touchStart, e.pageY, mapContext, personContext),
+    (e: any) => {
+      handleTouchEnd(touchStart, e.pageY, mapContext, personContext);
+    },
     [touchStart, mapContext, personContext]
   );
 
@@ -177,10 +193,12 @@ const MapLeo3 = memo(() => {
       animID: number,
       mapAnimationIDRef: MutableRefObject<number>
     ) => {
+      animationActive();
       for (let index = 0; index < animations.length; index++) {
         if (animID !== mapAnimationIDRef.current) return;
         await animations[index]();
       }
+      animationFinished();
     };
     executeAnimations(animations, currentAnimationID, animationIdRef);
   }, [
@@ -204,7 +222,9 @@ const MapLeo3 = memo(() => {
       {mapContext.current.floor !== "floor3" && (
         <button
           className={[styles.floorNavigationButton, styles.up].join(" ")}
-          onMouseDown={handleFloorUp}
+          onMouseDown={() => {
+            handleFloorUp();
+          }}
         >
           <ArrowUp />
         </button>
@@ -212,7 +232,9 @@ const MapLeo3 = memo(() => {
       {mapContext.current.floor !== "floor0" && (
         <button
           className={[styles.floorNavigationButton, styles.down].join(" ")}
-          onMouseDown={handleFloorDown}
+          onMouseDown={() => {
+            handleFloorDown();
+          }}
         >
           <ArrowDown />
         </button>

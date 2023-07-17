@@ -14,6 +14,20 @@ const MapLeonardoCampus = memo(() => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
 
+  function animationActive() {
+    if (!mapContext.animationActiveCampus) {
+      return;
+    }
+    mapContext.animationActiveCampus.current = true;
+  }
+
+  function animationFinished() {
+    if (!mapContext.animationActiveCampus) {
+      return;
+    }
+    mapContext.animationActiveCampus.current = false;
+  }
+
   useEffect(() => {
     const campus = mapElements.campus_element?.current;
     if (!campus) return;
@@ -35,9 +49,11 @@ const MapLeonardoCampus = memo(() => {
     }
 
     const executeAnimations = async (animations: (() => Promise<unknown>)[]) => {
+      animationActive();
       for (let index = 0; index < animations.length; index++) {
         await animations[index]();
       }
+      animationFinished();
     };
 
     executeAnimations(animations);
