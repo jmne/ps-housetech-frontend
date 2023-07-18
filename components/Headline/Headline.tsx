@@ -1,6 +1,5 @@
 // IMPORTS - BUILTINS
 import Image from "next/image";
-import { useTranslation } from "next-i18next";
 
 // IMPORTS - COMPONENTS
 import { LanguageSelector } from "./LanguageSelector/LanguageSelector";
@@ -16,8 +15,6 @@ import { Title } from "./Title";
  * @returns headline with WWU and ERCIS logos
  */
 export default function Headline() {
-  const { t } = useTranslation("index");
-
   return (
     <div className={styles.headlineWrapper}>
       <div className={[styles.side, styles.logo].join(" ")}>

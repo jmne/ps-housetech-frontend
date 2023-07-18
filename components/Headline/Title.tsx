@@ -23,7 +23,7 @@ export function Title() {
     const today = new Date();
 
     const itsChristmasTime = today.getMonth() === 11;
-    if (itsChristmasTime) return "&#10052;"; //Snowflakes
+    if (itsChristmasTime) return "&#127876;"; // Christmas tree
 
     const itsStarWarsTime = today.getMonth() === 4 && today.getDay() === 3;
     if (itsStarWarsTime) return undefined; //
@@ -37,6 +37,7 @@ export function Title() {
     // 127878 firework 1
     // 127879 firework 2
     // 	&#10052; snowflakes
+    // &#127876; christmas tree
   }, []);
 
   return (
@@ -61,12 +62,12 @@ function SubHeading({ text_code, emoji }: SubProps) {
   useEffect(() => {
     if (!emoji) return;
     if (span1.current) span1.current.innerHTML = emoji;
-  }, [span1.current]);
+  }, [emoji]);
 
   useEffect(() => {
     if (!emoji) return;
     if (span2.current) span2.current.innerHTML = emoji;
-  }, [span2.current]);
+  }, [emoji]);
 
   if (emoji) {
     return (
