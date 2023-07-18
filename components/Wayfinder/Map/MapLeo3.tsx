@@ -80,15 +80,27 @@ const MapLeo3 = memo(() => {
   const personContext = usePersonSearchContext();
   const [touchStart, setTouchStart] = useState<number | undefined>();
 
-  const handleFloorUp = useCallback(
-    () => floorUp(mapContext, personContext),
-    [mapContext, personContext]
-  );
+  const animationActive = useCallback(() => {
+    if (!mapContext.animationActiveLeo3) {
+      return;
+    }
+    mapContext.animationActiveLeo3.current = true;
+  },[mapContext])
 
-  const handleFloorDown = useCallback(
-    () => floorDown(mapContext, personContext),
-    [mapContext, personContext]
-  );
+  const animationFinished = useCallback(() => {
+    if (!mapContext.animationActiveLeo3) {
+      return;
+    }
+    mapContext.animationActiveLeo3.current = false;
+  },[mapContext])
+
+  const handleFloorUp = useCallback(() => {
+    floorUp(mapContext, personContext);
+  }, [mapContext, personContext]);
+
+  const handleFloorDown = useCallback(() => {
+    floorDown(mapContext, personContext);
+  }, [mapContext, personContext]);
 
   const handleMouseDown = useCallback(
     (e: any) => setTouchStart(e.pageY),
@@ -96,7 +108,9 @@ const MapLeo3 = memo(() => {
   );
 
   const handleMouseUp = useCallback(
-    (e: any) => handleTouchEnd(touchStart, e.pageY, mapContext, personContext),
+    (e: any) => {
+      handleTouchEnd(touchStart, e.pageY, mapContext, personContext);
+    },
     [touchStart, mapContext, personContext]
   );
 
@@ -177,10 +191,12 @@ const MapLeo3 = memo(() => {
       animID: number,
       mapAnimationIDRef: MutableRefObject<number>
     ) => {
+      animationActive();
       for (let index = 0; index < animations.length; index++) {
         if (animID !== mapAnimationIDRef.current) return;
         await animations[index]();
       }
+      animationFinished();
     };
     executeAnimations(animations, currentAnimationID, animationIdRef);
   }, [
@@ -191,7 +207,9 @@ const MapLeo3 = memo(() => {
     mapElements.leo3_building_on_campus,
     mapElements.leo3_building,
     mapElements.mapContainer,
-    mapElements.campus_element
+    mapElements.campus_element,
+    animationActive,
+    animationFinished
   ]);
 
   return (
@@ -204,7 +222,9 @@ const MapLeo3 = memo(() => {
       {mapContext.current.floor !== "floor3" && (
         <button
           className={[styles.floorNavigationButton, styles.up].join(" ")}
-          onMouseDown={handleFloorUp}
+          onMouseDown={() => {
+            handleFloorUp();
+          }}
         >
           <ArrowUp />
         </button>
@@ -212,7 +232,9 @@ const MapLeo3 = memo(() => {
       {mapContext.current.floor !== "floor0" && (
         <button
           className={[styles.floorNavigationButton, styles.down].join(" ")}
-          onMouseDown={handleFloorDown}
+          onMouseDown={() => {
+            handleFloorDown();
+          }}
         >
           <ArrowDown />
         </button>

@@ -1,5 +1,5 @@
 import styles from "./Map.module.scss";
-import { memo, useEffect } from "react";
+import { memo, useCallback, useEffect } from "react";
 import LeonardoCampus from "assets/images/map/campus_transformed/leonardocampus";
 import { useMapContext } from "context/MapContext";
 import {
@@ -13,6 +13,20 @@ import { useMapElements } from "context/MapElements";
 const MapLeonardoCampus = memo(() => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
+
+  const animationActive = useCallback(() =>{
+    if (!mapContext.animationActiveCampus) {
+      return;
+    }
+    mapContext.animationActiveCampus.current = true;
+  },[mapContext])
+
+  const animationFinished = useCallback(() =>{
+    if (!mapContext.animationActiveCampus) {
+      return;
+    }
+    mapContext.animationActiveCampus.current = false;
+  },[mapContext])
 
   useEffect(() => {
     const campus = mapElements.campus_element?.current;
@@ -35,13 +49,21 @@ const MapLeonardoCampus = memo(() => {
     }
 
     const executeAnimations = async (animations: (() => Promise<unknown>)[]) => {
+      animationActive();
       for (let index = 0; index < animations.length; index++) {
         await animations[index]();
       }
+      animationFinished();
     };
 
     executeAnimations(animations);
-  }, [mapContext, mapElements.mapContainer, mapElements.campus_element]);
+  }, [
+    mapContext,
+    mapElements.mapContainer,
+    mapElements.campus_element,
+    animationActive,
+    animationFinished
+  ]);
 
   return (
     <div className={styles.mapElement}>
