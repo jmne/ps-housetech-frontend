@@ -24,6 +24,11 @@ import { MapProvider } from "context/MapContext";
 import { MapElementsProvider } from "context/MapElements";
 
 import * as Card from "@/components/Card";
+import { Employee } from "types/Employee";
+
+function shufflePersons(data: Employee[] | undefined) {
+  return data ? [...data].sort(() => 0.5 - Math.random()) : undefined;
+}
 
 export function Wayfinder() {
   // Global state of the selected person in the list
@@ -38,7 +43,13 @@ export function Wayfinder() {
 
   // Get data for the list of Persons
   const { data: persons, isLoading, error } = useEmployees();
+  const [personBaseList, setPersonBaseList] = useState(persons);
   const [filteredPersons, setFilteredPersons] = useState(persons);
+
+  useEffect(() => {
+    setPersonBaseList(shufflePersons(persons));
+  }, [persons]);
+
   // Setup fuse for fuzzy search
   const fuse = useMemo(() => {
     if (!persons) return new Fuse([]);
@@ -70,6 +81,7 @@ export function Wayfinder() {
       const actions = [
         selectedPersonContext.setPerson.bind(null, undefined),
         searchInputContext.setActive.bind(null, false),
+        setPersonBaseList.bind(null, shufflePersons(personBaseList)),
         scrollToTop.bind(null),
         searchInputContext.setInput.bind(null, "")
       ];
@@ -88,19 +100,20 @@ export function Wayfinder() {
     searchInputContext.setActive,
     selectedPersonContext.setPerson,
     searchInputContext.setInput,
-    timeoutContext.manager
+    timeoutContext.manager,
+    personBaseList
   ]);
 
   // When input changes, filter the list of shown persons
   useEffect(() => {
     if (searchInputContext.input === "") {
-      setFilteredPersons(persons);
+      setFilteredPersons(personBaseList);
     } else setFilteredPersons(fuse.search(searchInputContext.input).map((e) => e.item));
 
     setTimeout(() => {
       scrollToTop("instant");
     });
-  }, [persons, searchInputContext.input, fuse, scrollToTop]);
+  }, [personBaseList, searchInputContext.input, fuse, scrollToTop]);
 
   // When a person was clicked in the list -> Scroll to the person
   useEffect(() => {
