@@ -88,8 +88,7 @@ const PersonResult = memo(({ person }: props) => {
               <div>
                 <span className={styles.caption}>{person.address}</span>
                 <span className={styles.caption}>, {person.roomNumber}</span>
-              </div>erm
-              
+              </div>
             </>
           )}
           <Dialog.Root open={overlayOpen} onOpenChange={setOverlayOpen}>

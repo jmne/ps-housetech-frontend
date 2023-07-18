@@ -21,11 +21,7 @@ export function PersonOverlay({ person, setOverlayOpen, imageID }: props) {
   }
 
   return (
-    <Dialog.Portal
-      onMouseDown={(e) => {
-        e.preventDefault();
-      }}
-    >
+    <Dialog.Portal>
       <Dialog.Content
         className={[indexStyles.overlayContainer, styles.overlayContainer].join(" ")}
       >
@@ -39,16 +35,21 @@ export function PersonOverlay({ person, setOverlayOpen, imageID }: props) {
           <div className={styles.overlayBody}>
             <div className={styles.imageWrapper}>
               {imageID ? (
-                <img src={`${url}${imageID}`} className={styles.profileImage} />
+                <img
+                  src={`${url}${imageID}`}
+                  className={styles.profileImage}
+                  alt={"Profile Picture"}
+                />
               ) : (
                 <IconAccount className={styles.profileImage} />
               )}
             </div>
-            {false && person.phones.map((phoneNumer, index) => {
-              return <QRContact type="phone" value={phoneNumer} key={phoneNumer} />;
-            })}
+            {false &&
+              person.phones.map((phoneNumer, index) => {
+                return <QRContact type="phone" value={phoneNumer} key={index} />;
+              })}
             {person.emails.map((mailAddress, index) => {
-              return <QRContact type="mail" value={mailAddress} key={mailAddress} />;
+              return <QRContact type="mail" value={mailAddress} key={index} />;
             })}
           </div>
         </Dialog.Description>
