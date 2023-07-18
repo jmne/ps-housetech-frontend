@@ -9,6 +9,7 @@ import { LanguageSelector } from "./LanguageSelector/LanguageSelector";
 import styles from "@/components/Headline/Headline.module.scss";
 import logoWWU from "assets/images/wwu-no-text.svg?url";
 import logoERCIS from "assets/images/ercis.svg?url";
+import { Title } from "./Title";
 
 /**
  *
@@ -28,9 +29,7 @@ export default function Headline() {
         />
         <Image src={logoERCIS} alt="ERCIS Logo" fill={false} className={styles.logo} />
       </div>
-      <div className={styles.title}>
-        <h1>{t("header.title")}</h1>
-      </div>
+      <Title />
       <div className={[styles.side, styles.right].join(" ")}>
         <LanguageSelector />
       </div>
