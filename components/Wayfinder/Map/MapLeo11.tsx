@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react";
+import { memo, useCallback, useEffect } from "react";
 import styles from "./Map.module.scss";
 import { Leo11_Floor0 } from "assets/images/map/floors_transformed";
 import { useMapContext } from "context/MapContext";
@@ -13,6 +13,20 @@ import { useMapElements } from "context/MapElements";
 const MapLeo11 = memo(() => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
+
+  const animationActive = useCallback(() => {
+    if (!mapContext.animationActiveLeo11) {
+      return;
+    }
+    mapContext.animationActiveLeo11.current = true;
+  }, [mapContext]);
+
+  const animationFinished = useCallback(() => {
+    if (!mapContext.animationActiveLeo11) {
+      return;
+    }
+    mapContext.animationActiveLeo11.current = false;
+  }, [mapContext]);
 
   useEffect(() => {
     const element_leo11_on_campus = mapElements.leo11_building_on_campus?.current;
@@ -83,9 +97,11 @@ const MapLeo11 = memo(() => {
     }
 
     const executeAnimations = async (animations: (() => Promise<unknown>)[]) => {
+      animationActive();
       for (let index = 0; index < animations.length; index++) {
         await animations[index]();
       }
+      animationFinished();
     };
 
     executeAnimations(animations);
@@ -95,7 +111,9 @@ const MapLeo11 = memo(() => {
     mapElements.leo11_building_on_campus,
     mapElements.leo11_building,
     mapElements.mapContainer,
-    mapElements.campus_element
+    mapElements.campus_element,
+    animationActive,
+    animationFinished
   ]);
 
   return (

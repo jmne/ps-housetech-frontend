@@ -4,7 +4,9 @@ import { CampusBuilding, buildingNames } from "types/Campus";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 import { useTranslation } from "next-i18next";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
+import { animationAllowed } from "utils/Wayfinder/mapValidations";
+import { useToastContext } from "context/ToastContext";
 
 function handleCampusBuildingHighlight(mapContext: MapData, building: CampusBuilding) {
   if (mapContext.current.room === building) {
@@ -54,7 +56,65 @@ function handleAreaChange(
 export function Controls() {
   const { t } = useTranslation("index");
   const mapContext = useMapContext();
+  const toastContext = useToastContext();
   const selectedPersonContext = usePersonSearchContext();
+
+  const handleAreaChangeLeo3 = useCallback(
+    () =>
+      animationAllowed(mapContext, toastContext) &&
+      handleAreaChange(mapContext, selectedPersonContext, buildingNames.LEO3),
+    [mapContext, selectedPersonContext, toastContext]
+  );
+  const handleAreaChangeLeo11 = useCallback(
+    () =>
+      animationAllowed(mapContext, toastContext) &&
+      handleAreaChange(mapContext, selectedPersonContext, buildingNames.LEO11),
+    [mapContext, selectedPersonContext, toastContext]
+  );
+  const handleAreaChangeCampus = useCallback(
+    () =>
+      animationAllowed(mapContext, toastContext) &&
+      handleAreaChange(mapContext, selectedPersonContext, buildingNames.CAMPUS),
+    [mapContext, selectedPersonContext, toastContext]
+  );
+
+  const handleCampusBuildingHighlightLeo1 = useCallback(
+    () =>
+      animationAllowed(mapContext, toastContext) &&
+      handleCampusBuildingHighlight(mapContext, buildingNames.LEO1),
+    [mapContext, toastContext]
+  );
+  const handleCampusBuildingHighlightLeo3 = useCallback(
+    () =>
+      animationAllowed(mapContext, toastContext) &&
+      handleCampusBuildingHighlight(mapContext, buildingNames.LEO3),
+    [mapContext, toastContext]
+  );
+  const handleCampusBuildingHighlightLeo10 = useCallback(
+    () =>
+      animationAllowed(mapContext, toastContext) &&
+      handleCampusBuildingHighlight(mapContext, buildingNames.LEO10),
+    [mapContext, toastContext]
+  );
+  const handleCampusBuildingHighlightLeo11 = useCallback(
+    () =>
+      animationAllowed(mapContext, toastContext) &&
+      handleCampusBuildingHighlight(mapContext, buildingNames.LEO11),
+    [mapContext, toastContext]
+  );
+  const handleCampusBuildingHighlightLeo18 = useCallback(
+    () =>
+      animationAllowed(mapContext, toastContext) &&
+      handleCampusBuildingHighlight(mapContext, buildingNames.LEO18),
+    [mapContext, toastContext]
+  );
+
+  const handleCampusBuildingHighlightLeo10ForAll = useCallback(
+    () =>
+      animationAllowed(mapContext, toastContext) &&
+      handleCampusBuildingHighlight(mapContext, buildingNames.LEO10),
+    [mapContext, toastContext]
+  );
 
   const buttons = useMemo(() => {
     return (
@@ -62,109 +122,49 @@ export function Controls() {
         <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
           <h3>{t("wayfinder.controls.visit")}</h3>
           {mapContext.current.area !== buildingNames.LEO3 && (
-            <button
-              onClick={() =>
-                handleAreaChange(mapContext, selectedPersonContext, buildingNames.LEO3)
-              }
-            >
-              LC 3
-            </button>
+            <button onClick={handleAreaChangeLeo3}>LC 3</button>
           )}
           {mapContext.current.area !== buildingNames.LEO11 && (
-            <button
-              onClick={() =>
-                handleAreaChange(mapContext, selectedPersonContext, buildingNames.LEO11)
-              }
-            >
-              LC 11
-            </button>
+            <button onClick={handleAreaChangeLeo11}>LC 11</button>
           )}
           {mapContext.current.area !== buildingNames.CAMPUS && (
-            <button
-              onClick={() =>
-                handleAreaChange(mapContext, selectedPersonContext, buildingNames.CAMPUS)
-              }
-            >
-              Campus
-            </button>
+            <button onClick={handleAreaChangeCampus}>Campus</button>
           )}
         </div>
         {mapContext.current.area === buildingNames.CAMPUS && (
           <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
             <h3>{t("wayfinder.controls.highlight_building")}</h3>
-            <button
-              onClick={() =>
-                handleCampusBuildingHighlight(mapContext, buildingNames.LEO1)
-              }
-            >
-              1
-            </button>
-            <button
-              onClick={() =>
-                handleCampusBuildingHighlight(mapContext, buildingNames.LEO3)
-              }
-            >
-              3
-            </button>
-            <button
-              onClick={() =>
-                handleCampusBuildingHighlight(mapContext, buildingNames.LEO10)
-              }
-            >
-              10
-            </button>
-            <button
-              onClick={() =>
-                handleCampusBuildingHighlight(mapContext, buildingNames.LEO11)
-              }
-            >
-              11
-            </button>
-            <button
-              onClick={() =>
-                handleCampusBuildingHighlight(mapContext, buildingNames.LEO18)
-              }
-            >
-              18
-            </button>
+            <button onClick={handleCampusBuildingHighlightLeo1}>1</button>
+            <button onClick={handleCampusBuildingHighlightLeo3}>3</button>
+            <button onClick={handleCampusBuildingHighlightLeo10}>10</button>
+            <button onClick={handleCampusBuildingHighlightLeo11}>11</button>
+            <button onClick={handleCampusBuildingHighlightLeo18}>18</button>
           </div>
         )}
         {mapContext.current.area === buildingNames.CAMPUS && (
           <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
             <h3>{t("wayfinder.controls.highlight_lecture_hall_building")}</h3>
-            <button
-              onClick={() =>
-                handleCampusBuildingHighlight(mapContext, buildingNames.LEO10)
-              }
-            >
-              Leo 1
-            </button>
-            <button
-              onClick={() =>
-                handleCampusBuildingHighlight(mapContext, buildingNames.LEO10)
-              }
-            >
-              Leo 2
-            </button>
-            <button
-              onClick={() =>
-                handleCampusBuildingHighlight(mapContext, buildingNames.LEO10)
-              }
-            >
-              Leo 3
-            </button>
-            <button
-              onClick={() =>
-                handleCampusBuildingHighlight(mapContext, buildingNames.LEO18)
-              }
-            >
-              Leo 18.3
-            </button>
+            <button onClick={handleCampusBuildingHighlightLeo10ForAll}>Leo 1</button>
+            <button onClick={handleCampusBuildingHighlightLeo10ForAll}>Leo 2</button>
+            <button onClick={handleCampusBuildingHighlightLeo10ForAll}>Leo 3</button>
+            <button onClick={handleCampusBuildingHighlightLeo10ForAll}>Leo 18.3</button>
           </div>
         )}
       </div>
     );
-  }, [mapContext.current.area, mapContext, selectedPersonContext, t]);
+  }, [
+    mapContext,
+    t,
+    handleAreaChangeLeo3,
+    handleAreaChangeLeo11,
+    handleAreaChangeCampus,
+    handleCampusBuildingHighlightLeo1,
+    handleCampusBuildingHighlightLeo3,
+    handleCampusBuildingHighlightLeo10,
+    handleCampusBuildingHighlightLeo11,
+    handleCampusBuildingHighlightLeo18,
+    handleCampusBuildingHighlightLeo10ForAll
+  ]);
 
   return buttons;
 }
