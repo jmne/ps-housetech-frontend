@@ -7,13 +7,7 @@ import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
 
 function handleCampusBuildingHighlight(mapContext: MapData, building: CampusBuilding) {
-  if (mapContext.current.room === building) {
-    mapContext.setCurrent({
-      area: buildingNames.CAMPUS,
-      floor: undefined,
-      room: undefined
-    });
-  } else {
+  if (mapContext.current.room !== building) {
     mapContext.setCurrent({
       area: buildingNames.CAMPUS,
       floor: undefined,
