@@ -1,5 +1,5 @@
 import {
-  RefObject,
+  MutableRefObject,
   createContext,
   useCallback,
   useContext,
@@ -13,12 +13,18 @@ export interface MapData {
   previous: MapState;
   current: MapState;
   setCurrent: Function;
+  animationActiveCampus: MutableRefObject<boolean> | undefined;
+  animationActiveLeo3: MutableRefObject<boolean> | undefined;
+  animationActiveLeo11: MutableRefObject<boolean> | undefined;
 }
 
 const Map_data = createContext<MapData>({
   previous: MAP_BASE_STATE,
   current: MAP_BASE_STATE,
-  setCurrent: Function
+  setCurrent: Function,
+  animationActiveCampus: undefined,
+  animationActiveLeo3: undefined,
+  animationActiveLeo11: undefined
 });
 
 interface props {
@@ -45,11 +51,17 @@ function usePrevious(init_state: any) {
 
 export function MapProvider({ children }: props) {
   const [previousData, currentData, updateCurrent] = usePrevious(MAP_BASE_STATE);
+  const animationActiveCampus = useRef(false);
+  const animationActiveLeo3 = useRef(false);
+  const animationActiveLeo11 = useRef(false);
 
   let init_state: MapData = {
     previous: previousData,
     current: currentData,
-    setCurrent: updateCurrent
+    setCurrent: updateCurrent,
+    animationActiveCampus: animationActiveCampus,
+    animationActiveLeo3: animationActiveLeo3,
+    animationActiveLeo11: animationActiveLeo11
   };
 
   return <Map_data.Provider value={init_state}>{children}</Map_data.Provider>;

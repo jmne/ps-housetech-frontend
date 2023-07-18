@@ -1,3 +1,5 @@
+import { MapData } from "context/MapContext";
+import { ToastContextData } from "context/ToastContext";
 import { TFunction } from "next-i18next";
 import {
   BuildingFloor,
@@ -161,4 +163,33 @@ export function getPersonForRoom(
 
   if (personsInFilter.length > 0) return personsInFilter;
   else return undefined;
+}
+
+export function animationAllowed(mapContext: MapData, toastContext: ToastContextData) {
+  if (
+    !mapContext.animationActiveCampus ||
+    !mapContext.animationActiveLeo11 ||
+    !mapContext.animationActiveLeo3
+  ) {
+    toastContext.push({
+      title: "Wait a second",
+      caption: "Wait for animations to finish and try again!",
+      type: "error"
+    });
+    return false;
+  }
+
+  if (
+    mapContext.animationActiveCampus.current ||
+    mapContext.animationActiveLeo11.current ||
+    mapContext.animationActiveLeo3.current
+  ) {
+    toastContext.push({
+      title: "Wait a second",
+      caption: "Wait for animations to finish and try again!",
+      type: "error"
+    });
+    return false;
+  }
+  return true;
 }

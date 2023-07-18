@@ -8,6 +8,8 @@ import "../assets/scss/global.scss";
 import { Inter } from "next/font/google";
 import { SearchInputProvider } from "context/SearchInputContext";
 import { TimeoutProvider } from "context/TimeoutContext";
+import { ToastProvider } from "@/components/Toast/ToastProvider";
+import { ToastContextProvider } from "context/ToastContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,13 +17,19 @@ const inter = Inter({
 });
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <TimeoutProvider>
-      <SearchInputProvider>
-        <main className={inter.className} id="app-wrapper">
-          <Component {...pageProps} />
-        </main>
-      </SearchInputProvider>
-  </TimeoutProvider>
+  <>
+    <ToastContextProvider>
+      <ToastProvider>
+        <TimeoutProvider>
+          <SearchInputProvider>
+            <main className={inter.className} id="app-wrapper">
+              <Component {...pageProps} />
+            </main>
+          </SearchInputProvider>
+        </TimeoutProvider>
+      </ToastProvider>
+    </ToastContextProvider>
+  </>
 );
 
 export default appWithTranslation(MyApp);

@@ -2,7 +2,7 @@ import { Employee } from "types/Employee";
 import { useMapContext } from "context/MapContext";
 import { usePersonSearchContext } from "context/PersonContext";
 import styles from "@/components/Wayfinder/Wayfinder.module.scss";
-import { Fragment, useEffect, useRef, useState, memo } from "react";
+import { Fragment, useEffect, useRef, useState, memo, useCallback } from "react";
 import { handleClickOnPerson } from "utils/Wayfinder/personCardsTransformations";
 import Image from "next/image";
 import IconAccount from "assets/images/icon_account.svg";
@@ -11,6 +11,8 @@ import IconMinus from "assets/images/icon_minus.svg";
 import IconCall from "assets/images/icon_call.svg";
 import IconMail from "assets/images/icon_mail.svg";
 import IconLocation from "assets/images/icon_location.svg";
+import { animationAllowed } from "utils/Wayfinder/mapValidations";
+import { useToastContext } from "context/ToastContext";
 
 interface props {
   person: Employee;
@@ -22,7 +24,13 @@ const url = "https://ps-housetech.uni-muenster.de:444/api/picture/";
 const PersonResult = memo(({ person }: props) => {
   const mapContext = useMapContext();
   const selectedPersonContext = usePersonSearchContext();
+  const toastContext = useToastContext();
   const [imageID, setImageID] = useState(person.image);
+
+  const handleClick = useCallback(() => {
+    animationAllowed(mapContext, toastContext) &&
+      handleClickOnPerson(person, mapContext, selectedPersonContext);
+  }, [mapContext, person, selectedPersonContext, toastContext]);
 
   const personRef = useRef<HTMLLIElement>(null);
   useEffect(() => {
@@ -30,11 +38,7 @@ const PersonResult = memo(({ person }: props) => {
   }, [person, personRef]);
 
   return (
-    <li
-      className={SEARCH_RESULT_COLLAPSED}
-      onClick={() => handleClickOnPerson(person, mapContext, selectedPersonContext)}
-      ref={personRef}
-    >
+    <li className={SEARCH_RESULT_COLLAPSED} onClick={handleClick} ref={personRef}>
       <div className={styles.header}>
         <div className={styles.imageWrapper}>
           {imageID ? (
