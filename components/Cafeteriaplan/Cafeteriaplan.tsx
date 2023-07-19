@@ -3,8 +3,8 @@
 // IMPORTS - BUILTINS
 import useCafeteriaplan, { Cafeteria } from "hooks/useCafeteriaplan";
 import { useEffect, useState, useMemo } from "react";
-import { Navigation, Virtual } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import Swiper, { Navigation, Virtual } from "swiper";
+import { Swiper as SwiperElement, SwiperSlide } from "swiper/react";
 
 // IMPORTS - ASSETS
 import { useTranslation } from "next-i18next";
@@ -53,7 +53,7 @@ export default function Cafeteriaplan() {
 
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [currentIndex, setCurrentIndex] = useState<number>();
-  const [swiperInstance, setSwiperInstance] = useState<typeof Swiper>();
+  const [swiperInstance, setSwiperInstance] = useState<Swiper>();
 
   const index_of_today = useMemo(() => {
     if (typeof data !== "undefined") {
@@ -76,7 +76,13 @@ export default function Cafeteriaplan() {
   useEffect(() => {
     if (!data) return;
     setCurrentIndex(index_of_today);
-  }, [data, index_of_today]);
+
+    try {
+      if (swiperInstance) swiperInstance.slideTo(index_of_today);
+    } catch {
+      console.log("Catched swiper exception");
+    }
+  }, [data, index_of_today, swiperInstance]);
 
   useEffect(() => {
     function resetLayout() {
@@ -93,8 +99,11 @@ export default function Cafeteriaplan() {
         if (next_index !== -1) target_index = next_index;
       }
 
-      //@ts-ignore
-      if (swiperInstance) swiperInstance.slideTo(target_index);
+      try {
+        if (swiperInstance) swiperInstance.slideTo(target_index);
+      } catch {
+        console.log("Catched swiper exception");
+      }
     }
 
     const handler = new IdleHandler({
@@ -136,7 +145,7 @@ export default function Cafeteriaplan() {
           </Fallback>
         )}
         {data && (
-          <Swiper
+          <SwiperElement
             modules={[Virtual, Navigation]}
             navigation={true}
             className={cafeteriaStyles.swiperContainer}
@@ -160,7 +169,7 @@ export default function Cafeteriaplan() {
                 </SwiperSlide>
               );
             })}
-          </Swiper>
+          </SwiperElement>
         )}
       </Card.Content>
     </Card.Container>
