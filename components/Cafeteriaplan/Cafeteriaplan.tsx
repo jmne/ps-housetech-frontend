@@ -82,7 +82,7 @@ export default function Cafeteriaplan() {
     } catch {
       console.log("Catched swiper exception");
     }
-  }, [data, index_of_today]);
+  }, [data, index_of_today, swiperInstance]);
 
   useEffect(() => {
     function resetLayout() {
