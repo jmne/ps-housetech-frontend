@@ -26,9 +26,9 @@
   }
 
   .iconBus {
-    object-fit: contain;
-    width: g.$text-large;
-    height: g.$text-large;
+    margin-inline-start: g.$margin-sm;
+    width: fit-content;
+    height: 100%;
   }
 
   // Styling for the hidden easteregg
@@ -113,7 +113,7 @@
   grid-row: span 1;
 
   color: g.$text-secondary;
-  
+
 }
 
 .inward {

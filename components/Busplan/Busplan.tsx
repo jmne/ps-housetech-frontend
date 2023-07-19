@@ -4,13 +4,14 @@ import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 
 // IMPORTS - COMPONENTS
-import Bus from "@/components/Busplan/Bus";
+import Bus from "@/components/Busplan/BusCard";
 import * as Card from "@/components/Card";
 
 // IMPORTS - ASSETS
 import busplanStyles from "@/components/Busplan/Busplan.module.scss";
-import busStyles from "@/components/Busplan/Bus.module.scss";
+import busStyles from "@/components/Busplan/BusCard/Bus.module.scss";
 import { Busride } from "types/Busride";
+import BusStationMap from "./StationMapOverlay";
 
 /**
  *
@@ -56,6 +57,10 @@ export default function Busplan() {
     <Card.Container placement="smallBottom">
       <Card.Headline>
         <Card.Title>{t("busplan.title")}</Card.Title>
+        <Card.Middle className={busplanStyles.subTitle}>Technologiepark</Card.Middle>
+        <Card.End>
+          <BusStationMap />
+        </Card.End>
       </Card.Headline>
       <Card.Content as="ol" className={busplanStyles.busplan}>
         {isLoading && !error && (
