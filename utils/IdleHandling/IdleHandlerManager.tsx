@@ -29,12 +29,14 @@ export class IdleHandlerManager {
    * @param listener New ResetListener to register and reset if needed. 'Origin' property used to check if the component is already listened
    */
   addResetListener(listener: IdleHandler) {
-    let already_listening = false;
+    let already_listening = undefined;
     this.IdleHandlers.forEach((handler) => {
       if (handler.origin == listener.origin) already_listening = true;
     });
 
-    if (already_listening) return;
+    if (already_listening) {
+      this.removeResetListener(listener.origin);
+    }
     this.IdleHandlers.push(listener);
   }
 
@@ -85,11 +87,11 @@ export class IdleHandlerManager {
     localStorage.removeItem(STORAGE_KEY);
     clearInterval(this.interval);
 
-    window.addEventListener("mousemove", this.eventHandler);
-    window.addEventListener("scroll", this.eventHandler);
-    window.addEventListener("click", this.eventHandler);
-    window.addEventListener("touchstart", this.eventHandler);
-    window.addEventListener("touchend", this.eventHandler);
+    window.removeEventListener("mousemove", this.eventHandler);
+    window.removeEventListener("scroll", this.eventHandler);
+    window.removeEventListener("click", this.eventHandler);
+    window.removeEventListener("touchstart", this.eventHandler);
+    window.removeEventListener("touchend", this.eventHandler);
   }
 
   startInterval() {

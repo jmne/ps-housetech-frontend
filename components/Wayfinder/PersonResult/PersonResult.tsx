@@ -14,6 +14,9 @@ import IconLocation from "assets/images/icon_location.svg";
 import { animationAllowed } from "utils/Wayfinder/mapValidations";
 import { useToastContext } from "context/ToastContext";
 
+import * as Dialog from "@radix-ui/react-dialog";
+import { PersonOverlay } from "./PersonOverlay";
+
 interface props {
   person: Employee;
 }
@@ -22,6 +25,8 @@ export const SEARCH_RESULT_COLLAPSED = styles.person;
 export const SEARCH_RESULT_EXPANDED = [styles.person, styles.expanded].join(" ");
 const url = "https://ps-housetech.uni-muenster.de:444/api/picture/";
 const PersonResult = memo(({ person }: props) => {
+  const [overlayOpen, setOverlayOpen] = useState(false);
+
   const mapContext = useMapContext();
   const selectedPersonContext = usePersonSearchContext();
   const toastContext = useToastContext();
@@ -38,7 +43,7 @@ const PersonResult = memo(({ person }: props) => {
   }, [person, personRef]);
 
   return (
-    <li className={SEARCH_RESULT_COLLAPSED} onClick={handleClick} ref={personRef}>
+    <li className={SEARCH_RESULT_COLLAPSED} ref={personRef} onClick={handleClick}>
       <div className={styles.header}>
         <div className={styles.imageWrapper}>
           {imageID ? (
@@ -86,6 +91,24 @@ const PersonResult = memo(({ person }: props) => {
               </div>
             </>
           )}
+          <Dialog.Root open={overlayOpen} onOpenChange={setOverlayOpen}>
+            <Dialog.Trigger asChild>
+              <button
+                onMouseDown={(e) => {
+                  setOverlayOpen(true);
+                  e.preventDefault();
+                }}
+                className={styles.overlayTrigger}
+              >
+                View more
+              </button>
+            </Dialog.Trigger>
+            <PersonOverlay
+              person={person}
+              setOverlayOpen={setOverlayOpen}
+              imageID={imageID}
+            />
+          </Dialog.Root>
         </div>
       ) : (
         <div className={styles.hidden}>
