@@ -10,7 +10,7 @@ jest.mock("assets/images/icon_search.svg", () => mockImage);
 jest.mock("assets/images/icon_city.svg", () => mockImage);
 jest.mock("assets/images/icon_forrest.svg", () => mockImage);
 
-import Bus from "@/components/Busplan/Bus";
+import Bus from "@/components/Busplan/BusCard";
 
 const sample_ride: Busride = {
   station: "Leonardo-Campus",

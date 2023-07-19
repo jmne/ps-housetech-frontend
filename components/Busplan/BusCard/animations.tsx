@@ -1,4 +1,4 @@
-import styles from "@/components/Busplan/Bus.module.scss";
+import styles from "@/components/Busplan/BusCard/Bus.module.scss";
 import { RefObject } from "react";
 import { transitionStyle } from "utils/animations";
 
