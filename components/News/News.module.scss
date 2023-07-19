@@ -6,9 +6,55 @@
     grid-template-rows: 1fr;
 }
 
+.headline {
+    z-index: 1;
+}
+
 @media screen and (max-width: 992px) {
     .content {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
     }
+}
+
+.overlayTrigger {
+    transform: translateY(-25%);
+
+    padding: calc(g.$margin-small / 2) g.$margin-small;
+    border: g.$border-base solid g.$main-primary;
+    border-radius: g.$border-radius-small;
+
+    background-color: transparent;
+    color: g.$main-primary;
+
+    display: flex;
+    align-items: center;
+    gap: g.$margin-small;
+
+    .icon {
+        height: g.$icon-small;
+        width: g.$icon-small;
+        fill: g.$main-primary;
+    }
+}
+
+.overlayQRWrapper {
+    display: grid;
+    gap: g.$margin-base;
+    justify-items: center;
+
+    color: g.$text-secondary;
+
+    padding: g.$margin-base;
+    border: g.$border-base solid g.$main-secondary;
+    border-radius: g.$border-radius-base;
+}
+
+.overlayTitle{
+    justify-self: center;
+}
+
+.overlayContent {
+    display: flex;
+    gap: g.$margin-base;
 }

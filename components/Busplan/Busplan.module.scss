@@ -12,21 +12,30 @@
 }
 
 .infoButton {
-  border: none;
-  align-self: center;
+  transform: translateY(-25%);
 
-  height: g.$icon-small;
-  width: g.$icon-small;
+  padding: calc(g.$margin-small / 2) g.$margin-small;
+  border: g.$border-base solid g.$main-primary;
+  border-radius: g.$border-radius-small;
 
-  transform: translateY(- g.$icon-small / 4);
+  background-color: transparent;
+  color: g.$main-primary;
 
-  fill: g.$main-primary;
+  display: flex;
+  align-items: center;
+  gap: g.$margin-small;
+
+  .icon {
+    height: g.$icon-small;
+    width: g.$icon-small;
+    fill: g.$main-primary;
+  }
 }
 
 .busMap {
   height: 50vh;
   max-height: auto;
-  
+
   width: auto;
   max-width: 100%;
   object-fit: contain;

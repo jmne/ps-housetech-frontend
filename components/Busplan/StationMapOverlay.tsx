@@ -7,22 +7,25 @@ import IconClose from "assets/images/icon_close.svg";
 import map from "assets/images/technologiepark.jpg";
 import Image from "next/image";
 import { useState } from "react";
+import { useTranslation } from "next-i18next";
 
 export default function BusStationMap() {
+  const { t } = useTranslation("index");
   const [open, setOpen] = useState(false);
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <IconInfo alt="more info" className={styles.infoButton} />
+        <button className={styles.infoButton}>
+          {t("busplan.map_button")}
+          <IconInfo alt="more info" className={styles.icon} />
+        </button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Content
           className={[indexStyles.overlayContainer, styles.overlayContainer].join(" ")}
         >
-          <Dialog.Title className={styles.overlayTitle}>
-            Technologiepark
-          </Dialog.Title>
+          <Dialog.Title className={styles.overlayTitle}>Technologiepark</Dialog.Title>
           <Dialog.Description asChild>
             <Image src={map} alt="Map of Busstops" className={styles.busMap} />
           </Dialog.Description>

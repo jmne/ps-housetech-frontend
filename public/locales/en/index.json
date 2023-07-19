@@ -41,7 +41,8 @@
         }
     },
     "busplan": {
-        "title": "Bus plan"
+        "title": "Bus plan",
+        "map_button": "View map"
     },
     "cafeteria_plan": {
         "title": "Cafeteria plan",
@@ -56,6 +57,7 @@
     },
     "news": {
         "title": "Events & Updates",
+        "link_overlay_trigger": "Get to Channel",
         "events": {
             "title": "Events"
         }
