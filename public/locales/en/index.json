@@ -12,7 +12,8 @@
         "search": {
             "room": "Room",
             "phone": "Phone",
-            "mail": "Mail"
+            "mail": "Mail",
+            "contact_person": "Contact"
         },
         "map": {
             "campus": "Leonardo Campus",
