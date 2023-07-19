@@ -4,12 +4,12 @@ import Image from "next/image";
 
 // IMPORTS - ASSETS
 import { Busride } from "types/Busride";
-import styles from "@/components/Busplan/Bus.module.scss";
+import styles from "@/components/Busplan/BusCard/Bus.module.scss";
 
 // IMPORTS - ICONS
 import IconInward from "assets/images/icon_city.svg";
 import IconOutward from "assets/images/icon_forrest.svg";
-import icon_bus from "assets/images/bus.png";
+import IconBus from "assets/images/bus_housetech.svg?url";
 import { getColumn, getRow, handleClick } from "./animations";
 
 type Direction = "inward" | "outward";
@@ -68,7 +68,7 @@ export default function Bus({ bus, direction, index }: BusProps) {
         ref={refEasteregg}
       >
         <span>Good ride</span>
-        <Image src={icon_bus} alt={"Bus"} fill={false} className={styles.iconBus} />
+        <Image src={IconBus} alt="Bus" className={styles.iconBus} />
       </div>
 
       {/**
@@ -82,9 +82,9 @@ export default function Bus({ bus, direction, index }: BusProps) {
         <div className={styles.vertical}>
           <div className={styles.lineWrapper}>
             {direction === "inward" ? (
-              <IconInward alt={"Goind into City"} className={styles.icon} />
+              <IconInward alt={"Going into City"} className={styles.icon} />
             ) : (
-              <IconOutward alt={"Goind out of City"} className={styles.icon} />
+              <IconOutward alt={"Going out of City"} className={styles.icon} />
             )}
             <span className={styles.line}>{bus.line}</span>
           </div>
