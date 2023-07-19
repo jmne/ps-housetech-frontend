@@ -41,7 +41,8 @@
         }
     },
     "busplan": {
-        "title": "Busplan"
+        "title": "Busplan",
+        "map_button": "Karte ansehen"
     },
     "cafeteria_plan": {
         "title": "Mensaplan",
@@ -56,6 +57,7 @@
     },
     "news": {
         "title": "Aktuelles",
+        "link_overlay_trigger": "Zum Insta-Kanal",
         "events": {
             "title": "Events"
         }
