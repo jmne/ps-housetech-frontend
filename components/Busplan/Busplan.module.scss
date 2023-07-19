@@ -10,3 +10,46 @@
   padding: g.$margin-base;
   margin: 0;
 }
+
+.infoButton {
+  border: none;
+  align-self: center;
+
+  height: g.$icon-small;
+  width: g.$icon-small;
+
+  transform: translateY(- g.$icon-small / 4);
+
+  fill: g.$main-primary;
+}
+
+.busMap {
+  height: 50vh;
+  width: fit-content;
+
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.overlayContainer {
+  width: auto;
+  height: auto;
+
+  padding: g.$margin-medium;
+
+  display: grid;
+  gap: g.$margin-base;
+}
+
+.overlayTitle {
+  margin: 0;
+  font-size: g.$text-large;
+}
+
+.subTitle {
+  display: flex;
+  align-items: center;
+
+  font-size: g.$text-sm;
+  color: g.$text-secondary;
+}

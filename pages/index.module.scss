@@ -33,7 +33,7 @@
 .overlayContainer {
   z-index: 16;
 
-  position: absolute;
+  position: fixed;
 
   left: 50%;
   top: 50%;
@@ -46,6 +46,8 @@
   border-radius: g.$border-radius-base;
 
   box-shadow: g.$shadow-outer;
+
+  outline: none;
 
   .close {
     z-index: 3;
