@@ -1,6 +1,11 @@
 {
     "header": {
-        "title": "Institut für Wirtschaftsinformatik"
+        "title": "Institut für Wirtschaftsinformatik",
+        "sub_heading": {
+            "christmas": "Fröhliche Feiertage",
+            "new_year": "Frohes neues Jahr",
+            "star_wars": "Möge die Macht mit dir sein"
+        }
     },
     "wayfinder": {
         "title": "Person xy, Fachbereich xy",

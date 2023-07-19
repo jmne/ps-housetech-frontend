@@ -1,6 +1,11 @@
 {
     "header": {
-        "title": "Department of Information Systems"
+        "title": "Department of Information Systems",
+        "sub_heading": {
+            "christmas": "Happy Holidays",
+            "new_year": "Happy new Year",
+            "star_wars": "May the 4th be with you"
+        }
     },
     "wayfinder": {
         "title": "Person xy, Department xy",
