@@ -15,12 +15,13 @@ import {
   minimizeBuilding
 } from "utils/Wayfinder/mapTransformations";
 import { buildingNames } from "types/Campus";
-import { getFloorIndex } from "utils/Wayfinder/mapValidations";
+import { animationAllowed, getFloorIndex } from "utils/Wayfinder/mapValidations";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 import ArrowUp from "assets/images/icon_arrow_up.svg";
 import ArrowDown from "assets/images/icon_arrow_down.svg";
 import { useMapElements } from "context/MapElements";
+import { useToastContext } from "context/ToastContext";
 
 function handleTouchEnd(
   touchStart: number | undefined,
@@ -75,6 +76,7 @@ function floorDown(mapContext: MapData, personContext: PersonData) {
 
 const MapLeo3 = memo(() => {
   const animationIdRef = useRef(0);
+  const toastContext = useToastContext();
   const mapContext = useMapContext();
   const mapElements = useMapElements();
   const personContext = usePersonSearchContext();
@@ -85,21 +87,26 @@ const MapLeo3 = memo(() => {
       return;
     }
     mapContext.animationActiveLeo3.current = true;
-  },[mapContext])
+  }, [mapContext]);
 
   const animationFinished = useCallback(() => {
     if (!mapContext.animationActiveLeo3) {
       return;
     }
     mapContext.animationActiveLeo3.current = false;
-  },[mapContext])
+  }, [mapContext]);
 
   const handleFloorUp = useCallback(() => {
+    if (!animationAllowed(mapContext, toastContext)) return;
+    animationActive();
     floorUp(mapContext, personContext);
+    animationFinished();
   }, [mapContext, personContext]);
 
   const handleFloorDown = useCallback(() => {
+    animationActive();
     floorDown(mapContext, personContext);
+    animationFinished();
   }, [mapContext, personContext]);
 
   const handleMouseDown = useCallback(
@@ -193,7 +200,10 @@ const MapLeo3 = memo(() => {
     ) => {
       animationActive();
       for (let index = 0; index < animations.length; index++) {
-        if (animID !== mapAnimationIDRef.current) return;
+        if (animID !== mapAnimationIDRef.current) {
+          animationFinished()
+          return
+        };
         await animations[index]();
       }
       animationFinished();
