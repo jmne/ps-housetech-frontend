@@ -16,7 +16,6 @@ export function ToastProvider({ children }: PropsWithChildren) {
           type={toastContext.info.type}
         />
       )}
-      )
       <Toast.Viewport className={styles.viewport} />
     </Toast.Provider>
   );
