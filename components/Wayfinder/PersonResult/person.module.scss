@@ -1,21 +1,14 @@
 @use "../../../assets/scss/constants.scss" as g;
 
-.overlayContainer {
-  width: auto;
-  height: auto;
-
-  padding-block: g.$margin-large;
-  padding-inline: g.$margin-large * 2;
-}
-
 .overlayTitle {
   display: flex;
   align-items: baseline;
   gap: g.$margin-base;
 
   margin: 0;
-  margin-block-end: g.$margin-medium;
   padding: 0;
+
+  margin-block-end: g.$margin-base;
 
   h2 {
     margin: 0;
@@ -40,7 +33,7 @@
 
   overflow-y: auto;
 
-  height: 400px;
+  height: fit-content;
 
   .profileImage {
     flex-grow: 0;
@@ -55,7 +48,7 @@
 
     border-radius: g.$border-radius-base;
     object-fit: cover;
-    height: 300px;
+    height: calc(225px + g.$icon-base + g.$margin-sm + 2 * g.$margin-base + 2 * g.$border-base);
     width: 240px;
 
     &:has(svg) {
@@ -81,8 +74,8 @@
 
   gap: g.$margin-sm;
 
-  height: max-content;
-  width: calc(225px + g.$margin-sm + g.$icon-base);
+  height: fit-content;
+  width: auto;
 
   border: g.$border-base solid g.$main-secondary;
   border-radius: g.$border-radius-small;

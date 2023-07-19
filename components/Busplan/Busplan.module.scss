@@ -25,8 +25,9 @@
 
 .busMap {
   height: 50vh;
-  width: fit-content;
-
+  max-height: auto;
+  
+  width: auto;
   max-width: 100%;
   object-fit: contain;
 }
@@ -35,8 +36,6 @@
   width: auto;
   height: auto;
 
-  padding: g.$margin-medium;
-
   display: grid;
   gap: g.$margin-base;
 }
@@ -44,6 +43,8 @@
 .overlayTitle {
   margin: 0;
   font-size: g.$text-large;
+  width: fit-content;
+  height: fit-content;
 }
 
 .subTitle {
