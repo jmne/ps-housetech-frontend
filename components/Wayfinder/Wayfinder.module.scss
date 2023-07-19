@@ -160,6 +160,7 @@ $searchWidth: 350px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 
     &:has(svg) {
       background-color: g.$background;
@@ -251,6 +252,21 @@ $searchWidth: 350px;
       height: auto;
     }
   }
+}
+
+.overlayTrigger {
+  grid-column: 1 / 3;
+
+  margin-block-start: g.$margin-base;
+
+  border: g.$border-base solid g.$main-primary;
+  padding: g.$margin-small g.$margin-base ;
+  border-radius: g.$border-radius-small;
+
+  background-color: transparent;
+  font-size: g.$text-small;
+
+  width: fit-content;
 }
 
 @keyframes grow {
