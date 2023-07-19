@@ -103,13 +103,6 @@ export function Controls() {
     [mapContext, toastContext]
   );
 
-  const handleCampusBuildingHighlightLeo10ForAll = useCallback(
-    () =>
-      animationAllowed(mapContext, toastContext) &&
-      handleCampusBuildingHighlight(mapContext, buildingNames.LEO10),
-    [mapContext, toastContext]
-  );
-
   const buttons = useMemo(() => {
     return (
       <div className={styles.controls}>
@@ -138,10 +131,10 @@ export function Controls() {
         {mapContext.current.area === buildingNames.CAMPUS && (
           <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
             <h3>{t("wayfinder.controls.highlight_lecture_hall_building")}</h3>
-            <button onClick={handleCampusBuildingHighlightLeo10ForAll}>Leo 1</button>
-            <button onClick={handleCampusBuildingHighlightLeo10ForAll}>Leo 2</button>
-            <button onClick={handleCampusBuildingHighlightLeo10ForAll}>Leo 3</button>
-            <button onClick={handleCampusBuildingHighlightLeo10ForAll}>Leo 18.3</button>
+            <button onClick={handleCampusBuildingHighlightLeo10}>Leo 1</button>
+            <button onClick={handleCampusBuildingHighlightLeo10}>Leo 2</button>
+            <button onClick={handleCampusBuildingHighlightLeo10}>Leo 3</button>
+            <button onClick={handleCampusBuildingHighlightLeo18}>Leo 18.3</button>
           </div>
         )}
       </div>
@@ -157,7 +150,6 @@ export function Controls() {
     handleCampusBuildingHighlightLeo10,
     handleCampusBuildingHighlightLeo11,
     handleCampusBuildingHighlightLeo18,
-    handleCampusBuildingHighlightLeo10ForAll
   ]);
 
   return buttons;
