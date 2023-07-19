@@ -12,7 +12,8 @@
         "search": {
             "room": "Raum",
             "phone": "Tel.",
-            "mail": "E-Mail"
+            "mail": "E-Mail",
+            "contact_person": "Kontaktieren"
         },
         "map": {
             "campus": "Leonardo Campus",
