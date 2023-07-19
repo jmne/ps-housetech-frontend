@@ -8,6 +8,9 @@ $topContainerHeight: 15rem;
     grid-template-rows: $topContainerHeight 1fr;
     gap: g.$margin-large;
 
+    width: 62vw;
+    padding: 0;
+
 
     .blocker {
         grid-area: 1 / 1 / 2 / 2;
