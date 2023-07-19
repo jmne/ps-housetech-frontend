@@ -190,7 +190,7 @@ $map_other_building_x_offset: 200%;
         transform $animDuration ease-in-out;
 
       //* {
-        //transition: fill $animDuration ease, stroke $animDuration ease;
+      //transition: fill $animDuration ease, stroke $animDuration ease;
       //}
     }
 
@@ -233,12 +233,10 @@ $map_other_building_x_offset: 200%;
       z-index: 15;
 
       position: absolute;
-      width: 100%;
-      height: 10%;
+      width: auto;
+      height: auto;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      justify-self: center;
 
       border: none;
       background-color: transparent;
@@ -255,7 +253,7 @@ $map_other_building_x_offset: 200%;
         top: 0px;
 
         &:active {
-          transform: translateY(-0.5rem);
+          transform: translateX(-50%) translateY(-0.5rem);
         }
       }
 
@@ -263,7 +261,7 @@ $map_other_building_x_offset: 200%;
         bottom: 0px;
 
         &:active {
-          transform: translateY(0.5rem);
+          transform: translateX(-50%) translateY(0.5rem);
         }
       }
     }
