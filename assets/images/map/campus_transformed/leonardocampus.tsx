@@ -161,14 +161,14 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
           />
         </g>
         <g
-          id="shape368-22"
+          id="campus-davinci"
           transform="matrix(0.998719,0.0505929,-0.0505929,0.998719,521.492,-561.276)"
         >
           <path
             id="path64"
             d="M47.51,1034.07L81.751,1064.41L92.491,1052.28L105.541,1063.82L61.021,1114.04L48.451,1102.88L60.311,1089.48L25.802,1058.92L14.221,1071.98L0,1059.37L42.769,1011.11L56.799,1023.55L47.51,1034.07Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: "#435c8b",
               fillRule: "nonzero",
               stroke: "#15171b",
               strokeWidth: "0.75px"

@@ -1,4 +1,4 @@
-export type CampusBuilding = "leo1" | "leo3" | "leo10" | "leo11" | "leo18" | "campus";
+export type CampusBuilding = "leo1" | "leo3" | "leo10" | "leo11" | "leo18" | "campus" | "davinci";
 export type BuildingFloor = "floor0" | "floor1" | "floor2" | "floor3";
 
 export enum buildingNames {
@@ -7,7 +7,8 @@ export enum buildingNames {
   LEO10 = "leo10",
   LEO11 = "leo11",
   LEO18 = "leo18",
-  CAMPUS = "campus"
+  CAMPUS = "campus",
+  CAFETERIA = "davinci"
 }
 
 export function isCampusBuilding(data: any): data is CampusBuilding {
@@ -18,7 +19,8 @@ export function isCampusBuilding(data: any): data is CampusBuilding {
       buildingNames.LEO10,
       buildingNames.LEO11,
       buildingNames.LEO18,
-      buildingNames.CAMPUS
+      buildingNames.CAMPUS,
+      buildingNames.CAFETERIA
     ].includes(data)
   )
     return true;
