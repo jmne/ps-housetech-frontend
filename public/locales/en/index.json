@@ -60,6 +60,9 @@
         "link_overlay_trigger": "Get to Channel",
         "events": {
             "title": "Events"
+        },
+        "instagram": {
+            "click_for_video": "Click to see the Video"
         }
     },
     "weather": {
