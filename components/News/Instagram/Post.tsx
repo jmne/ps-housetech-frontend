@@ -11,12 +11,14 @@ import IconClock from "assets/images/icon_clock.svg";
 import { InstagramOverlay } from "./Overlay/InstagramOverlay";
 
 import * as Dialog from "@radix-ui/react-dialog";
+import { useTranslation } from "next-i18next";
 
 interface props {
   post: PostType;
 }
 
 export function Post({ post }: props) {
+  const {t} = useTranslation("index");
   const router = useRouter();
 
   const [overlayOpen, setOverlayOpen] = useState(false);
@@ -36,7 +38,7 @@ export function Post({ post }: props) {
                   height={"100%"}
                   playing={false}
                 />
-                <span className={styles.videoHint}>Click to see Video</span>
+                <span className={styles.videoHint}>{t("news.instagram.click_for_video")}</span>
               </>
             ) : (
               <img src={post.media_url} alt={"Post Picture"} />
