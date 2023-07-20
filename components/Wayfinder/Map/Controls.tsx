@@ -102,6 +102,12 @@ export function Controls() {
       handleCampusBuildingHighlight(mapContext, buildingNames.LEO18),
     [mapContext, toastContext]
   );
+  const handleCafeteriaHighlight = useCallback(
+    () =>
+      animationAllowed(mapContext, toastContext) &&
+      handleCampusBuildingHighlight(mapContext, buildingNames.CAFETERIA),
+    [mapContext, toastContext]
+  );
 
   const buttons = useMemo(() => {
     return (
@@ -126,6 +132,9 @@ export function Controls() {
             <button onClick={handleCampusBuildingHighlightLeo10}>10</button>
             <button onClick={handleCampusBuildingHighlightLeo11}>11</button>
             <button onClick={handleCampusBuildingHighlightLeo18}>18</button>
+            <button onClick={handleCafeteriaHighlight}>
+              {t("wayfinder.map.cafeteria")}
+            </button>
           </div>
         )}
         {mapContext.current.area === buildingNames.CAMPUS && (
@@ -149,7 +158,7 @@ export function Controls() {
     handleCampusBuildingHighlightLeo3,
     handleCampusBuildingHighlightLeo10,
     handleCampusBuildingHighlightLeo11,
-    handleCampusBuildingHighlightLeo18,
+    handleCampusBuildingHighlightLeo18
   ]);
 
   return buttons;
