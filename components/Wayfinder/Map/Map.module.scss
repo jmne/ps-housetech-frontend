@@ -105,31 +105,6 @@ $map_other_building_x_offset: 200%;
 
     button {
       min-height: g.$icon-base;
-
-      padding-block: g.$margin-small / 2;
-      padding-inline: g.$margin-small;
-
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-
-      border: g.$border-base solid g.$main-primary;
-      border-radius: g.$border-radius-small;
-      background-color: g.$container-item;
-
-      box-shadow: g.$shadow-outer__light;
-
-      font-size: g.$text-small;
-      font-weight: 400;
-
-      will-change: transform;
-
-      transition: transform 0.1s ease-out;
-
-      &:active {
-        transform: scale(0.97);
-      }
     }
 
     .buttonsForCampus {

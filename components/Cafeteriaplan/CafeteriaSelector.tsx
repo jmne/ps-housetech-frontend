@@ -5,6 +5,8 @@ import { AllCafeterias, Cafeteria } from "hooks/useCafeteriaplan";
 import { useTranslation } from "next-i18next";
 import { PropsWithChildren, forwardRef } from "react";
 
+import { Button } from "@/components/Button";
+
 interface props {
   state: Cafeteria;
   setState: Function;
@@ -18,13 +20,15 @@ export function CafeteriaSelector({ state, setState }: props) {
       //@ts-ignore
       onValueChange={setState}
     >
-      <Select.Trigger className={styles.selectTrigger} aria-label="Cafeteria">
-        <Select.Value aria-label={state}>
-          {t(`cafeteria_plan.cafeteria.${state}`)}
-        </Select.Value>
-        <Select.Icon className={styles.selectIcon}>
-          <ChevronDownIcon />
-        </Select.Icon>
+      <Select.Trigger aria-label="Cafeteria" asChild>
+        <Button>
+          <Select.Value aria-label={state}>
+            {t(`cafeteria_plan.cafeteria.${state}`)}
+          </Select.Value>
+          <Select.Icon className={styles.selectIcon}>
+            <ChevronDownIcon />
+          </Select.Icon>
+        </Button>
       </Select.Trigger>
       <Select.Content className={styles.selectContent}>
         <Select.Viewport className={styles.selectViewport}>
