@@ -1,10 +1,12 @@
-import { Post } from "types/Instagram";
+import { MediaTypes, Post } from "types/Instagram";
 import IconClock from "assets/images/icon_clock.svg";
 import IconClose from "assets/images/icon_close.svg";
 import indexStyles from "@/pages/index.module.scss";
 import styles from "./InstagramOverlay.module.scss";
 import { useRouter } from "next/router";
 import { useState } from "react";
+
+import VideoPlayer from "react-player";
 
 interface props {
   post: Post;
@@ -22,7 +24,18 @@ export function InstagramOverlay({ post, setOverlayOpen }: props) {
   return (
     <article className={[indexStyles.overlayContainer, styles.container].join(" ")}>
       <div className={styles.imageContainer}>
-        <img src={post.media_url} alt="Picture" />
+        {post.media_type === MediaTypes.VIDEO ? (
+            <VideoPlayer
+              url={post.media_url}
+              style={{ width: "fit-content" }}
+              width={"fit-content"}
+              height={"100%"}
+              playing
+              controls
+            />
+        ) : (
+          <img src={post.media_url} alt={"Post Picture"} />
+        )}
       </div>
       <div className={styles.timestamp}>
         <IconClock className={styles.clockIcon} />

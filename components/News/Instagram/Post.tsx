@@ -1,4 +1,6 @@
-import { Post as PostType } from "types/Instagram";
+import VideoPlayer from "react-player";
+
+import { MediaTypes, Post as PostType } from "types/Instagram";
 import styles from "./Instagram.module.scss";
 import indexStyles from "@/pages/index.module.scss";
 
@@ -9,23 +11,38 @@ import IconClock from "assets/images/icon_clock.svg";
 import { InstagramOverlay } from "./Overlay/InstagramOverlay";
 
 import * as Dialog from "@radix-ui/react-dialog";
+import { useTranslation } from "next-i18next";
 
 interface props {
   post: PostType;
 }
 
 export function Post({ post }: props) {
-  const [overlayOpen, setOverlayOpen] = useState(false);
-
-  const [date] = useState(new Date(post.timestamp));
+  const {t} = useTranslation("index");
   const router = useRouter();
+
+  const [overlayOpen, setOverlayOpen] = useState(false);
+  const [date] = useState(new Date(post.timestamp));
 
   return (
     <Dialog.Root open={overlayOpen} onOpenChange={setOverlayOpen}>
       <Dialog.Trigger asChild>
         <div className={styles.postContainer} onClick={() => setOverlayOpen(true)}>
           <div className={styles.imageContainer}>
-            <img src={post.media_url} alt={"Post Picture"} />
+            {post.media_type === MediaTypes.VIDEO ? (
+              <>
+                <VideoPlayer
+                  url={post.media_url}
+                  style={{ width: "fit-content" }}
+                  width={"fit-content"}
+                  height={"100%"}
+                  playing={false}
+                />
+                <span className={styles.videoHint}>{t("news.instagram.click_for_video")}</span>
+              </>
+            ) : (
+              <img src={post.media_url} alt={"Post Picture"} />
+            )}
           </div>
           <div className={styles.timestamp}>
             <IconClock className={styles.clockIcon} />
