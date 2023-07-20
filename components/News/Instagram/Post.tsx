@@ -1,4 +1,6 @@
-import { Post as PostType } from "types/Instagram";
+import VideoPlayer from "react-player";
+
+import { MediaTypes, Post as PostType } from "types/Instagram";
 import styles from "./Instagram.module.scss";
 import indexStyles from "@/pages/index.module.scss";
 
@@ -15,17 +17,30 @@ interface props {
 }
 
 export function Post({ post }: props) {
-  const [overlayOpen, setOverlayOpen] = useState(false);
-
-  const [date] = useState(new Date(post.timestamp));
   const router = useRouter();
+
+  const [overlayOpen, setOverlayOpen] = useState(false);
+  const [date] = useState(new Date(post.timestamp));
 
   return (
     <Dialog.Root open={overlayOpen} onOpenChange={setOverlayOpen}>
       <Dialog.Trigger asChild>
         <div className={styles.postContainer} onClick={() => setOverlayOpen(true)}>
           <div className={styles.imageContainer}>
-            <img src={post.media_url} alt={"Post Picture"} />
+            {post.media_type === MediaTypes.VIDEO ? (
+              <>
+                <VideoPlayer
+                  url={post.media_url}
+                  style={{ width: "fit-content" }}
+                  width={"fit-content"}
+                  height={"100%"}
+                  playing={false}
+                />
+                <span className={styles.videoHint}>Click to see Video</span>
+              </>
+            ) : (
+              <img src={post.media_url} alt={"Post Picture"} />
+            )}
           </div>
           <div className={styles.timestamp}>
             <IconClock className={styles.clockIcon} />
