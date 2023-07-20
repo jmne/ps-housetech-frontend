@@ -18,7 +18,7 @@ export default function BusStationMap() {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <Button className={styles.infoButton} iconSize="s">
+        <Button className={styles.infoButton} iconSize="s" smallPadding>
           {t("busplan.map_button")}
           <IconInfo alt="more info" />
         </Button>

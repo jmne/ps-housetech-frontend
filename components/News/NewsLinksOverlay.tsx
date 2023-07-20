@@ -21,7 +21,7 @@ export function NewsLinksOverlay() {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <Button className={styles.overlayTrigger} iconSize="s">
+        <Button className={styles.overlayTrigger} iconSize="s" smallPadding>
           {t("news.link_overlay_trigger")}
           <IconInfo alt="Info" />
         </Button>

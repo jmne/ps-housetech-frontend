@@ -72,19 +72,6 @@ overflow: hidden;
     width: 90%;
     text-align: center;
     vertical-align: center;
-
-    backdrop-filter: blur(20px);
-    background-color: g.$container;
-    
-    border: g.$border-base solid g.$main-primary;
-    border-radius: g.$border-radius-small;
-    
-    color: g.$main-primary;
-
-    padding: g.$margin-small (
-      2 * g.$margin-small
-    );
-
 }
 }
 
