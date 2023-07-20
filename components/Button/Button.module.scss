@@ -1,0 +1,47 @@
+@use "../../assets/scss/constants.scss" as g;
+
+.base {
+  color: g.$main-primary;
+  font-size: g.$text-small;
+  font-weight: 500;
+
+  padding-block: g.$margin-base / 2;
+  padding-inline: g.$margin-base;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  gap: g.$margin-small;
+
+  border: g.$border-base solid g.$text-secondary;
+  border-radius: 1.5rem;
+  
+  background-color: g.$container;
+  backdrop-filter: blur(20px);
+
+  &:active {
+    background-color: g.$main-primary_tint;
+  }
+
+  svg {
+    color: g.$main-primary;
+    fill: g.$main-primary;
+
+    height: g.$icon-small;
+    width: g.$icon-small;
+  }
+
+  &.iconMedium {
+    svg {
+      height: g.$icon-base;
+      width: g.$icon-base;
+    }
+  }
+
+  &.smallPadding {
+    padding-block: g.$margin-small / 2;
+    padding-inline: g.$margin-base;
+  }
+}
