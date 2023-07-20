@@ -14,19 +14,19 @@ const MapLeonardoCampus = memo(() => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
 
-  const animationActive = useCallback(() =>{
+  const animationActive = useCallback(() => {
     if (!mapContext.animationActiveCampus) {
       return;
     }
     mapContext.animationActiveCampus.current = true;
-  },[mapContext])
+  }, [mapContext]);
 
-  const animationFinished = useCallback(() =>{
+  const animationFinished = useCallback(() => {
     if (!mapContext.animationActiveCampus) {
       return;
     }
     mapContext.animationActiveCampus.current = false;
-  },[mapContext])
+  }, [mapContext]);
 
   useEffect(() => {
     const campus = mapElements.campus_element?.current;
@@ -57,6 +57,10 @@ const MapLeonardoCampus = memo(() => {
     };
 
     executeAnimations(animations);
+
+    return () => {
+      animationFinished();
+    };
   }, [
     mapContext,
     mapElements.mapContainer,

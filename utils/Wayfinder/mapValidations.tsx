@@ -1,3 +1,4 @@
+import { ToastInformation } from "@/components/Toast/Toast";
 import { MapData } from "context/MapContext";
 import { ToastContextData } from "context/ToastContext";
 import { TFunction } from "next-i18next";
@@ -165,17 +166,19 @@ export function getPersonForRoom(
   else return undefined;
 }
 
+const TOAST_ANIMATION_ERROR: ToastInformation = {
+  title: "Wait a second",
+  caption: "Wait for animations to finish and try again!",
+  type: "error"
+};
+
 export function animationAllowed(mapContext: MapData, toastContext: ToastContextData) {
   if (
     !mapContext.animationActiveCampus ||
     !mapContext.animationActiveLeo11 ||
     !mapContext.animationActiveLeo3
   ) {
-    toastContext.push({
-      title: "Wait a second",
-      caption: "Wait for animations to finish and try again!",
-      type: "error"
-    });
+    toastContext.push(TOAST_ANIMATION_ERROR);
     return false;
   }
 
@@ -184,11 +187,7 @@ export function animationAllowed(mapContext: MapData, toastContext: ToastContext
     mapContext.animationActiveLeo11.current ||
     mapContext.animationActiveLeo3.current
   ) {
-    toastContext.push({
-      title: "Wait a second",
-      caption: "Wait for animations to finish and try again!",
-      type: "error"
-    });
+    toastContext.push(TOAST_ANIMATION_ERROR);
     return false;
   }
   return true;

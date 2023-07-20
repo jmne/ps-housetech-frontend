@@ -104,6 +104,7 @@ const MapLeo3 = memo(() => {
   }, [mapContext, personContext]);
 
   const handleFloorDown = useCallback(() => {
+    if (!animationAllowed(mapContext, toastContext)) return;
     animationActive();
     floorDown(mapContext, personContext);
     animationFinished();
@@ -200,10 +201,7 @@ const MapLeo3 = memo(() => {
     ) => {
       animationActive();
       for (let index = 0; index < animations.length; index++) {
-        if (animID !== mapAnimationIDRef.current) {
-          animationFinished()
-          return
-        };
+        if (animID !== mapAnimationIDRef.current) continue;
         await animations[index]();
       }
       animationFinished();
