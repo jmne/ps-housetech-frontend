@@ -2,20 +2,25 @@
 
 .container {
   display: grid;
-  grid-template-columns: auto 50%;
+  grid-template-columns: auto auto;
   grid-template-rows: 1fr auto;
 
-  height: fit-content;
+  height: 80vh;
   width: 62vw;
 
   padding: g.$margin-base;
   gap: g.$margin-small;
+
+  &:has(img) {
+    height: auto;
+  }
 
   .imageContainer {
     grid-area: 1 / 1 / 2 / 2;
 
     display: flex;
     align-items: center;
+    justify-content: center;
 
     min-width: 0;
     width: auto;
@@ -24,6 +29,16 @@
     min-height: 0;
     height: auto;
     max-height: 100%;
+
+    &:has(div) {
+      aspect-ratio: 9 / 16;
+    }
+
+    >* {
+      box-shadow: g.$shadow-outer;
+      border-radius: g.$border-radius-small;
+      overflow: hidden;
+    }
 
     img {
       min-width: 0;
@@ -36,9 +51,6 @@
 
       object-fit: contain;
       box-shadow: g.$shadow-outer;
-
-      overflow: hidden;
-
       border-radius: g.$border-radius-small;
     }
   }
