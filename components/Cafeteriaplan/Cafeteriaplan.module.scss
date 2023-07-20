@@ -87,20 +87,6 @@
   align-items: center;
 }
 
-.selectTrigger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: g.$border-radius-small;
-  border: 1px solid g.$text-primary;
-  padding: (g.$margin-small / 2) g.$margin-base;
-  font-size: g.$text-base;
-  height: fit-content;
-  gap: g.$margin-small;
-  background-color: g.$container-item;
-  color: g.$text-base;
-}
-
 .selectTrigger:hover {
   background-color: g.$background;
 }

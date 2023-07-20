@@ -9,6 +9,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { useTranslation } from "next-i18next";
 
+import { Button } from "@/components/Button";
+
 export default function BusStationMap() {
   const { t } = useTranslation("index");
   const [open, setOpen] = useState(false);
@@ -16,10 +18,10 @@ export default function BusStationMap() {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <button className={styles.infoButton}>
+        <Button className={styles.infoButton} iconSize="s" smallPadding>
           {t("busplan.map_button")}
-          <IconInfo alt="more info" className={styles.icon} />
-        </button>
+          <IconInfo alt="more info" />
+        </Button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Content

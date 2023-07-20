@@ -4,6 +4,7 @@ import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 import { AllCafeterias, Cafeteria } from "hooks/useCafeteriaplan";
 import { useTranslation } from "next-i18next";
 import { PropsWithChildren, forwardRef } from "react";
+import stylesButton from "@/components/Button/Button.module.scss";
 
 interface props {
   state: Cafeteria;
@@ -18,7 +19,7 @@ export function CafeteriaSelector({ state, setState }: props) {
       //@ts-ignore
       onValueChange={setState}
     >
-      <Select.Trigger className={styles.selectTrigger} aria-label="Cafeteria">
+      <Select.Trigger className={[styles.selectTrigger, stylesButton.base, stylesButton.smallPadding].join(" ")} aria-label="Cafeteria">
         <Select.Value aria-label={state}>
           {t(`cafeteria_plan.cafeteria.${state}`)}
         </Select.Value>

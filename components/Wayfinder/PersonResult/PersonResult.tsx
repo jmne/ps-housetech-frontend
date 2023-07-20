@@ -18,6 +18,8 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { PersonOverlay } from "./PersonOverlay";
 import { useTranslation } from "next-i18next";
 
+import {Button} from "@/components/Button"
+
 interface props {
   person: Employee;
 }
@@ -95,15 +97,16 @@ const PersonResult = memo(({ person }: props) => {
           )}
           <Dialog.Root open={overlayOpen} onOpenChange={setOverlayOpen}>
             <Dialog.Trigger asChild>
-              <button
+              <Button
                 onMouseDown={(e) => {
                   setOverlayOpen(true);
                   e.preventDefault();
                 }}
+                
                 className={styles.overlayTrigger}
               >
                 {t("wayfinder.search.contact_person")}
-              </button>
+              </Button>
             </Dialog.Trigger>
             <PersonOverlay
               person={person}
