@@ -5,6 +5,7 @@ import styles from "./News.module.scss";
 import IconInfo from "assets/images/icon_info.svg";
 import QRCode from "react-qr-code";
 import { useTranslation } from "next-i18next";
+import { Button } from "@/components/Button";
 
 const insta_wi_link = "https://www.instagram.com/wirtschaftsinformatik_wwu";
 const insta_wi_tag = "@wirtschaftsinformatik";
@@ -13,16 +14,17 @@ const insta_wwu_link = "https://www.instagram.com/wwu_muenster";
 const insta_wwu_tag = "@wwu_muenster";
 
 export function NewsLinksOverlay() {
-  const {t} = useTranslation("index");
+  const { t } = useTranslation("index");
 
   const [open, setOpen] = useState(false);
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <button className={styles.overlayTrigger}>
-           {t("news.link_overlay_trigger")}<IconInfo className={styles.icon} />
-        </button>
+        <Button className={styles.overlayTrigger} iconSize="s" smallPadding>
+          {t("news.link_overlay_trigger")}
+          <IconInfo alt="Info" />
+        </Button>
       </Dialog.Trigger>
       <Overlay.Container setOverlayOpen={setOpen}>
         <Overlay.Title className={styles.overlayTitle}>Instagram Channel</Overlay.Title>

@@ -7,6 +7,7 @@ import { useTranslation } from "next-i18next";
 import { useCallback, useMemo } from "react";
 import { animationAllowed } from "utils/Wayfinder/mapValidations";
 import { useToastContext } from "context/ToastContext";
+import { Button } from "@/components/Button";
 
 function handleCampusBuildingHighlight(mapContext: MapData, building: CampusBuilding) {
   if (mapContext.current.room !== building) {
@@ -115,35 +116,35 @@ export function Controls() {
         <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
           <h3>{t("wayfinder.controls.visit")}</h3>
           {mapContext.current.area !== buildingNames.LEO3 && (
-            <button onClick={handleAreaChangeLeo3}>LC 3</button>
+            <Button onClick={handleAreaChangeLeo3}>LC 3</Button>
           )}
           {mapContext.current.area !== buildingNames.LEO11 && (
-            <button onClick={handleAreaChangeLeo11}>LC 11</button>
+            <Button onClick={handleAreaChangeLeo11}>LC 11</Button>
           )}
           {mapContext.current.area !== buildingNames.CAMPUS && (
-            <button onClick={handleAreaChangeCampus}>Campus</button>
+            <Button onClick={handleAreaChangeCampus}>Campus</Button>
           )}
         </div>
         {mapContext.current.area === buildingNames.CAMPUS && (
           <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
             <h3>{t("wayfinder.controls.highlight_building")}</h3>
-            <button onClick={handleCampusBuildingHighlightLeo1}>1</button>
-            <button onClick={handleCampusBuildingHighlightLeo3}>3</button>
-            <button onClick={handleCampusBuildingHighlightLeo10}>10</button>
-            <button onClick={handleCampusBuildingHighlightLeo11}>11</button>
-            <button onClick={handleCampusBuildingHighlightLeo18}>18</button>
-            <button onClick={handleCafeteriaHighlight}>
+            <Button onClick={handleCampusBuildingHighlightLeo1}>1</Button>
+            <Button onClick={handleCampusBuildingHighlightLeo3}>3</Button>
+            <Button onClick={handleCampusBuildingHighlightLeo10}>10</Button>
+            <Button onClick={handleCampusBuildingHighlightLeo11}>11</Button>
+            <Button onClick={handleCampusBuildingHighlightLeo18}>18</Button>
+            <Button onClick={handleCafeteriaHighlight}>
               {t("wayfinder.map.cafeteria")}
-            </button>
+            </Button>
           </div>
         )}
         {mapContext.current.area === buildingNames.CAMPUS && (
           <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
             <h3>{t("wayfinder.controls.highlight_lecture_hall_building")}</h3>
-            <button onClick={handleCampusBuildingHighlightLeo10}>Leo 1</button>
-            <button onClick={handleCampusBuildingHighlightLeo10}>Leo 2</button>
-            <button onClick={handleCampusBuildingHighlightLeo10}>Leo 3</button>
-            <button onClick={handleCampusBuildingHighlightLeo18}>Leo 18.3</button>
+            <Button onClick={handleCampusBuildingHighlightLeo10}>Leo 1</Button>
+            <Button onClick={handleCampusBuildingHighlightLeo10}>Leo 2</Button>
+            <Button onClick={handleCampusBuildingHighlightLeo10}>Leo 3</Button>
+            <Button onClick={handleCampusBuildingHighlightLeo18}>Leo 18.3</Button>
           </div>
         )}
       </div>
