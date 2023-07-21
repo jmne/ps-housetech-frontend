@@ -34,21 +34,35 @@ export default function DishCard({ dish }: DishProps) {
     <div className={styles.container}>
       <div className={styles.dishInfo}>
         <span className={styles.name}>{dish.meal}</span>
-        <span className={styles.prices}>
-          {dish.price1.toFixed(2).replace(".", ",")}€ |{" "}
-          {dish.price3.toFixed(2).replace(".", ",")}€
-        </span>
+        <div className={styles.prices}>
+          {(dish.price1 !== null || dish.price3 !== null) && (
+            <>
+              <span>
+                {dish.price1 !== null
+                  ? dish.price1.toFixed(2).replace(".", ",") + "€"
+                  : "n/a"}
+              </span>
+              <span>|</span>
+              <span>
+                {dish.price3 !== null
+                  ? dish.price3.toFixed(2).replace(".", ",") + "€"
+                  : "n/a"}
+              </span>
+            </>
+          )}
+        </div>
       </div>
       <div className={styles.icons}>
-        {dish.foodicons && dish.foodicons.map((icon, iconIndex) => (
-          <Image
-            src={getIcon[icon]}
-            alt={"Foodicon"}
-            fill={false}
-            className={styles.icon}
-            key={iconIndex}
-          />
-        ))}
+        {dish.foodicons &&
+          dish.foodicons.map((icon, iconIndex) => (
+            <Image
+              src={getIcon[icon]}
+              alt={"Foodicon"}
+              fill={false}
+              className={styles.icon}
+              key={iconIndex}
+            />
+          ))}
       </div>
     </div>
   );
