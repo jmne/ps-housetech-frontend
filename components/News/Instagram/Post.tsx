@@ -47,15 +47,18 @@ export function Post({ post }: props) {
               <img src={post.media_url} alt={"Post Picture"} />
             )}
           </div>
-          <div className={styles.timestamp}>
-            <IconClock className={styles.clockIcon} />
-            <span>
-              {date.toLocaleDateString(router.locale == "de" ? "de-de" : "en-gb", {
-                weekday: "long",
-                month: "long",
-                day: "numeric"
-              })}
-            </span>
+          <div className={styles.footer}>
+            <div className={styles.timestamp}>
+              <IconClock className={styles.clockIcon} />
+              <span>
+                {date.toLocaleDateString(router.locale == "de" ? "de-de" : "en-gb", {
+                  weekday: "long",
+                  month: "long",
+                  day: "numeric"
+                })}
+              </span>
+            </div>
+            <Button>{t("news.view_more_hint")}</Button>
           </div>
           <p className={styles.caption}>{post.caption}</p>
         </div>
