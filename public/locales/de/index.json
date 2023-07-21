@@ -59,6 +59,7 @@
     "news": {
         "title": "Aktuelles",
         "link_overlay_trigger": "Zum Insta-Kanal",
+        "view_more_hint": "Klick für mehr",
         "events": {
             "title": "Events"
         },
