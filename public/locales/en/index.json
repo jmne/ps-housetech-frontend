@@ -59,6 +59,7 @@
     "news": {
         "title": "Events & Updates",
         "link_overlay_trigger": "Get to Channel",
+        "view_more_hint": "Click for more Info",
         "events": {
             "title": "Events"
         },

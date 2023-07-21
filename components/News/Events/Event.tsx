@@ -10,12 +10,15 @@ import IconClock from "assets/images/icon_clock.svg";
 import IconLocation from "assets/images/icon_location.svg";
 import IconEvent from "assets/images/event.svg";
 import { EventOverlay } from "./EventOverlay/EventOverlay";
+import { Button } from "@/components/Button";
+import { useTranslation } from "next-i18next";
 
 interface props {
   data: Event;
 }
 
 export function EventCard({ data }: props) {
+  const { t } = useTranslation("index");
   const [overlayOpen, setOverlayOpen] = useState(false);
 
   const date = new Date(data.start_date);
@@ -65,6 +68,7 @@ export function EventCard({ data }: props) {
                 <></>
               )
             }
+            <Button>{t("news.view_more_hint")}</Button>
           </div>
         </div>
       </Dialog.Trigger>
