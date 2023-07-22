@@ -1,11 +1,11 @@
 type Foodicons = "Gfl" | "Sch" | "Rin" | "Fis" | "Vgt" | "Vgn" | "Alk";
 
 export interface Dish {
-  meal: string;
+  meal: string | null;
   foodicons: Foodicons[] | null;
-  price1: number;
-  price3: number;
-  allergens: string;
+  price1: number | null;
+  price3: number | null;
+  allergens: string | null;
 }
 
 export interface Foodplan {
