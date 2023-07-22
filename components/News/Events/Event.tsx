@@ -68,7 +68,7 @@ export function EventCard({ data }: props) {
                 <></>
               )
             }
-            <Button>{t("news.view_more_hint")}</Button>
+            <Button className={styles.button}>{t("news.view_more_hint")}</Button>
           </div>
         </div>
       </Dialog.Trigger>

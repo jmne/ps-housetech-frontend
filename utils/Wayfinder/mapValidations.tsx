@@ -174,26 +174,12 @@ export function animationAllowed(mapContext: MapData, toastContext: ToastContext
     !mapContext.animationActiveCampus ||
     !mapContext.animationActiveLeo11 ||
     !mapContext.animationActiveLeo3
-  ) {
-    toastContext.push({
-      title: "Wait a second",
-      caption: "Wait for animations to finish and try again!",
-      type: "error"
-    });
+  )
     return false;
-  }
 
-  if (
+  return !(
     mapContext.animationActiveCampus.current ||
     mapContext.animationActiveLeo11.current ||
     mapContext.animationActiveLeo3.current
-  ) {
-    toastContext.push({
-      title: "Wait a second",
-      caption: "Wait for animations to finish and try again!",
-      type: "error"
-    });
-    return false;
-  }
-  return true;
+  );
 }

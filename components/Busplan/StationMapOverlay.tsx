@@ -2,7 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import indexStyles from "@/pages/index.module.scss";
 import styles from "./Busplan.module.scss";
 
-import IconInfo from "assets/images/icon_info.svg";
+import IconMap from "assets/images/icon_map.svg";
 import IconClose from "assets/images/icon_close.svg";
 import map from "assets/images/technologiepark.jpg";
 import Image from "next/image";
@@ -20,7 +20,7 @@ export default function BusStationMap() {
       <Dialog.Trigger asChild>
         <Button className={styles.infoButton} iconSize="s" smallPadding>
           {t("busplan.map_button")}
-          <IconInfo alt="more info" />
+          <IconMap alt="more info" />
         </Button>
       </Dialog.Trigger>
       <Dialog.Portal>

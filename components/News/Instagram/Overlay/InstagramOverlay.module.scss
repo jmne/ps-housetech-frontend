@@ -34,8 +34,8 @@
       aspect-ratio: 9 / 16;
     }
 
-    >* {
-      box-shadow: g.$shadow-outer;
+    > * {
+      box-shadow: g.$shadow-outer__light;
       border-radius: g.$border-radius-small;
       overflow: hidden;
     }
@@ -50,7 +50,7 @@
       max-height: 100%;
 
       object-fit: contain;
-      box-shadow: g.$shadow-outer;
+      box-shadow: g.$shadow-outer__light;
       border-radius: g.$border-radius-small;
     }
   }
@@ -65,10 +65,11 @@
     align-items: center;
     gap: g.$margin-small;
 
-    color: g.$text-secondary;
-    fill: g.$text-secondary;
+    color: white;
+    fill: white;
+    background-color: g.$accent1;
 
-    border: g.$border-base solid g.$text-secondary;
+    border: g.$border-base solid g.$accent1;
     border-radius: g.$border-radius-small;
 
     .clockIcon {
@@ -82,17 +83,21 @@
     display: flex;
     width: 100%;
     height: 100%;
+    padding-inline: g.$margin-large;
 
     justify-content: flex-start;
     align-items: flex-start;
 
     overflow-y: auto;
 
+    border-left: solid 1px g.$container-item-no-shadow;
+
     p {
-      padding: 0;
+      padding: 10px;
       margin: 0;
 
       line-height: 1.6;
+      text-align: justify;
     }
   }
 }

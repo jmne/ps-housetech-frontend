@@ -2,16 +2,13 @@ import * as Dialog from "@radix-ui/react-dialog";
 import * as Overlay from "@/components/Overlay";
 import { useState } from "react";
 import styles from "./News.module.scss";
-import IconInfo from "assets/images/icon_info.svg";
+import IconInstagram from "assets/images/icon_insta.svg";
 import QRCode from "react-qr-code";
 import { useTranslation } from "next-i18next";
 import { Button } from "@/components/Button";
 
 const insta_wi_link = "https://www.instagram.com/wirtschaftsinformatik_wwu";
 const insta_wi_tag = "@wirtschaftsinformatik";
-
-const insta_wwu_link = "https://www.instagram.com/wwu_muenster";
-const insta_wwu_tag = "@wwu_muenster";
 
 export function NewsLinksOverlay() {
   const { t } = useTranslation("index");
@@ -23,11 +20,12 @@ export function NewsLinksOverlay() {
       <Dialog.Trigger asChild>
         <Button className={styles.overlayTrigger} iconSize="s" smallPadding>
           {t("news.link_overlay_trigger")}
-          <IconInfo alt="Info" />
+          <IconInstagram alt="Info" />
         </Button>
       </Dialog.Trigger>
       <Overlay.Container setOverlayOpen={setOpen}>
         <Overlay.Title className={styles.overlayTitle}>Instagram Channel</Overlay.Title>
+        <hr className={styles.overlayDivider} />
         <Overlay.Body className={styles.overlayContent}>
           <div className={styles.overlayQRWrapper}>
             <QRCode

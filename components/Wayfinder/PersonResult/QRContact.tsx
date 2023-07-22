@@ -12,7 +12,13 @@ export function QRContact({ type, value }: props) {
   const Icon = type === "phone" ? IconCall : IconMail;
   return (
     <div className={styles.qrContainer}>
-      <QRCode bgColor="#fafafa" fgColor="#15171b" size={225} value={value} className={styles.code} />
+      <QRCode
+        bgColor="#fafafa"
+        fgColor="#15171b"
+        size={225}
+        value={value}
+        className={styles.code}
+      />
       <Icon className={styles.icon} />
       <span className={styles.value}>{value}</span>
     </div>

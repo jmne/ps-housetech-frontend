@@ -6,7 +6,7 @@
   border-radius: g.$border-radius-base;
   display: flex;
   flex-direction: row;
-  box-shadow: g.$shadow-outer;
+  box-shadow: g.$shadow-outer__light;
   justify-content: space-between;
   align-items: center;
 
@@ -24,7 +24,7 @@
     align-items: center;
 
     font-size: g.$text-small;
-    font-weight: 300;
+    font-weight: 400;
     color: g.$text-secondary;
   }
 }

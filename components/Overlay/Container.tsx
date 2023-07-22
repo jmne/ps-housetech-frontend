@@ -2,7 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { PropsWithChildren } from "react";
 
 import styles from "./Overlay.module.scss";
-import IconClose from "assets/images/icon_close.svg";
+import button_styles from "@/components/Button/Button.module.scss";
 
 interface props extends PropsWithChildren {
   className?: string;
@@ -19,8 +19,11 @@ export function Container({ children, className, setOverlayOpen }: props) {
       <Dialog.Content className={[styles.content, className].join(" ")}>
         {children}
         <Dialog.Close asChild>
-          <button className={styles.close} onClick={handleClose}>
-            <IconClose />
+          <button
+            className={[styles.close, button_styles.base].join(" ")}
+            onClick={handleClose}
+          >
+            Okay
           </button>
         </Dialog.Close>
       </Dialog.Content>

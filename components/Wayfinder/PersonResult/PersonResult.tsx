@@ -18,7 +18,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { PersonOverlay } from "./PersonOverlay";
 import { useTranslation } from "next-i18next";
 
-import {Button} from "@/components/Button"
+import { Button } from "@/components/Button";
 
 interface props {
   person: Employee;
@@ -28,7 +28,7 @@ export const SEARCH_RESULT_COLLAPSED = styles.person;
 export const SEARCH_RESULT_EXPANDED = [styles.person, styles.expanded].join(" ");
 const url = "https://ps-housetech.uni-muenster.de:444/api/picture/";
 const PersonResult = memo(({ person }: props) => {
-  const {t} = useTranslation("index")
+  const { t } = useTranslation("index");
   const [overlayOpen, setOverlayOpen] = useState(false);
 
   const mapContext = useMapContext();
@@ -102,7 +102,6 @@ const PersonResult = memo(({ person }: props) => {
                   setOverlayOpen(true);
                   e.preventDefault();
                 }}
-                
                 className={styles.overlayTrigger}
               >
                 {t("wayfinder.search.contact_person")}

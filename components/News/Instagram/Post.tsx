@@ -13,6 +13,7 @@ import { InstagramOverlay } from "./Overlay/InstagramOverlay";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useTranslation } from "next-i18next";
 import { Button } from "@/components/Button";
+import IconPlay from "../../../assets/images/icon_play.svg";
 
 interface props {
   post: PostType;
@@ -39,8 +40,8 @@ export function Post({ post }: props) {
                   height={"100%"}
                   playing={false}
                 />
-                <Button className={styles.videoHint}>
-                  {t("news.instagram.click_for_video")}
+                <Button className={styles.videoHint} iconSize="m" smallPadding>
+                  <IconPlay alt="Play" />
                 </Button>
               </>
             ) : (
@@ -58,7 +59,7 @@ export function Post({ post }: props) {
                 })}
               </span>
             </div>
-            <Button>{t("news.view_more_hint")}</Button>
+            <Button className={styles.showMore}>{t("news.view_more_hint")}</Button>
           </div>
           <p className={styles.caption}>{post.caption}</p>
         </div>

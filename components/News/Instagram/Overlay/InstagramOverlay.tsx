@@ -25,14 +25,14 @@ export function InstagramOverlay({ post, setOverlayOpen }: props) {
     <article className={[indexStyles.overlayContainer, styles.container].join(" ")}>
       <div className={styles.imageContainer}>
         {post.media_type === MediaTypes.VIDEO ? (
-            <VideoPlayer
-              url={post.media_url}
-              style={{ width: "fit-content" }}
-              width={"fit-content"}
-              height={"100%"}
-              playing
-              controls
-            />
+          <VideoPlayer
+            url={post.media_url}
+            style={{ width: "fit-content" }}
+            width={"fit-content"}
+            height={"100%"}
+            playing
+            controls
+          />
         ) : (
           <img src={post.media_url} alt={"Post Picture"} />
         )}

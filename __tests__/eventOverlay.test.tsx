@@ -3,10 +3,10 @@ import { EventOverlay } from "@/components/News/Events/EventOverlay/EventOverlay
 import { render, screen } from "@testing-library/react";
 
 describe("Event-Overlay", () => {
-    test("Renders without crashing", () => {
-        render(<EventOverlay event={sampleEvent}/>)
-    })
-})
+  test("Renders without crashing", () => {
+    render(<EventOverlay event={sampleEvent} />);
+  });
+});
 
 const sampleEvent: Event = {
   id: "4587",
