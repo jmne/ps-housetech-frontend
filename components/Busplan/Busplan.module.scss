@@ -23,6 +23,20 @@
   }
 }
 
+.close {
+  width: 100%;
+  height: 2rem;
+  background-color: #86bb00 !important;
+  border-color: #86bb00 !important;
+  color: white !important;
+}
+
+.overlayDivider {
+  width: 100%;
+  height: 1px;
+  background-color: g.$text-secondary;
+}
+
 .busMap {
   height: 50vh;
   max-height: auto;
@@ -34,7 +48,7 @@
 
 .overlayContainer {
   width: auto;
-  height: auto;
+  height: fit-content;
 
   display: grid;
   gap: g.$margin-base;

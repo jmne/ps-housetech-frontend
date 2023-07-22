@@ -19,8 +19,10 @@ export function QRContact({ type, value }: props) {
         value={value}
         className={styles.code}
       />
-      <Icon className={styles.icon} />
-      <span className={styles.value}>{value}</span>
+      <div className={styles.qrContainerDescription}>
+        <Icon className={styles.icon} />
+        <span className={styles.value}>{value}</span>
+      </div>
     </div>
   );
 }

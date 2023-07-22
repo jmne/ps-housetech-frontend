@@ -1,9 +1,9 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import indexStyles from "@/pages/index.module.scss";
 import styles from "./Busplan.module.scss";
+import button_styles from "@/components/Button/Button.module.scss";
 
 import IconMap from "assets/images/icon_map.svg";
-import IconClose from "assets/images/icon_close.svg";
 import map from "assets/images/technologiepark.jpg";
 import Image from "next/image";
 import { useState } from "react";
@@ -28,11 +28,12 @@ export default function BusStationMap() {
           className={[indexStyles.overlayContainer, styles.overlayContainer].join(" ")}
         >
           <Dialog.Title className={styles.overlayTitle}>Technologiepark</Dialog.Title>
+          <hr className={styles.overlayDivider} />
           <Dialog.Description asChild>
             <Image src={map} alt="Map of Busstops" className={styles.busMap} />
           </Dialog.Description>
           <Dialog.Close onClick={() => setOpen(false)} asChild>
-            <IconClose className={indexStyles.close} />
+            <button className={[styles.close, button_styles.base].join(" ")}>Okay</button>
           </Dialog.Close>
         </Dialog.Content>
         <Dialog.Overlay className={indexStyles.overlayBackground} />

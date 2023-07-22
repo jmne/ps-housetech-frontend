@@ -2,11 +2,11 @@ import { Event } from "types/Events";
 
 import styles from "./EventOverlay.module.scss";
 import indexStyles from "@/pages/index.module.scss";
+import button_styles from "@/components/Button/Button.module.scss";
 
 import IconClock from "assets/images/icon_clock.svg";
 import IconLocation from "assets/images/icon_location.svg";
 import IconEvent from "assets/images/event.svg";
-import IconClose from "assets/images/icon_close.svg";
 import { useEffect, useRef } from "react";
 
 interface props {
@@ -80,9 +80,14 @@ export function EventOverlay({ event, setOverlayOpen }: props) {
       <div className={styles.description}>
         <p ref={descriptionRef}></p>
       </div>
-      <button className={indexStyles.close} onClick={handleClose}>
-        <IconClose />
-      </button>
+      <div className={styles.closeDiv}>
+        <button
+          className={[styles.close, button_styles.base].join(" ")}
+          onClick={handleClose}
+        >
+          Okay
+        </button>
+      </div>
     </article>
   );
 }

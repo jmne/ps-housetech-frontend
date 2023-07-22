@@ -59,25 +59,22 @@
     position: absolute;
     border: none;
     border-radius: g.$border-radius-small;
-    background: g.$container-item;
-
-    box-shadow: g.$shadow-outer__light;
+    background-color: transparent;
 
     overflow: hidden;
 
     fill: g.$text-primary;
 
-    top: 0;
-    right: 0;
-    transform: translateX(calc(100% + g.$margin-base));
+    top: 0.2rem;
+    right: 0.2rem;
 
     cursor: pointer;
 
     svg {
       z-index: 2;
 
-      width: g.$icon-xm;
-      height: g.$icon-xm;
+      width: g.$icon-large;
+      height: g.$icon-large;
     }
   }
 }

@@ -1,11 +1,11 @@
 import { Employee } from "types/Employee";
 import * as Dialog from "@radix-ui/react-dialog";
-import IconClose from "assets/images/icon_close.svg";
 import IconAccount from "assets/images/icon_account.svg";
 
 import indexStyles from "@/pages/index.module.scss";
 import styles from "@/components/Wayfinder/PersonResult/person.module.scss";
 import { QRContact } from "./QRContact";
+import button_styles from "@/components/Button/Button.module.scss";
 
 const url = "https://ps-housetech.uni-muenster.de:444/api/picture/";
 
@@ -29,8 +29,9 @@ export function PersonOverlay({ person, setOverlayOpen, imageID }: props) {
           <h2>
             {person.cfFirstNames} {person.cfFamilyNames}
           </h2>
-          {person.academicTitle && <span>{person.academicTitle}</span>}
+          {person.academicTitle && <span>| {person.academicTitle}</span>}
         </Dialog.Title>
+        <hr className={styles.overlayDivider} />
         <Dialog.Description asChild>
           <div className={styles.overlayBody}>
             <div className={styles.imageWrapper}>
@@ -44,18 +45,20 @@ export function PersonOverlay({ person, setOverlayOpen, imageID }: props) {
                 <IconAccount className={styles.profileImage} />
               )}
             </div>
-            {false &&
-              person.phones.map((phoneNumer, index) => {
-                return <QRContact type="phone" value={phoneNumer} key={index} />;
-              })}
+            {person.phones.map((phoneNumer, index) => {
+              return <QRContact type="phone" value={phoneNumer} key={index} />;
+            })}
             {person.emails.map((mailAddress, index) => {
               return <QRContact type="mail" value={mailAddress} key={index} />;
             })}
           </div>
         </Dialog.Description>
         <Dialog.Close asChild>
-          <button className={indexStyles.close} onClick={handleClose}>
-            <IconClose />
+          <button
+            className={[styles.close, button_styles.base].join(" ")}
+            onClick={handleClose}
+          >
+            Okay
           </button>
         </Dialog.Close>
       </Dialog.Content>

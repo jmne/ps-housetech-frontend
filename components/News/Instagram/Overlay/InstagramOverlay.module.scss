@@ -1,24 +1,23 @@
 @use "../../../../assets/scss/constants.scss" as g;
 
 .container {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: 1fr auto;
+  display: flex;
+  flex-direction: row;
 
   height: 80vh;
   width: 62vw;
+  max-height: 58vh;
+  gap: g.$margin-small;
 
   padding: g.$margin-base;
-  gap: g.$margin-small;
 
   &:has(img) {
     height: auto;
   }
 
   .imageContainer {
-    grid-area: 1 / 1 / 2 / 2;
-
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
@@ -29,10 +28,6 @@
     min-height: 0;
     height: auto;
     max-height: 100%;
-
-    &:has(div) {
-      aspect-ratio: 9 / 16;
-    }
 
     > * {
       box-shadow: g.$shadow-outer__light;
@@ -55,15 +50,32 @@
     }
   }
 
-  .timestamp {
-    grid-area: 2 / 1 / 3 / 2;
+  .close {
+    height: 2.4rem;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 0.37rem;
+    background-color: #86bb00;
+    border-color: #86bb00;
+    color: white;
+  }
 
+  .closeDiv {
+    width: 100%;
+    height: fit-content;
+  }
+
+  .timestamp {
     padding-block: g.$margin-small / 2;
     padding-inline: g.$margin-small;
 
     display: flex;
     align-items: center;
     gap: g.$margin-small;
+
+    margin-top: 1rem;
+
+    width: 100%;
 
     color: white;
     fill: white;
@@ -79,18 +91,17 @@
   }
 
   .caption {
-    grid-area: 1 / 2 / 3 / 3;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
-    height: 100%;
-    padding-inline: g.$margin-large;
+    height: auto;
+    padding-inline: g.$margin-base;
 
-    justify-content: flex-start;
-    align-items: flex-start;
+    border-left: solid 1px g.$main-primary;
 
-    overflow-y: auto;
-
-    border-left: solid 1px g.$container-item-no-shadow;
+    margin-left: g.$margin-base;
 
     p {
       padding: 10px;
@@ -98,6 +109,13 @@
 
       line-height: 1.6;
       text-align: justify;
+
+      overflow-y: auto;
+
+      height: 100%;
+
+      -webkit-mask-image: linear-gradient(to bottom, black 93%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 93%, transparent 100%);
     }
   }
 }

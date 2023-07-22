@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 import VideoPlayer from "react-player";
+import button_styles from "@/components/Button/Button.module.scss";
 
 interface props {
   post: Post;
@@ -36,23 +37,28 @@ export function InstagramOverlay({ post, setOverlayOpen }: props) {
         ) : (
           <img src={post.media_url} alt={"Post Picture"} />
         )}
-      </div>
-      <div className={styles.timestamp}>
-        <IconClock className={styles.clockIcon} />
-        <span>
-          {date.toLocaleDateString(router.locale == "de" ? "de-de" : "en-gb", {
-            weekday: "long",
-            month: "long",
-            day: "numeric"
-          })}
-        </span>
+        <div className={styles.timestamp}>
+          <IconClock className={styles.clockIcon} />
+          <span>
+            {date.toLocaleDateString(router.locale == "de" ? "de-de" : "en-gb", {
+              weekday: "long",
+              month: "long",
+              day: "numeric"
+            })}
+          </span>
+        </div>
       </div>
       <div className={styles.caption}>
         <p>{post.caption}</p>
+        <div className={styles.closeDiv}>
+          <button
+            className={[styles.close, button_styles.base].join(" ")}
+            onClick={handleClose}
+          >
+            Okay
+          </button>
+        </div>
       </div>
-      <button className={indexStyles.close} onClick={handleClose}>
-        <IconClose />
-      </button>
     </article>
   );
 }

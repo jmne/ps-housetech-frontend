@@ -6,7 +6,6 @@ $topContainerHeight: 15rem;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: $topContainerHeight 1fr;
-  gap: g.$margin-large;
 
   width: 62vw;
   padding: 0;
@@ -28,6 +27,20 @@ $topContainerHeight: 15rem;
 
       z-index: 1;
     }
+  }
+
+  .close {
+    width: calc(100% - g.$margin-large * 2);
+    height: 2rem;
+    background-color: #86bb00;
+    border-color: #86bb00;
+    color: white;
+    margin: 0 g.$margin-large 1rem;
+  }
+
+  .closeDiv {
+    width: 100%;
+    height: fit-content;
   }
 
   .header {
@@ -135,6 +148,8 @@ $topContainerHeight: 15rem;
     grid-area: 1 / 1 / 3 / 2;
     overflow-y: auto;
     padding-inline: g.$margin-large;
+    -webkit-mask-image: linear-gradient(to bottom, black 93%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 93%, transparent 100%);
 
     > p {
       margin-block-start: $topContainerHeight + g.$margin-large;
