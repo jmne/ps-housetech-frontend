@@ -32,9 +32,9 @@ $topContainerHeight: 15rem;
   .close {
     width: calc(100% - g.$margin-large * 2);
     height: 2rem;
-    background-color: #86bb00;
-    border-color: #86bb00;
-    color: white;
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+    color: g.$text-primary;
     margin: 0 g.$margin-large 1rem;
   }
 
