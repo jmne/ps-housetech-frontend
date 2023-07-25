@@ -169,24 +169,3 @@ export function getPersonForRoom(
   if (personsInFilter.length > 0) return personsInFilter;
   else return undefined;
 }
-
-const TOAST_ANIMATION_ERROR: ToastInformation = {
-  title: "Wait a second",
-  caption: "Wait for animations to finish and try again!",
-  type: "error"
-};
-
-export function animationAllowed(mapContext: MapData, toastContext: ToastContextData) {
-  if (
-    !mapContext.animationActiveCampus ||
-    !mapContext.animationActiveLeo11 ||
-    !mapContext.animationActiveLeo3
-  )
-    return false;
-
-  return !(
-    mapContext.animationActiveCampus.current ||
-    mapContext.animationActiveLeo11.current ||
-    mapContext.animationActiveLeo3.current
-  );
-}

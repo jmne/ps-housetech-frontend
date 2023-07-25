@@ -1,5 +1,5 @@
 import styles from "./Map.module.scss";
-import { memo, useCallback, useEffect } from "react";
+import { memo, useEffect } from "react";
 import LeonardoCampus from "assets/images/map/campus_transformed/leonardocampus";
 import { useMapContext } from "context/MapContext";
 import {
@@ -9,24 +9,11 @@ import {
 } from "utils/Wayfinder/mapTransformations";
 import { buildingNames } from "types/Campus";
 import { useMapElements } from "context/MapElements";
+import { executeAnimationSequence } from "utils/animations";
 
 const MapLeonardoCampus = memo(() => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
-
-  const animationActive = useCallback(() => {
-    if (!mapContext.animationActiveCampus) {
-      return;
-    }
-    mapContext.animationActiveCampus.current = true;
-  }, [mapContext]);
-
-  const animationFinished = useCallback(() => {
-    if (!mapContext.animationActiveCampus) {
-      return;
-    }
-    mapContext.animationActiveCampus.current = false;
-  }, [mapContext]);
 
   useEffect(() => {
     const campus = mapElements.campus_element?.current;
@@ -47,27 +34,9 @@ const MapLeonardoCampus = memo(() => {
     } else if (transitionFromCampus) {
       animations.push(minimizeCampus.bind(null, campus));
     }
-
-    const executeAnimations = async (animations: (() => Promise<unknown>)[]) => {
-      animationActive();
-      for (let index = 0; index < animations.length; index++) {
-        await animations[index]();
-      }
-      animationFinished();
-    };
-
-    executeAnimations(animations);
-
-    return () => {
-      animationFinished();
-    };
-  }, [
-    mapContext,
-    mapElements.mapContainer,
-    mapElements.campus_element,
-    animationActive,
-    animationFinished
-  ]);
+    
+    executeAnimationSequence(animations);
+  }, [mapContext, mapElements.mapContainer, mapElements.campus_element]);
 
   return (
     <div className={styles.mapElement}>
