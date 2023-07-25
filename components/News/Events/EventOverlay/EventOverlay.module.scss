@@ -3,157 +3,114 @@
 $topContainerHeight: 15rem;
 
 .container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: $topContainerHeight 1fr;
-    gap: g.$margin-large;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: $topContainerHeight 1fr;
 
-    width: 62vw;
-    padding: 0;
+  width: 62vw;
+  height: fit-content;
+  padding: 0;
+}
 
+.header {
+  grid-area: 1 / 1 / 2 / 2;
+  margin-inline: g.$margin-large;
+  margin-block-start: g.$margin-large;
+  background-color: g.$container-item;
 
-    .blocker {
-        grid-area: 1 / 1 / 2 / 2;
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: 1fr 2rem;
 
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
+  box-shadow: g.$shadow-outer__light;
 
-        >div {
-            width: 100%;
-            height: 50%;
-            margin-inline: g.$margin-large;
+  border-radius: g.$border-radius-base;
+  gap: g.$margin-base;
 
-            background-color: g.$container;
-            opacity: 0.8;
+  overflow: hidden;
 
-            z-index: 1;
-        }
+  z-index: 2;
+
+  .title {
+    margin-block-start: g.$margin-base;
+    margin-block-end: 0;
+    grid-area: 1 / 2 / 2 / 3;
+    line-height: 1;
+  }
+
+  .imageContainer {
+    grid-area: 1 / 1 / 3 / 2;
+
+    min-width: 0;
+    max-width: 25rem;
+    min-height: 0;
+    height: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    img {
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+      object-fit: contain;
+
+      box-shadow: g.$shadow-outer__right;
     }
 
-    .header {
-        grid-area: 1 / 1 / 2 / 2;
-        margin-inline: g.$margin-large;
-        margin-block-start: g.$margin-large;
-        background-color: g.$container-item;
+    // If no image given -> This div contains an 'event' icon
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-        display: grid;
-        grid-template-columns: fit-content 1fr;
-        grid-template-rows: 1fr 2rem;
+      height: 100%;
+      width: 100%;
 
-        box-shadow: g.$shadow-outer__light;
-
-        border-radius: g.$border-radius-base;
-        gap: g.$margin-base;
-
-        overflow: hidden;
-
-        z-index: 2;
-
-        h2 {
-            margin-block-start: g.$margin-base;
-            margin-block-end: 0;
-            grid-area: 1 / 2 / 2 / 3;
-            line-height: 1;
-        }
-
-        .imageContainer {
-            grid-area: 1 / 1 / 3 / 2;
-
-            min-width: 0;
-            max-width: 25rem;
-            min-height: 0;
-            height: 100%;
-
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-
-            img {
-                min-width: 0;
-                min-height: 0;
-                height: 100%;
-                object-fit: contain;
-
-                box-shadow: g.$shadow-outer__right;
-            }
-
-            // If no image given -> This div contains an 'event' icon
-            div {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                height: 100%;
-                width: 100%;
-
-                svg {
-                    width: g.$icon-xm;
-                    height: g.$icon-xm;
-                    fill: g.$main-secondary;
-                }
-            }
-        }
-
-
-        .metaInformation {
-            grid-area: 2 / 2 / 3 / 3;
-
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: center;
-            gap: g.$margin-small;
-
-            padding-block-end: g.$margin-large;
-
-            >div {
-                display: inline-flex;
-                align-items: center;
-
-                color: g.$main-secondary_dark;
-                fill: g.$main-secondary_dark;
-
-                border: g.$border-base solid g.$main-secondary;
-                border-radius: g.$border-radius-small;
-                background-color: g.$main-secondary_tint;
-
-                padding-block: calc(g.$margin-small / 4);
-                padding-inline-start: g.$margin-small;
-                padding-inline-end: g.$margin-sm;
-                gap: g.$margin-small;
-
-                font-size: g.$text-small;
-
-
-                svg {
-                    width: g.$icon-sm;
-                    height: g.$icon-sm;
-                }
-            }
-        }
-
+      svg {
+        width: g.$icon-xm;
+        height: g.$icon-xm;
+        fill: g.$main-secondary;
+      }
     }
+  }
 
-    .description {
-        grid-area: 1 / 1 / 3 / 2;
-        overflow-y: auto;
-        padding-inline: g.$margin-large;
+  .metaInformation {
+    grid-area: 2 / 2 / 3 / 3;
 
-        >p {
-            margin-block-start: $topContainerHeight + g.$margin-large;
-            line-height: 1.5;
-        }
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: g.$margin-small;
 
-        >* {
-            margin-inline-end: g.$margin-large;
-        }
+    padding-block-end: g.$margin-base;
+  }
+}
 
-        a {
-            text-decoration: none;
-            color: g.$text-primary;
-            pointer-events: none;
-            cursor: default;
-        }
-    }
+.description {
+  grid-area: 1 / 1 / 3 / 2;
+  overflow-y: auto;
+  padding-inline: g.$margin-large;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 95%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 95%, transparent 100%);
+
+  padding-block-end: g.$margin-large;
+
+  >p {
+    margin-block-start: $topContainerHeight + g.$margin-large;
+    line-height: 1.5;
+  }
+
+  >* {
+    margin-inline-end: g.$margin-large;
+  }
+
+  a {
+    text-decoration: none;
+    color: g.$text-primary;
+    pointer-events: none;
+    cursor: default;
+  }
 }

@@ -18,7 +18,8 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { PersonOverlay } from "./PersonOverlay";
 import { useTranslation } from "next-i18next";
 
-import {Button} from "@/components/Button"
+import { Button } from "@/components/Button";
+import { Info } from "@/components/Info";
 
 interface props {
   person: Employee;
@@ -28,7 +29,7 @@ export const SEARCH_RESULT_COLLAPSED = styles.person;
 export const SEARCH_RESULT_EXPANDED = [styles.person, styles.expanded].join(" ");
 const url = "https://ps-housetech.uni-muenster.de:444/api/picture/";
 const PersonResult = memo(({ person }: props) => {
-  const {t} = useTranslation("index")
+  const { t } = useTranslation("index");
   const [overlayOpen, setOverlayOpen] = useState(false);
 
   const mapContext = useMapContext();
@@ -73,7 +74,9 @@ const PersonResult = memo(({ person }: props) => {
           {person.phones.map((phoneNumer, index) => {
             return (
               <Fragment key={index}>
-                <IconCall className={styles.attribute} />
+                <Info className={styles.attribute} type="text">
+                  <IconCall />
+                </Info>
                 <span className={styles.caption}>{phoneNumer}</span>
               </Fragment>
             );
@@ -81,14 +84,18 @@ const PersonResult = memo(({ person }: props) => {
           {person.emails.map((mailAddress, index) => {
             return (
               <Fragment key={index}>
-                <IconMail className={styles.attribute} />
+                <Info className={styles.attribute} type="text">
+                  <IconMail className={styles.attribute} />
+                </Info>
                 <span className={styles.caption}>{mailAddress}</span>
               </Fragment>
             );
           })}
           {person.address && person.roomNumber && (
             <>
-              <IconLocation className={styles.attribute} />
+              <Info className={styles.attribute} type="text">
+                <IconLocation />
+              </Info>
               <div>
                 <span className={styles.caption}>{person.address}</span>
                 <span className={styles.caption}>, {person.roomNumber}</span>
@@ -102,17 +109,12 @@ const PersonResult = memo(({ person }: props) => {
                   setOverlayOpen(true);
                   e.preventDefault();
                 }}
-                
                 className={styles.overlayTrigger}
               >
                 {t("wayfinder.search.contact_person")}
               </Button>
             </Dialog.Trigger>
-            <PersonOverlay
-              person={person}
-              setOverlayOpen={setOverlayOpen}
-              imageID={imageID}
-            />
+            <PersonOverlay person={person} imageID={imageID} />
           </Dialog.Root>
         </div>
       ) : (

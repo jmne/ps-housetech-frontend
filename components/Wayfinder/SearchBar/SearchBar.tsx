@@ -11,11 +11,11 @@ interface props {
 export function SearchBar({ placeholder }: props) {
   const searchInputContext = useSearchInputContext();
 
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null);
   const focusInput = () => {
-    if (!inputRef.current) return
-    if (document.activeElement !== inputRef.current) inputRef.current.focus()
-  }
+    if (!inputRef.current) return;
+    if (document.activeElement !== inputRef.current) inputRef.current.focus();
+  };
 
   return (
     <div
@@ -25,7 +25,15 @@ export function SearchBar({ placeholder }: props) {
       <div className={styles.iconWrapper}>
         <IconSearch className={styles.icon} />
       </div>
-      <input className={styles.input} placeholder={placeholder} value={searchInputContext.input} onChange={(e) => searchInputContext.setInput(e.target.value)} onFocus={() => searchInputContext.setActive(true)} onBlur={() => searchInputContext.setActive(false)} ref={inputRef}/>
+      <input
+        className={styles.input}
+        placeholder={placeholder}
+        value={searchInputContext.input}
+        onChange={(e) => searchInputContext.setInput(e.target.value)}
+        onFocus={() => searchInputContext.setActive(true)}
+        onBlur={() => searchInputContext.setActive(false)}
+        ref={inputRef}
+      />
     </div>
   );
 }

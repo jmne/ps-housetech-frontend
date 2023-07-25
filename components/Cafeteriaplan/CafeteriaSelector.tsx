@@ -19,7 +19,10 @@ export function CafeteriaSelector({ state, setState }: props) {
       //@ts-ignore
       onValueChange={setState}
     >
-      <Select.Trigger className={[styles.selectTrigger, stylesButton.base, stylesButton.smallPadding].join(" ")} aria-label="Cafeteria">
+      <Select.Trigger
+        className={[styles.selectTrigger, stylesButton.base].join(" ")}
+        aria-label="Cafeteria"
+      >
         <Select.Value aria-label={state}>
           {t(`cafeteria_plan.cafeteria.${state}`)}
         </Select.Value>
@@ -31,9 +34,6 @@ export function CafeteriaSelector({ state, setState }: props) {
         <Select.Viewport className={styles.selectViewport}>
           <Select.Group className={styles.selectGroup}>
             <Select.Label className={styles.selectLabel}>
-              <span className={styles.title}>
-                {t("cafeteria_plan.cafeteria.select_cafeteria")}
-              </span>
               {AllCafeterias.map((cafeteria) => (
                 <SelectItem
                   className={styles.selectItem}

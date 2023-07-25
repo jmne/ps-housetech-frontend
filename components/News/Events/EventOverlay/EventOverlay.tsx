@@ -1,41 +1,25 @@
 import { Event } from "types/Events";
-
 import styles from "./EventOverlay.module.scss";
-import indexStyles from "@/pages/index.module.scss";
-
 import IconClock from "assets/images/icon_clock.svg";
 import IconLocation from "assets/images/icon_location.svg";
 import IconEvent from "assets/images/event.svg";
-import IconClose from "assets/images/icon_close.svg";
-import { useEffect, useRef } from "react";
+import { Info } from "@/components/Info";
+import * as Overlay from "@/components/Overlay";
+import { Description } from "./Description";
 
 interface props {
   event: Event;
-  setOverlayOpen: Function;
 }
 
-export function EventOverlay({ event, setOverlayOpen }: props) {
-  const descriptionRef = useRef<HTMLParagraphElement>(null);
-
+export function EventOverlay({ event }: props) {
   const date = new Date(event.start_date);
   const dateFormatted = date.toLocaleDateString("de-de");
   const time = date.toLocaleTimeString("de-de").slice(0, 5);
 
-  useEffect(() => {
-    if (descriptionRef.current === null) return;
-    descriptionRef.current.innerHTML = event.description;
-  }, [descriptionRef, event.description]);
-
-  function handleClose() {
-    setOverlayOpen(false);
-  }
-
   return (
-    <article className={[indexStyles.overlayContainer, styles.container].join(" ")}>
-      <div className={styles.blocker}>
-        <div />
-      </div>
+    <Overlay.Container className={styles.container}>
       <div className={styles.header}>
+        <h2>{event.title}</h2>
         <div className={styles.imageContainer}>
           {event.image ? (
             <img src={event.image} alt="Event Image" />
@@ -48,41 +32,25 @@ export function EventOverlay({ event, setOverlayOpen }: props) {
         <div className={styles.metaInformation}>
           {
             // If date is given -> Show date
-            event.start_date ? (
-              <div className={styles.item}>
+            event.start_date && (
+              <Info>
                 <IconClock />
-                <div>
-                  <span>{dateFormatted}</span>
-                  <span className={styles.divider}> | </span>
-                  <span>{time}</span>
-                </div>
-              </div>
-            ) : (
-              <></>
+                {dateFormatted} | {time}
+              </Info>
             )
           }
           {
             // If location is given -> Show location
-            event.location ? (
-              <div className={styles.item}>
+            event.location && (
+              <Info>
                 <IconLocation />
-                <div>
-                  <span>{event.location}</span>
-                </div>
-              </div>
-            ) : (
-              <></>
+                {event.location}
+              </Info>
             )
           }
         </div>
-        <h2>{event.title}</h2>
       </div>
-      <div className={styles.description}>
-        <p ref={descriptionRef}></p>
-      </div>
-      <button className={indexStyles.close} onClick={handleClose}>
-        <IconClose />
-      </button>
-    </article>
+      <Description text={event.description} />
+    </Overlay.Container>
   );
 }

@@ -1,10 +1,9 @@
-import { PropsWithChildren } from "react";
-import styles from "./Overlay.module.scss";
+import { Description, DialogDescriptionProps } from "@radix-ui/react-dialog";
 
-interface props extends PropsWithChildren {
-  className?: string;
-}
-
-export function Body({ children, className }: props) {
-  return <div className={className}>{children}</div>;
+export function Body({ children, className, ...props }: DialogDescriptionProps) {
+  return (
+    <Description className={className} {...props} asChild>
+      <div>{children}</div>
+    </Description>
+  );
 }

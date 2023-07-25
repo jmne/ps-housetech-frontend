@@ -8,7 +8,7 @@
         }
     },
     "wayfinder": {
-        "title": "Person xy, Department xy",
+        "title": "Search..",
         "search": {
             "room": "Room",
             "phone": "Phone",
@@ -33,17 +33,17 @@
             "cafeteria": "Cafeteria"
         },
         "controls": {
-            "visit": "Visit",
+            "visit": "Plan",
             "where_is": "Where is?",
             "back_to_campus": "Back to Campus",
             "remove_highlight": "Remove Highlight",
-            "highlight_building": "Find Building",
-            "highlight_lecture_hall_building": "Find Lecture Hall"
+            "highlight_building": "Building",
+            "highlight_lecture_hall_building": "Lecture Hall"
         }
     },
     "busplan": {
         "title": "Bus plan",
-        "map_button": "View map"
+        "map_button": "Map"
     },
     "cafeteria_plan": {
         "title": "Cafeteria plan",
@@ -58,8 +58,8 @@
     },
     "news": {
         "title": "Events & Updates",
-        "link_overlay_trigger": "Get to Channel",
-        "view_more_hint": "Click for more Info",
+        "link_overlay_trigger": "Instagram",
+        "view_more_hint": "Show more",
         "events": {
             "title": "Events"
         },
@@ -68,6 +68,6 @@
         }
     },
     "weather": {
-        "title_report": "Weather Report"
+        "title_report": "Weather"
     }
 }

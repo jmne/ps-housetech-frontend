@@ -5,14 +5,13 @@ body {
   background-color: g.$background;
   color: g.$text-primary;
   font-size: calc(10px + 0.37vw);
-  font-family: 'Inter';
 }
 
 html,
 body,
-body>div:first-child,
+body > div:first-child,
 div#__next,
-div#__next>main {
+div#__next > main {
   margin: 0;
   height: 100vh;
   width: 100vw;
