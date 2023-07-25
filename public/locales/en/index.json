@@ -29,7 +29,8 @@
             "brazil_center": "Brazil Center",
             "wi_ag": "WI-AG",
             "wwu_center_europe": "WWU Center Europe",
-            "lecture_hall": "Lecture Hall"
+            "lecture_hall": "Lecture Hall",
+            "cafeteria": "Cafeteria"
         },
         "controls": {
             "visit": "Visit",
@@ -58,8 +59,12 @@
     "news": {
         "title": "Events & Updates",
         "link_overlay_trigger": "Get to Channel",
+        "view_more_hint": "Click for more Info",
         "events": {
             "title": "Events"
+        },
+        "instagram": {
+            "click_for_video": "Click to see the Video"
         }
     },
     "weather": {

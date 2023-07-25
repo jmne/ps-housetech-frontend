@@ -94,11 +94,11 @@ export function roomInBuilding(
   else return false;
 }
 
-export function getRoomDisplayName(room: string) {
+export function getRoomDisplayName(room: string, t: Function) {
   const validatedRoomNumber = validateRoomNumber(room);
   if (validatedRoomNumber) return validatedRoomNumber;
 
-  if (isCampusBuilding(room)) return getCampusBuildingDisplayName(room);
+  if (isCampusBuilding(room)) return getCampusBuildingDisplayName(room, t);
 
   const lowerCase = room.toLowerCase();
   if (lowerCase.includes("wc")) return "WC";
@@ -107,7 +107,7 @@ export function getRoomDisplayName(room: string) {
   return "";
 }
 
-export function getCampusBuildingDisplayName(building: CampusBuilding) {
+export function getCampusBuildingDisplayName(building: CampusBuilding, t: Function) {
   switch (building) {
     case buildingNames.CAMPUS:
       return "Campus";
@@ -121,6 +121,8 @@ export function getCampusBuildingDisplayName(building: CampusBuilding) {
       return "Leo 11";
     case buildingNames.LEO18:
       return "Leo 18";
+    case buildingNames.CAFETERIA:
+      return t("wayfinder.map.cafeteria");
   }
 }
 
@@ -146,6 +148,8 @@ export function getPersonForRoom(
         return undefined;
       case buildingNames.LEO18:
         return [`${t("wayfinder.map.lecture_hall")} Leo 18.3`];
+      case buildingNames.CAFETERIA:
+        return ["DaVinci"];
       default:
         return undefined;
     }

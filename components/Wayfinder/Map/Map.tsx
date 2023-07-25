@@ -48,7 +48,7 @@ export function CampusMap({ allPersons }: MapProps) {
       setPlacesAndPeopleInSelectedRoom(
         getPersonForRoom(mapContext.current.area, mapContext.current.room, allPersons, t)
       );
-      const roomName = getRoomDisplayName(mapContext.current.room);
+      const roomName = getRoomDisplayName(mapContext.current.room, t);
       if (roomName) setRoomDisplayName(roomName);
       else setRoomDisplayName(undefined);
     }

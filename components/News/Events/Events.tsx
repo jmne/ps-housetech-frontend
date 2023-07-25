@@ -20,7 +20,11 @@ const Events = memo(() => {
 
   useEffect(() => {
     function resetLayout() {
-      if (swiperInstance) swiperInstance.slideTo(0);
+      try {
+        if (swiperInstance) swiperInstance.slideTo(0);
+      } catch {
+        console.log("Swiper error catched");
+      }
     }
 
     const handler = new IdleHandler({
@@ -63,5 +67,5 @@ const Events = memo(() => {
   );
 });
 
-Events.displayName = "Events"
-export default Events
+Events.displayName = "Events";
+export default Events;
