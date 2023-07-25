@@ -12,6 +12,7 @@ import busplanStyles from "@/components/Busplan/Busplan.module.scss";
 import busStyles from "@/components/Busplan/BusCard/Bus.module.scss";
 import { Busride } from "types/Busride";
 import BusStationMap from "./StationMapOverlay";
+import { useRouter } from "next/router";
 
 /**
  *
@@ -37,9 +38,10 @@ function splitBusses(busses: Busride[]) {
  */
 export default function Busplan() {
   const { t } = useTranslation("index");
+  const router = useRouter();
 
   // Retrieve data and define states for inward & outward buses
-  const { data, isLoading, error } = useBusplan();
+  const { data, isLoading, error } = useBusplan(router.locale);
   const [busses_inward, setInward] = useState<Busride[]>([]);
   const [busses_outward, setoutward] = useState<Busride[]>([]);
 
