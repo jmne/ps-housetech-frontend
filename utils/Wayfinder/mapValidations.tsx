@@ -1,3 +1,4 @@
+import { ToastInformation } from "@/components/Toast/Toast";
 import { MapData } from "context/MapContext";
 import { ToastContextData } from "context/ToastContext";
 import { TFunction } from "next-i18next";
@@ -168,6 +169,12 @@ export function getPersonForRoom(
   if (personsInFilter.length > 0) return personsInFilter;
   else return undefined;
 }
+
+const TOAST_ANIMATION_ERROR: ToastInformation = {
+  title: "Wait a second",
+  caption: "Wait for animations to finish and try again!",
+  type: "error"
+};
 
 export function animationAllowed(mapContext: MapData, toastContext: ToastContextData) {
   if (
