@@ -5,7 +5,7 @@ import IconClose from "assets/images/icon_close.svg";
 
 export function Close({ children, className, ...props }: DialogCloseProps) {
   return (
-    <CloseDialog className={styles.close} {...props}>
+    <CloseDialog className={[styles.close, className].join(" ")} {...props}>
       {children ? children : <IconClose />}
     </CloseDialog>
   );

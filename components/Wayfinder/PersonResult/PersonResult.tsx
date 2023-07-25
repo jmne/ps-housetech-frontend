@@ -94,7 +94,7 @@ const PersonResult = memo(({ person }: props) => {
           {person.address && person.roomNumber && (
             <>
               <Info className={styles.attribute} type="text">
-                <IconLocation/>
+                <IconLocation />
               </Info>
               <div>
                 <span className={styles.caption}>{person.address}</span>
@@ -114,11 +114,7 @@ const PersonResult = memo(({ person }: props) => {
                 {t("wayfinder.search.contact_person")}
               </Button>
             </Dialog.Trigger>
-            <PersonOverlay
-              person={person}
-              setOverlayOpen={setOverlayOpen}
-              imageID={imageID}
-            />
+            <PersonOverlay person={person} imageID={imageID} />
           </Dialog.Root>
         </div>
       ) : (

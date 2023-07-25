@@ -2,7 +2,6 @@ import VideoPlayer from "react-player";
 
 import { MediaTypes, Post as PostType } from "types/Instagram";
 import styles from "./Instagram.module.scss";
-import indexStyles from "@/pages/index.module.scss";
 
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -65,12 +64,7 @@ export function Post({ post }: props) {
           <p className={styles.caption}>{post.caption}</p>
         </div>
       </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Content>
-          <InstagramOverlay post={post} setOverlayOpen={setOverlayOpen} />
-        </Dialog.Content>
-        <Dialog.Overlay className={indexStyles.overlayBackground} />
-      </Dialog.Portal>
+      <InstagramOverlay post={post}/>
     </Dialog.Root>
   );
 }

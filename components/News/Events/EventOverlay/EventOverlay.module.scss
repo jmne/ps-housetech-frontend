@@ -8,120 +8,109 @@ $topContainerHeight: 15rem;
   grid-template-rows: $topContainerHeight 1fr;
 
   width: 62vw;
+  height: fit-content;
   padding: 0;
+}
 
-  .close {
-    width: calc(100% - g.$margin-large * 2);
-    height: 2rem;
-    background-color: #f2f2f2;
-    border-color: #f2f2f2;
-    color: g.$text-primary;
-    margin: 0 g.$margin-large 1rem;
+.header {
+  grid-area: 1 / 1 / 2 / 2;
+  margin-inline: g.$margin-large;
+  margin-block-start: g.$margin-large;
+  background-color: g.$container-item;
+
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-template-rows: 1fr 2rem;
+
+  box-shadow: g.$shadow-outer__light;
+
+  border-radius: g.$border-radius-base;
+  gap: g.$margin-base;
+
+  overflow: hidden;
+
+  z-index: 2;
+
+  .title {
+    margin-block-start: g.$margin-base;
+    margin-block-end: 0;
+    grid-area: 1 / 2 / 2 / 3;
+    line-height: 1;
   }
 
-  .closeDiv {
-    width: 100%;
-    height: fit-content;
-  }
+  .imageContainer {
+    grid-area: 1 / 1 / 3 / 2;
 
-  .header {
-    grid-area: 1 / 1 / 2 / 2;
-    margin-inline: g.$margin-large;
-    margin-block-start: g.$margin-large;
-    background-color: g.$container-item;
+    min-width: 0;
+    max-width: 25rem;
+    min-height: 0;
+    height: 100%;
 
-    display: grid;
-    grid-template-columns: fit-content 1fr;
-    grid-template-rows: 1fr 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 
-    box-shadow: g.$shadow-outer__light;
-
-    border-radius: g.$border-radius-base;
-    gap: g.$margin-base;
-
-    overflow: hidden;
-
-    z-index: 2;
-
-    h2 {
-      margin-block-start: g.$margin-base;
-      margin-block-end: 0;
-      grid-area: 1 / 2 / 2 / 3;
-      line-height: 1;
-    }
-
-    .imageContainer {
-      grid-area: 1 / 1 / 3 / 2;
-
+    img {
       min-width: 0;
-      max-width: 25rem;
       min-height: 0;
       height: 100%;
+      object-fit: contain;
 
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-
-      img {
-        min-width: 0;
-        min-height: 0;
-        height: 100%;
-        object-fit: contain;
-
-        box-shadow: g.$shadow-outer__right;
-      }
-
-      // If no image given -> This div contains an 'event' icon
-      div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        height: 100%;
-        width: 100%;
-
-        svg {
-          width: g.$icon-xm;
-          height: g.$icon-xm;
-          fill: g.$main-secondary;
-        }
-      }
+      box-shadow: g.$shadow-outer__right;
     }
 
-    .metaInformation {
-      grid-area: 2 / 2 / 3 / 3;
-
+    // If no image given -> This div contains an 'event' icon
+    div {
       display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
-      gap: g.$margin-small;
 
-      padding-block-end: g.$margin-base;
+      height: 100%;
+      width: 100%;
+
+      svg {
+        width: g.$icon-xm;
+        height: g.$icon-xm;
+        fill: g.$main-secondary;
+      }
     }
   }
 
-  .description {
-    grid-area: 1 / 1 / 3 / 2;
-    overflow-y: auto;
-    padding-inline: g.$margin-large;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 7%, black 93%, transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 7%, black 93%, transparent 100%);
+  .metaInformation {
+    grid-area: 2 / 2 / 3 / 3;
 
-    >p {
-      margin-block-start: $topContainerHeight + g.$margin-large;
-      line-height: 1.5;
-    }
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: g.$margin-small;
 
-    >* {
-      margin-inline-end: g.$margin-large;
-    }
+    padding-block-end: g.$margin-base;
+  }
+}
 
-    a {
-      text-decoration: none;
-      color: g.$text-primary;
-      pointer-events: none;
-      cursor: default;
-    }
+.description {
+  grid-area: 1 / 1 / 3 / 2;
+  overflow-y: auto;
+  padding-inline: g.$margin-large;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 95%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 95%, transparent 100%);
+
+  padding-block-end: g.$margin-large;
+
+  >p {
+    margin-block-start: $topContainerHeight + g.$margin-large;
+    line-height: 1.5;
+  }
+
+  >* {
+    margin-inline-end: g.$margin-large;
+  }
+
+  a {
+    text-decoration: none;
+    color: g.$text-primary;
+    pointer-events: none;
+    cursor: default;
   }
 }

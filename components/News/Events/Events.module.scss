@@ -19,7 +19,8 @@
   height: calc(100% - 2 * g.$margin-base);
   width: calc(100% - 1.5 * g.$margin-base);
 
-  margin: g.$margin-base (g.$margin-base / 2) g.$margin-base g.$margin-base;
+  margin: g.$margin-base (
+    g.$margin-base / 2) g.$margin-base g.$margin-base;
   overflow: hidden;
 
   .stateDescription {
@@ -101,25 +102,24 @@
     width: 100%;
     height: 100%;
 
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.5) 0,
-      g.$container-item 35%,
-      g.$container-item 100%
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.5) 0,
+        g.$container-item 35%,
+        g.$container-item 100%
     );
-    z-index: 2;
+  z-index: 2;
 
-    .item {
-      flex-grow: 1;
-    }
-
-    .button {
-      width: 100%;
-      height: g.$icon-sm;
-      border-radius: g.$border-radius-small;
-    }
+  .item {
+    flex-grow: 1;
   }
+
+  .button {
+    width: 100%;
+    height: g.$icon-sm;
+    border-radius: g.$border-radius-small;
+  }
+}
 }
 
 .overlay {

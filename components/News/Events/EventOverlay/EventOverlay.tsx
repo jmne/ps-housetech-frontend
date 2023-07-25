@@ -1,38 +1,23 @@
 import { Event } from "types/Events";
-
 import styles from "./EventOverlay.module.scss";
-import indexStyles from "@/pages/index.module.scss";
-import button_styles from "@/components/Button/Button.module.scss";
-
 import IconClock from "assets/images/icon_clock.svg";
 import IconLocation from "assets/images/icon_location.svg";
 import IconEvent from "assets/images/event.svg";
-import { useEffect, useRef } from "react";
 import { Info } from "@/components/Info";
+import * as Overlay from "@/components/Overlay";
+import { Description } from "./Description";
 
 interface props {
   event: Event;
-  setOverlayOpen: Function;
 }
 
-export function EventOverlay({ event, setOverlayOpen }: props) {
-  const descriptionRef = useRef<HTMLParagraphElement>(null);
-
+export function EventOverlay({ event }: props) {
   const date = new Date(event.start_date);
   const dateFormatted = date.toLocaleDateString("de-de");
   const time = date.toLocaleTimeString("de-de").slice(0, 5);
 
-  useEffect(() => {
-    if (descriptionRef.current === null) return;
-    descriptionRef.current.innerHTML = event.description;
-  }, [descriptionRef, event.description]);
-
-  function handleClose() {
-    setOverlayOpen(false);
-  }
-
   return (
-    <article className={[indexStyles.overlayContainer, styles.container].join(" ")}>
+    <Overlay.Container className={styles.container}>
       <div className={styles.header}>
         <h2>{event.title}</h2>
         <div className={styles.imageContainer}>
@@ -65,17 +50,7 @@ export function EventOverlay({ event, setOverlayOpen }: props) {
           }
         </div>
       </div>
-      <div className={styles.description}>
-        <p ref={descriptionRef}></p>
-      </div>
-      <div className={styles.closeDiv}>
-        <button
-          className={[styles.close, button_styles.base].join(" ")}
-          onClick={handleClose}
-        >
-          Okay
-        </button>
-      </div>
-    </article>
+      <Description text={event.description} />
+    </Overlay.Container>
   );
 }

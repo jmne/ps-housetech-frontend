@@ -17,12 +17,17 @@
   }
 }
 
+.overlayContainer {
+  padding: g.$margin-large;
+}
+
 .overlayTrigger {
   transform: translate(0%, -40%);
   width: 6.5rem;
   height: 1.8rem;
   padding-inline: 0;
   color: g.$text-primary;
+
   svg {
     width: auto;
     height: 90%;
@@ -37,33 +42,22 @@
 
   color: g.$text-secondary;
 
-  padding: 3rem;
+  padding: g.$margin-medium;
   border: g.$border-base solid g.$text-secondary;
   border-radius: g.$border-radius-base;
 }
 
-.overlayTitle {
-  justify-self: center;
+.overlayHeader {
+  margin-block-end: g.$margin-large !important;
 }
 
-.overlayButton {
+.overlayTitle {
   width: 100%;
-  background-color: g.$main-secondary-dark;
-  border-color: g.$main-secondary-dark;
-  color: white;
+  text-align: center;
 }
 
 .overlayDivider {
-  width: 50%;
-  height: 1px;
-  background-color: g.$text-secondary;
-}
-
-.overlayContent {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  gap: g.$margin-base;
+  width: 50% !important;
+  transform: translateX(50%);
+  bottom: calc(g.$margin-large / -2) !important;
 }

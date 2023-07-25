@@ -1,7 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import indexStyles from "@/pages/index.module.scss";
+import * as Overlay from "@/components/Overlay";
 import styles from "./Busplan.module.scss";
-import button_styles from "@/components/Button/Button.module.scss";
 
 import IconMap from "assets/images/icon_map.svg";
 import map from "assets/images/technologiepark.jpg";
@@ -23,21 +22,14 @@ export default function BusStationMap() {
           <IconMap alt="more info" />
         </Button>
       </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Content
-          className={[indexStyles.overlayContainer, styles.overlayContainer].join(" ")}
-        >
-          <Dialog.Title className={styles.overlayTitle}>Technologiepark</Dialog.Title>
-          <hr className={styles.overlayDivider} />
-          <Dialog.Description asChild>
-            <Image src={map} alt="Map of Busstops" className={styles.busMap} />
-          </Dialog.Description>
-          <Dialog.Close onClick={() => setOpen(false)} asChild>
-            <button className={[styles.close, button_styles.base].join(" ")}>Okay</button>
-          </Dialog.Close>
-        </Dialog.Content>
-        <Dialog.Overlay className={indexStyles.overlayBackground} />
-      </Dialog.Portal>
+      <Overlay.Container>
+        <Overlay.Header>
+          <Dialog.Title>Technologiepark</Dialog.Title>
+        </Overlay.Header>
+        <Dialog.Description asChild>
+          <Image src={map} alt="Map of Busstops" className={styles.busMap} />
+        </Dialog.Description>
+      </Overlay.Container>
     </Dialog.Root>
   );
 }

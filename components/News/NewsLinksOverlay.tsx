@@ -12,7 +12,6 @@ const insta_wi_tag = "@wirtschaftsinformatik";
 
 export function NewsLinksOverlay() {
   const { t } = useTranslation("index");
-
   const [open, setOpen] = useState(false);
 
   return (
@@ -23,20 +22,22 @@ export function NewsLinksOverlay() {
           <IconInstagram alt="Info" />
         </Button>
       </Dialog.Trigger>
-      <Overlay.Container setOverlayOpen={setOpen}>
-        <Overlay.Title className={styles.overlayTitle}>Instagram Channel</Overlay.Title>
-        <hr className={styles.overlayDivider} />
-        <Overlay.Body className={styles.overlayContent}>
-          <div className={styles.overlayQRWrapper}>
-            <QRCode
-              bgColor="#fafafa"
-              fgColor="#15171b"
-              size={225}
-              value={insta_wi_link}
-              className={styles.code}
-            />
-            <span>{insta_wi_tag}</span>
-          </div>
+      <Overlay.Container className={styles.overlayContainer}>
+        <Overlay.Header
+          dividerClass={styles.overlayDivider}
+          className={styles.overlayHeader}
+        >
+          <Overlay.Title className={styles.overlayTitle}>Instagram Channel</Overlay.Title>
+        </Overlay.Header>
+        <Overlay.Body className={styles.overlayQRWrapper}>
+          <QRCode
+            bgColor="#fafafa"
+            fgColor="#15171b"
+            size={225}
+            value={insta_wi_link}
+            className={styles.code}
+          />
+          <span>{insta_wi_tag}</span>
         </Overlay.Body>
       </Overlay.Container>
     </Dialog.Root>

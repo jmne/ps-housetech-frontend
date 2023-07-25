@@ -20,7 +20,7 @@ export function QRContact({ type, value }: props) {
         value={value}
         className={styles.code}
       />
-      <Info className={styles.qrContainerDescription} type="text" muted>
+      <Info className={styles.qrContainerDescription}>
         <Icon /> {value}
       </Info>
     </div>

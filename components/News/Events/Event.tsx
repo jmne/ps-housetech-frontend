@@ -1,6 +1,5 @@
 import { Event } from "types/Events";
 import styles from "./Events.module.scss";
-import indexStyles from "@/pages/index.module.scss";
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
@@ -65,12 +64,7 @@ export function EventCard({ data }: props) {
           </div>
         </div>
       </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Content>
-          <EventOverlay event={data} setOverlayOpen={setOverlayOpen} />
-        </Dialog.Content>
-        <Dialog.Overlay className={indexStyles.overlayBackground} />
-      </Dialog.Portal>
+      <EventOverlay event={data} />
     </Dialog.Root>
   );
 }
