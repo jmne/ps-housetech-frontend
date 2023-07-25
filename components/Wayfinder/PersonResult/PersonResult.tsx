@@ -11,7 +11,6 @@ import IconMinus from "assets/images/icon_minus.svg";
 import IconCall from "assets/images/icon_call.svg";
 import IconMail from "assets/images/icon_mail.svg";
 import IconLocation from "assets/images/icon_location.svg";
-import { animationAllowed } from "utils/Wayfinder/mapValidations";
 import { useToastContext } from "context/ToastContext";
 
 import * as Dialog from "@radix-ui/react-dialog";
@@ -34,13 +33,11 @@ const PersonResult = memo(({ person }: props) => {
 
   const mapContext = useMapContext();
   const selectedPersonContext = usePersonSearchContext();
-  const toastContext = useToastContext();
   const [imageID, setImageID] = useState(person.image);
 
   const handleClick = useCallback(() => {
-    animationAllowed(mapContext, toastContext) &&
-      handleClickOnPerson(person, mapContext, selectedPersonContext);
-  }, [mapContext, person, selectedPersonContext, toastContext]);
+    handleClickOnPerson(person, mapContext, selectedPersonContext);
+  }, [mapContext, person, selectedPersonContext]);
 
   const personRef = useRef<HTMLLIElement>(null);
   useEffect(() => {

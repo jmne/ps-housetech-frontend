@@ -15,7 +15,7 @@ import {
   minimizeBuilding
 } from "utils/Wayfinder/mapTransformations";
 import { buildingNames } from "types/Campus";
-import { animationAllowed, getFloorIndex } from "utils/Wayfinder/mapValidations";
+import { getFloorIndex } from "utils/Wayfinder/mapValidations";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 import ArrowUp from "assets/images/icon_arrow_up.svg";
@@ -82,32 +82,12 @@ const MapLeo3 = memo(() => {
   const personContext = usePersonSearchContext();
   const [touchStart, setTouchStart] = useState<number | undefined>();
 
-  const animationActive = useCallback(() => {
-    if (!mapContext.animationActiveLeo3) {
-      return;
-    }
-    mapContext.animationActiveLeo3.current = true;
-  }, [mapContext]);
-
-  const animationFinished = useCallback(() => {
-    if (!mapContext.animationActiveLeo3) {
-      return;
-    }
-    mapContext.animationActiveLeo3.current = false;
-  }, [mapContext]);
-
   const handleFloorUp = useCallback(() => {
-    if (!animationAllowed(mapContext, toastContext)) return;
-    animationActive();
     floorUp(mapContext, personContext);
-    animationFinished();
   }, [mapContext, personContext]);
 
   const handleFloorDown = useCallback(() => {
-    if (!animationAllowed(mapContext, toastContext)) return;
-    animationActive();
     floorDown(mapContext, personContext);
-    animationFinished();
   }, [mapContext, personContext]);
 
   const handleMouseDown = useCallback(
@@ -199,15 +179,12 @@ const MapLeo3 = memo(() => {
       animID: number,
       mapAnimationIDRef: MutableRefObject<number>
     ) => {
-      animationActive();
       for (let index = 0; index < animations.length; index++) {
         if (animID !== mapAnimationIDRef.current) {
-          animationFinished();
           return;
         }
         await animations[index]();
       }
-      animationFinished();
     };
     executeAnimations(animations, currentAnimationID, animationIdRef);
   }, [
@@ -218,9 +195,7 @@ const MapLeo3 = memo(() => {
     mapElements.leo3_building_on_campus,
     mapElements.leo3_building,
     mapElements.mapContainer,
-    mapElements.campus_element,
-    animationActive,
-    animationFinished
+    mapElements.campus_element
   ]);
 
   return (
