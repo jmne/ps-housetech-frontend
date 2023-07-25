@@ -104,6 +104,7 @@ const MapLeo3 = memo(() => {
   }, [mapContext, personContext]);
 
   const handleFloorDown = useCallback(() => {
+    if (!animationAllowed(mapContext, toastContext)) return;
     animationActive();
     floorDown(mapContext, personContext);
     animationFinished();
