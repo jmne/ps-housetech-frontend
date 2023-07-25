@@ -57,11 +57,6 @@ export function CampusMap({ allPersons }: MapProps) {
   useEffect(() => {
     const resetLayout = () => {
       mapContext.setCurrent(MAP_BASE_STATE);
-      mapContext.animationActiveCampus &&
-        (mapContext.animationActiveCampus.current = false);
-      mapContext.animationActiveLeo3 && (mapContext.animationActiveLeo3.current = false);
-      mapContext.animationActiveLeo11 &&
-        (mapContext.animationActiveLeo11.current = false);
     };
 
     const handler = new IdleHandler({
