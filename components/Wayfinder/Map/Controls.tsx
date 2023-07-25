@@ -5,8 +5,6 @@ import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 import { useTranslation } from "next-i18next";
 import { useCallback, useMemo } from "react";
-import { animationAllowed } from "utils/Wayfinder/mapValidations";
-import { useToastContext } from "context/ToastContext";
 import { Button } from "@/components/Button";
 
 import IconSearch from "assets/images/icon_search.svg";
@@ -66,63 +64,44 @@ function handleAreaChange(
 export function Controls() {
   const { t } = useTranslation("index");
   const mapContext = useMapContext();
-  const toastContext = useToastContext();
   const selectedPersonContext = usePersonSearchContext();
 
   const handleAreaChangeLeo3 = useCallback(
-    () =>
-      animationAllowed(mapContext, toastContext) &&
-      handleAreaChange(mapContext, selectedPersonContext, buildingNames.LEO3),
-    [mapContext, selectedPersonContext, toastContext]
+    () => handleAreaChange(mapContext, selectedPersonContext, buildingNames.LEO3),
+    [mapContext, selectedPersonContext]
   );
   const handleAreaChangeLeo11 = useCallback(
-    () =>
-      animationAllowed(mapContext, toastContext) &&
-      handleAreaChange(mapContext, selectedPersonContext, buildingNames.LEO11),
-    [mapContext, selectedPersonContext, toastContext]
+    () => handleAreaChange(mapContext, selectedPersonContext, buildingNames.LEO11),
+    [mapContext, selectedPersonContext]
   );
   const handleAreaChangeCampus = useCallback(
-    () =>
-      animationAllowed(mapContext, toastContext) &&
-      handleAreaChange(mapContext, selectedPersonContext, buildingNames.CAMPUS),
-    [mapContext, selectedPersonContext, toastContext]
+    () => handleAreaChange(mapContext, selectedPersonContext, buildingNames.CAMPUS),
+    [mapContext, selectedPersonContext]
   );
 
   const handleCampusBuildingHighlightLeo1 = useCallback(
-    () =>
-      animationAllowed(mapContext, toastContext) &&
-      handleCampusBuildingHighlight(mapContext, buildingNames.LEO1),
-    [mapContext, toastContext]
+    () => handleCampusBuildingHighlight(mapContext, buildingNames.LEO1),
+    [mapContext]
   );
   const handleCampusBuildingHighlightLeo3 = useCallback(
-    () =>
-      animationAllowed(mapContext, toastContext) &&
-      handleCampusBuildingHighlight(mapContext, buildingNames.LEO3),
-    [mapContext, toastContext]
+    () => handleCampusBuildingHighlight(mapContext, buildingNames.LEO3),
+    [mapContext]
   );
   const handleCampusBuildingHighlightLeo10 = useCallback(
-    () =>
-      animationAllowed(mapContext, toastContext) &&
-      handleCampusBuildingHighlight(mapContext, buildingNames.LEO10),
-    [mapContext, toastContext]
+    () => handleCampusBuildingHighlight(mapContext, buildingNames.LEO10),
+    [mapContext]
   );
   const handleCampusBuildingHighlightLeo11 = useCallback(
-    () =>
-      animationAllowed(mapContext, toastContext) &&
-      handleCampusBuildingHighlight(mapContext, buildingNames.LEO11),
-    [mapContext, toastContext]
+    () => handleCampusBuildingHighlight(mapContext, buildingNames.LEO11),
+    [mapContext]
   );
   const handleCampusBuildingHighlightLeo18 = useCallback(
-    () =>
-      animationAllowed(mapContext, toastContext) &&
-      handleCampusBuildingHighlight(mapContext, buildingNames.LEO18),
-    [mapContext, toastContext]
+    () => handleCampusBuildingHighlight(mapContext, buildingNames.LEO18),
+    [mapContext]
   );
   const handleCafeteriaHighlight = useCallback(
-    () =>
-      animationAllowed(mapContext, toastContext) &&
-      handleCampusBuildingHighlight(mapContext, buildingNames.CAFETERIA),
-    [mapContext, toastContext]
+    () => handleCampusBuildingHighlight(mapContext, buildingNames.CAFETERIA),
+    [mapContext]
   );
 
   const buttons = useMemo(() => {
