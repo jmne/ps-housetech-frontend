@@ -42,11 +42,11 @@ export function Key({ keycode }: helperProps) {
     searchContext.setInput("");
   }
 
-  if (keycode === "clear"){
+  if (keycode === "clear") {
     return (
       //@ts-ignore
       <button className={styles.key} onMouseDown={(e) => handleKey(e)}>
-        <IconDelete className={styles.icon}/>
+        <IconDelete className={styles.icon} />
       </button>
     );
   }
@@ -55,7 +55,7 @@ export function Key({ keycode }: helperProps) {
     return (
       //@ts-ignore
       <button className={styles.key} onMouseDown={(e) => handleKey(e)}>
-        <IconBackspace className={styles.icon}/>
+        <IconBackspace className={styles.icon} />
       </button>
     );
   }
@@ -95,7 +95,11 @@ function Keyboard() {
 
   return (
     <article
-      className={searchInputContext.active ? [styles.container, styles.visible].join(" ") : styles.container}
+      className={
+        searchInputContext.active
+          ? [styles.container, styles.visible].join(" ")
+          : styles.container
+      }
       id="keyboard"
       data-testid="keyboard"
     >

@@ -1,10 +1,9 @@
-import { PropsWithChildren } from "react";
-import styles from "./Overlay.module.scss";
+import { Title as TitleElement, DialogTitleProps } from "@radix-ui/react-dialog";
 
-interface props extends PropsWithChildren {
-  className?: string;
-}
-
-export function Title({ children, className }: props) {
-  return <h2 className={[styles.header, className].join(" ")}>{children}</h2>;
+export function Title({ children, className, ...props }: DialogTitleProps) {
+  return (
+    <TitleElement className={className} {...props}>
+      {children}
+    </TitleElement>
+  );
 }

@@ -1,8 +1,8 @@
- import { useMapElements } from "context/MapElements";
+import { useMapElements } from "context/MapElements";
 import * as React from "react";
 import type { SVGProps } from "react";
 const SvgLeo3Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
-  const mapElements = useMapElements()
+  const mapElements = useMapElements();
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

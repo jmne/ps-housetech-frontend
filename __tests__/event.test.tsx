@@ -1,10 +1,10 @@
 import { Event } from "types/Events";
-import { EventOverlay } from "@/components/News/Events/EventOverlay/EventOverlay";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import { EventCard } from "@/components/News/Events/Event";
 
 describe("Event-Card", () => {
   test("Renders without crashing", () => {
-    render(<EventOverlay event={sampleEvent} />);
+    render(<EventCard data={sampleEvent} />);
   });
 });
 

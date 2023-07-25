@@ -15,7 +15,7 @@ $headerHeight: 2rem;
 
   border-radius: g.$border-radius-base;
   background-color: g.$container;
-  box-shadow: g.$shadow-outer__light;
+  box-shadow: g.$shadow-outer;
 
   overflow: hidden;
 
@@ -69,11 +69,11 @@ $headerHeight: 2rem;
   padding-inline: g.$margin-base;
   padding-block-start: g.$margin-base;
 
-  >* {
+  > * {
     align-items: center;
     align-self: center;
     min-height: 0;
-    height: .5rem;
+    height: 0.5rem;
   }
 
   .title {

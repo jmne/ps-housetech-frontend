@@ -13,15 +13,13 @@ export function LanguageSelector() {
   const currentLang = router.locale;
   const [animationInProgress, setAnimation] = useState(true);
 
-  // Run once to setup the selector according to first domain
+  // Run once to set up the selector according to first domain
   useEffect(() => {
     const flag_de = document.getElementById("first-lang-button");
     const flag_uk = document.getElementById("second-lang-button");
-    const selector = document.getElementById("selector-lang-button");
-    if (!flag_de || !flag_uk || !selector) return;
+    if (!flag_de || !flag_uk) return;
 
     if (currentLang === "en") {
-      selector.classList.add(styles.secondSelector);
       flag_uk.classList.add(styles.active);
     } else flag_de.classList.add(styles.active);
 
@@ -37,18 +35,15 @@ export function LanguageSelector() {
     // Get DOM elements
     const flag_de = document.getElementById("first-lang-button");
     const flag_uk = document.getElementById("second-lang-button");
-    const selector = document.getElementById("selector-lang-button");
-    if (!flag_de || !flag_uk || !selector) return;
+    if (!flag_de || !flag_uk) return;
 
     if (["en", "en-gb", "en-us"].includes(router.locale ? router.locale : "en")) {
       flag_de.classList.add(styles.active);
-      selector.classList.remove(styles.secondSelector);
       flag_uk.classList.remove(styles.active);
 
       router.push("/", "/", { locale: "de" });
     } else {
       flag_de.classList.remove(styles.active);
-      selector.classList.add(styles.secondSelector);
       flag_uk.classList.add(styles.active);
 
       router.push("/", "/", { locale: "en" });
@@ -67,7 +62,6 @@ export function LanguageSelector() {
       <li onClick={switchLang} id="second-lang-button">
         <Image src={flag_uk} alt="UK Flag" fill={false} className={styles.flag} />
       </li>
-      <span className={styles.selector} id="selector-lang-button"></span>
     </ul>
   );
 }
