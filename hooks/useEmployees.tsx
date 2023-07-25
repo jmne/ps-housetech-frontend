@@ -12,8 +12,9 @@ const options = { refreshInterval: 60 * 60 * 1000 };
  * Fetch all Employees
  * @returns Employee[]
  */
-export function useEmployees() {
-  const { data, isLoading, error } = useSWR<Employee[]>(url, fetcher, options);
+export function useEmployees(locale?: string) {
+  const urlForLanguage = locale === "en" ? `${url}/en` : url;
+  const { data, isLoading, error } = useSWR<Employee[]>(urlForLanguage, fetcher, options);
 
   return { data, isLoading, error };
 }

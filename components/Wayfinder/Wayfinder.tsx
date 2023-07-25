@@ -25,6 +25,7 @@ import { MapElementsProvider } from "context/MapElements";
 
 import * as Card from "@/components/Card";
 import { Employee } from "types/Employee";
+import { useRouter } from "next/router";
 
 function shufflePersons(data: Employee[] | undefined) {
   return data ? [...data].sort(() => 0.5 - Math.random()) : undefined;
@@ -38,11 +39,12 @@ export function Wayfinder() {
 
   // Translation setup
   const { t } = useTranslation("index");
+  const router = useRouter();
 
   const listRef = useRef<HTMLOListElement>(null);
 
   // Get data for the list of Persons
-  const { data: persons, isLoading, error } = useEmployees();
+  const { data: persons, isLoading, error } = useEmployees(router.locale);
   const [personBaseList, setPersonBaseList] = useState(persons);
   const [filteredPersons, setFilteredPersons] = useState(persons);
 
