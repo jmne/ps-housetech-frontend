@@ -32,16 +32,15 @@ const nextConfig = {
     fileLoaderRule.exclude = /\.svg$/i;
 
     return config;
-  }, images: {
+  },
+  images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'ps-housetech.uni-muenster.de',
-        port: '444',
-        pathname: '/api/picture/**',
-      },
-    ],
-  },
+        protocol: "https",
+        hostname: "**"
+      }
+    ]
+  }
 };
 
 module.exports = nextConfig;

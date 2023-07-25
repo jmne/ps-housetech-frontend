@@ -15,5 +15,5 @@ const options = { refreshInterval: 10 * 60 * 1000 };
 export function useInstagram() {
   const { data, isLoading, error } = useSWR<Post[]>(url, fetcher, options);
 
-  return { data, isLoading, error};
+  return { data, isLoading, error };
 }

@@ -1,4 +1,11 @@
-export type CampusBuilding = "leo1" | "leo3" | "leo10" | "leo11" | "leo18" | "campus" | "davinci";
+export type CampusBuilding =
+  | "leo1"
+  | "leo3"
+  | "leo10"
+  | "leo11"
+  | "leo18"
+  | "campus"
+  | "davinci";
 export type BuildingFloor = "floor0" | "floor1" | "floor2" | "floor3";
 
 export enum buildingNames {

@@ -9,6 +9,8 @@ import { animationAllowed } from "utils/Wayfinder/mapValidations";
 import { useToastContext } from "context/ToastContext";
 import { Button } from "@/components/Button";
 
+import IconSearch from "assets/images/icon_search.svg";
+
 function handleCampusBuildingHighlight(mapContext: MapData, building: CampusBuilding) {
   if (mapContext.current.room !== building) {
     mapContext.setCurrent({
@@ -16,6 +18,19 @@ function handleCampusBuildingHighlight(mapContext: MapData, building: CampusBuil
       floor: undefined,
       room: building
     });
+  } else {
+    mapContext.setCurrent({
+      area: buildingNames.CAMPUS,
+      floor: undefined,
+      room: undefined
+    });
+    setTimeout(() => {
+      mapContext.setCurrent({
+        area: buildingNames.CAMPUS,
+        floor: undefined,
+        room: building
+      });
+    }, 200);
   }
 }
 
@@ -114,7 +129,10 @@ export function Controls() {
     return (
       <div className={styles.controls}>
         <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
-          <h3>{t("wayfinder.controls.visit")}</h3>
+          <div className={styles.headerIcon}>
+            <IconSearch className={styles.icon} />
+            <h3>{t("wayfinder.controls.visit")}</h3>
+          </div>
           {mapContext.current.area !== buildingNames.LEO3 && (
             <Button onClick={handleAreaChangeLeo3}>LC 3</Button>
           )}
@@ -127,7 +145,10 @@ export function Controls() {
         </div>
         {mapContext.current.area === buildingNames.CAMPUS && (
           <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
-            <h3>{t("wayfinder.controls.highlight_building")}</h3>
+            <div className={styles.headerIcon}>
+              <IconSearch className={styles.icon} />
+              <h3>{t("wayfinder.controls.highlight_building")}</h3>
+            </div>
             <Button onClick={handleCampusBuildingHighlightLeo1}>1</Button>
             <Button onClick={handleCampusBuildingHighlightLeo3}>3</Button>
             <Button onClick={handleCampusBuildingHighlightLeo10}>10</Button>
@@ -140,7 +161,10 @@ export function Controls() {
         )}
         {mapContext.current.area === buildingNames.CAMPUS && (
           <div className={[styles.buttonsForCampus, styles.glassCard].join(" ")}>
-            <h3>{t("wayfinder.controls.highlight_lecture_hall_building")}</h3>
+            <div className={styles.headerIcon}>
+              <IconSearch className={styles.icon} />
+              <h3>{t("wayfinder.controls.highlight_lecture_hall_building")}</h3>
+            </div>
             <Button onClick={handleCampusBuildingHighlightLeo10}>Leo 1</Button>
             <Button onClick={handleCampusBuildingHighlightLeo10}>Leo 2</Button>
             <Button onClick={handleCampusBuildingHighlightLeo10}>Leo 3</Button>

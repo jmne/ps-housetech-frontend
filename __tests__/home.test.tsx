@@ -6,8 +6,6 @@ import { render, screen } from "@testing-library/react";
 import i18n from "../i18-test_config";
 import { I18nextProvider } from "react-i18next";
 
-
-
 // Component
 import Home from "@/pages/index";
 

@@ -1,20 +1,33 @@
 // IMPORTS - BUILTIN
 import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
+import localFont from "next/font/local";
 
 // IMPORTS - ASSETS
 import "../assets/scss/global.scss";
-// const trebuchet = localFont({src: "../assets/misc/TrebuchetMS.ttf"});
-import { Inter } from "next/font/google";
+
+const productSans = localFont({
+  src: [
+    { path: "../assets/misc/Product Sans Regular.ttf", weight: "300", style: "normal" },
+    { path: "../assets/misc/Product Sans Regular.ttf", weight: "400", style: "normal" },
+    { path: "../assets/misc/Product Sans Regular.ttf", weight: "500", style: "normal" },
+    { path: "../assets/misc/Product Sans Italic.ttf", weight: "300", style: "italic" },
+    { path: "../assets/misc/Product Sans Italic.ttf", weight: "400", style: "italic" },
+    { path: "../assets/misc/Product Sans Italic.ttf", weight: "500", style: "italic" },
+    { path: "../assets/misc/Product Sans Bold.ttf", weight: "600", style: "bold" },
+    {
+      path: "../assets/misc/Product Sans Bold Italic.ttf",
+      weight: "600",
+      style: "italic"
+    }
+  ],
+  preload: true,
+  fallback: ["sans-serif"]
+});
 import { SearchInputProvider } from "context/SearchInputContext";
 import { TimeoutProvider } from "context/TimeoutContext";
 import { ToastProvider } from "@/components/Toast/ToastProvider";
 import { ToastContextProvider } from "context/ToastContext";
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"]
-});
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <>
@@ -22,7 +35,16 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
       <ToastProvider>
         <TimeoutProvider>
           <SearchInputProvider>
-            <main className={inter.className} id="app-wrapper">
+            <main className={productSans.className} id="app-wrapper">
+              <style jsx global>{`
+                :root {
+                  /* ... */
+                  --product-font: ${productSans.style.fontFamily};
+                }
+                html * {
+                  font-family: var(--product-font) !important;
+                }
+              `}</style>
               <Component {...pageProps} />
             </main>
           </SearchInputProvider>

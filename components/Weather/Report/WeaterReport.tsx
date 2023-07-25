@@ -9,8 +9,7 @@ import chroma from "chroma-js";
 import useWeather from "hooks/useWeather";
 import { FallbackWeatherReport } from "./Fallback";
 
-
-import * as Card from "@/components/Card"
+import * as Card from "@/components/Card";
 
 const tempGradient = chroma.scale([
   "#3677FF",
@@ -104,7 +103,7 @@ export function WeatherReport() {
           </div>
           <div className={styles.weather}>
             <span style={{ color: getTemperatureColor(data.current[0].temp) }}>
-              {data.current[0].temp.toFixed(0)}°
+              {data.current[0].temp.toFixed(0)}°C
             </span>
           </div>
         </div>
@@ -124,7 +123,7 @@ export function WeatherReport() {
                   className={styles.temp}
                   style={{ color: getTemperatureColor(item.temp) }}
                 >
-                  {item.temp.toFixed(0)}°
+                  {item.temp.toFixed(0)}°C
                 </span>
                 {item.pop >= popThreshhold && (
                   <span className={styles.precipitation}>
@@ -156,7 +155,7 @@ export function WeatherReport() {
 
               <div className={styles.bottom}>
                 <span style={{ color: getTemperatureColor(item.temp) }}>
-                  {item.temp.toFixed(0)}°
+                  {item.temp.toFixed(0)}°C
                 </span>
                 {item.pop > popThreshhold && (
                   <span className={styles.precipitation}>
@@ -173,6 +172,6 @@ export function WeatherReport() {
           );
         })}
       </div>
-  </Card.Content>
+    </Card.Content>
   );
 }

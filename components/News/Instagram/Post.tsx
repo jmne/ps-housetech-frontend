@@ -2,7 +2,6 @@ import VideoPlayer from "react-player";
 
 import { MediaTypes, Post as PostType } from "types/Instagram";
 import styles from "./Instagram.module.scss";
-import indexStyles from "@/pages/index.module.scss";
 
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -13,6 +12,8 @@ import { InstagramOverlay } from "./Overlay/InstagramOverlay";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useTranslation } from "next-i18next";
 import { Button } from "@/components/Button";
+import { Info } from "@/components/Info";
+import IconPlay from "../../../assets/images/icon_play.svg";
 
 interface props {
   post: PostType;
@@ -39,8 +40,8 @@ export function Post({ post }: props) {
                   height={"100%"}
                   playing={false}
                 />
-                <Button className={styles.videoHint}>
-                  {t("news.instagram.click_for_video")}
+                <Button className={styles.videoHint} iconSize="m" smallPadding>
+                  <IconPlay alt="Play" />
                 </Button>
               </>
             ) : (
@@ -48,7 +49,7 @@ export function Post({ post }: props) {
             )}
           </div>
           <div className={styles.footer}>
-            <div className={styles.timestamp}>
+            <Info>
               <IconClock className={styles.clockIcon} />
               <span>
                 {date.toLocaleDateString(router.locale == "de" ? "de-de" : "en-gb", {
@@ -57,18 +58,13 @@ export function Post({ post }: props) {
                   day: "numeric"
                 })}
               </span>
-            </div>
-            <Button>{t("news.view_more_hint")}</Button>
+            </Info>
+            <Button className={styles.showMore}>{t("news.view_more_hint")}</Button>
           </div>
           <p className={styles.caption}>{post.caption}</p>
         </div>
       </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Content>
-          <InstagramOverlay post={post} setOverlayOpen={setOverlayOpen} />
-        </Dialog.Content>
-        <Dialog.Overlay className={indexStyles.overlayBackground} />
-      </Dialog.Portal>
+      <InstagramOverlay post={post}/>
     </Dialog.Root>
   );
 }

@@ -201,7 +201,10 @@ const MapLeo3 = memo(() => {
     ) => {
       animationActive();
       for (let index = 0; index < animations.length; index++) {
-        if (animID !== mapAnimationIDRef.current) continue;
+        if (animID !== mapAnimationIDRef.current) {
+          animationFinished();
+          return;
+        }
         await animations[index]();
       }
       animationFinished();

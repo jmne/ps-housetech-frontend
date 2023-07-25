@@ -59,7 +59,7 @@ $quarterBorder: calc(g.$border-base / 4);
   box-sizing: border-box;
   margin: g.$margin-small / 2;
 
-  box-shadow: g.$shadow-outer;
+  box-shadow: g.$shadow-outer__light;
 
   &:active {
     box-shadow: g.$shadow-inner-light;

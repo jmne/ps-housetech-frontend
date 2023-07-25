@@ -15,8 +15,8 @@ import BusStationMap from "./StationMapOverlay";
 
 /**
  *
- * @param busses All the data received regarding busses
- * @returns seperate arrays for inward and outward busses
+ * @param busses All the data received regarding buses
+ * @returns seperate arrays for inward and outward buses
  */
 function splitBusses(busses: Busride[]) {
   var inward: Busride[] = [];
@@ -33,17 +33,17 @@ function splitBusses(busses: Busride[]) {
 
 /**
  *
- * @returns Busplan showing Busses sorted by "inward" and "outward" busses
+ * @returns Busplan showing Buses sorted by "inward" and "outward" buses
  */
 export default function Busplan() {
   const { t } = useTranslation("index");
 
-  // Retrieve data and define states for inward & outward busses
+  // Retrieve data and define states for inward & outward buses
   const { data, isLoading, error } = useBusplan();
   const [busses_inward, setInward] = useState<Busride[]>([]);
   const [busses_outward, setoutward] = useState<Busride[]>([]);
 
-  // Data is initially 0 when waiting for the API response -> retrigger splitBusses when data changes
+  // Data is initially 0 when waiting for the API response -> trigger splitBusses when data changes
   useEffect(() => {
     if (!data) return;
     if (isLoading) return;

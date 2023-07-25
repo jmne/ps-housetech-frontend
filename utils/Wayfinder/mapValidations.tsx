@@ -181,18 +181,12 @@ export function animationAllowed(mapContext: MapData, toastContext: ToastContext
     !mapContext.animationActiveCampus ||
     !mapContext.animationActiveLeo11 ||
     !mapContext.animationActiveLeo3
-  ) {
-    toastContext.push(TOAST_ANIMATION_ERROR);
+  )
     return false;
-  }
 
-  if (
+  return !(
     mapContext.animationActiveCampus.current ||
     mapContext.animationActiveLeo11.current ||
     mapContext.animationActiveLeo3.current
-  ) {
-    toastContext.push(TOAST_ANIMATION_ERROR);
-    return false;
-  }
-  return true;
+  );
 }

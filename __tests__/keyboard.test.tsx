@@ -20,7 +20,7 @@ describe("Keyboard and Key components", () => {
       ["y", "x", "c", "v", "b", "n", "m", "-"]
     ];
 
-    render(<Keyboard visible/>);
+    render(<Keyboard visible />);
 
     keys.forEach((row) => {
       row.forEach((value) => {
