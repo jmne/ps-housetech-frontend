@@ -48,8 +48,8 @@ export default function Cafeteriaplan() {
 
   const { t } = useTranslation("index");
   const timeoutContext = useTimeoutContext();
-  const { data, isLoading, error } = useCafeteriaplan(selectedCafeteria);
   const router = useRouter();
+  const { data, isLoading, error } = useCafeteriaplan(selectedCafeteria, router.locale);
 
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [currentIndex, setCurrentIndex] = useState<number>();

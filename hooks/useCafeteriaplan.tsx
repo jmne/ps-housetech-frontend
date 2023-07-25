@@ -19,12 +19,11 @@ export type Cafeteria = "davinci" | "aasee" | "bispinghof" | "ring";
  *
  * @returns Data regarding the next busses
  */
-export default function useCafeteriaplan(cafeteria: Cafeteria) {
-  const {
-    data: d,
-    isLoading,
-    error
-  } = useSWR<Foodplan[]>(`${url}/${cafeteria}`, fetcher);
+export default function useCafeteriaplan(cafeteria: Cafeteria, locale?: string) {
+  const baseUrl = `${url}/${cafeteria}`;
+  const urlForLanguage = locale === "en" ? `${baseUrl}/en` : `${url}/${cafeteria}`;
+
+  const { data: d, isLoading, error } = useSWR<Foodplan[]>(urlForLanguage, fetcher);
   // /${cafeteria}
   const data = useMemo(() => {
     if (!d) return undefined;
