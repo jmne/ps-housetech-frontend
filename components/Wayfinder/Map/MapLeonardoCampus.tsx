@@ -57,6 +57,10 @@ const MapLeonardoCampus = memo(() => {
     };
 
     executeAnimations(animations);
+
+    return () => {
+      animationFinished();
+    };
   }, [
     mapContext,
     mapElements.mapContainer,
