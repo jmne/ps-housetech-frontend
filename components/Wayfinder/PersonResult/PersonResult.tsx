@@ -19,6 +19,7 @@ import { PersonOverlay } from "./PersonOverlay";
 import { useTranslation } from "next-i18next";
 
 import { Button } from "@/components/Button";
+import { Info } from "@/components/Info";
 
 interface props {
   person: Employee;
@@ -73,7 +74,9 @@ const PersonResult = memo(({ person }: props) => {
           {person.phones.map((phoneNumer, index) => {
             return (
               <Fragment key={index}>
-                <IconCall className={styles.attribute} />
+                <Info className={styles.attribute} type="text">
+                  <IconCall />
+                </Info>
                 <span className={styles.caption}>{phoneNumer}</span>
               </Fragment>
             );
@@ -81,14 +84,18 @@ const PersonResult = memo(({ person }: props) => {
           {person.emails.map((mailAddress, index) => {
             return (
               <Fragment key={index}>
-                <IconMail className={styles.attribute} />
+                <Info className={styles.attribute} type="text">
+                  <IconMail className={styles.attribute} />
+                </Info>
                 <span className={styles.caption}>{mailAddress}</span>
               </Fragment>
             );
           })}
           {person.address && person.roomNumber && (
             <>
-              <IconLocation className={styles.attribute} />
+              <Info className={styles.attribute} type="text">
+                <IconLocation/>
+              </Info>
               <div>
                 <span className={styles.caption}>{person.address}</span>
                 <span className={styles.caption}>, {person.roomNumber}</span>

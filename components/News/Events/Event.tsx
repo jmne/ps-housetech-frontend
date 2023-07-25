@@ -12,6 +12,7 @@ import IconEvent from "assets/images/event.svg";
 import { EventOverlay } from "./EventOverlay/EventOverlay";
 import { Button } from "@/components/Button";
 import { useTranslation } from "next-i18next";
+import { Info } from "@/components/Info";
 
 interface props {
   data: Event;
@@ -42,30 +43,22 @@ export function EventCard({ data }: props) {
           <div className={styles.info}>
             {
               // If date is given -> Show date
-              data.start_date ? (
-                <div className={styles.item}>
+              data.start_date && (
+                <Info>
                   <IconClock />
-                  <div>
-                    <span>{dateFormatted}</span>
-                    <span className={styles.divider}> | </span>
-                    <span>{time}</span>
-                  </div>
-                </div>
-              ) : (
-                <></>
+                  <span style={{ whiteSpace: "nowrap" }}>
+                    {dateFormatted} | {time}
+                  </span>
+                </Info>
               )
             }
             {
               // If location is given -> Show location
-              data.location ? (
-                <div className={styles.item}>
+              data.location && (
+                <Info>
                   <IconLocation />
-                  <div>
-                    <span>{data.location}</span>
-                  </div>
-                </div>
-              ) : (
-                <></>
+                  {data.location}
+                </Info>
               )
             }
             <Button className={styles.button}>{t("news.view_more_hint")}</Button>

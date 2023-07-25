@@ -13,6 +13,7 @@ import { InstagramOverlay } from "./Overlay/InstagramOverlay";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useTranslation } from "next-i18next";
 import { Button } from "@/components/Button";
+import { Info } from "@/components/Info";
 import IconPlay from "../../../assets/images/icon_play.svg";
 
 interface props {
@@ -49,7 +50,7 @@ export function Post({ post }: props) {
             )}
           </div>
           <div className={styles.footer}>
-            <div className={styles.timestamp}>
+            <Info>
               <IconClock className={styles.clockIcon} />
               <span>
                 {date.toLocaleDateString(router.locale == "de" ? "de-de" : "en-gb", {
@@ -58,7 +59,7 @@ export function Post({ post }: props) {
                   day: "numeric"
                 })}
               </span>
-            </div>
+            </Info>
             <Button className={styles.showMore}>{t("news.view_more_hint")}</Button>
           </div>
           <p className={styles.caption}>{post.caption}</p>

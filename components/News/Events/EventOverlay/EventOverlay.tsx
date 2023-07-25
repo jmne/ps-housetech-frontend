@@ -8,6 +8,7 @@ import IconClock from "assets/images/icon_clock.svg";
 import IconLocation from "assets/images/icon_location.svg";
 import IconEvent from "assets/images/event.svg";
 import { useEffect, useRef } from "react";
+import { Info } from "@/components/Info";
 
 interface props {
   event: Event;
@@ -32,10 +33,8 @@ export function EventOverlay({ event, setOverlayOpen }: props) {
 
   return (
     <article className={[indexStyles.overlayContainer, styles.container].join(" ")}>
-      <div className={styles.blocker}>
-        <div />
-      </div>
       <div className={styles.header}>
+        <h2>{event.title}</h2>
         <div className={styles.imageContainer}>
           {event.image ? (
             <img src={event.image} alt="Event Image" />
@@ -48,34 +47,23 @@ export function EventOverlay({ event, setOverlayOpen }: props) {
         <div className={styles.metaInformation}>
           {
             // If date is given -> Show date
-            event.start_date ? (
-              <div className={styles.item}>
+            event.start_date && (
+              <Info>
                 <IconClock />
-                <div>
-                  <span>{dateFormatted}</span>
-                  <span className={styles.divider}> | </span>
-                  <span>{time}</span>
-                </div>
-              </div>
-            ) : (
-              <></>
+                {dateFormatted} | {time}
+              </Info>
             )
           }
           {
             // If location is given -> Show location
-            event.location ? (
-              <div className={styles.item}>
+            event.location && (
+              <Info>
                 <IconLocation />
-                <div>
-                  <span>{event.location}</span>
-                </div>
-              </div>
-            ) : (
-              <></>
+                {event.location}
+              </Info>
             )
           }
         </div>
-        <h2>{event.title}</h2>
       </div>
       <div className={styles.description}>
         <p ref={descriptionRef}></p>

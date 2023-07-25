@@ -122,18 +122,4 @@
     justify-content: center;
     width: 100%;
   }
-
-  .icon {
-    width: g.$icon-sm;
-    height: auto;
-    fill: g.$text-secondary;
-    margin-right: 0.2rem;
-  }
-
-  .value {
-    height: fit-content;
-    justify-content: center;
-    color: g.$text-secondary;
-    font-size: 0.8rem;
-  }
 }

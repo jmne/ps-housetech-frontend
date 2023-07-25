@@ -111,20 +111,7 @@
     z-index: 2;
 
     .item {
-      width: 50%;
-      height: g.$icon-sm;
-
-      align-items: center;
-      justify-content: center;
-      align-content: center;
-
-      gap: calc(g.$margin-small / 2);
-
-      border: 1px solid g.$main-primary;
-      border-radius: g.$border-radius-small;
-      padding-inline: g.$margin-small;
-
-      background-color: g.$main-primary;
+      flex-grow: 1;
     }
 
     .button {
@@ -132,30 +119,6 @@
       height: g.$icon-sm;
       border-radius: g.$border-radius-small;
     }
-
-    span {
-      margin: 0;
-      padding: 0;
-      color: white;
-      font-size: g.$text-small;
-    }
-
-    svg {
-      width: g.$icon-small;
-      height: g.$icon-small;
-      fill: white;
-      margin: 0;
-    }
-
-    div {
-      display: inline-flex;
-      gap: calc(g.$margin-small / 4);
-      align-items: center;
-    }
-
-    //&::-webkit-scrollbar {
-    //    display: none;
-    //}
   }
 }
 

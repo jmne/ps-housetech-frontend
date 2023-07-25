@@ -18,14 +18,6 @@ export function Container({ children, className, setOverlayOpen }: props) {
     <Dialog.Portal>
       <Dialog.Content className={[styles.content, className].join(" ")}>
         {children}
-        <Dialog.Close asChild>
-          <button
-            className={[styles.close, button_styles.base].join(" ")}
-            onClick={handleClose}
-          >
-            Okay
-          </button>
-        </Dialog.Close>
       </Dialog.Content>
       <Dialog.Overlay className={styles.background} />
     </Dialog.Portal>

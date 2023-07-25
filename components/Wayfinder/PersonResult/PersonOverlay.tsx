@@ -45,22 +45,11 @@ export function PersonOverlay({ person, setOverlayOpen, imageID }: props) {
                 <IconAccount className={styles.profileImage} />
               )}
             </div>
-            {person.phones.map((phoneNumer, index) => {
-              return <QRContact type="phone" value={phoneNumer} key={index} />;
-            })}
             {person.emails.map((mailAddress, index) => {
               return <QRContact type="mail" value={mailAddress} key={index} />;
             })}
           </div>
         </Dialog.Description>
-        <Dialog.Close asChild>
-          <button
-            className={[styles.close, button_styles.base].join(" ")}
-            onClick={handleClose}
-          >
-            Okay
-          </button>
-        </Dialog.Close>
       </Dialog.Content>
       <Dialog.Overlay className={indexStyles.overlayBackground} />
     </Dialog.Portal>

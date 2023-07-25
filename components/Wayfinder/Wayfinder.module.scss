@@ -103,7 +103,7 @@ $searchWidth: 350px;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
 
-    > * {
+    >* {
       scroll-snap-align: start;
     }
 
@@ -154,7 +154,7 @@ $searchWidth: 350px;
     grid-template-columns: calc(5rem / 1.3) auto;
     height: 5rem;
 
-    gap: g.$margin-small;
+    gap: g.$margin-base;
   }
 
   .imageWrapper {
@@ -215,13 +215,6 @@ $searchWidth: 350px;
     font-size: g.$text-small;
   }
 
-  .attribute {
-    width: g.$icon-small;
-    height: g.$icon-small;
-
-    fill: g.$main-secondary;
-  }
-
   .hidden {
     min-height: 0;
     height: 0;
@@ -232,9 +225,11 @@ $searchWidth: 350px;
     display: grid;
     grid-template-columns: auto 1fr;
     row-gap: g.$margin-small;
-    column-gap: g.$margin-small;
+    column-gap: g.$margin-base;
 
     padding-inline-start: g.$margin-small;
+
+    align-items: center;
 
     .caption {
       grid-column: 2;
@@ -242,6 +237,7 @@ $searchWidth: 350px;
 
     .attribute {
       grid-column: 1;
+      padding: 0;
     }
   }
 

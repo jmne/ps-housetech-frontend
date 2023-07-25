@@ -21,6 +21,9 @@
   background-color: g.$container;
   backdrop-filter: blur(20px);
 
+  min-height: g.$icon-sm;
+  box-sizing: border-box;
+
   &:active {
     background-color: g.$main-primary_tint;
   }
