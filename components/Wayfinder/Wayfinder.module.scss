@@ -26,7 +26,7 @@ $searchWidth: 350px;
   display: flex;
   flex-direction: column;
   width: 22rem;
-  min-height: 0px;
+  min-height: 0;
 
   z-index: 10;
 
@@ -34,7 +34,7 @@ $searchWidth: 350px;
     z-index: 1;
     width: auto;
     height: fit-content;
-    padding-inline: g.$margin-small;
+    padding-inline: 0.4rem;
 
     margin-block-start: g.$margin-base;
     margin-inline: g.$margin-base;
@@ -42,10 +42,9 @@ $searchWidth: 350px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: g.$margin-small;
 
-    border: g.$border-base solid g.$main-primary;
-    box-shadow: g.$shadow-outer;
+    border: g.$border-base solid g.$main-primary-tint;
+    box-shadow: g.$shadow-outer__light;
 
     transition: transform 0.1s ease-out 0s, filter 0.1s ease-out;
 
@@ -65,20 +64,20 @@ $searchWidth: 350px;
   .icon {
     display: inline-block;
     width: g.$icon-base;
-
-    height: 100%;
+    height: 1.8rem;
 
     fill: g.$main-primary;
   }
 
   .input {
     flex-grow: 1;
-    height: 100%;
+    height: 3rem;
     background-color: transparent;
 
     border: none;
 
     color: g.$text-primary;
+
     font-size: g.$text-base;
 
     display: flex;
@@ -89,6 +88,10 @@ $searchWidth: 350px;
     overflow: hidden;
   }
 
+  input::placeholder {
+    color: g.$text-primary;
+  }
+
   ol {
     position: relative;
 
@@ -96,7 +99,7 @@ $searchWidth: 350px;
     margin: 0;
     padding-inline: g.$margin-base;
 
-    min-height: 0px;
+    min-height: 0;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
 
@@ -132,13 +135,13 @@ $searchWidth: 350px;
   padding: g.$margin-small;
 
   list-style-type: none;
-  box-shadow: g.$shadow-outer;
+  box-shadow: g.$shadow-outer__light;
   background-color: g.$container-item;
 
   border-radius: g.$border-radius-base;
 
   transition: height $animDuration;
-  min-height: 0px;
+  min-height: 0;
   height: fit-content;
   box-sizing: border-box;
 
@@ -148,10 +151,10 @@ $searchWidth: 350px;
 
   .header {
     display: grid;
-    grid-template-columns: calc(5rem/1.3) auto;
+    grid-template-columns: calc(5rem / 1.3) auto;
     height: 5rem;
 
-    gap: g.$margin-small;
+    gap: g.$margin-base;
   }
 
   .imageWrapper {
@@ -191,7 +194,7 @@ $searchWidth: 350px;
       width: g.$icon-small;
       height: g.$icon-small;
 
-      fill: g.$main-primary;
+      fill: g.$text-secondary;
     }
   }
 
@@ -203,7 +206,7 @@ $searchWidth: 350px;
     .caption {
       overflow: hidden;
       text-overflow: ellipsis;
-      font-weight: 500;
+      font-weight: 400;
     }
   }
 
@@ -212,16 +215,9 @@ $searchWidth: 350px;
     font-size: g.$text-small;
   }
 
-  .attribute {
-    width: g.$icon-small;
-    height: g.$icon-small;
-
-    fill: g.$main-secondary;
-  }
-
   .hidden {
-    min-height: 0px;
-    height: 0px;
+    min-height: 0;
+    height: 0;
 
     overflow: hidden;
     opacity: 0;
@@ -229,17 +225,19 @@ $searchWidth: 350px;
     display: grid;
     grid-template-columns: auto 1fr;
     row-gap: g.$margin-small;
-    column-gap: g.$margin-small;
+    column-gap: g.$margin-base;
 
     padding-inline-start: g.$margin-small;
 
+    align-items: center;
+
     .caption {
       grid-column: 2;
-
     }
 
     .attribute {
       grid-column: 1;
+      padding: 0;
     }
   }
 

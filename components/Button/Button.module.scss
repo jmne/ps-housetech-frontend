@@ -1,9 +1,9 @@
 @use "../../assets/scss/constants.scss" as g;
 
 .base {
-  color: g.$main-primary;
+  color: g.$text-button;
   font-size: g.$text-small;
-  font-weight: 500;
+  font-weight: 400;
 
   padding-block: g.$margin-base / 2;
   padding-inline: g.$margin-base;
@@ -16,10 +16,13 @@
   gap: g.$margin-small;
 
   border: g.$border-base solid g.$text-secondary;
-  border-radius: 1.5rem;
-  
+  border-radius: g.$border-radius-base;
+
   background-color: g.$container;
   backdrop-filter: blur(20px);
+
+  min-height: g.$icon-sm;
+  box-sizing: border-box;
 
   &:active {
     background-color: g.$main-primary_tint;

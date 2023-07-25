@@ -8,7 +8,7 @@
         }
     },
     "wayfinder": {
-        "title": "Person xy, Fachbereich xy",
+        "title": "Suche..",
         "search": {
             "room": "Raum",
             "phone": "Tel.",
@@ -33,17 +33,17 @@
             "cafeteria": "Mensa"
         },
         "controls": {
-            "visit": "Besuche...",
+            "visit": "Plan",
             "where_is": "Wo ist?",
             "back_to_campus": "Zum Campus",
             "remove_highlight": "Markierung entfernen",
-            "highlight_building": "Gebäude finden",
-            "highlight_lecture_hall_building": "Raum finden"
+            "highlight_building": "Gebäude",
+            "highlight_lecture_hall_building": "Raum"
         }
     },
     "busplan": {
         "title": "Busplan",
-        "map_button": "Karte ansehen"
+        "map_button": "Karte"
     },
     "cafeteria_plan": {
         "title": "Mensaplan",
@@ -58,8 +58,8 @@
     },
     "news": {
         "title": "Aktuelles",
-        "link_overlay_trigger": "Zum Insta-Kanal",
-        "view_more_hint": "Klick für mehr",
+        "link_overlay_trigger": "Instagram",
+        "view_more_hint": "Mehr anzeigen",
         "events": {
             "title": "Events"
         },
@@ -68,6 +68,6 @@
         }
     },
     "weather": {
-        "title_report": "Wetterbericht"
+        "title_report": "Wetter"
     }
 }

@@ -33,7 +33,7 @@ export function transitionClass(elem: HTMLElement | SVGSVGElement, className: st
 
 export function transitionFunction(
   elem: HTMLElement | SVGSVGElement | Element,
-  transformation: (() => void)
+  transformation: () => void
 ) {
   return new Promise((resolve) => {
     function handleTransitionEnd() {
