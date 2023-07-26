@@ -1,11 +1,8 @@
 // IMPORTS - BUILTINS
 import { RefObject } from "react";
-import { BuildingFloor, CampusBuilding, buildingNames } from "types/Campus";
+import { BuildingFloor, CampusBuilding } from "types/Campus";
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
 import { transitionFunction, transitionStyle } from "utils/animations";
-import { MapData } from "context/MapContext";
-import { getPersonForRoom } from "./mapValidations";
-import { Employee } from "types/Employee";
 
 const getFloorStyleFromOffset = [
   styles.floor__1below,
@@ -123,9 +120,12 @@ export async function highlightFloor(
     index_new_layer
   );
 
-  if (!building_floors[0].current) return;
+  const elements: SVGSVGElement[] = [];
+  building_floors.forEach((reference) => {
+    if (reference.current) elements.push(reference.current);
+  });
 
-  return transitionFunction(building_floors[0].current, transformation);
+  return transitionFunction(elements, transformation);
 }
 
 function collapseFloorsOfBuilding_internal(building_floors: RefObject<SVGSVGElement>[]) {

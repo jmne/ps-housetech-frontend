@@ -39,8 +39,6 @@ export function CampusMap({ allPersons }: MapProps) {
   >();
   const [roomDisplayName, setRoomDisplayName] = useState<string | undefined>();
 
-  useEffect(() => {}, []);
-
   useEffect(() => {
     if (!mapContext.current.area || !mapContext.current.room)
       setPlacesAndPeopleInSelectedRoom(undefined);

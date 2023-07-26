@@ -1,6 +1,5 @@
-interface styleProps {
-  [key: string]: string;
-}
+type singleElement = HTMLElement | SVGSVGElement | Element;
+type multipleElements = singleElement[];
 
 function transitionHelper(
   elem: HTMLElement | SVGSVGElement | Element,
@@ -12,6 +11,25 @@ function transitionHelper(
     }
 
     elem.addEventListener("transitionend", handleTransitionEnd, { once: true });
+    setTimeout(() => {
+      handleTransitionEnd();
+    }, 1500);
+    requestAnimationFrame(action);
+  });
+}
+
+function transitionHelperArray(elem: multipleElements, action: () => void) {
+  return new Promise((resolve) => {
+    function handleTransitionEnd() {
+      resolve(elem);
+    }
+
+    elem.forEach((e) =>
+      e.addEventListener("transitionend", handleTransitionEnd, { once: true })
+    );
+    setTimeout(() => {
+      handleTransitionEnd();
+    }, 1500);
     requestAnimationFrame(action);
   });
 }
@@ -34,9 +52,12 @@ export function transitionClass(elem: HTMLElement | SVGSVGElement, className: st
 }
 
 export function transitionFunction(
-  elem: HTMLElement | SVGSVGElement | Element,
+  elem: singleElement | multipleElements,
   transformation: () => void
 ) {
+  if (Array.isArray(elem)) {
+    return transitionHelperArray(elem, transformation);
+  }
   return transitionHelper(elem, transformation);
 }
 
