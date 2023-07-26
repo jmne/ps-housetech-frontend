@@ -1,5 +1,6 @@
 import * as Card from "@/components/Card";
 import dynamic from "next/dynamic";
+import styles from "./rainRadar.module.scss";
 
 const Map = dynamic(() => import("@/components/Weather/RainRadar/Map"), {
   loading: () => <span>Loading...</span>,
@@ -8,7 +9,7 @@ const Map = dynamic(() => import("@/components/Weather/RainRadar/Map"), {
 
 export function RainRadar() {
   return (
-    <Card.Content>
+    <Card.Content className={styles.container}>
       <Map />
     </Card.Content>
   );

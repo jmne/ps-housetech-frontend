@@ -7,8 +7,6 @@ import { EventCard } from "./Event";
 import styles from "./Events.module.scss";
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
 import { memo, useEffect, useState } from "react";
 import { useTimeoutContext } from "context/TimeoutContext";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
