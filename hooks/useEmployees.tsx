@@ -13,7 +13,7 @@ const options = { refreshInterval: 60 * 60 * 1000 };
  * @returns Employee[]
  */
 export function useEmployees(locale?: string) {
-  const urlForLanguage = locale === "en" ? `${url}/en` : url;
+  const urlForLanguage = locale === "en" ? `${url}/en` : `${url}/de`;
   const { data, isLoading, error } = useSWR<Employee[]>(urlForLanguage, fetcher, options);
 
   return { data, isLoading, error };
