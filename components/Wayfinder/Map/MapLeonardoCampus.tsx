@@ -9,7 +9,6 @@ import {
 } from "utils/Wayfinder/mapTransformations";
 import { buildingNames } from "types/Campus";
 import { useMapElements } from "context/MapElements";
-import { executeAnimationSequence } from "utils/animations";
 import { AnimationQueue } from "utils/AnimationQueue";
 
 const MapLeonardoCampus = memo(() => {
@@ -38,7 +37,7 @@ const MapLeonardoCampus = memo(() => {
     }
 
     if (animations.length > 0) animationQueue.enqueue(animations);
-  }, [mapContext, mapElements.mapContainer, mapElements.campus_element]);
+  }, [mapContext, mapElements.mapContainer, mapElements.campus_element, animationQueue]);
 
   return (
     <div className={styles.mapElement}>

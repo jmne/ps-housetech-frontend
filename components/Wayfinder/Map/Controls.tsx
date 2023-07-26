@@ -155,6 +155,7 @@ export function Controls() {
   }, [
     mapContext,
     t,
+    handleCafeteriaHighlight,
     handleAreaChangeLeo3,
     handleAreaChangeLeo11,
     handleAreaChangeCampus,
