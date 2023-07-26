@@ -21,7 +21,7 @@ export type Cafeteria = "davinci" | "aasee" | "bispinghof" | "ring";
  */
 export default function useCafeteriaplan(cafeteria: Cafeteria, locale?: string) {
   const baseUrl = `${url}/${cafeteria}`;
-  const urlForLanguage = locale === "en" ? `${baseUrl}/en` : `${url}/${cafeteria}`;
+  const urlForLanguage = locale === "en" ? `${baseUrl}/en` : `${url}/${cafeteria}/de`;
 
   const { data: d, isLoading, error } = useSWR<Foodplan[]>(urlForLanguage, fetcher);
   // /${cafeteria}

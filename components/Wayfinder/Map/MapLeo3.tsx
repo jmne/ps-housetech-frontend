@@ -1,4 +1,12 @@
-import { MutableRefObject, memo, useCallback, useEffect, useRef, useState } from "react";
+import {
+  MutableRefObject,
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from "react";
 import styles from "./Map.module.scss";
 import {
   Leo3_Floor0,
@@ -22,6 +30,7 @@ import ArrowUp from "assets/images/icon_arrow_up.svg";
 import ArrowDown from "assets/images/icon_arrow_down.svg";
 import { useMapElements } from "context/MapElements";
 import { useToastContext } from "context/ToastContext";
+import { AnimationQueue } from "utils/AnimationQueue";
 
 function handleTouchEnd(
   touchStart: number | undefined,
@@ -75,12 +84,12 @@ function floorDown(mapContext: MapData, personContext: PersonData) {
 }
 
 const MapLeo3 = memo(() => {
-  const animationIdRef = useRef(0);
-  const toastContext = useToastContext();
   const mapContext = useMapContext();
   const mapElements = useMapElements();
   const personContext = usePersonSearchContext();
   const [touchStart, setTouchStart] = useState<number | undefined>();
+
+  const animationQueue = useMemo(() => new AnimationQueue(), []);
 
   const handleFloorUp = useCallback(() => {
     floorUp(mapContext, personContext);
@@ -121,9 +130,6 @@ const MapLeo3 = memo(() => {
 
   // Handle Change of shown area
   useEffect(() => {
-    const currentAnimationID = animationIdRef.current + 1;
-    animationIdRef.current = animationIdRef.current + 1;
-
     const areaJustGotInFocus =
       mapContext.current.area === buildingNames.LEO3 &&
       mapContext.previous.area !== buildingNames.LEO3;
@@ -172,21 +178,7 @@ const MapLeo3 = memo(() => {
         )
       );
 
-    if (animations.length === 0) return;
-
-    const executeAnimations = async (
-      animations: (() => Promise<unknown>)[],
-      animID: number,
-      mapAnimationIDRef: MutableRefObject<number>
-    ) => {
-      for (let index = 0; index < animations.length; index++) {
-        if (animID !== mapAnimationIDRef.current) {
-          return;
-        }
-        await animations[index]();
-      }
-    };
-    executeAnimations(animations, currentAnimationID, animationIdRef);
+    if (animations.length > 0) animationQueue.enqueue(animations);
   }, [
     mapContext,
     mapContext.current.area,

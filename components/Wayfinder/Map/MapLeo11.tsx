@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react";
+import { memo, useEffect, useMemo } from "react";
 import styles from "./Map.module.scss";
 import { Leo11_Floor0 } from "assets/images/map/floors_transformed";
 import { useMapContext } from "context/MapContext";
@@ -10,10 +10,12 @@ import {
 import { buildingNames } from "types/Campus";
 import { useMapElements } from "context/MapElements";
 import { executeAnimationSequence } from "utils/animations";
+import { AnimationQueue } from "utils/AnimationQueue";
 
 const MapLeo11 = memo(() => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
+  const animationQueue = useMemo(() => new AnimationQueue(), []);
 
   useEffect(() => {
     const element_leo11_on_campus = mapElements.leo11_building_on_campus?.current;
@@ -83,7 +85,7 @@ const MapLeo11 = memo(() => {
       );
     }
 
-    executeAnimationSequence(animations);
+    if (animations.length > 0) animationQueue.enqueue(animations);
   }, [
     mapContext,
     mapContext.current.area,
