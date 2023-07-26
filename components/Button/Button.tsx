@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+import { ButtonHTMLAttributes, DetailedHTMLProps, LegacyRef, forwardRef } from "react";
 import styles from "./Button.module.scss";
 
 interface props
@@ -7,18 +7,24 @@ interface props
   smallPadding?: boolean;
 }
 
-export function Button({ children, className, smallPadding, iconSize, ...props }: props) {
-  return (
-    <button
-      className={[
-        styles.base,
-        iconSize === "m" ? styles.iconMedium : undefined,
-        smallPadding ? styles.smallPadding : undefined,
-        className
-      ].join(" ")}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-}
+export const Button = forwardRef(
+  (
+    { children, className, smallPadding, iconSize, ...props }: props,
+    ref: LegacyRef<HTMLButtonElement>
+  ) => {
+    return (
+      <button
+        className={[
+          styles.base,
+          iconSize === "m" ? styles.iconMedium : undefined,
+          smallPadding ? styles.smallPadding : undefined,
+          className
+        ].join(" ")}
+        ref={ref ? ref : undefined}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  }
+);
