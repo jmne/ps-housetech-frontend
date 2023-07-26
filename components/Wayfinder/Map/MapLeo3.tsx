@@ -1,12 +1,4 @@
-import {
-  MutableRefObject,
-  memo,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from "react";
+import { memo, useCallback, useEffect, useMemo, useState } from "react";
 import styles from "./Map.module.scss";
 import {
   Leo3_Floor0,
@@ -29,7 +21,6 @@ import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
 import ArrowUp from "assets/images/icon_arrow_up.svg";
 import ArrowDown from "assets/images/icon_arrow_down.svg";
 import { useMapElements } from "context/MapElements";
-import { useToastContext } from "context/ToastContext";
 import { AnimationQueue } from "utils/AnimationQueue";
 
 function handleTouchEnd(

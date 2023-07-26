@@ -11,7 +11,6 @@ import IconMinus from "assets/images/icon_minus.svg";
 import IconCall from "assets/images/icon_call.svg";
 import IconMail from "assets/images/icon_mail.svg";
 import IconLocation from "assets/images/icon_location.svg";
-import { useToastContext } from "context/ToastContext";
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { PersonOverlay } from "./PersonOverlay";
