@@ -1,5 +1,5 @@
 import styles from "./Map.module.scss";
-import { memo, useEffect } from "react";
+import { memo, useEffect, useMemo } from "react";
 import LeonardoCampus from "assets/images/map/campus_transformed/leonardocampus";
 import { useMapContext } from "context/MapContext";
 import {
@@ -10,10 +10,12 @@ import {
 import { buildingNames } from "types/Campus";
 import { useMapElements } from "context/MapElements";
 import { executeAnimationSequence } from "utils/animations";
+import { AnimationQueue } from "utils/AnimationQueue";
 
 const MapLeonardoCampus = memo(() => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
+  const animationQueue = useMemo(() => new AnimationQueue(), []);
 
   useEffect(() => {
     const campus = mapElements.campus_element?.current;
@@ -34,8 +36,8 @@ const MapLeonardoCampus = memo(() => {
     } else if (transitionFromCampus) {
       animations.push(minimizeCampus.bind(null, campus));
     }
-    
-    executeAnimationSequence(animations);
+
+    if (animations.length > 0) animationQueue.enqueue(animations);
   }, [mapContext, mapElements.mapContainer, mapElements.campus_element]);
 
   return (
