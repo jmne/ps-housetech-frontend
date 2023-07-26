@@ -3,7 +3,7 @@ import * as Select from "@radix-ui/react-select";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 import { AllCafeterias, Cafeteria } from "hooks/useCafeteriaplan";
 import { useTranslation } from "next-i18next";
-import { PropsWithChildren, forwardRef } from "react";
+import { PropsWithChildren, Ref, forwardRef } from "react";
 import stylesButton from "@/components/Button/Button.module.scss";
 
 interface props {
@@ -58,12 +58,11 @@ interface selectItem extends PropsWithChildren {
 }
 
 const SelectItem = forwardRef(
-  ({ children, className, ...props }: selectItem, forwardedRef) => {
+  ({ children, className, ...props }: selectItem, forwardedRef: Ref<HTMLDivElement>) => {
     return (
       <Select.Item
         className={[styles.selectItem, className].join(" ")}
         {...props}
-        //@ts-ignore
         ref={forwardedRef}
       >
         <Select.ItemText>{children}</Select.ItemText>
