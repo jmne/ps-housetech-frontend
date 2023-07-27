@@ -1,6 +1,7 @@
 import { useMapElements } from "context/MapElements";
 import * as React from "react";
 import type { SVGProps } from "react";
+import { COLOR } from "utils/constants";
 const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
   const mapElements = useMapElements();
   return (
@@ -63,9 +64,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path25"
             d="M0,992.381L130.04,1114.04L174.38,1066.66L44.35,945.001L0,992.381Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -75,7 +76,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path30"
             d="M0,926.721L198.22,1114.04L250.85,1052.94L212.84,1018.07L280.98,949.181L318.13,984.82L347.41,955.502L155.609,769.502L88.809,836.302L73.859,849.632L0,926.721Z"
             style={{
-              fill: "rgb(157,187,97)",
+              fill: COLOR.GREEN_AREA,
               fillRule: "nonzero"
             }}
           />
@@ -95,7 +96,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path40"
             d="M0,1114.04L33.06,929.311L23.89,644.662L28.13,667.282L37.22,688.032L79.37,726.971L43.06,768.002L43.06,772.221L70.95,800.573L136.2,860.432L74.92,928.692L123.11,977.452L200.21,1041.79L201.53,1055.61L73.5,1054.27L35.8,1059.94L15.39,1088.28L2.79,1113.52L0,1114.04Z"
             style={{
-              fill: "rgb(157,187,97)",
+              fill: COLOR.GREEN_AREA,
               fillRule: "nonzero"
             }}
           />
@@ -105,7 +106,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path45"
             d="M0,1090.94L1.42,1105.11L152.21,1114.04L106.41,1065.06L88.02,1068.26L73.629,1066.65L63.23,1058.67L50.33,1036.83L0,1090.94Z"
             style={{
-              fill: "rgb(157,187,97)",
+              fill: COLOR.GREEN_AREA,
               fillRule: "nonzero"
             }}
           />
@@ -115,7 +116,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path52"
             d="M344.81,937.521L175.75,1080.5L39.84,1114.04L0,1114.04L0,1096.37L46.81,1096.62L171.78,1065.19L335.62,926.291L419.33,837.461L429.24,847.031L344.81,937.521Z"
             style={{
-              fill: "#fafafa",
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
               fillRule: "nonzero",
               stroke: "rgb(89,89,89)",
               strokeWidth: "0.75px"
@@ -153,7 +154,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path59"
             d="M42.78,1114.04L34.48,1095.48L40.15,1077.05L100.24,1002.78L24.27,924.55L17.43,931.39L0,913.951L2.44,911.511L17.47,926.531L32.63,911.371L35.04,914.061L26.96,922.141L102.51,999.951L115.26,969.331L57.72,914.061L59.82,911.961L119.52,969.331L103.93,1004.2L42.98,1078.47L37.88,1094.06L45.98,1111.33L42.78,1114.04Z"
             style={{
-              fill: "#fafafa",
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
               fillRule: "nonzero",
               stroke: "rgb(191,191,191)",
               strokeWidth: "0.75px"
@@ -168,9 +169,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path64"
             d="M47.51,1034.07L81.751,1064.41L92.491,1052.28L105.541,1063.82L61.021,1114.04L48.451,1102.88L60.311,1089.48L25.802,1058.92L14.221,1071.98L0,1059.37L42.769,1011.11L56.799,1023.55L47.51,1034.07Z"
             style={{
-              fill: "#435c8b",
+              fill: COLOR.MARKED_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -180,9 +181,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path69"
             d="M0,1018.1L30.84,1046.74L55.24,1022.09L149.86,1114.04L184.139,1107.54L162.119,1084.43L172.569,1073.23L99.029,1004.26L88.169,1015.55L72.899,1000.89L90.669,980.802L60.569,952.162L0,1018.1Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -192,9 +193,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path74"
             d="M37.67,1101.62L11.771,1077.45L0,1090.28L25.9,1114.04L37.67,1101.62Z"
             style={{
-              fill: "#fafafa",
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -215,7 +216,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path84"
             d="M0,1111.72L49.641,1062.08L52.72,1065.16L2.4,1114.04L0,1111.72Z"
             style={{
-              fill: "#fafafa",
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
               fillRule: "nonzero",
               stroke: "rgb(191,191,191)",
               strokeWidth: "0.75px"
@@ -227,7 +228,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path89"
             d="M0,1109.76L6.69,1103.08L91.14,1036.48L95.669,1041.01L11.1,1107.44L4.419,1114.04L0,1109.76Z"
             style={{
-              fill: "#fafafa",
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
               fillRule: "nonzero",
               stroke: "rgb(191,191,191)",
               strokeWidth: "0.75px"
@@ -298,7 +299,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#435c8b",
+              stroke: COLOR.MARKED_AREA,
               strokeWidth: "0.3px",
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -322,7 +323,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#435c8b",
+              stroke: COLOR.MARKED_AREA,
               strokeWidth: "0.3px",
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -346,7 +347,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#435c8b",
+              stroke: COLOR.MARKED_AREA,
               strokeWidth: "0.3px",
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -370,7 +371,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#435c8b",
+              stroke: COLOR.MARKED_AREA,
               strokeWidth: "0.3px",
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -394,7 +395,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#435c8b",
+              stroke: COLOR.MARKED_AREA,
               strokeWidth: "0.3px",
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -436,7 +437,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: "2.5px",
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -481,7 +482,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: "3.5px"
             }}
           />
@@ -699,9 +700,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path280"
             d="M0,1077.91L37.52,1038.96L75.05,1075.06L37.52,1114.04L0,1077.91Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -1055,7 +1056,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 3
             }}
           />
@@ -1075,7 +1076,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeOpacity: 0.4,
               strokeWidth: 4
             }}
@@ -1096,7 +1097,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeOpacity: 0.4,
               strokeWidth: 3
             }}
@@ -1117,7 +1118,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 3
             }}
           />
@@ -1151,7 +1152,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1165,7 +1166,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1179,7 +1180,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1193,7 +1194,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1209,7 +1210,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             height={7.602}
             style={{
               fill: "none",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1223,7 +1224,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1237,7 +1238,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1283,7 +1284,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1297,7 +1298,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1311,7 +1312,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1325,7 +1326,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1339,7 +1340,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1353,7 +1354,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1367,7 +1368,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1381,7 +1382,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1395,7 +1396,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1409,7 +1410,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1523,7 +1524,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1537,7 +1538,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1551,7 +1552,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1565,7 +1566,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1579,7 +1580,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1593,7 +1594,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1607,7 +1608,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1621,7 +1622,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1635,7 +1636,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1649,7 +1650,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1663,7 +1664,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1677,7 +1678,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1691,7 +1692,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1835,7 +1836,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1849,7 +1850,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1863,7 +1864,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1877,7 +1878,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1891,7 +1892,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1905,7 +1906,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1919,7 +1920,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1933,7 +1934,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1947,7 +1948,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1961,7 +1962,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1975,7 +1976,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -1991,7 +1992,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             height={7.6}
             style={{
               fill: "none",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -2005,7 +2006,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -2019,7 +2020,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -2033,7 +2034,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -2047,7 +2048,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#fafafa",
+              stroke: COLOR.TEXT_AND_BASIC_ELEMENTS,
               strokeWidth: 2,
               strokeLinecap: "butt",
               strokeLinejoin: "miter"
@@ -2221,9 +2222,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path902"
             d="M42.39,1100.17L29.61,1114.04L0,1086.73L12.021,1073.69L18.321,1079.5L41.901,1053.92L30.461,1043.37L45.482,1027.12L78.732,1057.77L61.412,1076.55L54.102,1069.8L33.572,1092.04L42.39,1100.17Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2233,9 +2234,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path907"
             d="M20.79,1025.11L0,1068.4L95.021,1114.04L115.821,1070.75L20.79,1025.11Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2245,9 +2246,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path912"
             d="M12.93,1063.73L0,1090.56L47.91,1114.04L60.74,1086.19L12.93,1063.73Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2257,9 +2258,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path917"
             d="M24.66,1114.04L41.971,1096.04L17.3,1072.32L0,1090.35L24.66,1114.04Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2269,9 +2270,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path922"
             d="M58.25,1087.3L58.061,1114.04L0,1113.65L0.19,1086.88L58.25,1087.3Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2281,9 +2282,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path927"
             d="M82.95,1079.94L82.221,1114.04L0,1112.3L0.73,1078.17L82.95,1079.94Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2293,9 +2294,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path932"
             d="M229.93,1114.04L249.129,1093.76L20.05,876.931L0,898.101L97.74,990.669L30.56,1062.4L64.99,1095L133.42,1022.68L229.93,1114.04Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2305,9 +2306,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path937"
             d="M175.68,898.361L2.12,1080.22L0,1114.04L209.96,891.861L175.68,898.361Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2317,9 +2318,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path942"
             d="M184.51,1080.22L19.941,921.22L0,941.57L182.39,1114.04L184.51,1080.22Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2329,9 +2330,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path947"
             d="M180.9,1114.04L127.18,1062.71L116.05,1074.33L110.34,1068.85L121.5,1057.25L59.62,998.17L49.15,1008.92L44.88,1004.78L55.37,994.041L0,941.161L39.06,944.421L197.94,1096.23L180.9,1114.04Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2341,9 +2342,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path957"
             d="M0,1093.23L21.63,1114.04L46.35,1088.88L25,1067.21L0,1093.23Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2353,9 +2354,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path962"
             d="M2.23,1083.88L0,1106.43L76.86,1114.04L79.1,1091.51L2.23,1083.88Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2365,9 +2366,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path967"
             d="M0.72,1083.67L0,1112.39L66.1,1114.04L66.31,1105.9L90.3,1106.51L90.82,1085.94L0.72,1083.67Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2377,9 +2378,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path972"
             d="M20.41,1019.28L124.78,1114.04L223.591,1005.22L116.04,907.542L98.8,926.52L105.619,932.69L99.319,939.641L47.319,892.42L0,944.561L48.37,988.471L20.41,1019.28Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2389,9 +2390,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path977"
             d="M0,1091.06L22.6,1114.04L89.41,1047.24L66.341,1025.19L0,1091.06Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2401,7 +2402,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path982"
             d="M0,1111.17L34.37,1074.43L37.141,1076.38L3.12,1114.04L0,1111.17Z"
             style={{
-              fill: "#fafafa",
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
               fillRule: "nonzero",
               stroke: "rgb(191,191,191)",
               strokeWidth: "0.75px"
@@ -2413,9 +2414,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path987"
             d="M63.27,1045.85L2.83,1114.04L0,1111.2L60.78,1043.49L63.27,1045.85Z"
             style={{
-              fill: "#fafafa",
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2425,7 +2426,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path992"
             d="M163.89,1114.04L0,954.771L10.12,944.651L174.28,1105.23L163.89,1114.04Z"
             style={{
-              fill: "#fafafa",
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
               fillRule: "nonzero",
               stroke: "rgb(191,191,191)",
               strokeWidth: "0.75px"
@@ -2473,7 +2474,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path1012"
             d="M0,1049.76L121.271,1114.04L235.271,898.33L233.041,881.57L218.501,860.89L202.861,848.05L189.041,843.56L176.031,846.939L0.55,1039.73L0,1049.76Z"
             style={{
-              fill: "rgb(157,187,97)",
+              fill: COLOR.GREEN_AREA,
               fillRule: "nonzero"
             }}
           />
@@ -2497,7 +2498,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2521,7 +2522,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2717,7 +2718,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path1116"
             d="M87.92,983.261L88.869,984.191L108.71,1004.03L108.71,1004.04L87.35,1027.8L107.65,1046.04L117.13,1035.47L139.989,1056.01L134.33,1062.31L150.319,1076.67L155.42,1071L175.6,1089.12L167.789,1097.81L185.869,1114.04L222.55,1073.25L201.739,1054.54L196.01,1060.93L139.08,1009.77L145.67,1002.44L126.01,984.77L112.289,1000.04L93.63,981.481L91.63,979.241L105.069,964.691L81.259,942.711L78.099,946.151L51.619,921.701L55.25,917.801L35.609,899.711L0,938.301L14.739,952.431L25.63,941.011L37.63,951.881L27.13,962.381L44.98,979.801L54.38,969.601L67.59,981.781L56.94,993.341L68.66,1004.12L87.92,983.261Z"
             style={{
-              fill: "rgb(165,165,165)",
+              fill: COLOR.NORMAL_AREA,
               fillRule: "nonzero"
             }}
           />
@@ -2727,7 +2728,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2742,7 +2743,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             style={{
               fill: "none",
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2752,9 +2753,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path1138"
             d="M352.39,875.9L427.52,945.3L397.7,978.54L225.35,968.341L223.94,954.161L280.63,893.22L303.31,904.56L326.55,904.56L348.55,879.8L352.39,875.9ZM142.95,883.23L99.21,841.351L162,771.041L92.78,708.602L88.16,713.221L153.41,773.082L92.13,841.352L140.31,890.102L215.43,952.461L217.42,954.451L218.74,968.271L90.71,966.921L53.01,972.591L32.6,1000.94L10.72,1046.39L0,1107.23L6.52,1108.65L16.22,1050.32L114.8,1056.78L146.55,1056.78L146.55,1049.98L114.8,1049.98L18.16,1044.27L37.42,1004.34L56.41,977.98L90.43,972.871L223.94,974.861L399.69,985.351L433.51,948.281L467.72,958.422L669.51,1062.35L670.619,1060.33L646.019,1107.23L659.059,1114.04L724.249,985.351L712.908,979.681L672.738,1056.28L596.688,1017.66L706.678,793.162L708.657,777.002L699.307,750.07L681.727,730.23L657.767,689.271L667.557,671.271L677.477,642.351L676.057,626.761L668.977,611.74L665.367,607.361L706.888,563.501L703.958,560.57L686.008,579.591L571.72,474.801L623.54,423.721L909.92,699.9L930.569,679.252L324.569,93.851L300.469,112.161L619.319,419.651L567.449,470.881L369.6,286.631L402.91,251.721L398.27,246.921L344.13,303.481L325.98,286.611L300.15,250.611L295.74,255.331L320.03,290.861L339.001,308.461L315.03,331.711L304.72,321.471L277.8,317.791L254.55,327.141L171.65,412.671L147.52,383.381L141.03,388.871L165.72,418.781L136.96,448.451L100.06,451.86L45.07,505.161L44.5,543.14L41.1,557.31L45.34,579.931L54.43,600.681L346.68,870.63L346.71,870.65L346.68,870.63L344.26,873.581L324.57,897.47L303.31,897.47L282.05,886.13L206.65,815.271L146.79,879.4L142.95,883.23ZM439.25,941.99L627.87,726.261L653.45,695.7L676.06,734.479L693.64,753.75L702.43,777L700.159,791.17L590.42,1014.43L470.55,952.75L439.03,942.24L439.25,941.99ZM643.17,590.662L663.31,614.861L669.54,627.611L671.239,641.502L661.889,667.861L659.629,672.15L519.02,526.74L545.81,500.331L643.17,590.662ZM662.77,604.211L647.72,585.941L550.619,495.601L568.38,478.091L683.18,582.582L662.77,604.211ZM514.9,522.801L320.1,336.281L343.98,313.081L541.6,496.421L514.9,522.801ZM349.1,308.111L366.98,289.371L564.1,474.201L546.4,491.68L349.1,308.111ZM48.47,539.74L48.47,507.711L102.59,455.53L133.17,452.36L48.47,539.74ZM432.33,939.931L59.81,597.002L51.19,577.141L47.45,556.521L52.3,544.671L257.949,332.811L279.21,323.741L301.319,327.711L315.17,341.081L510.92,526.731L456.01,580.971L407.15,630.512L410.94,634.541L460.26,584.65L515.06,530.65L657.45,676.28L652.07,686.469L432.33,939.931ZM150.77,884.502L206.93,823.772L275.53,889.821L219.69,948.491L147.82,887.692L150.77,884.502Z"
             style={{
-              fill: "#fafafa",
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2839,9 +2840,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path1172"
             d="M0,1107.23L13.04,1114.04L78.24,985.352L66.9,979.682L0,1107.23Z"
             style={{
-              fill: "#fafafa",
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2870,8 +2871,8 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
               width={184.252}
               height={51.024}
               style={{
-                fill: "#435c8b",
-                stroke: "#15171b",
+                fill: COLOR.MARKED_AREA,
+                stroke: COLOR.CONTRAST_STROKE,
                 strokeWidth: "0.75px"
               }}
             />
@@ -2882,7 +2883,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 18,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"Leonardo-Campus 18"}
@@ -2895,7 +2896,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 16,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"H\xF6rsaal Leo"}
@@ -2908,7 +2909,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 16,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"18"}
@@ -2921,7 +2922,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 16,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"."}
@@ -2934,7 +2935,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 16,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"3"}
@@ -2951,7 +2952,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
               style={{
                 fill: "none",
                 fillRule: "nonzero",
-                stroke: "#15171b",
+                stroke: COLOR.CONTRAST_STROKE,
                 strokeWidth: "0.75px"
               }}
             />
@@ -2962,9 +2963,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path952"
             d="M0,1110.77L66.57,1041.3L88.2,1062.1L39.06,1114.04L0,1110.77Z"
             style={{
-              fill: "#435c8b",
+              fill: COLOR.MARKED_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -2978,8 +2979,8 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
               width={178.583}
               height={42.52}
               style={{
-                fill: "#435c8b",
-                stroke: "#15171b",
+                fill: COLOR.MARKED_AREA,
+                stroke: COLOR.CONTRAST_STROKE,
                 strokeWidth: "0.75px"
               }}
             />
@@ -2990,7 +2991,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 18,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"Leonardo-Campus 11"}
@@ -3007,7 +3008,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
               style={{
                 fill: "none",
                 fillRule: "nonzero",
-                stroke: "#15171b",
+                stroke: COLOR.CONTRAST_STROKE,
                 strokeWidth: "0.75px"
               }}
             />
@@ -3022,9 +3023,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path1042"
             d="M0,1093.56L14.601,1065.15L31.361,1032.55L68.341,960.621L108.181,981.092L39.83,1114.04L0,1093.56Z"
             style={{
-              fill: "#435c8b",
+              fill: COLOR.MARKED_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -3038,8 +3039,8 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
               width={184.252}
               height={42.52}
               style={{
-                fill: "#435c8b",
-                stroke: "#15171b",
+                fill: COLOR.MARKED_AREA,
+                stroke: COLOR.CONTRAST_STROKE,
                 strokeWidth: "0.75px"
               }}
             />
@@ -3050,7 +3051,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 16,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"Leonardo-Campus 10"}
@@ -3063,7 +3064,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 16,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"H\xF6rs\xE4le Leo"}
@@ -3076,7 +3077,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 16,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"1 und Leo 2"}
@@ -3093,7 +3094,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
               style={{
                 fill: "none",
                 fillRule: "nonzero",
-                stroke: "#15171b",
+                stroke: COLOR.CONTRAST_STROKE,
                 strokeWidth: "0.75px"
               }}
             />
@@ -3104,9 +3105,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path1133"
             d="M68.62,1102.4L55.24,1089.39L30.84,1114.04L0,1085.4L60.57,1019.46L90.67,1048.1L72.9,1068.19L88.17,1082.85L68.62,1102.4Z"
             style={{
-              fill: "#435c8b",
+              fill: COLOR.MARKED_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -3120,8 +3121,8 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
               width={170.079}
               height={42.52}
               style={{
-                fill: "#435c8b",
-                stroke: "#15171b",
+                fill: COLOR.MARKED_AREA,
+                stroke: COLOR.CONTRAST_STROKE,
                 strokeWidth: "0.75px",
                 strokeLinecap: "butt",
                 strokeLinejoin: "miter"
@@ -3134,7 +3135,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 18,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"Leonardo-Campus 3"}
@@ -3147,7 +3148,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: "16.25px",
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"WWU Centrum Europa"}
@@ -3164,7 +3165,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
               style={{
                 fill: "none",
                 fillRule: "nonzero",
-                stroke: "#15171b",
+                stroke: COLOR.CONTRAST_STROKE,
                 strokeWidth: "0.75px"
               }}
             />
@@ -3179,9 +3180,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path897"
             d="M50.69,1044.84L37.59,1032.94L24.569,1047.24L0,1024.88L41.859,978.881L68.149,1002.81L64.819,1006.49L110.63,1048.19L114.659,1043.76L140.8,1067.53L98.48,1114.04L77.72,1095.16L89.47,1082.23L73.01,1067.29L61.27,1080.18L37.87,1058.91L50.69,1044.84Z"
             style={{
-              fill: "#435c8b",
+              fill: COLOR.MARKED_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
@@ -3195,8 +3196,8 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
               width={170.079}
               height={85.04}
               style={{
-                fill: "#435c8b",
-                stroke: "#15171b",
+                fill: COLOR.MARKED_AREA,
+                stroke: COLOR.CONTRAST_STROKE,
                 strokeWidth: "0.75px"
               }}
             />
@@ -3207,7 +3208,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 18,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"Leonardo-Campus 1"}
@@ -3220,7 +3221,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 16,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"Brasilien-Zentrum"}
@@ -3233,7 +3234,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 16,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"WI"}
@@ -3246,7 +3247,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 16,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"-"}
@@ -3259,7 +3260,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
                 style={{
                   fontFamily: "'TrebuchetMS', 'Trebuchet MS', sans-serif",
                   fontSize: 16,
-                  fill: "#fafafa"
+                  fill: COLOR.TEXT_AND_BASIC_ELEMENTS
                 }}
               >
                 {"AG"}
@@ -3276,7 +3277,7 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
               style={{
                 fill: "none",
                 fillRule: "nonzero",
-                stroke: "#15171b",
+                stroke: COLOR.CONTRAST_STROKE,
                 strokeWidth: "0.75px"
               }}
             />
@@ -3287,9 +3288,9 @@ const LeonardoCampus = React.memo((props: SVGProps<SVGSVGElement>) => {
             id="path1123"
             d="M0,1092.42L36.05,1052.28L60.119,1073.86L39.96,1096.71L24.06,1114.04L0,1092.42Z"
             style={{
-              fill: "#435c8b",
+              fill: COLOR.MARKED_AREA,
               fillRule: "nonzero",
-              stroke: "#15171b",
+              stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: "0.75px"
             }}
           />
