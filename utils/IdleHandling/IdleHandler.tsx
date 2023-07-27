@@ -15,6 +15,10 @@ export class IdleHandler {
   }
 
   reset() {
-    this.resetFunction();
+    try {
+      this.resetFunction();
+    } catch {
+      console.log(`Exception in ${this.origin}`);
+    }
   }
 }
