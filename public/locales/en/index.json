@@ -68,6 +68,7 @@
         }
     },
     "weather": {
-        "title_report": "Weather"
+        "title_report": "Weather report",
+        "title_radar": "Current rain radar"
     }
 }
