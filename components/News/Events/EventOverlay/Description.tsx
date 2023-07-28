@@ -16,7 +16,7 @@ export function Description({ text }: props) {
 
   return (
     <Overlay.Body className={styles.description}>
-      <p ref={descriptionRef}></p>
+      <div ref={descriptionRef}></div>
     </Overlay.Body>
   );
 }
