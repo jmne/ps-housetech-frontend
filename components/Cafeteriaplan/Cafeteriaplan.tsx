@@ -99,11 +99,7 @@ export default function Cafeteriaplan() {
         if (next_index !== -1) target_index = next_index;
       }
 
-      try {
-        if (swiperInstance) swiperInstance.slideTo(target_index);
-      } catch {
-        console.log("Catched swiper exception");
-      }
+      if (swiperInstance) swiperInstance.slideTo(target_index);
     }
 
     const handler = new IdleHandler({
