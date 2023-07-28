@@ -106,11 +106,11 @@ $topContainerHeight: 15rem;
     display: block;
     position: fixed;
     left: 0px;
-    background: linear-gradient(to top, transparent, g.$container-item);
+    background: linear-gradient(to bottom, g.$container-item 0%, transparent 8%, transparent 97%, g.$container-item 100%);
     top: 0px;
 
     box-sizing: border-box;
-    height: 100px;
+    height: 100%;
     width: calc(100% - g.$margin-large);
   }
 
