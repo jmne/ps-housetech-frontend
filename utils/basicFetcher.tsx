@@ -2,7 +2,7 @@ import { ApiError } from "types/Error";
 
 // Fetcher to be used in all fetch functions
 export const fetcher = (url: string) =>
-  fetch(url).then((res) => {
+  fetch(url, { redirect: "error" }).then((res) => {
     if (!res.ok) {
       const error: ApiError = new Error("An error occurred while fetching the data.");
       // Attach extra info to the error object.
