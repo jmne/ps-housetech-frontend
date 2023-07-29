@@ -69,6 +69,6 @@
     },
     "weather": {
         "title_report": "Weather report",
-        "title_radar": "Current rain radar"
+        "title_radar": "Rain radar"
     }
 }
