@@ -28,7 +28,18 @@ import { Employee } from "types/Employee";
 import { useRouter } from "next/router";
 
 function shufflePersons(data: Employee[] | undefined) {
-  return data ? [...data].sort(() => 0.5 - Math.random()) : undefined;
+  return data ? shuffleWithImagePriority(data) : undefined;
+}
+
+function shuffleWithImagePriority(data: Employee[]) {
+  const with_image = shuffle(data.filter((person) => person.image !== null));
+  const no_image = shuffle(data.filter((person) => !person.image));
+
+  return [...shuffle(with_image), ...shuffle(no_image)];
+}
+
+function shuffle(data: Employee[]) {
+  return [...data].sort((a, b) => 0.5 - Math.random());
 }
 
 export function Wayfinder() {
