@@ -23,8 +23,15 @@ export default function Headline() {
           alt="WWU Logo"
           fill={false}
           className={[styles.logo, styles.wwu].join(" ")}
+          priority
         />
-        <Image src={logoERCIS} alt="ERCIS Logo" fill={false} className={styles.logo} />
+        <Image
+          src={logoERCIS}
+          alt="ERCIS Logo"
+          fill={false}
+          className={styles.logo}
+          priority
+        />
       </div>
       <Title />
       <div className={[styles.side, styles.right].join(" ")}>

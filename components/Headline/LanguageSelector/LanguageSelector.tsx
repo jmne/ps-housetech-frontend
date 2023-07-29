@@ -57,10 +57,10 @@ export function LanguageSelector() {
   return (
     <ul className={styles.wrapper}>
       <li onClick={switchLang} id="first-lang-button">
-        <Image src={flag_de} alt="Germany Flag" fill={false} className={styles.flag} />
+        <Image src={flag_de} alt="Germany Flag" fill={false} className={styles.flag}priority />
       </li>
       <li onClick={switchLang} id="second-lang-button">
-        <Image src={flag_uk} alt="UK Flag" fill={false} className={styles.flag} />
+        <Image src={flag_uk} alt="UK Flag" fill={false} className={styles.flag}priority />
       </li>
     </ul>
   );
