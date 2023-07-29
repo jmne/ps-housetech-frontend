@@ -187,6 +187,11 @@ export function buildingClickHandler(
     targetElement.parentElement.id.includes(`${building}-`)
   ) {
     targetElement = targetElement.parentElement;
+  } else if (
+    targetElement.parentElement?.parentElement &&
+    targetElement.parentElement.parentElement.id.includes(`${building}-`)
+  ) {
+    targetElement = targetElement.parentElement.parentElement;
   }
 
   if (building === "campus" && targetElement.id.includes("egg1")) {
