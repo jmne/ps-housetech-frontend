@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 
 const locationMuenster: L.LatLngExpression = [52.1149, 12.0685];
 const rain_layer_url = `https://ps-housetech.uni-muenster.de:444/api/precipitation/{z}/{x}/{y}`;
-const RAIN_RADAR_REFRESH_MINUTES = 5;
+const RAIN_RADAR_REFRESH_MINUTES = 0.5;
 
 export default function Map() {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
