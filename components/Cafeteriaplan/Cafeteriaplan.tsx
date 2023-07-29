@@ -9,8 +9,6 @@ import { Swiper as SwiperElement, SwiperSlide } from "swiper/react";
 // IMPORTS - ASSETS
 import { useTranslation } from "next-i18next";
 import cafeteriaStyles from "@/components/Cafeteriaplan/Cafeteriaplan.module.scss";
-import "swiper/css";
-import "swiper/css/navigation";
 
 // IMPORTS - CONTEXT
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
