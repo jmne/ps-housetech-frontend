@@ -54,3 +54,16 @@ export const MAP_BASE_STATE: MapState = {
   floor: undefined,
   room: undefined
 };
+
+/**
+ * Color values to be imported in Map-Component
+ */
+
+export enum COLOR {
+  MARKED_AREA = "#25519d", // used for important building & highlighted rooms
+  GREEN_AREA = "rgb(133,183,104)",
+  NON_MARKED_AREA_BUT_RELEVANT = "#fafafa", // Used for non-highlighted rooms in leo 3 & leo 11
+  NORMAL_AREA = "#95989d", // used for e.g., floor and unimportant building
+  TEXT_AND_BASIC_ELEMENTS = "#fafafa",
+  CONTRAST_STROKE = "#15171b"
+}
