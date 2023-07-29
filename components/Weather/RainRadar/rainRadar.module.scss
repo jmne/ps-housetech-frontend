@@ -1,0 +1,15 @@
+@use "../../../assets/scss/constants.scss" as g;
+
+.container {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: g.$margin-base;
+
+  & > * {
+    width: 100%;
+    height: 100%;
+    border-radius: g.$border-radius-base;
+    box-shadow: g.$shadow-outer__light;
+  }
+}
