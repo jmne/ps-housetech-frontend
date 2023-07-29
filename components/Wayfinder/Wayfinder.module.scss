@@ -103,7 +103,7 @@ $searchWidth: 350px;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
 
-    >* {
+    > * {
       scroll-snap-align: start;
     }
 
