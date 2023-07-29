@@ -13,7 +13,7 @@ function transitionHelper(
     elem.addEventListener("transitionend", handleTransitionEnd, { once: true });
     setTimeout(() => {
       handleTransitionEnd();
-    }, 1500);
+    }, 1000);
     requestAnimationFrame(action);
   });
 }
@@ -29,7 +29,7 @@ function transitionHelperArray(elem: multipleElements, action: () => void) {
     );
     setTimeout(() => {
       handleTransitionEnd();
-    }, 1500);
+    }, 1000);
     requestAnimationFrame(action);
   });
 }
