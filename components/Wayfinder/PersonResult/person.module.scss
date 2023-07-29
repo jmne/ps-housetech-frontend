@@ -44,12 +44,14 @@
 
     border-radius: g.$border-radius-base;
     object-fit: cover;
-    height: calc(225px + g.$icon-base + g.$margin-sm + 2 * g.$margin-base + 2 * g.$border-base );
+    height: calc(
+      225px + g.$icon-base + g.$margin-sm + 2 * g.$margin-base + 2 * g.$border-base
+    );
     min-width: 240px;
     width: 240px;
-    
+
     overflow: hidden;
-    
+
     &:has(svg) {
       border: g.$border-base solid g.$text-secondary;
 

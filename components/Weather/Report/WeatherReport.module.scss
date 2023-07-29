@@ -14,7 +14,7 @@ $small-icon: g.$icon-sm;
 
   overflow-y: hidden;
 
-  >div {
+  > div {
     background-color: transparent;
     border-radius: g.$border-radius-base;
     box-shadow: g.$shadow-outer__light;
@@ -34,7 +34,7 @@ $small-icon: g.$icon-sm;
     padding-inline-end: g.$margin-medium;
 
     // contain the forecasts for each hour
-    >div {
+    > div {
       width: 100%;
       height: fit-content;
 
@@ -71,7 +71,7 @@ $small-icon: g.$icon-sm;
     justify-items: center;
     align-items: center;
 
-    >div {
+    > div {
       position: relative;
 
       width: fit-content;

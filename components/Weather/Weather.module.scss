@@ -14,12 +14,12 @@
 
   scroll-snap-type: x mandatory;
 
-  >* {
+  > * {
     flex-shrink: 0;
     scroll-snap-align: start;
   }
 
-  &::-webkit-scrollbar{
+  &::-webkit-scrollbar {
     display: none;
   }
 }
