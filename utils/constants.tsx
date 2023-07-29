@@ -49,8 +49,8 @@ export const MAP_BASE_STATE: MapState = {
  */
 
 export enum COLOR {
-  MARKED_AREA = "#103778", // used for important building & highlighted rooms
-  GREEN_AREA = "#5c8b4e",
+  MARKED_AREA = "#25519d", // used for important building & highlighted rooms
+  GREEN_AREA = "#519d25",
   NON_MARKED_AREA_BUT_RELEVANT = "#fafafa", // Used for non-highlighted rooms in leo 3 & leo 11
   NORMAL_AREA = "#95989d", // used for e.g. floor and unimportant building
   TEXT_AND_BASIC_ELEMENTS = "#fafafa",
