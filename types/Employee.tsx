@@ -7,6 +7,7 @@ export interface Employee {
   academicTitle: string | null;
   cfFirstNames: string | null;
   cfFamilyNames: string | null;
+  cfFullName: string | null;
   roomNumber: string | null;
   emails: string[];
   phones: string[];
@@ -16,7 +17,7 @@ export interface Employee {
   searchResultRef?: RefObject<HTMLLIElement> | undefined;
 }
 
-export const sampleEmployees: Employee[] = [
+export const sampleEmployees: Omit<Employee, "cfFullName">[] = [
   {
     academicTitle: "Dr.",
     cfFirstNames: "Sebastian",
