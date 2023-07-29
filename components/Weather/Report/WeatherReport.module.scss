@@ -3,6 +3,8 @@
 $small-icon: g.$icon-sm;
 
 .container {
+  width: 100%;
+
   display: grid;
   grid-template-columns: 2fr 5fr;
   grid-template-rows: 2fr 1fr;
