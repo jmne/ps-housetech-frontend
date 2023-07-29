@@ -5,6 +5,9 @@ export class AnimationQueue {
   private processing = false;
 
   public enqueue(animations: (() => Promise<unknown>)[]) {
+    while (this.queue.length > 1) {
+      this.queue.pop();
+    }
     this.queue.push(animations);
     this.processQueue(); // start processing if not already processing
   }
