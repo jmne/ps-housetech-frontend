@@ -37,7 +37,6 @@ export default function Map() {
 
   useEffect(() => {
     const rainRefresher = setInterval(() => {
-      console.log("RAINING");
       if (!mapRef.current || !rainLayerRef.current) return;
       mapRef.current.removeLayer(rainLayerRef.current);
       rainLayerRef.current = L.tileLayer(
