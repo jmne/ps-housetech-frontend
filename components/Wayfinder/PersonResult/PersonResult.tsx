@@ -54,6 +54,7 @@ const PersonResult = memo(({ person }: props) => {
               sizes="250px"
               style={{ objectFit: "cover" }}
               onError={() => setImageID(null)}
+              priority
               fill
             />
           ) : (

@@ -61,6 +61,7 @@ export default function DishCard({ dish }: DishProps) {
               fill={false}
               className={styles.icon}
               key={iconIndex}
+              priority
             />
           ))}
       </div>
