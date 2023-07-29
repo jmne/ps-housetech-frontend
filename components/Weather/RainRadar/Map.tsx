@@ -3,8 +3,8 @@ import L, { Map as LeafletMap, TileLayer } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 const locationMuenster: L.LatLngExpression = [51.96, 7.628];
-const rain_layer_url = `https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${process.env.NEXT_PUBLIC_OPEN_WEATHER_KEY}`;
-const RAIN_RADAR_REFRESH_MINUTES = 5;
+const rain_layer_url = `https://ps-housetech.uni-muenster.de:444/api/precipitation/{z}/{x}/{y}`;
+const RAIN_RADAR_REFRESH_MINUTES = 0.5;
 
 export default function Map() {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
@@ -37,7 +37,6 @@ export default function Map() {
 
   useEffect(() => {
     const rainRefresher = setInterval(() => {
-      console.log("RAINING");
       if (!mapRef.current || !rainLayerRef.current) return;
       mapRef.current.removeLayer(rainLayerRef.current);
       rainLayerRef.current = L.tileLayer(
