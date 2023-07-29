@@ -13,7 +13,7 @@ deploy-container-dev:
     - chmod 644 ~/.ssh/known_hosts
   script:
     - echo "Deploy to development server"
-    - ssh house-admin@10.2.22.12 -p2222 "cd ps-housetech-frontend-dev/ && sudo git fetch --all && sudo git reset --hard origin/development && sudo npm install && sudo npm run build && NEXT_PUBLIC_OPEN_WEATHER_KEY=$NEXT_PUBLIC_OPEN_WEATHER_KEY pm2 restart frontend-dev"
+    - ssh house-admin@10.2.22.12 -p2222 "cd ps-housetech-frontend-dev/ && sudo git fetch --all && sudo git reset --hard origin/development && sudo npm install && sudo npm run build && pm2 restart frontend-dev"
   only:
     - development
   environment:
@@ -35,7 +35,7 @@ deploy-container-main:
     - chmod 644 ~/.ssh/known_hosts
   script:
     - echo "Deploy to production server"
-    - ssh house-admin@10.2.22.12 -p2222 "cd ps-housetech-frontend-main/ && sudo git fetch --all && sudo git reset --hard origin/main && sudo npm install && sudo npm run build && NEXT_PUBLIC_OPEN_WEATHER_KEY=$NEXT_PUBLIC_OPEN_WEATHER_KEY pm2 restart frontend-main"
+    - ssh house-admin@10.2.22.12 -p2222 "cd ps-housetech-frontend-main/ && sudo git fetch --all && sudo git reset --hard origin/main && sudo npm install && sudo npm run build && pm2 restart frontend-main"
   only:
     - main
   environment:
