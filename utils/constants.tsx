@@ -9,6 +9,13 @@ export const WAYFINDER_CARD_ANIMATION_DURATION = 250; // milliseconds
 
 export const FUZZY_SEARCH_WEIGHTS = {
   findAllMatches: true,
+  shouldSort: true,
+  threshold: 0.4,
+  location: 0,
+  distance: 100,
+  maxPatternLength: 32,
+  minMatchCharLength: 1,
+
   keys: [
     {
       name: "cfFullName",
