@@ -68,7 +68,7 @@ export default function Bus({ bus, direction, index }: BusProps) {
         ref={refEasteregg}
       >
         <span>Good ride</span>
-        <Image src={IconBus} alt="Bus" className={styles.iconBus} />
+        <Image src={IconBus} alt="Bus" className={styles.iconBus} priority />
       </div>
 
       {/**
