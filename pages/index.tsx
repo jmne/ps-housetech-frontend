@@ -10,6 +10,9 @@ import Cafeteriaplan from "@/components/Cafeteriaplan/Cafeteriaplan";
 import styles from "@/pages/index.module.scss";
 import { Wayfinder } from "@/components/Wayfinder/Wayfinder";
 
+import "swiper/css";
+import "swiper/css/navigation";
+
 // IMPORTS - CONTEXT
 import { SelectedPersonProvider } from "context/PersonContext";
 import { Weather } from "@/components/Weather/Weather";

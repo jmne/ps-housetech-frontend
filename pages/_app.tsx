@@ -30,28 +30,26 @@ import { ToastProvider } from "@/components/Toast/ToastProvider";
 import { ToastContextProvider } from "context/ToastContext";
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <>
-    <ToastContextProvider>
-      <ToastProvider>
-        <TimeoutProvider>
-          <SearchInputProvider>
-            <main className={productSans.className} id="app-wrapper">
-              <style jsx global>{`
-                :root {
-                  /* ... */
-                  --product-font: ${productSans.style.fontFamily};
-                }
-                html * {
-                  font-family: var(--product-font) !important;
-                }
-              `}</style>
-              <Component {...pageProps} />
-            </main>
-          </SearchInputProvider>
-        </TimeoutProvider>
-      </ToastProvider>
-    </ToastContextProvider>
-  </>
+  <ToastContextProvider>
+    <ToastProvider>
+      <TimeoutProvider>
+        <SearchInputProvider>
+          <main className={productSans.className} id="app-wrapper">
+            <style jsx global>{`
+              :root {
+                /* ... */
+                --product-font: ${productSans.style.fontFamily};
+              }
+              html * {
+                font-family: var(--product-font) !important;
+              }
+            `}</style>
+            <Component {...pageProps} />
+          </main>
+        </SearchInputProvider>
+      </TimeoutProvider>
+    </ToastProvider>
+  </ToastContextProvider>
 );
 
 export default appWithTranslation(MyApp);

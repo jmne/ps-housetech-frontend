@@ -17,7 +17,7 @@ export function InstagramOverlay({ post }: props) {
   const router = useRouter();
 
   return (
-    <Overlay.Container style={{padding: 0}}>
+    <Overlay.Container style={{ padding: 0 }}>
       <Overlay.Body className={styles.container}>
         <div className={styles.imageContainer}>
           {post.media_type === MediaTypes.VIDEO ? (

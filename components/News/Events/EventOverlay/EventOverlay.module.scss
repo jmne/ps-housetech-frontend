@@ -118,7 +118,7 @@ $topContainerHeight: 15rem;
     margin-block-start: $topContainerHeight + g.$margin-large;
   }
 
-  >* {
+  > * {
     margin-inline-end: g.$margin-large;
 
     &::before,
