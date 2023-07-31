@@ -1,9 +1,5 @@
 image: zivgitlab.wwu.io/ml-de/teaching/ps-housetech/ps-housetech-frontend:node20
 
-default:
-  tags:
-    - pshousetech
-
 stages:
   - .pre
   - build
