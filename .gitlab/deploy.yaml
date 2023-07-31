@@ -1,5 +1,7 @@
 deploy-container-dev:
   image: ubuntu
+  tags:
+    - pshousetech
   stage: deploy
   before_script:
     - "which ssh-agent || ( apt-get update -y && apt-get install openssh-client git -y )"
@@ -22,6 +24,8 @@ deploy-container-dev:
 
 deploy-container-main:
   image: ubuntu
+  tags:
+    - pshousetech
   stage: deploy
   before_script:
     - "which ssh-agent || ( apt-get update -y && apt-get install openssh-client git -y )"
