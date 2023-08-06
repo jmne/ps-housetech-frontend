@@ -94,6 +94,16 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
         transform="rotate(2.9 11348.18 10040.045)"
       />
       <path
+        id={"egg-2"}
+        xmlns="http://www.w3.org/2000/svg"
+        d="m54.25 1101-3.43 7.08-7.1 5.49-12.83.47-16.94-8.24-7.81-9.3L0 1085.89l6.4-12.36 6.87-3.66 19.68 19.68 16.939 5.7 4.361 5.75Z"
+        style={{
+          fill: "#96afcf",
+          fillRule: "nonzero"
+        }}
+        transform="translate(253.834 -535.362)"
+      />
+      <path
         d="m0 1018.1 30.84 28.64 24.4-24.65 94.62 91.95 34.279-6.5-22.02-23.11 10.45-11.2-73.54-68.97-10.86 11.29-15.27-14.66 17.77-20.088-30.1-28.64L0 1018.1Z"
         style={{
           fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
@@ -242,6 +252,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
         transform="translate(199.077 -621.765)"
       />
       <path
+        id={"egg1"}
         d="M2.23 1083.88 0 1106.43l76.86 7.61 2.24-22.53-76.87-7.63Z"
         style={{
           fill: "#a5a5a5",
