@@ -40,7 +40,10 @@
     "sharp": "^0.32.1",
     "swiper": "^9.4.1",
     "swr": "^2.1.5",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "@fullcalendar/core": "^6.1.8",
+    "@fullcalendar/react": "^6.1.8",
+    "@fullcalendar/daygrid": "^6.1.8"
   },
   "devDependencies": {
     "@svgr/cli": "^8.0.1",
