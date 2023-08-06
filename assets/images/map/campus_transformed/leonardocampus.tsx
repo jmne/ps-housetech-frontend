@@ -680,4 +680,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
     </svg>
   );
 };
-export default SvgLeonardocampus;
+
+const SvgLeonardocampusMemo = React.memo(SvgLeonardocampus);
+
+export default SvgLeonardocampusMemo;

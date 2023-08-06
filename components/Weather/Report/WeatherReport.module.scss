@@ -12,7 +12,7 @@ $small-icon: g.$icon-sm;
   padding: g.$margin-base;
   gap: g.$margin-small;
 
-  overflow-y: hidden;
+  overflow: hidden;
 
   > div {
     background-color: transparent;
