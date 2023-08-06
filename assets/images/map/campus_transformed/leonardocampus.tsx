@@ -365,7 +365,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
       >
         {"Steinfurter Stra\xDFe"}
       </text>
-      <g id="campus-leo18-tag" transform="matrix(1,0,0,1,-595,219.743)">
+      <g transform="matrix(1,0,0,1,-595,219.743)">
         <g id="shape1579-492" transform="matrix(1,0,0,1,632.979,-617.523)">
           <g id="rect1203" transform="matrix(1.14089,0,0,0.382408,-6,661.762)">
             <rect
@@ -424,7 +424,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="campus-leo11-tag" transform="matrix(1,0,0,1,153.037,410)">
+      <g transform="matrix(1,0,0,1,153.037,410)">
         <g id="shape1579-4921" transform="matrix(1,0,0,1,674.942,-471.52)">
           <g id="rect12031" transform="matrix(1.14089,0,0,0.382408,-6,661.762)">
             <rect
@@ -545,7 +545,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="campus-leo3-tag">
+      <g>
         <g id="shape1579-4923" transform="matrix(1,0,0,1,600,-965.52)">
           <g id="rect12033" transform="matrix(1.07056,0,0,0.382408,-6,661.762)">
             <rect
@@ -607,7 +607,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="campus-leo1-tag" transform="matrix(1,0,0,1,93.921,78.0027)">
+      <g transform="matrix(1,0,0,1,93.921,78.0027)">
         <g id="shape1579-4924" transform="matrix(1,0,0,1,600,-965.52)">
           <g id="rect12034" transform="matrix(1.07056,0,0,0.382408,-6,661.762)">
             <rect

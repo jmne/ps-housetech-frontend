@@ -102,11 +102,17 @@ $topContainerHeight: 15rem;
   line-height: 1.5;
 
   &::before {
-    content: '';
+    content: "";
     display: block;
     position: fixed;
     left: 0px;
-    background: linear-gradient(to bottom, g.$container-item 0%, transparent 8%, transparent 97%, g.$container-item 100%);
+    background: linear-gradient(
+      to bottom,
+      g.$container-item 0%,
+      transparent 8%,
+      transparent 97%,
+      g.$container-item 100%
+    );
     top: 0px;
 
     box-sizing: border-box;
@@ -114,7 +120,7 @@ $topContainerHeight: 15rem;
     width: calc(100% - g.$margin-large);
   }
 
-  >div {
+  > div {
     margin-block-start: $topContainerHeight + g.$margin-large;
   }
 

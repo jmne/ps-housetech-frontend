@@ -27,7 +27,7 @@ export default function BusStationMap() {
           <Dialog.Title>Technologiepark</Dialog.Title>
         </Overlay.Header>
         <Dialog.Description asChild>
-          <Image src={map} alt="Map of Busstops" className={styles.busMap} priority/>
+          <Image src={map} alt="Map of Busstops" className={styles.busMap} priority />
         </Dialog.Description>
       </Overlay.Container>
     </Dialog.Root>
