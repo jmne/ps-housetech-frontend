@@ -3,7 +3,7 @@ import * as Overlay from "@/components/Overlay";
 import styles from "./Busplan.module.scss";
 
 import IconMap from "assets/images/icon_map.svg";
-import map from "assets/images/technologiepark.jpg";
+import map from "assets/images/technologiepark.png";
 import Image from "next/image";
 import { useState } from "react";
 import { useTranslation } from "next-i18next";
@@ -27,7 +27,7 @@ export default function BusStationMap() {
           <Dialog.Title>Technologiepark</Dialog.Title>
         </Overlay.Header>
         <Dialog.Description asChild>
-          <Image src={map} alt="Map of Busstops" className={styles.busMap} priority/>
+          <Image src={map} alt="Map of Busstops" className={styles.busMap} priority />
         </Dialog.Description>
       </Overlay.Container>
     </Dialog.Root>
