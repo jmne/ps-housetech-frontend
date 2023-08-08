@@ -65,14 +65,6 @@ function Feed() {
               setProgress(100);
             }, 200);
           }}
-          onAfterInit={() => {
-            setReset(true);
-            setProgress(0);
-            setInterval(() => {
-              setReset(false);
-              setProgress(100);
-            }, 200);
-          }}
         >
           {articles
             ? articles.map((item: any) => (
