@@ -42,7 +42,7 @@ function Calendar() {
             slotMaxTime={"22:00:00"}
             nowIndicator={true}
             events={{
-              url: "https://gist.githubusercontent.com/jmne/028d029c0cbaf2cff1951161b5334629/raw/90f711125140b3f5a64e9ed791f8d6164be1656a/gistfile1.txt",
+              url: "https://gist.githubusercontent.com/jmne/20ad05f5b37190899744d0d75aecf6d1/raw/b86800bbc5c8be5740dae7b2149b417787d8d261/gistfile1.txt",
               format: "ics"
             }} // add ICS feed or events array here
           />
