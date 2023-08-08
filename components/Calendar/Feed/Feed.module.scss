@@ -35,7 +35,7 @@
   transition: none;
 }
 
-.cardContainer{
+.cardContainer {
   height: 990px;
 }
 
@@ -50,7 +50,7 @@
   width: 25%;
 }
 
-.textContainer{
+.textContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -58,17 +58,16 @@
   width: 100%;
 }
 
-.card{
+.card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   width: 100%;
   height: 330px;
-
 }
 
-.qrContainer{
+.qrContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,11 +75,11 @@
   width: 110px;
 }
 
-.qr{
+.qr {
   height: 150px;
 }
 
-.modalFooter{
+.modalFooter {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -88,11 +87,11 @@
   padding-bottom: 5px;
 }
 
-.progressBar{
+.progressBar {
   background-color: white;
 }
 
-.text{
+.text {
   text-align: justify;
 }
 
