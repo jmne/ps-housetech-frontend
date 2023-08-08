@@ -36,17 +36,14 @@ export default function Map() {
   }, []);
 
   useEffect(() => {
-    const rainRefresher = setInterval(
-      () => {
-        if (!mapRef.current || !rainLayerRef.current) return;
-        mapRef.current.removeLayer(rainLayerRef.current);
-        rainLayerRef.current = L.tileLayer(
-          "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-        ).addTo(mapRef.current);
-        rainLayerRef.current = L.tileLayer(rain_layer_url).addTo(mapRef.current);
-      },
-      RAIN_RADAR_REFRESH_MINUTES * 1000 * 60
-    );
+    const rainRefresher = setInterval(() => {
+      if (!mapRef.current || !rainLayerRef.current) return;
+      mapRef.current.removeLayer(rainLayerRef.current);
+      rainLayerRef.current = L.tileLayer(
+        "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+      ).addTo(mapRef.current);
+      rainLayerRef.current = L.tileLayer(rain_layer_url).addTo(mapRef.current);
+    }, RAIN_RADAR_REFRESH_MINUTES * 1000 * 60);
 
     return () => {
       clearInterval(rainRefresher);

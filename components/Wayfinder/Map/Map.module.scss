@@ -168,18 +168,14 @@ $map_other_building_x_offset: 200%;
       max-height: 100%;
 
       will-change: transform, opacity;
-      transition:
-        opacity $animDuration ease-out,
-        transform $animDuration ease-in-out;
+      transition: opacity $animDuration ease-out, transform $animDuration ease-in-out;
 
       //* {
       //transition: fill $animDuration ease, stroke $animDuration ease;
       //}
     }
 
-    transition:
-      opacity $animDuration ease-out,
-      transform $animDuration ease-in-out;
+    transition: opacity $animDuration ease-out, transform $animDuration ease-in-out;
   }
 
   .floor__above {

@@ -32,9 +32,9 @@ function Feed() {
     const loadArticles = async () => {
       fetch(mediumRssFeed, { headers: { Accept: "application/json" } })
         .then((res) => res.json())
-        .then((data) => data.news.filter((item) => item.title.length > 0))
+        .then((data) => data.news.filter((item: any) => item.title.length > 0))
         .then((newArticles) => newArticles.slice(0, MAX_ARTICLES))
-        .then((articles) => setArticles(articles))
+        .then((articles: any) => setArticles(articles))
         .catch((error) => console.log(error));
     };
 
@@ -66,7 +66,7 @@ function Feed() {
             }, 200);
           }}
         >
-          {articles
+          {articles // @ts-ignore
             ? articles.map((item: any) => (
                 <SwiperSlide key={item.externalId}>
                   <Card className={styles.rootNews}>

@@ -46,9 +46,7 @@ $searchWidth: 350px;
     border: g.$border-base solid g.$main-primary-tint;
     box-shadow: g.$shadow-outer__light;
 
-    transition:
-      transform 0.1s ease-out 0s,
-      filter 0.1s ease-out;
+    transition: transform 0.1s ease-out 0s, filter 0.1s ease-out;
 
     &:focus-within {
       transform: scale(1.05);

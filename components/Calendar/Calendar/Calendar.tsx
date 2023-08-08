@@ -30,6 +30,7 @@ function Calendar() {
               year: "numeric"
             }}
             height="100%"
+            initialDate={"2023-05-24"}
             slotDuration={"01:00:00"}
             expandRows={true}
             dayMaxEventRows={true}
@@ -41,10 +42,7 @@ function Calendar() {
             slotMinTime={"08:00:00"}
             slotMaxTime={"22:00:00"}
             nowIndicator={true}
-            events={{
-              url: "https://gist.githubusercontent.com/jmne/20ad05f5b37190899744d0d75aecf6d1/raw/b86800bbc5c8be5740dae7b2149b417787d8d261/gistfile1.txt",
-              format: "ics"
-            }} // add ICS feed or events array here
+            events={"https://ps-housetech.uni-muenster.de:444/api/calendar"} // add ICS feed or events array here
           />
         </Card>
       </Container>
