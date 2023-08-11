@@ -1,5 +1,6 @@
 import { render, fireEvent, screen } from "@testing-library/react";
-import Keyboard, { Key } from "@/components/Keyboard/Keyboard";
+import Keyboard from "@/components/Keyboard/Keyboard";
+import { Letter, Space } from "@/components/Keyboard/Keys";
 import { useSearchInputContext } from "context/SearchInputContext";
 
 jest.mock("context/SearchInputContext");
@@ -20,7 +21,7 @@ describe("Keyboard and Key components", () => {
       ["y", "x", "c", "v", "b", "n", "m", "-"]
     ];
 
-    render(<Keyboard visible />);
+    render(<Keyboard />);
 
     keys.forEach((row) => {
       row.forEach((value) => {
@@ -37,7 +38,7 @@ describe("Keyboard and Key components", () => {
       setInput
     });
 
-    const { getByText } = render(<Key keycode="a" />);
+    const { getByText } = render(<Letter keycode="a" />);
     fireEvent.mouseDown(getByText(/A/));
 
     expect(setInput).toHaveBeenCalledWith("A");
@@ -51,7 +52,7 @@ describe("Keyboard and Key components", () => {
       setInput
     });
 
-    const { getByText } = render(<Key keycode="space" />);
+    const { getByText } = render(<Space />);
     fireEvent.mouseDown(getByText(/space/));
 
     expect(setInput).toHaveBeenCalledWith(" ");

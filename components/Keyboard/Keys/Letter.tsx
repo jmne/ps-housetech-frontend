@@ -8,7 +8,7 @@ interface helperProps {
 
 function Letter({ keycode }: helperProps) {
   const searchContext = useSearchInputContext();
-  const keycodeUpperCase = useMemo(() => keycode.toUpperCase(), []);
+  const keycodeUpperCase = useMemo(() => keycode.toUpperCase(), [keycode]);
 
   const appendInput = useCallback(
     (newKey: string) => {
@@ -21,7 +21,7 @@ function Letter({ keycode }: helperProps) {
         [prev, isCapital ? keycodeUpperCase : newKey].join("")
       );
     },
-    [searchContext]
+    [searchContext, keycodeUpperCase]
   );
 
   const handleKey = useCallback(

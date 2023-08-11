@@ -1,11 +1,9 @@
 import styles from "@/components/Keyboard/Keyboard.module.scss";
 import SpaceIcon from "assets/icons/space.svg";
 import { useSearchInputContext } from "context/SearchInputContext";
-import { useTranslation } from "next-i18next";
 import React, { memo, useCallback } from "react";
 
 function Space() {
-  const { t } = useTranslation("index");
   const searchContext = useSearchInputContext();
 
   const clearInput = useCallback(
