@@ -70,6 +70,10 @@ $quarterBorder: calc(g.$border-base / 4);
   fill: g.$text-primary;
   height: g.$icon-sm;
   width: g.$icon-sm;
+
+  &.space {
+    transform: translateY(25%);
+  }
 }
 
 @keyframes create {

@@ -1,11 +1,11 @@
 import styles from "@/components/Keyboard/Keyboard.module.scss";
 import IconBackspace from "assets/icons/backspace.svg";
 import { useSearchInputContext } from "context/SearchInputContext";
-import React, { useCallback, useRef } from "react";
+import React, { memo, useCallback, useRef } from "react";
 
 const INTERVAL_CLEAR_SPEED = 200;
 
-export default function Backspace() {
+function Backspace() {
   const intervalRef = useRef<any>();
   const searchContext = useSearchInputContext();
 
@@ -15,6 +15,7 @@ export default function Backspace() {
 
   const mouseDown = useCallback(
     (e: React.MouseEvent) => {
+      removeChar();
       intervalRef.current = setInterval(() => {
         removeChar();
       }, INTERVAL_CLEAR_SPEED);
@@ -37,3 +38,5 @@ export default function Backspace() {
     </button>
   );
 }
+
+export default memo(Backspace);
