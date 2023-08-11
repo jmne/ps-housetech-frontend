@@ -1,4 +1,4 @@
-import { Navigation, Virtual } from "swiper";
+import { Autoplay, Navigation, Virtual } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SwiperClass } from "swiper/react";
 
@@ -32,11 +32,15 @@ const Events = memo(() => {
   return (
     <>
       <Swiper
-        modules={[Virtual, Navigation]}
+        modules={[Virtual, Navigation, Autoplay]}
         navigation={true}
         className={styles.swiperContainer}
         loop={true}
         onSwiper={(swiper) => setSwiperInstance(swiper)}
+        autoplay={{
+          delay: 15000,
+          disableOnInteraction: true
+        }}
       >
         {(isLoading || error) && (
           <SwiperSlide>

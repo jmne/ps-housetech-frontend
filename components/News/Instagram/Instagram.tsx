@@ -1,7 +1,7 @@
 import { useTimeoutContext } from "context/TimeoutContext";
 import { useInstagram } from "hooks/useInstagram";
 import { useState, useEffect, memo } from "react";
-import { Virtual, Navigation } from "swiper";
+import { Virtual, Navigation, Autoplay } from "swiper";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 
@@ -28,11 +28,15 @@ const Instagram = memo(() => {
 
   return (
     <Swiper
-      modules={[Virtual, Navigation]}
+      modules={[Virtual, Navigation, Autoplay]}
       navigation={true}
       className={styles.swiperContainer}
       loop={true}
       onSwiper={(swiper) => setSwiperInstance(swiper)}
+      autoplay={{
+        delay: 15000,
+        disableOnInteraction: true
+      }}
     >
       {(isLoading || error) && (
         <SwiperSlide>

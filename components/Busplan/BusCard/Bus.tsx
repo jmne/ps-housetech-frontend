@@ -7,8 +7,8 @@ import { Busride } from "types/Busride";
 import styles from "@/components/Busplan/BusCard/Bus.module.scss";
 
 // IMPORTS - ICONS
-import IconInward from "assets/images/icon_city.svg";
-import IconOutward from "assets/images/icon_forrest.svg";
+import IconInward from "assets/icons/city.svg";
+import IconOutward from "assets/icons/forrest.svg";
 import IconBus from "assets/images/bus_housetech.svg?url";
 import { getColumn, getRow, handleClick } from "./animations";
 

@@ -1,6 +1,6 @@
 import styles from "./Map.module.scss";
 import { memo, useEffect, useMemo } from "react";
-import LeonardoCampus from "assets/images/map/campus_transformed/leonardocampus";
+import LeonardoCampus from "assets/map/campus_transformed/leonardocampus";
 import { useMapContext } from "context/MapContext";
 import {
   buildingClickHandler,
