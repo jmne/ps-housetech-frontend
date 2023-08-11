@@ -5,7 +5,7 @@ import {
   Leo3_Floor1,
   Leo3_Floor2,
   Leo3_Floor3
-} from "assets/images/map/floors_transformed";
+} from "assets/map/floors_transformed";
 import { MapData, useMapContext } from "context/MapContext";
 import {
   buildingClickHandler,
@@ -18,8 +18,8 @@ import { buildingNames } from "types/Campus";
 import { getFloorIndex } from "utils/Wayfinder/mapValidations";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/Wayfinder/personCardsTransformations";
-import ArrowUp from "assets/images/icon_arrow_up.svg";
-import ArrowDown from "assets/images/icon_arrow_down.svg";
+import ArrowUp from "assets/icons/arrow_up.svg";
+import ArrowDown from "assets/icons/arrow_down.svg";
 import { useMapElements } from "context/MapElements";
 import { AnimationQueue } from "utils/AnimationQueue";
 

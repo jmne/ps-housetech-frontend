@@ -1,6 +1,6 @@
 import { memo, useEffect, useMemo } from "react";
 import styles from "./Map.module.scss";
-import { Leo11_Floor0 } from "assets/images/map/floors_transformed";
+import { Leo11_Floor0 } from "assets/map/floors_transformed";
 import { useMapContext } from "context/MapContext";
 import {
   minimizeBuilding,
