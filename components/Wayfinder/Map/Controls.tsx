@@ -7,7 +7,7 @@ import { useTranslation } from "next-i18next";
 import { useCallback, useMemo } from "react";
 import { Button } from "@/components/Button";
 
-import IconSearch from "assets/images/icon_search.svg";
+import IconSearch from "assets/icons/search.svg";
 
 function handleCampusBuildingHighlight(mapContext: MapData, building: CampusBuilding) {
   if (mapContext.current.room !== building) {

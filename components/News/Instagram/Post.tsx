@@ -5,7 +5,7 @@ import styles from "./Instagram.module.scss";
 
 import { useState } from "react";
 import { useRouter } from "next/router";
-import IconClock from "assets/images/icon_clock.svg";
+import IconClock from "assets/icons/clock.svg";
 
 import { InstagramOverlay } from "./Overlay/InstagramOverlay";
 
@@ -13,7 +13,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useTranslation } from "next-i18next";
 import { Button } from "@/components/Button";
 import { Info } from "@/components/Info";
-import IconPlay from "../../../assets/images/icon_play.svg";
+import IconPlay from "../../../assets/icons/play.svg";
 
 interface props {
   post: PostType;

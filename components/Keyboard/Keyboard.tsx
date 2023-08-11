@@ -2,8 +2,8 @@ import { useSearchInputContext } from "context/SearchInputContext";
 import styles from "@/components/Keyboard/Keyboard.module.scss";
 import { useMemo } from "react";
 
-import IconDelete from "assets/images/icon_delete.svg";
-import IconBackspace from "assets/images/icon_backspace.svg";
+import IconDelete from "assets/icons/delete.svg";
+import IconBackspace from "assets/icons/backspace.svg";
 
 interface helperProps {
   keycode: string;

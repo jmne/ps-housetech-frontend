@@ -1,8 +1,8 @@
 import { Event } from "types/Events";
 import styles from "./EventOverlay.module.scss";
-import IconClock from "assets/images/icon_clock.svg";
-import IconLocation from "assets/images/icon_location.svg";
-import IconEvent from "assets/images/event.svg";
+import IconClock from "assets/icons/clock.svg";
+import IconLocation from "assets/icons/location.svg";
+import IconEvent from "assets/icons/event.svg";
 import { Info } from "@/components/Info";
 import * as Overlay from "@/components/Overlay";
 import { Description } from "./Description";

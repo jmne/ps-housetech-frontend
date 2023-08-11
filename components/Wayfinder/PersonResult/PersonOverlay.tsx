@@ -1,6 +1,6 @@
 import { Employee } from "types/Employee";
 import * as Overlay from "@/components/Overlay";
-import IconAccount from "assets/images/icon_account.svg";
+import IconAccount from "assets/icons/account.svg";
 
 import styles from "@/components/Wayfinder/PersonResult/person.module.scss";
 import { QRContact } from "./QRContact";
