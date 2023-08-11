@@ -57,11 +57,18 @@ export async function setRoomHighlight(
   room: string | number,
   building: CampusBuilding,
   highlight: boolean,
-  floor?: string
+  floor?: string,
+  container?: Element
 ) {
   const room_id = floor ? `${building}-${room}` : `${building}-${room}`;
-  const room_elements = document.querySelectorAll(`#${room_id}`);
-  if (!room_elements || room_elements.length === 0)
+
+  const queryParent = container ? container : document;
+
+  const multiple_rooms_possible = typeof room === "string" ? room.includes("wc") : false;
+  const room_elements = multiple_rooms_possible
+    ? queryParent.querySelectorAll(`#${room_id}`)
+    : [queryParent.querySelector(`#${room_id}`)];
+  if (!room_elements || room_elements.length === 0 || room_elements[0] === null)
     return new Promise((resolve) => {
       resolve(null);
     });
@@ -77,14 +84,16 @@ export async function setRoomHighlight(
     );
 }
 
-function addRoomHighlight(elements: NodeListOf<Element>) {
+function addRoomHighlight(elements: NodeListOf<Element> | Array<Element | null>) {
   elements.forEach((e) => {
+    if (!e) return;
     e.classList.value = styles.highlight;
   });
 }
 
-function removeRoomHighlight(elements: NodeListOf<Element>) {
+function removeRoomHighlight(elements: NodeListOf<Element> | Array<Element | null>) {
   elements.forEach((e) => {
+    if (!e) return;
     e.classList.value = "";
   });
 }
