@@ -32,7 +32,9 @@
             "lecture_hall": "Hörsaal",
             "cafeteria": "Mensa",
             "library": "Bibliothek",
-            "janitor": "Hausmeister"
+            "janitor": "Hausmeister",
+            "institute_wi": "Institut für Wirtschaftsinformatik",
+            "ercis": "ERCIS"
         },
         "controls": {
             "visit": "Plan",
