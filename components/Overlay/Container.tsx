@@ -7,14 +7,17 @@ import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 interface props extends Dialog.DialogContentProps {
   className?: string;
   setOpen: Function;
+  open: boolean;
 }
 
-export function Container({ children, className, setOpen, ...props }: props) {
+export function Container({ children, className, setOpen, open, ...props }: props) {
   const timeoutContext = useTimeoutContext();
   useEffect(() => {
-    function resetLayout() {
+    if (open === false) return;
+
+    const resetLayout = () => {
       setOpen(false);
-    }
+    };
 
     const timeoutHandler = new IdleHandler({
       origin: "overlay",
@@ -22,7 +25,7 @@ export function Container({ children, className, setOpen, ...props }: props) {
     });
 
     if (timeoutContext.manager) timeoutContext.manager.addResetListener(timeoutHandler);
-  }, [setOpen, timeoutContext.manager]);
+  }, [setOpen, timeoutContext.manager, open]);
 
   return (
     <Dialog.Portal>

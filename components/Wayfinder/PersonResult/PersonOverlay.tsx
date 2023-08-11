@@ -11,11 +11,12 @@ interface props {
   person: Employee;
   imageID: string | null;
   setOpen: Function;
+  open: boolean;
 }
 
-export function PersonOverlay({ person, imageID, setOpen }: props) {
+export function PersonOverlay({ person, imageID, setOpen, open }: props) {
   return (
-    <Overlay.Container setOpen={setOpen}>
+    <Overlay.Container open={open} setOpen={setOpen}>
       <Overlay.Header>
         <Overlay.Title>
           {person.cfFirstNames} {person.cfFamilyNames}

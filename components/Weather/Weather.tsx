@@ -17,10 +17,10 @@ export function Weather() {
   const [swiperInstance, setSwiperInstance] = useState<Swiper | undefined>();
 
   useEffect(() => {
-    function resetLayout() {
+    const resetLayout = () => {
       if (!swiperInstance) return;
       swiperInstance.slideTo(0);
-    }
+    };
 
     const timeoutHandler = new IdleHandler({
       origin: "weather",

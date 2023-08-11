@@ -22,7 +22,7 @@ export function NewsLinksOverlay() {
           <IconInstagram alt="Info" />
         </Button>
       </Dialog.Trigger>
-      <Overlay.Container setOpen={setOpen} className={styles.overlayContainer}>
+      <Overlay.Container setOpen={setOpen} open={open} className={styles.overlayContainer}>
         <Overlay.Header
           dividerClass={styles.overlayDivider}
           className={styles.overlayHeader}

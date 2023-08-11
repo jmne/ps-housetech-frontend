@@ -22,7 +22,7 @@ export default function BusStationMap() {
           <IconMap alt="more info" />
         </Button>
       </Dialog.Trigger>
-      <Overlay.Container setOpen={setOpen}>
+      <Overlay.Container setOpen={setOpen} open={open}>
         <Overlay.Header>
           <Dialog.Title>Technologiepark</Dialog.Title>
         </Overlay.Header>

@@ -21,13 +21,15 @@ export function SearchBar({ placeholder }: props) {
   };
 
   useEffect(() => {
-    function resetLayout() {
+    const resetLayout = () => {
       searchInputContext.setInput("");
+      searchInputContext.setActive(false);
+      if (inputRef.current) inputRef.current.blur();
     }
 
     const timeoutHandler = new IdleHandler({
       origin: "searchBar",
-      resetFunction: resetLayout
+      resetFunction: resetLayout.bind(null)
     });
 
     if (timeoutContext.manager) timeoutContext.manager.addResetListener(timeoutHandler);
@@ -35,7 +37,12 @@ export function SearchBar({ placeholder }: props) {
     return () => {
       if (timeoutContext.manager) timeoutContext.manager.removeResetListener("searchBar");
     };
-  }, [searchInputContext.setInput, searchInputContext, timeoutContext.manager]);
+  }, [
+    searchInputContext.setInput,
+    searchInputContext.setActive,
+    searchInputContext,
+    timeoutContext.manager
+  ]);
 
   return (
     <div
