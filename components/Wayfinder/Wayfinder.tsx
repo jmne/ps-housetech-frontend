@@ -39,7 +39,7 @@ function shuffleWithImagePriority(data: Employee[]) {
 }
 
 function shuffle(data: Employee[]) {
-  return [...data].sort((a, b) => 0.5 - Math.random());
+  return [...data].sort(() => 0.5 - Math.random());
 }
 
 export function Wayfinder() {
