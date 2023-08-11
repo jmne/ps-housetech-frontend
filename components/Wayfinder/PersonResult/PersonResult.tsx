@@ -111,7 +111,7 @@ const PersonResult = memo(({ person }: props) => {
                 {t("wayfinder.search.contact_person")}
               </Button>
             </Dialog.Trigger>
-            <PersonOverlay person={person} imageID={imageID} />
+            <PersonOverlay person={person} imageID={imageID} setOpen={setOverlayOpen} />
           </Dialog.Root>
         </div>
       ) : (

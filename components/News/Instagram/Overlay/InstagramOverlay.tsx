@@ -10,14 +10,15 @@ import * as Overlay from "@/components/Overlay";
 
 interface props {
   post: Post;
+  setOpen: Function;
 }
 
-export function InstagramOverlay({ post }: props) {
+export function InstagramOverlay({ post, setOpen }: props) {
   const [date] = useState(new Date(post.timestamp));
   const router = useRouter();
 
   return (
-    <Overlay.Container style={{ padding: 0 }}>
+    <Overlay.Container setOpen={setOpen} style={{ padding: 0 }}>
       <Overlay.Body className={styles.container}>
         <div className={styles.imageContainer}>
           {post.media_type === MediaTypes.VIDEO ? (

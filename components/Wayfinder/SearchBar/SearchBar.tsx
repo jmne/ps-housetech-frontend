@@ -2,7 +2,9 @@
 import styles from "@/components/Wayfinder/Wayfinder.module.scss";
 import IconSearch from "assets/icons/search.svg";
 import { useSearchInputContext } from "context/SearchInputContext";
-import { useRef } from "react";
+import { useTimeoutContext } from "context/TimeoutContext";
+import { useEffect, useRef } from "react";
+import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 
 interface props {
   placeholder: string;
@@ -10,12 +12,30 @@ interface props {
 
 export function SearchBar({ placeholder }: props) {
   const searchInputContext = useSearchInputContext();
+  const timeoutContext = useTimeoutContext();
 
   const inputRef = useRef<HTMLInputElement>(null);
   const focusInput = () => {
     if (!inputRef.current) return;
     if (document.activeElement !== inputRef.current) inputRef.current.focus();
   };
+
+  useEffect(() => {
+    function resetLayout() {
+      searchInputContext.setInput("");
+    }
+
+    const timeoutHandler = new IdleHandler({
+      origin: "searchBar",
+      resetFunction: resetLayout
+    });
+
+    if (timeoutContext.manager) timeoutContext.manager.addResetListener(timeoutHandler);
+
+    return () => {
+      if (timeoutContext.manager) timeoutContext.manager.removeResetListener("searchBar");
+    };
+  }, [searchInputContext.setInput, searchInputContext, timeoutContext.manager]);
 
   return (
     <div

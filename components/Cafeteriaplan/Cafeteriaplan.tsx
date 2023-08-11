@@ -84,7 +84,7 @@ export default function Cafeteriaplan() {
 
   useEffect(() => {
     function resetLayout() {
-      setSelectedCafeteria("davinci")
+      setSelectedCafeteria("davinci");
 
       const current_time = new Date();
 

@@ -6,7 +6,9 @@ export type Origin =
   | "events"
   | "instagram"
   | "overlay"
-  | "index";
+  | "index"
+  | "weather"
+  | "searchBar";
 
 export interface ResetListener {
   origin: Origin;

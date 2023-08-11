@@ -9,15 +9,16 @@ import { Description } from "./Description";
 
 interface props {
   event: Event;
+  setOpen: Function;
 }
 
-export function EventOverlay({ event }: props) {
+export function EventOverlay({ event, setOpen }: props) {
   const date = new Date(event.start_date);
   const dateFormatted = date.toLocaleDateString("de-de");
   const time = date.toLocaleTimeString("de-de").slice(0, 5);
 
   return (
-    <Overlay.Container className={styles.container}>
+    <Overlay.Container className={styles.container} setOpen={setOpen}>
       <div className={styles.header}>
         <h2>{event.title}</h2>
         <div className={styles.imageContainer}>
