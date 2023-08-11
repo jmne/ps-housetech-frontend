@@ -25,7 +25,7 @@ export function SearchBar({ placeholder }: props) {
       searchInputContext.setInput("");
       searchInputContext.setActive(false);
       if (inputRef.current) inputRef.current.blur();
-    }
+    };
 
     const timeoutHandler = new IdleHandler({
       origin: "searchBar",

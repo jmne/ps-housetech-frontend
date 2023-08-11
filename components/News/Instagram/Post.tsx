@@ -64,7 +64,7 @@ export function Post({ post }: props) {
           <p className={styles.caption}>{post.caption}</p>
         </div>
       </Dialog.Trigger>
-      <InstagramOverlay post={post} setOpen={setOverlayOpen} open={overlayOpen}/>
+      <InstagramOverlay post={post} setOpen={setOverlayOpen} open={overlayOpen} />
     </Dialog.Root>
   );
 }

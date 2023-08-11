@@ -11,7 +11,7 @@ import * as Overlay from "@/components/Overlay";
 interface props {
   post: Post;
   setOpen: Function;
-  open: boolean
+  open: boolean;
 }
 
 export function InstagramOverlay({ post, setOpen, open }: props) {
