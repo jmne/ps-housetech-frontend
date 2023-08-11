@@ -89,7 +89,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
       <path
         d="m344.8 937.5-169 143-136 33.5H0v-17.6l46.8.2 125-31.4 163.8-139 83.7-88.7 10 9.5-84.5 90.5Z"
         style={{
-          fill: "#fafafa",
+          fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
           fillRule: "nonzero",
           stroke: "#595959",
           strokeWidth: ".75px"
@@ -313,7 +313,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
       <path
         d="m0 1111.2 34.4-36.8 2.7 2-34 37.6-3.1-2.8Z"
         style={{
-          fill: "#fafafa",
+          fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
           fillRule: "nonzero",
           stroke: "#bfbfbf",
           strokeWidth: ".75px"
@@ -323,7 +323,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
       <path
         d="M63.3 1045.8 2.8 1114l-2.8-2.8 60.8-67.7 2.5 2.3Z"
         style={{
-          fill: "#fafafa",
+          fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
           fillRule: "nonzero",
           stroke: COLOR.CONTRAST_STROKE,
           strokeWidth: ".75px"
@@ -371,7 +371,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
       <path
         d="m352.4 875.9 75.1 69.4-29.8 33.2-172.3-10.2-1.5-14.1 56.7-61 22.7 11.4h23.3l22-24.8 3.8-3.9ZM143 883.2l-43.8-41.8L162 771l-69.2-62.4-4.6 4.6 65.2 59.9-61.3 68.3 48.2 48.7 75.1 62.4 2 2 1.3 13.8-128-1.4-37.7 5.7-20.4 28.3-21.9 45.5L0 1107.2l6.5 1.5 9.7-58.4 98.6 6.5h31.8v-6.8h-31.8l-96.6-5.7 19.2-40 19-26.3 34-5.1 133.5 2 175.8 10.5 33.8-37.1 34.2 10.1 201.8 104 1.1-2-24.6 46.8 13 6.8 65.2-128.6-11.3-5.7-40.2 76.6-76-38.6 110-224.5 2-16.2-9.4-27-17.6-19.8-24-41 9.9-18 9.9-28.8-1.4-15.6-7.1-15-3.6-4.4 41.5-43.9-3-3-17.9 19-114.3-104.7 51.8-51 286.5 276 20.7-20.6-606-585.4-24.1 18.3 318.8 307.5-51.9 51.2-197.8-184.3 33.3-34.9-4.6-4.8-54.2 56.6-18.1-16.9-25.9-36-4.4 4.7L320 291l19 17.6-24 23.2-10.3-10.2-26.9-3.7-23.3 9.3-82.8 85.6-24.2-29.3-6.5 5.5 24.7 29.9-28.7 29.7-37 3.4-55 53.3-.5 38-3.4 14.1 4.2 22.6 9.1 20.8 292.3 270h0l-2.4 2.9-19.7 23.9h-21.3L282 886l-75.3-70.8-60 64.1-3.8 3.8ZM439.3 942l188.6-215.7 25.6-30.6 22.6 38.8 17.5 19.3 8.8 23.2-2.2 14.2-109.8 223.2-119.8-61.6-31.6-10.6.3-.2Zm203.9-351.3 20.1 24.2 6.2 12.7 1.7 13.9-9.3 26.4-2.3 4.3L519 526.6l26.8-26.4 97.4 90.4Zm19.6 13.5-15-18.3-97.2-90.3 17.8-17.5 114.8 104.5-20.4 21.6Zm-147.9-81.4L320.1 336.3 344 313l197.6 183.3-26.7 26.4ZM349.1 308.1l17.9-18.7 197 184.8-17.7 17.5L349.1 308ZM48.5 539.7v-32l54-52.2 30.7-3.1-84.7 87.3ZM432.3 940 59.8 597l-8.6-19.9-3.8-20.6 4.9-11.8 205.6-211.9 21.3-9 22.1 4 13.9 13.3 195.7 185.6L456 581l-48.9 49.5 3.8 4 49.4-49.9 54.8-54 142.4 145.7-5.4 10.2-219.8 253.4Zm-281.5-55.4 56.1-60.7 68.6 66-55.8 58.7-71.9-60.8 3-3.2Z"
         style={{
-          fill: "#fafafa",
+          fill: COLOR.TEXT_AND_BASIC_ELEMENTS,
           fillRule: "nonzero",
           stroke: COLOR.CONTRAST_STROKE,
           strokeWidth: ".75px"
@@ -410,7 +410,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
             style={{
               fontFamily: "&quot",
               fontSize: 18,
-              fill: "#fafafa"
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS
             }}
             transform="translate(6.7 1076.3)"
           >
@@ -459,7 +459,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
             style={{
               fontFamily: "&quot",
               fontSize: 18,
-              fill: "#fafafa"
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS
             }}
             transform="translate(6.7 1076.3)"
           >
@@ -514,7 +514,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
             style={{
               fontFamily: "&quot",
               fontSize: 18,
-              fill: "#fafafa"
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS
             }}
             transform="translate(6.7 1076.3)"
           >
@@ -561,7 +561,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
             style={{
               fontFamily: "&quot",
               fontSize: 18,
-              fill: "#fafafa"
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS
             }}
             transform="translate(6.9 1076.3)"
           >
@@ -614,7 +614,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
             style={{
               fontFamily: "&quot",
               fontSize: 18,
-              fill: "#fafafa"
+              fill: COLOR.TEXT_AND_BASIC_ELEMENTS
             }}
             transform="translate(6.9 1076.3)"
           >
