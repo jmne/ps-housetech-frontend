@@ -1,9 +1,9 @@
 import { useSearchInputContext } from "context/SearchInputContext";
 import styles from "@/components/Keyboard/Keyboard.module.scss";
-import { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 
 import IconDelete from "assets/icons/delete.svg";
-import IconBackspace from "assets/icons/backspace.svg";
+import Backspace from "./Backspace";
 
 interface helperProps {
   keycode: string;
@@ -13,38 +13,39 @@ export function Key({ keycode }: helperProps) {
   const isLetter = !["clear", "space", "backspace"].includes(keycode);
 
   const searchContext = useSearchInputContext();
-  function handleKey(e: Event) {
-    if (!searchContext.active) return;
-    if (keycode == "clear") clearInput();
-    else if (keycode == "space") appendInput(" ");
-    else if (keycode == "backspace") removeChar();
-    else appendInput(keycode);
 
-    e.preventDefault();
-  }
+  const appendInput = useCallback(
+    (newKey: string) => {
+      const inputLength = searchContext.input.length;
+      const isCapital =
+        inputLength === 0 ||
+        searchContext.input[inputLength - 1] === " " ||
+        searchContext.input[inputLength - 1] === "-";
+      searchContext.setInput(
+        `${searchContext.input}${isCapital ? newKey.toUpperCase() : newKey}`
+      );
+    },
+    [searchContext]
+  );
 
-  function appendInput(newKey: string) {
-    const inputLength = searchContext.input.length;
-    const isCapital =
-      inputLength === 0 ||
-      searchContext.input[inputLength - 1] === " " ||
-      searchContext.input[inputLength - 1] === "-";
-    searchContext.setInput(
-      `${searchContext.input}${isCapital ? newKey.toUpperCase() : newKey}`
-    );
-  }
-
-  function removeChar() {
-    searchContext.setInput(searchContext.input.slice(0, searchContext.input.length - 1));
-  }
-
-  function clearInput() {
+  const clearInput = useCallback(() => {
     searchContext.setInput("");
-  }
+  }, [searchContext]);
+
+  const handleKey = useCallback(
+    (e: React.MouseEvent) => {
+      if (!searchContext.active) return;
+      if (keycode == "clear") clearInput();
+      else if (keycode == "space") appendInput(" ");
+      else appendInput(keycode);
+
+      e.preventDefault();
+    },
+    [appendInput, clearInput, keycode, searchContext.active]
+  );
 
   if (keycode === "clear") {
     return (
-      //@ts-ignore
       <button className={styles.key} onMouseDown={(e) => handleKey(e)}>
         <IconDelete className={styles.icon} />
       </button>
@@ -52,16 +53,10 @@ export function Key({ keycode }: helperProps) {
   }
 
   if (keycode === "backspace") {
-    return (
-      //@ts-ignore
-      <button className={styles.key} onMouseDown={(e) => handleKey(e)}>
-        <IconBackspace className={styles.icon} />
-      </button>
-    );
+    return <Backspace />;
   }
 
   return (
-    //@ts-ignore
     <button className={styles.key} onMouseDown={(e) => handleKey(e)}>
       {isLetter ? keycode.toUpperCase() : keycode}
     </button>
