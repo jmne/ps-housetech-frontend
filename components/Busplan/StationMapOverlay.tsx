@@ -3,7 +3,7 @@ import * as Overlay from "@/components/Overlay";
 import styles from "./Busplan.module.scss";
 
 import IconMap from "assets/icons/map.svg";
-import map from "assets/images/technologiepark.jpg";
+import map from "assets/images/technologiepark.png";
 import Image from "next/image";
 import { useState } from "react";
 import { useTranslation } from "next-i18next";
