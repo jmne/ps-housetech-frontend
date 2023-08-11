@@ -10,7 +10,7 @@ import { Employee, addressValue } from "types/Employee";
 export function validateRoomNumber(room: string | number) {
   const roomStr = room.toString();
 
-  const validRoomNumber = roomStr.match(/\d{3}a?b?/);
+  const validRoomNumber = roomStr.match(/^\d{3}a?b?/);
   if (validRoomNumber) {
     if (parseInt(validRoomNumber[0]) >= 400) return undefined;
     return validRoomNumber[0];
@@ -67,7 +67,7 @@ export function getFloorIndex(floor: BuildingFloor) {
  * @param room Number of the room
  * @returns Floor level as a number
  */
-export function getFloorNumber(room: number): number {
+export function getFloorNumber(room: string): number {
   const floorString = getFloor(room);
   const n_string = floorString.charAt(5);
   const n = parseInt(n_string);

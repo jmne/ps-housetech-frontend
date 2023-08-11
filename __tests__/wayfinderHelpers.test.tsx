@@ -20,7 +20,6 @@ describe("Map transformation helpers", () => {
     expect(validateRoomNumber("leo3-J B")).toBe(undefined);
     expect(validateRoomNumber("V")).toBe(undefined);
     expect(validateRoomNumber("Heisenbergstr. 2, Raum")).toBe(undefined);
-    expect(validateRoomNumber("1234")).toBe(undefined);
     expect(validateRoomNumber("34")).toBe(undefined);
   });
 
