@@ -11,7 +11,7 @@ import { SearchBar } from "./SearchBar/SearchBar";
 import PersonResult from "./PersonResult/PersonResult";
 import { CampusMap } from "./Map/Map";
 
-import ArrowDown from "assets/images/icon_arrow_down.svg";
+import ArrowDown from "assets/icons/arrow_down.svg";
 
 // IMPORTS - CONTEXT
 import { usePersonSearchContext } from "context/PersonContext";

@@ -13,12 +13,12 @@ import { mockSwiper } from "__mocks__/mock_swiper.tsx";
 
 jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("next/image", () => mockImage);
-jest.mock("assets/images/icon_city.svg", () => mockImage);
-jest.mock("assets/images/icon_clock.svg", () => mockImage);
-jest.mock("assets/images/icon_close.svg", () => mockImage);
-jest.mock("assets/images/icon_forrest.svg", () => mockImage);
-jest.mock("assets/images/icon_location.svg", () => mockImage);
-jest.mock("assets/images/icon_search.svg", () => mockImage);
+jest.mock("assets/icons/city.svg", () => mockImage);
+jest.mock("assets/icons/clock.svg", () => mockImage);
+jest.mock("assets/icons/close.svg", () => mockImage);
+jest.mock("assets/icons/forrest.svg", () => mockImage);
+jest.mock("assets/icons/location.svg", () => mockImage);
+jest.mock("assets/icons/search.svg", () => mockImage);
 jest.mock("swiper/react", () => ({
   Swiper: ({ children }) => <div data-testid="Swiper-testId">{children}</div>,
   SwiperSlide: ({ children }) => <div data-testid="SwiperSlide-testId">{children}</div>

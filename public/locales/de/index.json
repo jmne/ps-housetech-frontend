@@ -30,7 +30,9 @@
             "wi_ag": "WI-AG",
             "wwu_center_europe": "WWU Zentrum Europa",
             "lecture_hall": "Hörsaal",
-            "cafeteria": "Mensa"
+            "cafeteria": "Mensa",
+            "library": "Bibliothek",
+            "janitor": "Hausmeister"
         },
         "controls": {
             "visit": "Plan",

@@ -5,12 +5,12 @@ import styles from "@/components/Wayfinder/Wayfinder.module.scss";
 import { Fragment, useEffect, useRef, useState, memo, useCallback } from "react";
 import { handleClickOnPerson } from "utils/Wayfinder/personCardsTransformations";
 import Image from "next/image";
-import IconAccount from "assets/images/icon_account.svg";
-import IconPlus from "assets/images/icon_plus.svg";
-import IconMinus from "assets/images/icon_minus.svg";
-import IconCall from "assets/images/icon_call.svg";
-import IconMail from "assets/images/icon_mail.svg";
-import IconLocation from "assets/images/icon_location.svg";
+import IconAccount from "assets/icons/account.svg";
+import IconPlus from "assets/icons/plus.svg";
+import IconMinus from "assets/icons/minus.svg";
+import IconCall from "assets/icons/call.svg";
+import IconMail from "assets/icons/mail.svg";
+import IconLocation from "assets/icons/location.svg";
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { PersonOverlay } from "./PersonOverlay";

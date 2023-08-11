@@ -2,7 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import * as Overlay from "@/components/Overlay";
 import styles from "./Busplan.module.scss";
 
-import IconMap from "assets/images/icon_map.svg";
+import IconMap from "assets/icons/map.svg";
 import map from "assets/images/technologiepark.jpg";
 import Image from "next/image";
 import { useState } from "react";
