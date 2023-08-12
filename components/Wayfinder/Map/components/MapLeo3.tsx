@@ -1,5 +1,5 @@
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
-import styles from "./Map.module.scss";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import styles from "@/components/Wayfinder/Map/Map.module.scss";
 import {
   Leo3_Floor0,
   Leo3_Floor1,
@@ -74,7 +74,7 @@ function floorDown(mapContext: MapData, personContext: PersonData) {
   mapContext.setCurrent({ room: undefined, floor: `floor${nextFloorIndex}` });
 }
 
-const MapLeo3 = memo(() => {
+const MapLeo3 = memo(({ ...props }: React.HTMLProps<HTMLDivElement>) => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
   const personContext = usePersonSearchContext();
