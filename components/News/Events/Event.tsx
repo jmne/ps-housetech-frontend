@@ -64,7 +64,7 @@ export function EventCard({ data }: props) {
           </div>
         </div>
       </Dialog.Trigger>
-      <EventOverlay event={data} />
+      <EventOverlay event={data} setOpen={setOverlayOpen} open={overlayOpen} />
     </Dialog.Root>
   );
 }

@@ -9,7 +9,6 @@ import {
 } from "utils/Wayfinder/mapTransformations";
 import { buildingNames } from "types/Campus";
 import { useMapElements } from "context/MapElements";
-import { executeAnimationSequence } from "utils/animations";
 import { AnimationQueue } from "utils/AnimationQueue";
 
 const MapLeo11 = memo(() => {
@@ -35,8 +34,12 @@ const MapLeo11 = memo(() => {
       element_leo11_building,
       element_mapContainer
     );
-    //@ts-ignore
-  }, []);
+  }, [
+    mapContext,
+    mapElements.leo11_building,
+    mapElements.leo11_building_on_campus,
+    mapElements.mapContainer
+  ]);
 
   useEffect(() => {
     const element_leo11_on_campus = mapElements.leo11_building_on_campus?.current;
@@ -92,7 +95,8 @@ const MapLeo11 = memo(() => {
     mapElements.leo11_building_on_campus,
     mapElements.leo11_building,
     mapElements.mapContainer,
-    mapElements.campus_element
+    mapElements.campus_element,
+    animationQueue
   ]);
 
   return (
