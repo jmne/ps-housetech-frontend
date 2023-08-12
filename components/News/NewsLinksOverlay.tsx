@@ -2,7 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import * as Overlay from "@/components/Overlay";
 import { useState } from "react";
 import styles from "./News.module.scss";
-import IconInstagram from "assets/images/icon_insta.svg";
+import IconInstagram from "assets/icons/insta.svg";
 import QRCode from "react-qr-code";
 import { useTranslation } from "next-i18next";
 import { Button } from "@/components/Button";

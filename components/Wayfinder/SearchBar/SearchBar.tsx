@@ -1,6 +1,6 @@
 // IMPORTS - ASSETS
 import styles from "@/components/Wayfinder/Wayfinder.module.scss";
-import IconSearch from "assets/images/icon_search.svg";
+import IconSearch from "assets/icons/search.svg";
 import { useSearchInputContext } from "context/SearchInputContext";
 import { useRef } from "react";
 

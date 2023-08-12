@@ -30,7 +30,9 @@
             "wi_ag": "WI-AG",
             "wwu_center_europe": "WWU Center Europe",
             "lecture_hall": "Lecture Hall",
-            "cafeteria": "Cafeteria"
+            "cafeteria": "Cafeteria",
+            "library": "Library",
+            "janitor": "Janitor"
         },
         "controls": {
             "visit": "Plan",

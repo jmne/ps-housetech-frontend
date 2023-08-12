@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { RainRadar } from "./RainRadar";
 import styles from "./Weather.module.scss";
 
-import Swiper, { Navigation, Virtual } from "swiper";
+import Swiper, { Navigation } from "swiper";
 import { Swiper as SwiperElement, SwiperSlide } from "swiper/react";
 import { useState } from "react";
 

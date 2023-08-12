@@ -1,5 +1,5 @@
 import { MediaTypes, Post } from "types/Instagram";
-import IconClock from "assets/images/icon_clock.svg";
+import IconClock from "assets/icons/clock.svg";
 import styles from "./InstagramOverlay.module.scss";
 import { useRouter } from "next/router";
 import { useState } from "react";

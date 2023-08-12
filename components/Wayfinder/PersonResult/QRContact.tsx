@@ -1,5 +1,5 @@
-import IconCall from "assets/images/icon_call.svg";
-import IconMail from "assets/images/icon_mail.svg";
+import IconCall from "assets/icons/call.svg";
+import IconMail from "assets/icons/mail.svg";
 import QRCode from "react-qr-code";
 import styles from "./person.module.scss";
 import { Info } from "@/components/Info";
