@@ -157,7 +157,7 @@ $map_other_building_x_offset: 200%;
 
     display: grid;
 
-    > * {
+    >* {
       grid-area: 1 / 1 / 1 / 1;
 
       min-width: 0;
@@ -175,7 +175,8 @@ $map_other_building_x_offset: 200%;
       //}
     }
 
-    transition: opacity $animDuration ease-out, transform $animDuration ease-in-out;
+    transition: opacity $animDuration ease-out,
+    transform $animDuration ease-in-out;
   }
 
   .floor__above {
@@ -200,9 +201,14 @@ $map_other_building_x_offset: 200%;
     fill: g.$accent1_light !important;
     stroke: g.$accent1_dark !important;
 
-    * {
+    path {
       fill: g.$accent1_light !important;
       stroke: g.$accent1_dark !important;
+    }
+
+    text {
+      fill: g.$accent1_dark !important;
+      stroke: transparent !important;
     }
   }
 
@@ -216,7 +222,7 @@ $map_other_building_x_offset: 200%;
       width: auto;
       height: auto;
 
-      padding-left: 23rem;
+      padding-left: 50%;
 
       border: none;
       background-color: transparent;

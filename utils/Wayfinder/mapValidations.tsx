@@ -1,6 +1,3 @@
-import { ToastInformation } from "@/components/Toast/Toast";
-import { MapData } from "context/MapContext";
-import { ToastContextData } from "context/ToastContext";
 import { TFunction } from "next-i18next";
 import {
   BuildingFloor,
@@ -13,7 +10,7 @@ import { Employee, addressValue } from "types/Employee";
 export function validateRoomNumber(room: string | number) {
   const roomStr = room.toString();
 
-  const validRoomNumber = roomStr.match(/^\d{3}$/);
+  const validRoomNumber = roomStr.match(/^\d{3}a?b?/);
   if (validRoomNumber) {
     if (parseInt(validRoomNumber[0]) >= 400) return undefined;
     return validRoomNumber[0];
@@ -43,7 +40,6 @@ export function getFloor(room: number | string): BuildingFloor {
   if (n < 200) return "floor1";
   if (n < 300) return "floor2";
   if (n < 400) return "floor3";
-  // base case
   return "floor0";
 }
 
@@ -71,7 +67,7 @@ export function getFloorIndex(floor: BuildingFloor) {
  * @param room Number of the room
  * @returns Floor level as a number
  */
-export function getFloorNumber(room: number): number {
+export function getFloorNumber(room: string): number {
   const floorString = getFloor(room);
   const n_string = floorString.charAt(5);
   const n = parseInt(n_string);
