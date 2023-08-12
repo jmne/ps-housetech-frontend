@@ -1,4 +1,4 @@
-import { ToastInformation } from "@/components/Toast/Toast";
+import { ToastInformation } from "@/components/UI/Toast/Toast";
 import {
   PropsWithChildren,
   createContext,

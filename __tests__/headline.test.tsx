@@ -7,7 +7,7 @@ import i18n from "../i18-test_config";
 import { I18nextProvider } from "react-i18next";
 
 // Component
-import Headline from "@/components/Headline/Headline";
+import Headline from "@/components/Dashboard/Headline/Headline";
 
 describe("Headline", () => {
   it("Renders the headline", () => {

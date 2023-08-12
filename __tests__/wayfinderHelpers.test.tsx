@@ -2,7 +2,7 @@ import {
   validateRoomNumber,
   getFloor,
   getFloorNumber
-} from "utils/Wayfinder/mapValidations";
+} from "utils/wayfinderAnimation/mapValidations";
 
 describe("Map transformation helpers", () => {
   it("should return the correct 3-digit room number when valid", () => {
