@@ -68,13 +68,13 @@ function Feed() {
         >
           {articles // @ts-ignore
             ? articles.map((item: any) => (
-                <SwiperSlide key={item.externalId}>
+                <SwiperSlide key={item?.externalId}>
                   <Card className={styles.rootNews}>
                     <CardActionArea>
                       <CardMedia
                         className={styles.media}
-                        image={item.teaserImage.imageVariants["1x1-840"]}
-                        title={item.teaserImage.alttext}
+                        image={item?.teaserImage?.imageVariants["1x1-840"]}
+                        title={item?.teaserImage?.alttext}
                       />
                       <div className={styles.textContainer}>
                         <CardContent className={styles.card}>
@@ -83,7 +83,7 @@ function Feed() {
                             textAlign={"start"}
                             color={"rgba(0, 0, 0, 0.6)"}
                           >
-                            {item.topline}
+                            {item?.topline}
                           </Typography>
                           <Typography
                             gutterBottom
@@ -91,7 +91,7 @@ function Feed() {
                             component="h2"
                             textAlign={"start"}
                           >
-                            {item.title}
+                            {item?.title}
                           </Typography>
                           <Typography
                             gutterBottom
@@ -99,9 +99,7 @@ function Feed() {
                             component={"p"}
                             className={styles.text}
                           >
-                            {"content" in item
-                              ? item["content"][0]["value"].replace(/<\/?[^>]+(>|$)/g, "")
-                              : "..."}
+                            {item?.content[0]?.value.replace(/<\/?[^>]+(>|$)/g, "")}
                           </Typography>
                           <div className={styles.modalFooter}>
                             <Typography
@@ -110,7 +108,7 @@ function Feed() {
                               component="p"
                               className={styles.date}
                             >
-                              {parseDate(item.date)}
+                              {parseDate(item?.date)}
                             </Typography>
                             <Typography
                               variant="body2"
@@ -118,7 +116,7 @@ function Feed() {
                               component="p"
                               className={styles.tag}
                             >
-                              {item.tags[0].tag}, {item.tags[1].tag}
+                              {item?.tags[0]?.tag}, {item?.tags[1]?.tag}
                             </Typography>
                           </div>
                         </CardContent>
@@ -142,7 +140,7 @@ function Feed() {
                       <QRCode
                         bgColor="#fafafa"
                         fgColor="#15171b"
-                        value={item.shareURL}
+                        value={item?.shareURL}
                         className={styles.qr}
                       />
                     </div>
