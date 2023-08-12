@@ -137,7 +137,11 @@ export function getPersonForRoom(
       case buildingNames.LEO1:
         return [t("wayfinder.map.brazil_center"), t("wayfinder.map.wi_ag")];
       case buildingNames.LEO3:
-        return [t("wayfinder.map.wwu_center_europe")];
+        return [
+          t("wayfinder.map.institute_wi"),
+          t("wayfinder.map.wwu_center_europe"),
+          t("wayfinder.map.ercis")
+        ];
       case buildingNames.LEO10:
         return [
           `${t("wayfinder.map.lecture_hall")} Leo 1`,
