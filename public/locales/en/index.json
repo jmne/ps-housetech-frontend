@@ -32,7 +32,9 @@
             "lecture_hall": "Lecture Hall",
             "cafeteria": "Cafeteria",
             "library": "Library",
-            "janitor": "Janitor"
+            "janitor": "Janitor",
+            "institute_wi": "Institute for Information Systems",
+            "ercis": "ERCIS"
         },
         "controls": {
             "visit": "Plan",
