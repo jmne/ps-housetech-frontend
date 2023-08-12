@@ -1,62 +1,39 @@
 // IMPORTS - BUILTIN
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 // IMPORTS - ASSETS
 import styles from "./LanguageSelector.module.scss";
 import flag_de from "assets/images/flag/flag_germany.png";
 import flag_uk from "assets/images/flag/flag_uk.png";
+import { useTimeoutContext } from "context/TimeoutContext";
+import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 
 export function LanguageSelector() {
+  const timeoutContext = useTimeoutContext();
+  const flagRefDE = useRef<HTMLLIElement>(null);
+  const flagRefUK = useRef<HTMLLIElement>(null);
   const router = useRouter();
-  const currentLang = router.locale;
-  const [animationInProgress, setAnimation] = useState(true);
 
-  // Run once to set up the selector according to first domain
   useEffect(() => {
-    const flag_de = document.getElementById("first-lang-button");
-    const flag_uk = document.getElementById("second-lang-button");
-    if (!flag_de || !flag_uk) return;
-
-    if (currentLang === "en") {
-      flag_uk.classList.add(styles.active);
-    } else flag_de.classList.add(styles.active);
-
-    // Wait for animation to finish
-    setTimeout(() => {
-      setAnimation(false);
-    }, 500);
-  }, [currentLang]);
-
-  function switchLang() {
-    if (animationInProgress) return;
-    setAnimation(true);
-    // Get DOM elements
-    const flag_de = document.getElementById("first-lang-button");
-    const flag_uk = document.getElementById("second-lang-button");
-    if (!flag_de || !flag_uk) return;
-
-    if (["en", "en-gb", "en-us"].includes(router.locale ? router.locale : "en")) {
-      flag_de.classList.add(styles.active);
-      flag_uk.classList.remove(styles.active);
-
-      router.push("/", "/", { locale: "de" });
-    } else {
-      flag_de.classList.remove(styles.active);
-      flag_uk.classList.add(styles.active);
-
+    const resetLanguage = () => {
       router.push("/", "/", { locale: "en" });
-    }
-    // Wait for animation to finish
-    setTimeout(() => {
-      setAnimation(false);
-    }, 500);
-  }
+    };
+
+    const handler = new IdleHandler({ origin: "language", resetFunction: resetLanguage });
+    timeoutContext.manager && timeoutContext.manager.addResetListener(handler);
+  }, [router, timeoutContext]);
+
+  const handleClick = useCallback(() => {
+    router.locale === "en"
+      ? router.push("/", "/", { locale: "de" })
+      : router.push("/", "/", { locale: "en" });
+  }, [router, router.locale]);
 
   return (
-    <ul className={styles.wrapper}>
-      <li onClick={switchLang} id="first-lang-button">
+    <ul className={styles.wrapper} onClick={handleClick}>
+      <li ref={flagRefDE} className={router.locale === "de" ? styles.active : undefined}>
         <Image
           src={flag_de}
           alt="Germany Flag"
@@ -65,7 +42,7 @@ export function LanguageSelector() {
           priority
         />
       </li>
-      <li onClick={switchLang} id="second-lang-button">
+      <li ref={flagRefUK} className={router.locale === "de" ? undefined : styles.active}>
         <Image
           src={flag_uk}
           alt="UK Flag"
