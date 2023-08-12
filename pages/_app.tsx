@@ -4,7 +4,7 @@ import type { AppProps } from "next/app";
 import localFont from "next/font/local";
 
 // IMPORTS - ASSETS
-import "../assets/scss/global.scss";
+import "/assets/scss/global.scss";
 
 const productSans = localFont({
   src: [
@@ -26,7 +26,7 @@ const productSans = localFont({
 });
 import { SearchInputProvider } from "context/SearchInputContext";
 import { TimeoutProvider } from "context/TimeoutContext";
-import { ToastProvider } from "@/components/Toast/ToastProvider";
+import { ToastProvider } from "@/components/UI/Toast/ToastProvider";
 import { ToastContextProvider } from "context/ToastContext";
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
