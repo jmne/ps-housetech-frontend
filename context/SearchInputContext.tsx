@@ -1,10 +1,10 @@
-import { createContext, useContext, useState } from "react";
+import { Dispatch, SetStateAction, createContext, useContext, useState } from "react";
 
 interface InputData {
   input: string;
-  setInput: Function;
+  setInput: Dispatch<SetStateAction<string>>;
   active: boolean;
-  setActive: Function;
+  setActive: Dispatch<SetStateAction<boolean>>;
 }
 
 const input_data = createContext<InputData>({
