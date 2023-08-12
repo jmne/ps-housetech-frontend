@@ -11,7 +11,7 @@ import { SearchBar } from "./SearchBar/SearchBar";
 import PersonResult from "./PersonResult/PersonResult";
 import { CampusMap } from "./Map/Map";
 
-import ArrowDown from "assets/images/icon_arrow_down.svg";
+import ArrowDown from "assets/icons/arrow_down.svg";
 
 // IMPORTS - CONTEXT
 import { usePersonSearchContext } from "context/PersonContext";
@@ -39,7 +39,7 @@ function shuffleWithImagePriority(data: Employee[]) {
 }
 
 function shuffle(data: Employee[]) {
-  return [...data].sort((a, b) => 0.5 - Math.random());
+  return [...data].sort(() => 0.5 - Math.random());
 }
 
 export function Wayfinder() {

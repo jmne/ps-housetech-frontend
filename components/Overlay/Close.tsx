@@ -1,7 +1,7 @@
 import { DialogCloseProps } from "@radix-ui/react-dialog";
 import { Close as CloseDialog } from "@radix-ui/react-dialog";
 import styles from "./Overlay.module.scss";
-import IconClose from "assets/images/icon_close.svg";
+import IconClose from "assets/icons/close.svg";
 
 export function Close({ children, className, ...props }: DialogCloseProps) {
   return (

@@ -5,9 +5,9 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 
 // Icon Imports
-import IconClock from "assets/images/icon_clock.svg";
-import IconLocation from "assets/images/icon_location.svg";
-import IconEvent from "assets/images/event.svg";
+import IconClock from "assets/icons/clock.svg";
+import IconLocation from "assets/icons/location.svg";
+import IconEvent from "assets/icons/event.svg";
 import { EventOverlay } from "./EventOverlay/EventOverlay";
 import { Button } from "@/components/Button";
 import { useTranslation } from "next-i18next";
