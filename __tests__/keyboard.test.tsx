@@ -1,6 +1,6 @@
 import { render, fireEvent, screen } from "@testing-library/react";
-import Keyboard from "@/components/Keyboard/Keyboard";
-import { Letter, Space } from "@/components/Keyboard/Keys";
+import Keyboard from "@/components/UI/Keyboard/Keyboard";
+import { Letter, Space } from "@/components/UI/Keyboard/Keys";
 import { useSearchInputContext } from "context/SearchInputContext";
 
 jest.mock("context/SearchInputContext");
