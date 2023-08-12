@@ -11,7 +11,7 @@ import { buildingNames } from "types/Campus";
 import { useMapElements } from "context/MapElements";
 import { AnimationQueue } from "utils/AnimationQueue";
 
-const MapLeonardoCampus = memo(({...props}: React.HTMLProps<HTMLDivElement>) => {
+const MapLeonardoCampus = memo(({ ...props }: React.HTMLProps<HTMLDivElement>) => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
   const animationQueue = useMemo(() => new AnimationQueue(), []);
