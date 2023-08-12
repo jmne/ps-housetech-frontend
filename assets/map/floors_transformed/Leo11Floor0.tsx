@@ -263,12 +263,12 @@ const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
             fontFamily: "&quot",
             fontSize: 10
           }}
-          transform="translate(145.6 335.3)"
+          transform="translate(137 335.3)"
         >
-          {"003"}
+          {"Leo 11.3"}
         </text>
       </g>
-      <g id="leo11-wc01">
+      <g id="leo11-wc0">
         <path
           d="M125.3 373.3 103.5 389l-23-25.9 22.7-16.2 22.2 26.4Z"
           style={{

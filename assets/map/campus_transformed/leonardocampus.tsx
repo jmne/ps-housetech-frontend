@@ -110,8 +110,9 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
       </text>
       <path
         d="m47.5 1034 34.3 30.4 10.7-12.1 13 11.5L61 1114l-12.5-11 11.8-13.4-34.5-30.6-11.6 13L0 1059.5l42.8-48.3 14 12.4-9.3 10.6Z"
+        id="campus-davinci"
         style={{
-          fill: COLOR.NORMAL_AREA,
+          fill: COLOR.MARKED_AREA,
           fillRule: "nonzero",
           stroke: COLOR.CONTRAST_STROKE,
           strokeWidth: ".75px"
