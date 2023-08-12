@@ -6,12 +6,33 @@ import styles from "./Weather.module.scss";
 
 import Swiper, { Navigation } from "swiper";
 import { Swiper as SwiperElement, SwiperSlide } from "swiper/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { IdleHandler } from "utils/IdleHandling/IdleHandler";
+import { useTimeoutContext } from "context/TimeoutContext";
 
 export function Weather() {
   const { t } = useTranslation("index");
+  const timeoutContext = useTimeoutContext();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [swiperInstance, setSwiperInstance] = useState<Swiper | undefined>();
+
+  useEffect(() => {
+    const resetLayout = () => {
+      if (!swiperInstance) return;
+      swiperInstance.slideTo(0);
+    };
+
+    const timeoutHandler = new IdleHandler({
+      origin: "weather",
+      resetFunction: resetLayout
+    });
+
+    if (timeoutContext.manager) timeoutContext.manager.addResetListener(timeoutHandler);
+
+    return () => {
+      if (timeoutContext.manager) timeoutContext.manager.removeResetListener("weather");
+    };
+  }, [swiperInstance, timeoutContext.manager]);
 
   return (
     <Card.Container placement="smallTop">

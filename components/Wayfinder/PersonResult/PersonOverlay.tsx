@@ -10,11 +10,13 @@ const url = "https://ps-housetech.uni-muenster.de:444/api/picture/";
 interface props {
   person: Employee;
   imageID: string | null;
+  setOpen: Function;
+  open: boolean;
 }
 
-export function PersonOverlay({ person, imageID }: props) {
+export function PersonOverlay({ person, imageID, setOpen, open }: props) {
   return (
-    <Overlay.Container>
+    <Overlay.Container open={open} setOpen={setOpen}>
       <Overlay.Header>
         <Overlay.Title>
           {person.cfFirstNames} {person.cfFamilyNames}

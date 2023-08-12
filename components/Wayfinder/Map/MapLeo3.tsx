@@ -116,8 +116,12 @@ const MapLeo3 = memo(() => {
       return;
 
     minimizeBuilding(element_leo3_on_campus, element_leo3_building, element_mapContainer);
-    //@ts-ignore
-  }, []);
+  }, [
+    mapContext,
+    mapElements.leo3_building,
+    mapElements.leo3_building_on_campus,
+    mapElements.mapContainer
+  ]);
 
   // Handle Change of shown area
   useEffect(() => {
@@ -178,7 +182,8 @@ const MapLeo3 = memo(() => {
     mapElements.leo3_building_on_campus,
     mapElements.leo3_building,
     mapElements.mapContainer,
-    mapElements.campus_element
+    mapElements.campus_element,
+    animationQueue
   ]);
 
   return (

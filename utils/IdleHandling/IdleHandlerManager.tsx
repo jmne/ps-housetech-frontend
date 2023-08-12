@@ -31,13 +31,15 @@ export class IdleHandlerManager {
   addResetListener(listener: IdleHandler) {
     let already_listening = undefined;
     this.IdleHandlers.forEach((handler) => {
-      if (handler.origin == listener.origin) already_listening = true;
+      if (handler.origin === listener.origin) {
+        handler = listener;
+        already_listening = true;
+      }
     });
 
-    if (already_listening) {
-      this.removeResetListener(listener.origin);
+    if (!already_listening) {
+      this.IdleHandlers.push(listener);
     }
-    this.IdleHandlers.push(listener);
   }
 
   /**
