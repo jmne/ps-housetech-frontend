@@ -1,5 +1,5 @@
-import styles from "./Map.module.scss";
-import { memo, useEffect, useMemo } from "react";
+import styles from "@/components/Wayfinder/Map/Map.module.scss";
+import React, { memo, useEffect, useMemo } from "react";
 import LeonardoCampus from "assets/map/campus_transformed/leonardocampus";
 import { useMapContext } from "context/MapContext";
 import {
@@ -11,7 +11,7 @@ import { buildingNames } from "types/Campus";
 import { useMapElements } from "context/MapElements";
 import { AnimationQueue } from "utils/AnimationQueue";
 
-const MapLeonardoCampus = memo(() => {
+const MapLeonardoCampus = memo(({...props}: React.HTMLProps<HTMLDivElement>) => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
   const animationQueue = useMemo(() => new AnimationQueue(), []);
@@ -40,7 +40,7 @@ const MapLeonardoCampus = memo(() => {
   }, [mapContext, mapElements.mapContainer, mapElements.campus_element, animationQueue]);
 
   return (
-    <div className={styles.mapElement}>
+    <div className={styles.mapElement} {...props}>
       <LeonardoCampus
         onClick={(e) =>
           buildingClickHandler(e, buildingNames.CAMPUS, undefined, mapContext.setCurrent)
