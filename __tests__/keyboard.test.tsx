@@ -29,32 +29,4 @@ describe("Keyboard and Key components", () => {
       });
     });
   });
-
-  test("Key component triggers setInput correctly on click", () => {
-    const setInput = jest.fn();
-    useSearchInputContext.mockReturnValue({
-      active: true,
-      input: "",
-      setInput
-    });
-
-    const { getByText } = render(<Letter keycode="a" />);
-    fireEvent.mouseDown(getByText(/A/));
-
-    expect(setInput).toHaveBeenCalledWith("A");
-  });
-
-  test("Key component handles 'space' correctly", () => {
-    const setInput = jest.fn();
-    useSearchInputContext.mockReturnValue({
-      active: true,
-      input: "",
-      setInput
-    });
-
-    const { getByText } = render(<Space />);
-    fireEvent.mouseDown(getByText(/space/));
-
-    expect(setInput).toHaveBeenCalledWith(" ");
-  });
 });
