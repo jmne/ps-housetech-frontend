@@ -1,4 +1,4 @@
-import { memo, useEffect, useMemo } from "react";
+import React, { memo, useEffect, useMemo } from "react";
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
 import { Leo11_Floor0 } from "assets/map/floors_transformed";
 import { useMapContext } from "context/MapContext";

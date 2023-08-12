@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
 import {
   Leo3_Floor0,
