@@ -12,17 +12,15 @@ import { MAP_BASE_STATE } from "utils/constants";
 
 // CSS
 import styles from "@/components/Wayfinder/Map/Map.module.scss";
-import MapLeo11 from "./MapLeo11";
-import MapLeo3 from "./MapLeo3";
-import MapLeonardoCampus from "./MapLeonardoCampus";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 import { setRoomHighlight } from "utils/Wayfinder/mapTransformations";
-import { Controls } from "./Controls";
 import { buildingNames } from "types/Campus";
 import { getPersonForRoom, getRoomDisplayName } from "utils/Wayfinder/mapValidations";
 import { Employee } from "types/Employee";
 import { useMapElements } from "context/MapElements";
+
+import { MapLeo3, MapLeo11, MapLeonardoCampus, Controls } from "./components";
 
 export interface MapProps {
   allPersons: Employee[];
