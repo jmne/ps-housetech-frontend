@@ -30,7 +30,6 @@ function Calendar() {
               year: "numeric"
             }}
             height="100%"
-            initialDate={"2023-05-24"}
             slotDuration={"01:00:00"}
             expandRows={true}
             dayMaxEventRows={true}
