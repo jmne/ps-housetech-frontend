@@ -1,6 +1,7 @@
 // Testing library
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
+import { mockImage } from "__mocks__/mock_svgComponent";
 
 // Translation Setup
 import i18n from "../i18-test_config";
@@ -8,6 +9,8 @@ import { I18nextProvider } from "react-i18next";
 
 // Component
 import Home from "@/pages/index";
+
+jest.mock("react-lottie-player", () => mockImage);
 
 describe("Homepage", () => {
   it("Renders the Homepage", () => {
