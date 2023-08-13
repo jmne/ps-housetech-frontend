@@ -6,9 +6,9 @@ import IconInstagram from "assets/icons/insta.svg";
 import QRCode from "react-qr-code";
 import { useTranslation } from "next-i18next";
 import { Button } from "@/components/UI/Button";
+import { INSTAGRAM_TAG } from "utils/constants";
 
-const insta_wi_link = "https://www.instagram.com/wirtschaftsinformatik_wwu";
-const insta_wi_tag = "@wirtschaftsinformatik";
+const insta_link = `https://www.instagram.com/${INSTAGRAM_TAG}`;
 
 export function NewsLinksOverlay() {
   const { t } = useTranslation("index");
@@ -38,10 +38,10 @@ export function NewsLinksOverlay() {
             bgColor="#fafafa"
             fgColor="#15171b"
             size={225}
-            value={insta_wi_link}
+            value={insta_link}
             className={styles.code}
           />
-          <span>{insta_wi_tag}</span>
+          <span>@{INSTAGRAM_TAG}</span>
         </Overlay.Body>
       </Overlay.Container>
     </Dialog.Root>
