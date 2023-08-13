@@ -2,6 +2,7 @@
 import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
 import localFont from "next/font/local";
+import { ErrorBoundary } from "@/components/UI/Card";
 
 // IMPORTS - ASSETS
 import "/assets/scss/global.scss";
@@ -30,26 +31,30 @@ import { ToastProvider } from "@/components/UI/Toast/ToastProvider";
 import { ToastContextProvider } from "context/ToastContext";
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <ToastContextProvider>
-    <ToastProvider>
-      <TimeoutProvider>
-        <SearchInputProvider>
-          <main className={productSans.className} id="app-wrapper">
-            <style jsx global>{`
-              :root {
-                /* ... */
-                --product-font: ${productSans.style.fontFamily};
-              }
-              html * {
-                font-family: var(--product-font) !important;
-              }
-            `}</style>
-            <Component {...pageProps} />
-          </main>
-        </SearchInputProvider>
-      </TimeoutProvider>
-    </ToastProvider>
-  </ToastContextProvider>
+  <ErrorBoundary>
+    <ToastContextProvider>
+      <ToastProvider>
+        <TimeoutProvider>
+          <SearchInputProvider>
+            <main className={productSans.className} id="app-wrapper">
+              <style jsx global>{`
+                :root {
+                  /* ... */
+                  --product-font: ${productSans.style.fontFamily};
+                }
+                html * {
+                  font-family: var(--product-font) !important;
+                }
+              `}</style>
+              <ErrorBoundary>
+                <Component {...pageProps} />
+              </ErrorBoundary>
+            </main>
+          </SearchInputProvider>
+        </TimeoutProvider>
+      </ToastProvider>
+    </ToastContextProvider>
+  </ErrorBoundary>
 );
 
 export default appWithTranslation(MyApp);

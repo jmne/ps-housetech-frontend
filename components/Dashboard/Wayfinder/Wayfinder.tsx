@@ -14,7 +14,7 @@ import { CampusMap } from "./Map/Map";
 import ArrowDown from "assets/icons/arrow_down.svg";
 
 // IMPORTS - CONTEXT
-import { usePersonSearchContext } from "context/PersonContext";
+import { SelectedPersonProvider, usePersonSearchContext } from "context/PersonContext";
 import Fuse from "fuse.js";
 import { useSearchInputContext } from "context/SearchInputContext";
 import { FUZZY_SEARCH_WEIGHTS } from "utils/constants";
@@ -42,7 +42,7 @@ function shuffle(data: Employee[]) {
   return [...data].sort(() => 0.5 - Math.random());
 }
 
-export function Wayfinder() {
+function Wayfinder() {
   // Global state of the selected person in the list
   const selectedPersonContext = usePersonSearchContext();
   const searchInputContext = useSearchInputContext();
@@ -150,29 +150,39 @@ export function Wayfinder() {
   }, [selectedPersonContext.current_person]);
 
   return (
-    <MapElementsProvider>
-      <MapProvider>
-        <Card.Container placement="large" className={styles_wayfinder.container}>
-          <div className={styles_wayfinder.searchSection}>
-            <SearchBar placeholder={t("wayfinder.title")} />
-            {isLoading ? (
-              <span>Data is loading...</span>
-            ) : error ? (
-              <span>Some error...</span>
-            ) : undefined}
-            {filteredPersons && (
-              <ol ref={listRef}>
-                {filteredPersons.map((p) => {
-                  const unique_id = `${p.cfFirstNames}${p.cfFamilyNames}`;
-                  return <PersonResult person={p} key={unique_id} />;
-                })}
-              </ol>
-            )}
-            <ArrowDown className={styles_wayfinder.arrowDown} onClick={handleScroll} />
-          </div>
-          <CampusMap allPersons={persons ? persons : []} />
-        </Card.Container>
-      </MapProvider>
-    </MapElementsProvider>
+    <>
+      <div className={styles_wayfinder.searchSection}>
+        <SearchBar placeholder={t("wayfinder.title")} />
+        {isLoading ? (
+          <span>Data is loading...</span>
+        ) : error ? (
+          <span>Some error...</span>
+        ) : undefined}
+        {filteredPersons && (
+          <ol ref={listRef}>
+            {filteredPersons.map((p) => {
+              const unique_id = `${p.cfFirstNames}${p.cfFamilyNames}`;
+              return <PersonResult person={p} key={unique_id} />;
+            })}
+          </ol>
+        )}
+        <ArrowDown className={styles_wayfinder.arrowDown} onClick={handleScroll} />
+      </div>
+      <CampusMap allPersons={persons ? persons : []} />
+    </>
+  );
+}
+
+export default function WayfinderWithBoundary() {
+  return (
+    <SelectedPersonProvider>
+      <MapElementsProvider>
+        <MapProvider>
+          <Card.Container placement="large" className={styles_wayfinder.container}>
+            <Wayfinder />
+          </Card.Container>
+        </MapProvider>
+      </MapElementsProvider>
+    </SelectedPersonProvider>
   );
 }

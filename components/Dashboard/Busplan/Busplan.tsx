@@ -36,7 +36,7 @@ function splitBusses(busses: Busride[]) {
  *
  * @returns Busplan showing Buses sorted by "inward" and "outward" buses
  */
-export default function Busplan() {
+function Busplan() {
   const { t } = useTranslation("index");
   const router = useRouter();
 
@@ -56,7 +56,7 @@ export default function Busplan() {
   }, [data, isLoading, error]);
 
   return (
-    <Card.Container placement="smallBottom">
+    <>
       <Card.Headline>
         <Card.Title>{t("busplan.title")}</Card.Title>
         <Card.Middle className={busplanStyles.subTitle}>Technologiepark</Card.Middle>
@@ -87,6 +87,14 @@ export default function Busplan() {
           <span className={busStyles.message}>No Busses incoming</span>
         )}
       </Card.Content>
+    </>
+  );
+}
+
+export default function BusplanWithBoundary() {
+  return (
+    <Card.Container placement="smallBottom">
+      <Busplan />
     </Card.Container>
   );
 }
