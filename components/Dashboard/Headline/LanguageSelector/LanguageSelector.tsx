@@ -29,7 +29,7 @@ export function LanguageSelector() {
     router.locale === "en"
       ? router.push("/", "/", { locale: "de" })
       : router.push("/", "/", { locale: "en" });
-  }, [router, router.locale]);
+  }, [router]);
 
   return (
     <ul className={styles.wrapper} onClick={handleClick}>

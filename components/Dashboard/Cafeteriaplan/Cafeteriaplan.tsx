@@ -41,7 +41,7 @@ export function getDayOfWeek(day: Date) {
   return dayOfWeek;
 }
 
-export default function Cafeteriaplan() {
+function Cafeteriaplan() {
   const [selectedCafeteria, setSelectedCafeteria] = useState<Cafeteria>("davinci");
 
   const { t } = useTranslation("index");
@@ -110,10 +110,7 @@ export default function Cafeteriaplan() {
   }, [timeoutContext.manager, data, index_of_today, swiperInstance]);
 
   return (
-    <Card.Container
-      className={[cafeteriaStyles.shadowFix].join(" ")}
-      placement="smallMiddle"
-    >
+    <>
       <Card.Headline>
         <Card.Title>{t("cafeteria_plan.title")}</Card.Title>
         <Card.Middle className={cafeteriaStyles.select}>
@@ -168,6 +165,17 @@ export default function Cafeteriaplan() {
           </SwiperElement>
         )}
       </Card.Content>
+    </>
+  );
+}
+
+export default function CafeteriaplanWithBoundary() {
+  return (
+    <Card.Container
+      className={[cafeteriaStyles.shadowFix].join(" ")}
+      placement="smallMiddle"
+    >
+      <Cafeteriaplan />
     </Card.Container>
   );
 }

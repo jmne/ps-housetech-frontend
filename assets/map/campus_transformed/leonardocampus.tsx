@@ -2,6 +2,7 @@ import * as React from "react";
 import type { SVGProps } from "react";
 import { useMapElements } from "context/MapElements";
 import { COLOR } from "utils/constants";
+import { Endcard } from "./egg_endcard";
 
 const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
   const mapElements = useMapElements();
@@ -137,17 +138,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
         }}
         transform="translate(542.6 -132.1)"
       />
-      <path
-        id="egg4"
-        d="m0 1078 37.5-39 37.5 36-37.5 39L0 1078Z"
-        style={{
-          fill: COLOR.NORMAL_AREA,
-          fillRule: "nonzero",
-          stroke: COLOR.CONTRAST_STROKE,
-          strokeWidth: ".75px"
-        }}
-        transform="translate(254.4 -210)"
-      />
+      <Endcard />
       <path
         d="m0 1100.3 24.7-26.5 19.4 17.9-11.8 12.8-4.6-4.3-13 13.8L0 1100.2Z"
         style={{

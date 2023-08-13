@@ -40,6 +40,16 @@ $headerHeight: 2rem;
   &.smallBottom {
     grid-area: 3 / 2 / 4 / 3;
   }
+
+  &.error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: g.$margin-base;
+
+    color: g.$text-secondary;
+  }
 }
 
 .content {
