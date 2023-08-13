@@ -1,6 +1,6 @@
 import { Event } from "types/Events";
 import { render } from "@testing-library/react";
-import { EventCard } from "@/components/News/Events/Event";
+import { EventCard } from "@/components/Dashboard/News/Events/Event";
 
 describe("Event-Card", () => {
   test("Renders without crashing", () => {

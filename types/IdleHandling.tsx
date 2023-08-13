@@ -8,7 +8,8 @@ export type Origin =
   | "overlay"
   | "index"
   | "weather"
-  | "searchBar";
+  | "searchBar"
+  | "language";
 
 export interface ResetListener {
   origin: Origin;
