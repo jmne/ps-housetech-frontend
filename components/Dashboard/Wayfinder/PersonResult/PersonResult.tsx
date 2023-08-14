@@ -13,7 +13,6 @@ import IconMinus from "assets/icons/minus.svg";
 import IconCall from "assets/icons/call.svg";
 import IconMail from "assets/icons/mail.svg";
 import IconLocation from "assets/icons/location.svg";
-import IconInfo from "assets/icons/info.svg";
 import IconSchoolHat from "assets/icons/school_hat.svg";
 
 import * as Dialog from "@radix-ui/react-dialog";
@@ -67,6 +66,9 @@ const PersonResult = memo(({ person }: props) => {
         </div>
         <div className={styles.shortInfo}>
           <span>{`${person.cfFirstNames} ${person.cfFamilyNames}`}</span>
+          {person.chairs.length > 0 && (
+            <span className={styles.caption}>{person.chairs[0]}</span>
+          )}
           {person.chairs.length > 0 && (
             <span className={styles.caption}>{person.chairs[0]}</span>
           )}

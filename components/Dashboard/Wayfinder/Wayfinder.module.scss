@@ -210,8 +210,7 @@ $searchWidth: 350px;
     }
   }
 
-  .caption,
-  .noMoreInfo {
+  .caption {
     color: g.$text-secondary;
     font-size: g.$text-small;
   }
@@ -239,18 +238,6 @@ $searchWidth: 350px;
     .attribute {
       grid-column: 1;
       padding: 0;
-    }
-
-    .separator {
-      grid-column: span 2;
-
-      width: 100%;
-      height: g.$border-base;
-      background-color: g.$text-secondary;
-    }
-
-    .noMoreInfo {
-      grid-column: span 2;
     }
   }
 
