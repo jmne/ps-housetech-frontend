@@ -69,9 +69,6 @@ const PersonResult = memo(({ person }: props) => {
           {person.chairs.length > 0 && (
             <span className={styles.caption}>{person.chairs[0]}</span>
           )}
-          {person.chairs.length > 0 && (
-            <span className={styles.caption}>{person.chairs[0]}</span>
-          )}
         </div>
       </div>
       <div className={styles.hidden}>

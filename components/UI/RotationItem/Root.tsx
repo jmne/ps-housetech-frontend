@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useCallback, useEffect, useState } from "react";
+import { ComponentPropsWithoutRef, useCallback } from "react";
 import styles from "./rotationItem.module.scss";
 import { RotationProvider, useRotationContext } from "./context";
 import { handleRotation } from "./animations";
@@ -24,7 +24,7 @@ function Root({ children, className, ...props }: ComponentPropsWithoutRef<"div">
     rotationContext.backRef.current.style.transform = `rotateX(90deg) translateZ(${halfHeight}px)`;
 
     handleRotation(rotationContext.rootRef, halfHeight);
-  }, []);
+  }, [rotationContext.backRef, rotationContext.frontRef, rotationContext.rootRef]);
 
   return (
     <div
