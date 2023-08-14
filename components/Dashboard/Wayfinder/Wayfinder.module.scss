@@ -103,7 +103,7 @@ $searchWidth: 350px;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
 
-    > * {
+    >* {
       scroll-snap-align: start;
     }
 
@@ -210,7 +210,7 @@ $searchWidth: 350px;
     }
   }
 
-  .caption {
+  .caption, .noMoreInfo {
     color: g.$text-secondary;
     font-size: g.$text-small;
   }
@@ -227,7 +227,7 @@ $searchWidth: 350px;
     row-gap: g.$margin-small;
     column-gap: g.$margin-base;
 
-    padding-inline-start: g.$margin-small;
+    padding-inline: g.$margin-small;
 
     align-items: center;
 
@@ -238,6 +238,18 @@ $searchWidth: 350px;
     .attribute {
       grid-column: 1;
       padding: 0;
+    }
+
+    .separator {
+      grid-column: span 2;
+
+      width: 100%;
+      height: g.$border-base;
+      background-color: g.$text-secondary;
+    }
+
+    .noMoreInfo {
+      grid-column: span 2;
     }
   }
 
