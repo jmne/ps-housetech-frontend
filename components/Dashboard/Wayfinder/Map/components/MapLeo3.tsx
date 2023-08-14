@@ -216,22 +216,46 @@ const MapLeo3 = memo(({ ...props }: React.HTMLProps<HTMLDivElement>) => {
       )}
       <Leo3_Floor0
         onClick={(e) =>
-          buildingClickHandler(e, buildingNames.LEO3, "floor0", mapContext.setCurrent)
+          buildingClickHandler(
+            e,
+            buildingNames.LEO3,
+            "floor0",
+            mapContext.setCurrent,
+            personContext
+          )
         }
       />
       <Leo3_Floor1
         onClick={(e) =>
-          buildingClickHandler(e, buildingNames.LEO3, "floor1", mapContext.setCurrent)
+          buildingClickHandler(
+            e,
+            buildingNames.LEO3,
+            "floor1",
+            mapContext.setCurrent,
+            personContext
+          )
         }
       />
       <Leo3_Floor2
         onClick={(e) =>
-          buildingClickHandler(e, buildingNames.LEO3, "floor2", mapContext.setCurrent)
+          buildingClickHandler(
+            e,
+            buildingNames.LEO3,
+            "floor2",
+            mapContext.setCurrent,
+            personContext
+          )
         }
       />
       <Leo3_Floor3
         onClick={(e) =>
-          buildingClickHandler(e, buildingNames.LEO3, "floor3", mapContext.setCurrent)
+          buildingClickHandler(
+            e,
+            buildingNames.LEO3,
+            "floor3",
+            mapContext.setCurrent,
+            personContext
+          )
         }
       />
     </div>

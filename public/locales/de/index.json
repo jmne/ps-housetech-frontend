@@ -13,7 +13,8 @@
             "room": "Raum",
             "phone": "Tel.",
             "mail": "E-Mail",
-            "contact_person": "Kontaktieren"
+            "contact_person": "Kontaktieren",
+            "no_more_info": "Keine weiteren Infos verfügbar"
         },
         "map": {
             "campus": "Leonardo Campus",
