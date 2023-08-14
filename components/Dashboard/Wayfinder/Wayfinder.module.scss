@@ -103,7 +103,7 @@ $searchWidth: 350px;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
 
-    >* {
+    > * {
       scroll-snap-align: start;
     }
 
@@ -217,7 +217,7 @@ $searchWidth: 350px;
     font-size: g.$text-small;
   }
 
-  .noMoreInfo{
+  .noMoreInfo {
     grid-column: span 2;
   }
 
@@ -268,7 +268,7 @@ $searchWidth: 350px;
 .overlayTrigger {
   grid-column: 1 / 3;
   margin-block-start: g.$margin-small;
-  transform: translateX(- g.$margin-small);
+  transform: translateX(-g.$margin-small);
   width: fit-content;
 }
 
