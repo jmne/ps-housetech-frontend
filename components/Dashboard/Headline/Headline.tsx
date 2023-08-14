@@ -3,6 +3,7 @@ import Image from "next/image";
 
 // IMPORTS - COMPONENTS
 import { LanguageSelector } from "./LanguageSelector/LanguageSelector";
+import { ErrorBoundary } from "@/components/UI/Card";
 
 // IMPORTS - ASSETS
 import styles from "@/components/Dashboard/Headline/Headline.module.scss";
@@ -14,7 +15,7 @@ import { Title } from "./Title";
  *
  * @returns headline with WWU and ERCIS logos
  */
-export default function Headline() {
+function Headline() {
   return (
     <div className={styles.headlineWrapper}>
       <div className={[styles.side, styles.logo].join(" ")}>
@@ -38,5 +39,13 @@ export default function Headline() {
         <LanguageSelector />
       </div>
     </div>
+  );
+}
+
+export default function HeadlineWithBoundary() {
+  return (
+    <ErrorBoundary className={styles.headlineWrapper}>
+      <Headline />
+    </ErrorBoundary>
   );
 }

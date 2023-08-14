@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 
-export function Weather() {
+function Weather() {
   const { t } = useTranslation("index");
   const timeoutContext = useTimeoutContext();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -35,7 +35,7 @@ export function Weather() {
   }, [swiperInstance, timeoutContext.manager]);
 
   return (
-    <Card.Container placement="smallTop">
+    <>
       <Card.Headline>
         <Card.Title>
           {currentIndex === 0 ? t("weather.title_report") : t("weather.title_radar")}
@@ -57,6 +57,14 @@ export function Weather() {
           <RainRadar />
         </SwiperSlide>
       </SwiperElement>
+    </>
+  );
+}
+
+export default function WeatherWithBoundary() {
+  return (
+    <Card.Container placement="smallTop">
+      <Weather />
     </Card.Container>
   );
 }

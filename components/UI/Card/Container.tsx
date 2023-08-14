@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 import styles from "./card.module.scss";
+import ErrorBoundary from "./ErrorBoundary";
 
 export interface cardElementProps extends PropsWithChildren {
   className?: string;
@@ -21,10 +22,14 @@ const containerType = {
 
 export function Container({ children, placement, className }: containerProps) {
   return (
-    <section
-      className={[styles.container, containerType[placement], className].join(" ")}
+    <ErrorBoundary
+      className={[styles.container, containerType[placement], styles.error].join(" ")}
     >
-      {children}
-    </section>
+      <section
+        className={[styles.container, containerType[placement], className].join(" ")}
+      >
+        {children}
+      </section>
+    </ErrorBoundary>
   );
 }
