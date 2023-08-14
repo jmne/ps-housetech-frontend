@@ -90,7 +90,11 @@ const PersonResult = memo(({ person }: props) => {
                       </Fragment>
                     )
                 )}
-                <Separator.Root orientation="horizontal" className={styles.separator} />
+                {(person.phones.length > 0 ||
+                  person.emails.length > 0 ||
+                  person.roomNumber) && (
+                  <Separator.Root orientation="horizontal" className={styles.separator} />
+                )}
               </>
             )}
             {person.phones.map((phoneNumer, index) => {
