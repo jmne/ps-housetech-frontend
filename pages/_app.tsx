@@ -6,6 +6,7 @@ import { ErrorBoundary } from "@/components/UI/Card";
 
 // IMPORTS - ASSETS
 import "/assets/scss/global.scss";
+import "@/components/Flappy/Game/Components/Pillars/pillars.scss";
 
 const productSans = localFont({
   src: [

@@ -1,0 +1,20 @@
+@use "/assets/scss/constants.scss" as g;
+
+.container {
+  position: absolute;
+
+  top: 7%;
+  right: 7%;
+
+  display: flex;
+  gap: g.$margin-sm;
+
+  transition: all 0.5s;
+}
+
+.over {
+  top: 50%;
+  right: 50%;
+
+  transform: translate(50%, -50%);
+}
