@@ -6,6 +6,8 @@ import {
   transitionFunction,
   transitionStyle
 } from "utils/wayfinderAnimation/transitions";
+import { PersonData } from "context/PersonContext";
+import { handleExpansion } from "./personCardsTransformations";
 
 const getFloorStyleFromOffset = [
   styles.floor__1below,
@@ -190,8 +192,14 @@ export function buildingClickHandler(
   event: any,
   building: CampusBuilding,
   floor: BuildingFloor | undefined,
-  setMapData: Function
+  setMapData: Function,
+  selectedPersonContext: PersonData
 ) {
+  if (selectedPersonContext.current_person) {
+    handleExpansion(selectedPersonContext.current_person, false, selectedPersonContext);
+    selectedPersonContext.setPerson(undefined);
+  }
+
   let targetElement = event.target as HTMLElement;
 
   if (

@@ -10,10 +10,12 @@ import {
 import { buildingNames } from "types/Campus";
 import { useMapElements } from "context/MapElements";
 import { AnimationQueue } from "utils/wayfinderAnimation/AnimationQueue";
+import { usePersonSearchContext } from "context/PersonContext";
 
 const MapLeonardoCampus = memo(({ ...props }: React.HTMLProps<HTMLDivElement>) => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
+  const personContext = usePersonSearchContext();
   const animationQueue = useMemo(() => new AnimationQueue(), []);
 
   useEffect(() => {
@@ -43,7 +45,13 @@ const MapLeonardoCampus = memo(({ ...props }: React.HTMLProps<HTMLDivElement>) =
     <div className={styles.mapElement} {...props}>
       <LeonardoCampus
         onClick={(e) =>
-          buildingClickHandler(e, buildingNames.CAMPUS, undefined, mapContext.setCurrent)
+          buildingClickHandler(
+            e,
+            buildingNames.CAMPUS,
+            undefined,
+            mapContext.setCurrent,
+            personContext
+          )
         }
       />
     </div>

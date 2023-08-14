@@ -10,10 +10,12 @@ import {
 import { buildingNames } from "types/Campus";
 import { useMapElements } from "context/MapElements";
 import { AnimationQueue } from "utils/wayfinderAnimation/AnimationQueue";
+import { usePersonSearchContext } from "context/PersonContext";
 
 const MapLeo11 = memo(({ ...props }: React.HTMLProps<HTMLDivElement>) => {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
+  const personContext = usePersonSearchContext();
   const animationQueue = useMemo(() => new AnimationQueue(), []);
 
   useEffect(() => {
@@ -108,7 +110,13 @@ const MapLeo11 = memo(({ ...props }: React.HTMLProps<HTMLDivElement>) => {
     >
       <Leo11_Floor0
         onClick={(e) =>
-          buildingClickHandler(e, buildingNames.LEO11, "floor0", mapContext.setCurrent)
+          buildingClickHandler(
+            e,
+            buildingNames.LEO11,
+            "floor0",
+            mapContext.setCurrent,
+            personContext
+          )
         }
       />
     </div>
