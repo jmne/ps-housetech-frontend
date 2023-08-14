@@ -1,6 +1,6 @@
 // IMPORTS - BUILTINS
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import * as RotationItem from "@/components/UI/RotationItem";
 
 // IMPORTS - ASSETS
 import { Busride } from "types/Busride";
@@ -10,7 +10,7 @@ import styles from "@/components/Dashboard/Busplan/BusCard/Bus.module.scss";
 import IconInward from "assets/icons/city.svg";
 import IconOutward from "assets/icons/forrest.svg";
 import IconBus from "assets/images/bus_housetech.svg?url";
-import { getColumn, getRow, handleClick } from "./animations";
+import { getColumn, getRow } from "./animations";
 
 type Direction = "inward" | "outward";
 
@@ -33,52 +33,9 @@ export default function Bus({ bus, direction, index }: BusProps) {
   const delayed = bus.minutes_delay >= 5;
   const time_styling = delayed ? [styles.time, styles.delay].join(" ") : styles.time;
 
-  // Used for animation
-  const [h_halft, setHeight] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const refInfo = useRef<HTMLDivElement>(null);
-  const refEasteregg = useRef<HTMLDivElement>(null);
-
-  // Setup of 3d transformations for rotate-animation
-  useEffect(() => {
-    if (ref.current) setHeight(ref.current.clientHeight / 2);
-  }, [ref.current?.clientHeight]);
-
-  useEffect(() => {
-    if (h_halft > 0) {
-      ref.current!.style.transform = `translateZ(-${h_halft}px)`;
-      refInfo.current!.style.transform = `rotateY(0deg) translateZ(${h_halft}px)`;
-      refEasteregg.current!.style.transform = `rotateX(90deg) translateZ(${h_halft}px)`;
-    }
-  }, [h_halft, column, row]);
-
   return (
-    <div
-      className={[styles.container, column, row].join(" ")}
-      onClick={() => handleClick(ref, h_halft)}
-      id={`busContainer${column}${row}`}
-      ref={ref}
-    >
-      {/**
-       * Styling for the easteregg animation
-       */}
-      <div
-        className={[styles.background, styles.easteregg].join(" ")}
-        id={`busEasteregg${column}${row}`}
-        ref={refEasteregg}
-      >
-        <span>Good ride</span>
-        <Image src={IconBus} alt="Bus" className={styles.iconBus} priority />
-      </div>
-
-      {/**
-       * Actual Box that displays the Bus information
-       */}
-      <div
-        className={[styles.bus, styles.background].join(" ")}
-        id={`busInfo${column}${row}`}
-        ref={refInfo}
-      >
+    <RotationItem.Root className={[styles.container, column, row].join(" ")}>
+      <RotationItem.Front className={styles.bus}>
         <div className={styles.vertical}>
           <div className={styles.lineWrapper}>
             {direction === "inward" ? (
@@ -102,7 +59,11 @@ export default function Bus({ bus, direction, index }: BusProps) {
             <span className={time_styling}>{bus.minutes_until_departure} min</span>
           )}
         </div>
-      </div>
-    </div>
+      </RotationItem.Front>
+      <RotationItem.Back className={styles.easteregg}>
+        <span>Good ride</span>
+        <Image src={IconBus} alt="Bus" className={styles.iconBus} priority />
+      </RotationItem.Back>
+    </RotationItem.Root>
   );
 }

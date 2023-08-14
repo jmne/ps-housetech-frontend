@@ -1,16 +1,10 @@
 @use "/assets/scss/constants.scss" as g;
 
-.container {
-  padding: g.$margin-sm;
-  background: g.$container-item;
-  border-radius: g.$border-radius-base;
+.front {
   display: flex;
   flex-direction: row;
-  box-shadow: g.$shadow-outer__light;
   justify-content: space-between;
   align-items: center;
-
-  box-sizing: content-box;
 }
 
 .dishInfo {
@@ -40,4 +34,16 @@
     width: g.$icon-base;
     height: g.$icon-base;
   }
+}
+
+.easteregg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: g.$margin-sm;
+}
+
+.icon {
+  width: g.$icon-base;
+  height: g.$icon-base;
 }

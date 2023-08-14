@@ -1,5 +1,6 @@
 // IMPORTS - BUILTINS
 import Image from "next/image";
+import * as RotationItem from "@/components/UI/RotationItem";
 
 // IMPORTS - ASSETS
 import { Dish } from "types/Foodplan";
@@ -31,28 +32,43 @@ interface DishProps {
 // returns the dish container with information about the dish; prices are fixed to 2 decimal places and a '.' is replaced by a ','
 export default function DishCard({ dish }: DishProps) {
   return (
-    <div className={styles.container}>
-      <div className={styles.dishInfo}>
-        <span className={styles.name}>{dish.meal}</span>
-        <div className={styles.prices}>
-          {(dish.price1 !== null || dish.price3 !== null) && (
-            <>
-              <span>
-                {dish.price1 !== null
-                  ? dish.price1.toFixed(2).replace(".", ",") + "€"
-                  : "n/a"}
-              </span>
-              <span>|</span>
-              <span>
-                {dish.price3 !== null
-                  ? dish.price3.toFixed(2).replace(".", ",") + "€"
-                  : "n/a"}
-              </span>
-            </>
-          )}
+    <RotationItem.Root>
+      <RotationItem.Front className={styles.front}>
+        <div className={styles.dishInfo}>
+          <span className={styles.name}>{dish.meal}</span>
+          <div className={styles.prices}>
+            {(dish.price1 !== null || dish.price3 !== null) && (
+              <>
+                <span>
+                  {dish.price1 !== null
+                    ? dish.price1.toFixed(2).replace(".", ",") + "€"
+                    : "n/a"}
+                </span>
+                <span>|</span>
+                <span>
+                  {dish.price3 !== null
+                    ? dish.price3.toFixed(2).replace(".", ",") + "€"
+                    : "n/a"}
+                </span>
+              </>
+            )}
+          </div>
         </div>
-      </div>
-      <div className={styles.icons}>
+        <div className={styles.icons}>
+          {dish.foodicons &&
+            dish.foodicons.map((icon, iconIndex) => (
+              <Image
+                src={getIcon[icon]}
+                alt={"Foodicon"}
+                fill={false}
+                className={styles.icon}
+                key={iconIndex}
+                priority
+              />
+            ))}
+        </div>
+      </RotationItem.Front>
+      <RotationItem.Back className={styles.easteregg}>
         {dish.foodicons &&
           dish.foodicons.map((icon, iconIndex) => (
             <Image
@@ -64,7 +80,19 @@ export default function DishCard({ dish }: DishProps) {
               priority
             />
           ))}
-      </div>
-    </div>
+        Mahlzeit!
+        {dish.foodicons &&
+          dish.foodicons.map((icon, iconIndex) => (
+            <Image
+              src={getIcon[icon]}
+              alt={"Foodicon"}
+              fill={false}
+              className={styles.icon}
+              key={iconIndex}
+              priority
+            />
+          ))}
+      </RotationItem.Back>
+    </RotationItem.Root>
   );
 }
