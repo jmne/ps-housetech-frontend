@@ -10,7 +10,7 @@ import styles from "./endcard.module.scss";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const SCROLL_DURATION = 50;
+const SCROLL_DURATION = 40;
 const SCROLL_DELAY = 1;
 
 const macher = [
@@ -46,7 +46,7 @@ export function Endcard({}) {
           <div className={styles.credits}>
             <motion.ul
               initial={{ y: "70vh" }}
-              animate={{ y: `-${macher.length * 20}vh` }}
+              animate={{ y: `-${macher.length * 18}vh` }}
               transition={{
                 duration: SCROLL_DURATION,
                 delay: SCROLL_DELAY,
