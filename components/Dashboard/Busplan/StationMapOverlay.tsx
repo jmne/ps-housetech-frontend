@@ -24,7 +24,7 @@ export default function BusStationMap() {
       </Dialog.Trigger>
       <Overlay.Container setOpen={setOpen} open={open}>
         <Overlay.Header>
-          <Dialog.Title>Leonardo Campus</Dialog.Title>
+          <Dialog.Title>Leonardo-Campus</Dialog.Title>
         </Overlay.Header>
         <Dialog.Description asChild>
           <Image src={map} alt="Map of Busstops" className={styles.busMap} priority />

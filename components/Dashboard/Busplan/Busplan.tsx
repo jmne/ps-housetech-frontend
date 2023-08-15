@@ -59,7 +59,7 @@ function Busplan() {
     <>
       <Card.Headline>
         <Card.Title>{t("busplan.title")}</Card.Title>
-        <Card.Middle className={busplanStyles.subTitle}>Leonardo Campus</Card.Middle>
+        <Card.Middle className={busplanStyles.subTitle}>Leonardo-Campus</Card.Middle>
         <Card.End>
           <BusStationMap />
         </Card.End>

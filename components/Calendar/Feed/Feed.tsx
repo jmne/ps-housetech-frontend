@@ -67,7 +67,7 @@ function Feed() {
           }}
         >
           {articles // @ts-ignore
-            ? articles.map((item: any) => (
+            ? articles?.map((item: any) => (
                 <SwiperSlide key={item?.externalId}>
                   <Card className={styles.rootNews}>
                     <CardActionArea>
