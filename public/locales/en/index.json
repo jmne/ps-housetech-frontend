@@ -17,12 +17,12 @@
             "no_more_info": "No more information available"
         },
         "map": {
-            "campus": "Leonardo Campus",
-            "leo1": "Leonardo Campus 1",
-            "leo3": "Leonardo Campus 3",
-            "leo10": "Leonardo Campus 10",
-            "leo11": "Leonardo Campus 11",
-            "leo18": "Leonardo Campus 18",
+            "campus": "Leonardo-Campus",
+            "leo1": "Leonardo-Campus 1",
+            "leo3": "Leonardo-Campus 3",
+            "leo10": "Leonardo-Campus 10",
+            "leo11": "Leonardo-Campus 11",
+            "leo18": "Leonardo-Campus 18",
             "floor0": "Floor 0",
             "floor1": "Floor 1",
             "floor2": "Floor 2",
