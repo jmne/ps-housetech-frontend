@@ -39,6 +39,7 @@ export function Post({ post }: props) {
                   width={"fit-content"}
                   height={"100%"}
                   playing={false}
+                  controls={false}
                 />
                 <Button className={styles.videoHint} iconSize="m" smallPadding>
                   <IconPlay alt="Play" />
