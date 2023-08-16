@@ -10,8 +10,8 @@ import styles from "./endcard.module.scss";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const SCROLL_DURATION = 40;
-const SCROLL_DELAY = 1;
+const SCROLL_DURATION = 30;
+const SCROLL_DELAY = 0.5;
 
 const macher = [
   "Simon Biel",

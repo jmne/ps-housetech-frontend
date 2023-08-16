@@ -3,9 +3,11 @@ import type { SVGProps } from "react";
 import { useMapElements } from "context/MapElements";
 import { COLOR } from "utils/constants";
 import { Endcard } from "./egg_endcard";
+import { useRouter } from "next/router";
 
 const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
   const mapElements = useMapElements();
+  const router = useRouter();
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -151,6 +153,9 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
       />
       <path
         id="egg2"
+        onClick={() => {
+          router.push("/flappy");
+        }}
         d="m0 1090.3 11.8-12.8 25.9 24.1-11.8 12.4L0 1090.3Z"
         style={{
           fill: "#d8d8d8",
