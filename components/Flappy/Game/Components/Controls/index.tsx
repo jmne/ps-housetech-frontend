@@ -6,6 +6,7 @@ import styles from "./controls.module.scss";
 import { useFlappyElementsContext } from "../../Logic/flappyElements";
 
 let dy: number = 450;
+let justTouchedPipe = false;
 
 interface ElementWithRect {
   e: HTMLDivElement | HTMLImageElement;
@@ -40,14 +41,20 @@ export function Controls() {
       return false;
     }
 
-    function handlePipeDodged(pipe: ElementWithRect, bird: ElementWithRect) {
+    function handlePipeDodged(
+      pipe: ElementWithRect,
+      bird: ElementWithRect,
+      countPoint: boolean
+    ) {
       const PIPE_DODGED =
         bird.rect.left < pipe.rect.left + pipe.rect.width &&
         bird.rect.left + bird.rect.width > pipe.rect.left;
 
       if (PIPE_DODGED) {
-        dataRef.current.setScore((old) => old + 0.1);
+        if (countPoint) dataRef.current.setScore((old) => old + 0.5);
+        return true;
       }
+      return false;
     }
 
     function handleStuff() {
@@ -70,6 +77,9 @@ export function Controls() {
         dataRef.current.setState(GameState.OVER);
       }
 
+      let justTouchedPipe_forLoop = justTouchedPipe;
+      let touchedPipeInLoop = false;
+
       allPipes.forEach((pipe) => {
         const pipeWithRect: ElementWithRect = {
           e: pipe as HTMLDivElement,
@@ -77,9 +87,11 @@ export function Controls() {
         };
 
         if (handlePipeTouchingBird(pipeWithRect, bird)) return;
-        handlePipeDodged(pipeWithRect, bird);
+        if (handlePipeDodged(pipeWithRect, bird, !justTouchedPipe_forLoop))
+          touchedPipeInLoop = true;
       });
 
+      justTouchedPipe = touchedPipeInLoop;
       requestAnimationFrame(handleStuff);
     }
 
