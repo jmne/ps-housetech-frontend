@@ -36,7 +36,7 @@ const Pillar = forwardRef<HTMLImageElement, props>(
         }
         animate={{ x: -100 }}
         transition={{
-          duration: 10,
+          duration: 8,
           ease: "linear"
         }}
       >

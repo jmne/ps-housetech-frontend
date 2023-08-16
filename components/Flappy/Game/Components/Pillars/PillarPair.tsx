@@ -10,7 +10,7 @@ interface Props {}
 
 const PillarPair = forwardRef<HTMLImageElement, Props>((props, ref) => {
   const flappyContext = useFlappyDataContext();
-  const depth = useMemo(() => random(15, 50), []);
+  const depth = useMemo(() => random(30, 60), []);
   const height = useMemo(() => random(0.2, 0.7), []);
 
   return (
