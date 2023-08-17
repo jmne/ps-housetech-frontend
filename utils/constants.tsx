@@ -19,7 +19,6 @@ export const FUZZY_SEARCH_WEIGHTS = {
   distance: 100,
   maxPatternLength: 32,
   minMatchCharLength: 1,
-
   keys: [
     {
       name: "cfFullName",
@@ -34,7 +33,7 @@ export const FUZZY_SEARCH_WEIGHTS = {
       weight: 0.7
     },
     {
-      name: "chair",
+      name: "chairs",
       weight: 0.5
     }
   ]
