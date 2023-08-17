@@ -1,0 +1,44 @@
+@use "/assets/scss/constants.scss" as g;
+
+html,
+body {
+  background-color: g.$background;
+  color: g.$text-primary;
+  font-size: calc(10px + 0.37vw);
+}
+
+html,
+body,
+body > div:first-child,
+div#__next,
+div#__next > main {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+p {
+  line-height: 1.6;
+  margin-block-end: g.$margin-base;
+}
+
+// STYLING FOR SWIPER
+
+:root {
+  --swiper-theme-color: #25519d !important;
+  --swiper-navigation-size: 2rem !important;
+}
+
+.swiper-button-disabled {
+  opacity: 0 !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  transition: opacity 0.25s ease-out;
+}

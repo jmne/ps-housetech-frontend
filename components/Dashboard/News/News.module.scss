@@ -1,0 +1,63 @@
+@use "/assets/scss/constants.scss" as g;
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.headline {
+  z-index: 1;
+}
+
+@media screen and (max-width: 992px) {
+  .content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
+.overlayContainer {
+  padding: g.$margin-large;
+}
+
+.overlayTrigger {
+  transform: translate(0%, -40%);
+  width: 6.5rem;
+  height: 1.8rem;
+  padding-inline: 0;
+  color: g.$text-primary;
+
+  svg {
+    width: auto;
+    height: 90%;
+    image-rendering: auto;
+  }
+}
+
+.overlayQRWrapper {
+  display: grid;
+  gap: g.$margin-base;
+  justify-items: center;
+
+  color: g.$text-secondary;
+
+  padding: g.$margin-medium;
+  border: g.$border-base solid g.$text-secondary;
+  border-radius: g.$border-radius-base;
+}
+
+.overlayHeader {
+  margin-block-end: g.$margin-large !important;
+}
+
+.overlayTitle {
+  width: 100%;
+  text-align: center;
+}
+
+.overlayDivider {
+  width: 50% !important;
+  transform: translateX(50%);
+  bottom: calc(g.$margin-large / -2) !important;
+}

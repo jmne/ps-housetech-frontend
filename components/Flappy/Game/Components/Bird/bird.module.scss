@@ -1,0 +1,17 @@
+.bird {
+  top: 50%;
+  left: 25%;
+
+  transition: top 350ms cubic-bezier(0.26, 0.4, 0.63, 1.17);
+  animation: flyIn 1.2s cubic-bezier(0.175, 0.485, 0.22, 0.975);
+}
+
+@keyframes flyIn {
+  from {
+    left: -5%;
+  }
+
+  to {
+    left: 25%;
+  }
+}

@@ -1,0 +1,49 @@
+@use "/assets/scss/constants.scss" as g;
+
+.front {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dishInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .prices {
+    display: flex;
+    gap: g.$margin-small / 2;
+    align-items: center;
+
+    font-size: g.$text-small;
+    font-weight: 400;
+    color: g.$text-secondary;
+  }
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  object-fit: contain;
+  justify-content: flex-end;
+  gap: g.$margin-small;
+
+  img {
+    width: g.$icon-base;
+    height: g.$icon-base;
+  }
+}
+
+.easteregg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: g.$margin-sm;
+}
+
+.icon {
+  width: g.$icon-base;
+  height: g.$icon-base;
+}
