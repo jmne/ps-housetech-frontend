@@ -1,8 +1,5 @@
 // IMPORTS - REACT
-import { useState, useEffect } from "react";
-
-// IMPORTS - NEXTJS
-import { useTranslation } from "next-i18next";
+import { useEffect } from "react";
 
 // IMPORTS - CONTEXT
 import { useMapContext } from "context/MapContext";
@@ -15,11 +12,6 @@ import styles from "@/components/Dashboard/Wayfinder/Map/Map.module.scss";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 import { useTimeoutContext } from "context/TimeoutContext";
 import { setRoomHighlight } from "utils/wayfinderAnimation/mapTransformations";
-import { buildingNames } from "types/Campus";
-import {
-  getPersonForRoom,
-  getRoomDisplayName
-} from "utils/wayfinderAnimation/mapValidations";
 import { Employee } from "types/Employee";
 import { useMapElements } from "context/MapElements";
 
@@ -30,7 +22,6 @@ export interface MapProps {
 }
 
 export function CampusMap({ allPersons }: MapProps) {
-  const { t } = useTranslation("index");
   const mapContext = useMapContext();
   const mapElements = useMapElements();
   const timeoutContext = useTimeoutContext();

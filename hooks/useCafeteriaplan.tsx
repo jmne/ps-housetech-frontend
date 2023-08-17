@@ -1,5 +1,5 @@
 "use client";
-
+import { REQUEST_URL } from "utils/constants";
 // IMPORT - BUILTINS
 import useSWR from "swr";
 import { fetcher } from "utils/basicFetcher";
@@ -9,7 +9,7 @@ import { Foodplan } from "types/Foodplan";
 import { convertFoodplan } from "utils/cafeteriahelper";
 import { useMemo } from "react";
 
-const url = "https://ps-housetech.uni-muenster.de:444/api/mensa";
+const url = `${REQUEST_URL}/api/mensa`;
 const options = { refreshInterval: 10 * 60 * 1000 };
 
 export const AllCafeterias: Cafeteria[] = ["davinci", "aasee", "bispinghof", "ring"];

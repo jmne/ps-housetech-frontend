@@ -1,3 +1,4 @@
+import { REQUEST_URL } from "utils/constants";
 import { Employee } from "types/Employee";
 import { useMapContext } from "context/MapContext";
 import { usePersonSearchContext } from "context/PersonContext";
@@ -28,7 +29,7 @@ interface props {
 
 export const SEARCH_RESULT_COLLAPSED = styles.person;
 export const SEARCH_RESULT_EXPANDED = [styles.person, styles.expanded].join(" ");
-const url = "https://ps-housetech.uni-muenster.de:444/api/picture/";
+const url = `${REQUEST_URL}/api/picture/`;
 const PersonResult = memo(({ person }: props) => {
   const { t } = useTranslation("index");
   const [overlayOpen, setOverlayOpen] = useState(false);

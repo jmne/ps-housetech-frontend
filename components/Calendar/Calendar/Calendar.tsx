@@ -9,6 +9,7 @@ import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 
 import { useRouter } from "next/router";
+import { REQUEST_URL } from "utils/constants";
 
 function Calendar() {
   return (
@@ -42,10 +43,7 @@ function Calendar() {
             slotMinTime={"08:00:00"}
             slotMaxTime={"22:00:00"}
             nowIndicator={true}
-            events={
-              "https://ps-housetech.uni-muenster.de:444/api/calendar/" +
-              useRouter().query.room
-            } // add ICS feed or events array here
+            events={`${REQUEST_URL}/api/calendar/` + useRouter().query.room} // add ICS feed or events array here
           />
         </Card>
       </Container>

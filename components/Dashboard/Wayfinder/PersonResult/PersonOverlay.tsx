@@ -5,7 +5,9 @@ import IconAccount from "assets/icons/account.svg";
 import styles from "@/components/Dashboard/Wayfinder/PersonResult/person.module.scss";
 import { QRContact } from "./QRContact";
 
-const url = "https://ps-housetech.uni-muenster.de:444/api/picture/";
+import { REQUEST_URL } from "utils/constants";
+
+const url = `${REQUEST_URL}/api/picture/`;
 
 interface props {
   person: Employee;
