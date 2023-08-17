@@ -46,7 +46,7 @@ export class IdleHandlerManager {
    *
    * @param origin Remove the ResetListener belonging to the specified origin (component name)
    */
-  removeResetListener(origin: Origin) {
+  removeResetListener(origin: Origin | string) {
     this.IdleHandlers = this.IdleHandlers.filter((entry) => {
       entry.origin != origin;
     });

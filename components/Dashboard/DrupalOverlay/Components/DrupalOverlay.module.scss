@@ -1,0 +1,46 @@
+@use "/assets/scss/constants.scss" as g;
+
+.body {
+  display: grid;
+}
+
+.trigger {
+  padding: g.$margin-small g.$margin-base;
+  height: fit-content;
+
+  align-self: center;
+  font-size: g.$text-base;
+}
+
+.infoIcon {
+  fill: g.$accent1 !important;
+}
+
+.image {
+  min-width: 0;
+  width: 100%;
+  max-width: 50vw;
+  max-height: 40vh;
+
+  object-fit: contain;
+
+  border-radius: g.$border-radius-base;
+}
+
+.content {
+  font-size: g.$text-base;
+
+  padding-inline: g.$margin-large;
+  padding-block: g.$margin-base;
+  line-height: 1.5;
+
+  max-height: 20vh;
+  overflow-y: scroll;
+
+  a {
+    text-decoration: none;
+    color: g.$text-primary;
+    pointer-events: none;
+    cursor: default;
+  }
+}
