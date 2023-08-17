@@ -9,7 +9,7 @@ import styles_wayfinder from "@/components/Dashboard/Wayfinder/Wayfinder.module.
 import { useTranslation } from "next-i18next";
 import { SearchBar } from "./SearchBar/SearchBar";
 import PersonResult from "./PersonResult/PersonResult";
-import { CampusMap } from "./Map/Map";
+import { CampusMap } from "./Map/CampusMap";
 
 import ArrowDown from "assets/icons/arrow_down.svg";
 

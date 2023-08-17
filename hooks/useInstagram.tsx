@@ -1,3 +1,4 @@
+import { REQUEST_URL } from "utils/constants";
 // IMPORT - BUILTINS
 import useSWR from "swr";
 import { Post } from "types/Instagram";
@@ -5,7 +6,7 @@ import { fetcher } from "utils/basicFetcher";
 
 // IMPORTS - ASSETS
 
-const url = "https://ps-housetech.uni-muenster.de:444/api/instagram";
+const url = `${REQUEST_URL}/api/instagram`;
 const options = { refreshInterval: 10 * 60 * 1000 };
 
 /**

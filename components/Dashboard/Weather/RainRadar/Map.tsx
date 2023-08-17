@@ -1,9 +1,10 @@
+import { REQUEST_URL } from "utils/constants";
 import React, { useEffect, useRef } from "react";
 import L, { Map as LeafletMap, TileLayer } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 const locationMuenster: L.LatLngExpression = [51.96, 7.628];
-const rain_layer_url = `https://ps-housetech.uni-muenster.de:444/api/precipitation/{z}/{x}/{y}`;
+const rain_layer_url = `${REQUEST_URL}/api/precipitation/{z}/{x}/{y}`;
 const RAIN_RADAR_REFRESH_MINUTES = 0.5;
 
 export default function Map() {
