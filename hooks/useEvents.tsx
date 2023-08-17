@@ -1,3 +1,4 @@
+import { REQUEST_URL } from "utils/constants";
 // IMPORT - BUILTINS
 import useSWR from "swr";
 import { Event } from "types/Events";
@@ -6,7 +7,7 @@ import { fetcher } from "utils/basicFetcher";
 // IMPORTS - ASSETS
 
 //const revalidate_events = 20;
-const url = "https://ps-housetech.uni-muenster.de:444/api/drupal/event";
+const url = `${REQUEST_URL}/api/drupal/event`;
 const options = { refreshInterval: 10 * 60 * 1000 };
 
 /**
