@@ -1,0 +1,80 @@
+{
+    "header": {
+        "title": "Institut für Wirtschaftsinformatik",
+        "sub_heading": {
+            "christmas": "Fröhliche Feiertage",
+            "new_year": "Frohes neues Jahr",
+            "star_wars": "Möge die Macht mit dir sein"
+        },
+        "overlay_available": "Informationen verfügbar"
+    },
+    "wayfinder": {
+        "title": "Suche..",
+        "search": {
+            "room": "Raum",
+            "phone": "Tel.",
+            "mail": "E-Mail",
+            "contact_person": "Kontaktieren",
+            "no_more_info": "Keine weiteren Infos verfügbar"
+        },
+        "map": {
+            "campus": "Leonardo-Campus",
+            "leo1": "Leonardo-Campus 1",
+            "leo3": "Leonardo-Campus 3",
+            "leo10": "Leonardo-Campus 10",
+            "leo11": "Leonardo-Campus 11",
+            "leo18": "Leonardo-Campus 18",
+            "floor0": "Erdgeschoss",
+            "floor1": "OG 1",
+            "floor2": "OG 2",
+            "floor3": "OG 3",
+            "brazil_center": "Brasilien Zentrum",
+            "wi_ag": "WI-AG",
+            "wwu_center_europe": "WWU Zentrum Europa",
+            "lecture_hall": "Hörsaal",
+            "cafeteria": "Mensa",
+            "library": "Bibliothek",
+            "janitor": "Hausmeister",
+            "institute_wi": "Institut für Wirtschaftsinformatik",
+            "ercis": "ERCIS"
+        },
+        "controls": {
+            "visit": "Plan",
+            "where_is": "Wo ist?",
+            "back_to_campus": "Zum Campus",
+            "remove_highlight": "Markierung entfernen",
+            "highlight_building": "Gebäude",
+            "highlight_lecture_hall_building": "Raum"
+        }
+    },
+    "busplan": {
+        "title": "Busplan",
+        "map_button": "Karte"
+    },
+    "cafeteria_plan": {
+        "title": "Mensaplan",
+        "no_data_for_day": "Scheinbar gibt es keinen Mensaplan für diesen Tag",
+        "cafeteria": {
+            "aasee": "Aasee",
+            "bispinghof": "Bispinghof",
+            "ring": "Mensa am Ring",
+            "davinci": "DaVinci",
+            "select_cafeteria": "Selection"
+        }
+    },
+    "news": {
+        "title": "Aktuelles",
+        "link_overlay_trigger": "Instagram",
+        "view_more_hint": "Mehr anzeigen",
+        "events": {
+            "title": "Events"
+        },
+        "instagram": {
+            "click_for_video": "Klick für das Video"
+        }
+    },
+    "weather": {
+        "title_report": "Wetterbericht",
+        "title_radar": "Regenradar"
+    }
+}
