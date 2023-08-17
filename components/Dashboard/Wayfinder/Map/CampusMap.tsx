@@ -23,7 +23,7 @@ import {
 import { Employee } from "types/Employee";
 import { useMapElements } from "context/MapElements";
 
-import { MapLeo3, MapLeo11, MapLeonardoCampus, Controls } from "./components";
+import { MapLeo3, MapLeo11, MapLeonardoCampus, Controls, Title } from "./components";
 
 export interface MapProps {
   allPersons: Employee[];
@@ -34,24 +34,6 @@ export function CampusMap({ allPersons }: MapProps) {
   const mapContext = useMapContext();
   const mapElements = useMapElements();
   const timeoutContext = useTimeoutContext();
-  const [floorName, setFloorName] = useState<string | undefined>();
-  const [placesAndPeopleInSelectedRoom, setPlacesAndPeopleInSelectedRoom] = useState<
-    string[] | undefined
-  >();
-  const [roomDisplayName, setRoomDisplayName] = useState<string | undefined>();
-
-  useEffect(() => {
-    if (!mapContext.current.area || !mapContext.current.room)
-      setPlacesAndPeopleInSelectedRoom(undefined);
-    else {
-      setPlacesAndPeopleInSelectedRoom(
-        getPersonForRoom(mapContext.current.area, mapContext.current.room, allPersons, t)
-      );
-      const roomName = getRoomDisplayName(mapContext.current.room, t);
-      if (roomName) setRoomDisplayName(roomName);
-      else setRoomDisplayName(undefined);
-    }
-  }, [mapContext.current.area, mapContext.current.room, allPersons, mapContext, t]);
 
   useEffect(() => {
     const resetLayout = () => {
@@ -66,8 +48,6 @@ export function CampusMap({ allPersons }: MapProps) {
   }, [timeoutContext.manager, mapContext]);
 
   useEffect(() => {
-    if (mapContext.current.floor) setFloorName(mapContext.current.floor);
-
     if (mapContext.current.room && mapContext.current.area) {
       setRoomHighlight(mapContext.current.room, mapContext.current.area, true);
     }
@@ -83,27 +63,7 @@ export function CampusMap({ allPersons }: MapProps) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>
-        <div className={[styles.selectionInformation, styles.glassCard].join(" ")}>
-          <h2>{t(`wayfinder.map.${mapContext.current.area}`)}</h2>
-          <span>
-            {floorName && mapContext.current.area !== buildingNames.CAMPUS
-              ? t(`wayfinder.map.${floorName}`)
-              : ""}
-          </span>
-          {mapContext.current.room && (
-            <>
-              {roomDisplayName && <p>{roomDisplayName}</p>}
-              {placesAndPeopleInSelectedRoom &&
-                placesAndPeopleInSelectedRoom.map((name, index) => (
-                  <span className={styles.personInRoom} key={index}>
-                    {name}
-                  </span>
-                ))}
-            </>
-          )}
-        </div>
-      </div>
+      <Title allPersons={allPersons} />
       <div className={styles.mapWrapper} ref={mapElements.mapContainer}>
         <MapLeonardoCampus />
         <MapLeo3 />
