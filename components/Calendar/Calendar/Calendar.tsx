@@ -15,14 +15,20 @@ function Calendar() {
     <div className={styles.container}>
       <Container maxWidth={"xl"}>
         <Card className={styles.root}>
-          <h1>Belegungsplan</h1>
+          <h1>Belegungsplan - {useRouter().query.room}</h1>
         </Card>
         <Card className={styles.cardContainer}>
           <FullCalendar
             plugins={[timeGridPlugin, iCalendarPlugin]}
             initialView="timeGridWeek"
+            timeZone={"Europe/Berlin"}
             locale={"de"}
-            headerToolbar={false}
+            headerToolbar={{
+              left: "",
+              center: "prev,next today",
+              right: ""
+            }}
+            buttonText={{today: "Heute"}}
             allDayText={"24 Std."}
             dayHeaderFormat={{
               weekday: "long",

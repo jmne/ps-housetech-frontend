@@ -70,7 +70,9 @@ function Feed() {
             ? articles?.map((item: any) => (
                 <SwiperSlide key={item?.externalId}>
                   <Card className={styles.rootNews}>
-                    <CardActionArea>
+                    <CardContent sx={{margin: 0, padding: 0, '&:last-child': {
+                        paddingBottom: 0,
+                      }}}>
                       <CardMedia
                         className={styles.media}
                         image={item?.teaserImage?.imageVariants["1x1-840"]}
@@ -133,7 +135,7 @@ function Feed() {
                           }}
                         />
                       </div>
-                    </CardActionArea>
+                    </CardContent>
                   </Card>
                   <Card className={styles.rootQr}>
                     <div className={styles.qrContainer}>
