@@ -1,0 +1,64 @@
+// TYPOGRAPHY
+$text-large: 2rem;
+$text-medium: 1.618rem;
+$text-sm: 1.2rem;
+$text-base: 1rem;
+$text-small: 0.69rem;
+
+// COLORS
+$text-primary: #151f30;
+$text-secondary: #95989d;
+$text-button: #282828;
+$main-primary: #25519d;
+$main-primary-tint: #435c8b29;
+$main-primary_dark: #0e2349;
+$main-secondary: #0593a2;
+$main-secondary_tint: #cafc4b24;
+$main-secondary_dark: #86bb00;
+$background: #f6f6f6;
+$container: #ffffff83;
+$container-item-no-shadow: rgb(123, 45, 58);
+$container-item: #fafafa;
+$accent1: #9d2551;
+$accent1_light: #e77a8a;
+$accent1_dark: #560c27;
+$accent2: #ff7a48;
+$accent3: #3fb6b5;
+$accent4: #319143;
+$warning: #b1102a;
+$warning_tint: #ff3e3e46;
+$success: #a5cf39;
+
+// GAP
+$margin-large: 1.8rem;
+$margin-medium: 1.4rem;
+$margin-base: 0.8rem;
+$margin-sm: 0.7rem;
+$margin-small: 0.4rem;
+
+// IMAGES
+$icon-large: 4.44rem;
+$icon-xm: 3.33rem;
+$icon-base: 2.22rem;
+$icon-sm: 1.8rem;
+$icon-small: 1.11rem;
+
+// SIZING
+$border-base: 1px;
+$border-radius-base: 0.6rem;
+$border-radius-small: 0.37rem;
+
+// SHADOWS
+$shadow-outer: 0px 6px 12px -2px rgba(50, 50, 93, 0.25),
+  0px 3px 7px -3px rgba(0, 0, 0, 0.3);
+$shadow-outer__light: 0px 1px 7px 0px rgba(50, 50, 93, 0.1),
+  0px 3px 7px -3px rgba(0, 0, 0, 0.3);
+$shadow-outer-harder: 0px 6px 12px -2px rgba(50, 50, 93, 0.15),
+  0px 3px 7px -3px rgba(0, 0, 0, 0.35);
+$shadow-outer__right: 6px 0px 12px rgba(50, 50, 93, 0.1), 0px 0px 7px rgba(0, 0, 0, 0.3);
+
+$shadow-inner: inset -4px 0px 6px 2px rgba(0, 0, 0, 0.3);
+$shadow-inner-light: inset -2px 0px 3px 4px rgba(0, 0, 0, 0.2);
+
+$shadow-svg: drop-shadow(2px 2px 4px rgba(50, 50, 93, 0.2))
+  drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.15));
