@@ -1,12 +1,12 @@
 import { Origin } from "types/IdleHandling";
 
 interface props {
-  origin: Origin; // Name of the calling component
+  origin: Origin | string; // Name of the calling component
   resetFunction: Function; // Function to call on reset
 }
 
 export class IdleHandler {
-  origin: Origin;
+  origin: Origin | string;
   resetFunction: Function;
 
   constructor({ origin, resetFunction }: props) {

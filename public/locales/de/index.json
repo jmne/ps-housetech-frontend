@@ -5,7 +5,8 @@
             "christmas": "Fröhliche Feiertage",
             "new_year": "Frohes neues Jahr",
             "star_wars": "Möge die Macht mit dir sein"
-        }
+        },
+        "overlay_available": "Informationen verfügbar"
     },
     "wayfinder": {
         "title": "Suche..",
