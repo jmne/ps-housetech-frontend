@@ -28,7 +28,7 @@ function Calendar() {
               center: "prev,next today",
               right: ""
             }}
-            buttonText={{today: "Heute"}}
+            buttonText={{ today: "Heute" }}
             allDayText={"24 Std."}
             dayHeaderFormat={{
               weekday: "long",
