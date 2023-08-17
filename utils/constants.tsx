@@ -5,7 +5,10 @@ import { MapState } from "types/Map";
 
 export const INSTAGRAM_TAG = "wirtschaftsinformatik_wwu"; // Also changes the qr-code linking to the account -> Needs to be the specific tag from insta-account
 
-export const REQUEST_URL = "https://ps-housetech.uni-muenster.de:444";
+export const REQUEST_URL =
+  process.env.NODE_ENV === "development"
+    ? "https://ps-housetech.uni-muenster.de:444"
+    : "";
 
 // Global timeout duration -> When no interaction for the specified time, the site is resetted to the specified base-states
 export const TIMEOUT_DURATION = 60; // seconds
