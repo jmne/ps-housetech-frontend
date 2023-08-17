@@ -1,9 +1,16 @@
 import { Description, DialogDescriptionProps } from "@radix-ui/react-dialog";
+import { forwardRef } from "react";
 
-export function Body({ children, className, ...props }: DialogDescriptionProps) {
-  return (
-    <Description className={className} {...props} asChild>
-      <div>{children}</div>
-    </Description>
-  );
-}
+const Body = forwardRef<HTMLDivElement, DialogDescriptionProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <Description className={className} {...props} asChild>
+        <div ref={ref}>{children}</div>
+      </Description>
+    );
+  }
+);
+
+Body.displayName = "Body";
+
+export { Body };

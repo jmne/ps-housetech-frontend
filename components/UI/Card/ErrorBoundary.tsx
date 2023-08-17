@@ -30,7 +30,7 @@ class ErrorBoundary extends Component<Props, State> {
   public render() {
     if (this.state.hasError) {
       return (
-        <div className={this.props.className ?? this.props.className}>
+        <div className={this.props.className}>
           <span>Sorry, there was an error in this component..</span>
           <Button onClick={this.tryAgain}>Try again</Button>
         </div>

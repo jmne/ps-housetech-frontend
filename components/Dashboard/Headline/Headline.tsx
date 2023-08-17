@@ -4,6 +4,7 @@ import Image from "next/image";
 // IMPORTS - COMPONENTS
 import { LanguageSelector } from "./LanguageSelector/LanguageSelector";
 import { ErrorBoundary } from "@/components/UI/Card";
+import DrupalOverlayHandler from "@/components/Dashboard/DrupalOverlay";
 
 // IMPORTS - ASSETS
 import styles from "@/components/Dashboard/Headline/Headline.module.scss";
@@ -33,6 +34,7 @@ function Headline() {
           className={styles.logo}
           priority
         />
+        <DrupalOverlayHandler />
       </div>
       <Title />
       <div className={[styles.side, styles.right].join(" ")}>
