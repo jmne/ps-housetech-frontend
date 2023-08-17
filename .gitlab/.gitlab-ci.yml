@@ -1,0 +1,22 @@
+image: zivgitlab.wwu.io/ml-de/teaching/ps-housetech/ps-housetech-frontend:node20
+
+stages:
+  - .pre
+  - build
+  - test
+  - deploy
+  - release
+  - .post
+
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - node_modules/
+
+before_script:
+  - npm install
+
+include:
+  - ".gitlab/*.yaml"

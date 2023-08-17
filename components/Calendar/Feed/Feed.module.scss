@@ -1,0 +1,120 @@
+.rootNews {
+  max-width: 100%;
+  align-self: center;
+  color: #191919;
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.rootQr {
+  max-width: 100%;
+  align-self: center;
+  color: #191919;
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  border-radius: 0 0 15px 15px;
+  box-shadow: none;
+}
+
+.rootTitle {
+  max-width: 100%;
+  align-self: center;
+  color: #191919;
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  border-radius: 15px 15px 0 0;
+  box-shadow: none;
+}
+
+.MuiLinearProgress-bar {
+  transition: none;
+}
+
+.cardContainer {
+  height: 990px;
+}
+
+.body {
+  height: 1080px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  color: #191919;
+  width: 25%;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 330px;
+}
+
+.qrContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 110px;
+}
+
+.qr {
+  height: 150px;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 5px;
+}
+
+.progressBar {
+  background-color: white;
+}
+
+.text {
+  text-align: justify;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.media {
+  height: 400px;
+  min-width: 100%;
+}
+
+.footer {
+  color: #b8c1ec;
+  padding: 3rem;
+}
+
+.footer a {
+  text-decoration: none;
+  color: hotpink;
+}
+
+.footer a:hover {
+  text-decoration: none;
+  color: teal;
+}
