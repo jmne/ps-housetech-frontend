@@ -1,0 +1,152 @@
+@use "/assets/scss/constants.scss" as g;
+
+// background for information element + hidden easteregg background
+.background {
+  padding: g.$margin-sm;
+  background: g.$container-item;
+  border-radius: g.$border-radius-base;
+
+  box-sizing: border-box;
+}
+
+.icon {
+  object-fit: contain;
+  width: g.$text-base;
+  height: g.$text-base;
+}
+
+.iconBus {
+  margin-inline-start: g.$margin-sm;
+  width: fit-content;
+  height: 100%;
+}
+
+// Styling for the hidden easteregg
+.easteregg {
+  display: flex;
+
+  gap: g.$margin-small;
+
+  justify-content: center;
+  align-items: center;
+}
+
+// Styling for the information element
+.bus {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .lineWrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: g.$margin-small;
+      overflow: hidden;
+    }
+  }
+
+  .secondary {
+    font-size: g.$text-small;
+    font-weight: 300;
+    color: g.$text-secondary;
+  }
+
+  .time {
+    text-align: end;
+    white-space: nowrap;
+  }
+
+  .delay {
+    color: g.$warning;
+  }
+}
+
+// Error message when fetch fails
+.message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: g.$margin-sm;
+  background: g.$container-item;
+  border-radius: g.$border-radius-base;
+
+  box-shadow: g.$shadow-outer__light;
+
+  grid-column: span 2;
+  grid-row: span 1;
+
+  color: g.$text-secondary;
+}
+
+// Used for positioning the items in the grid
+
+.inward {
+  grid-column: 1;
+}
+
+.outward {
+  grid-column: 2;
+}
+
+.first {
+  grid-row: 1;
+}
+
+.second {
+  grid-row: 2;
+}
+
+.third {
+  grid-row: 3;
+}
+
+// Wiggle animation
+
+.wiggle {
+  animation-name: wiggle;
+  animation-duration: 600ms;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotateX(-2deg);
+  }
+
+  10% {
+    transform: rotateX(2deg);
+  }
+
+  20% {
+    transform: rotateX(-1deg);
+  }
+
+  30% {
+    transform: rotateX(3deg);
+  }
+
+  40% {
+    transform: rotateX(-2deg);
+  }
+
+  50% {
+    transform: rotateX(3deg);
+  }
+
+  60% {
+    transform: rotateX(0deg);
+  }
+
+  100% {
+    transform: rotateX(0deg);
+  }
+}
