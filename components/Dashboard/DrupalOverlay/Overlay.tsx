@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 
 import { Overlay } from "types/Drupal";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
-import { Trigger } from "./Trigger";
-import Content from "./Content";
+import { Trigger, Content } from "./Components";
 
 interface Props {
   data: Overlay;

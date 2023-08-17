@@ -8,9 +8,7 @@ export default function DrupalOverlayHandler() {
 
   return (
     <>
-      {data.map((overlay) => (
-        <DrupalOverlay data={overlay} key={overlay.id} />
-      ))}
+      {data && data.map((overlay) => <DrupalOverlay data={overlay} key={overlay.id} />)}
     </>
   );
 }
