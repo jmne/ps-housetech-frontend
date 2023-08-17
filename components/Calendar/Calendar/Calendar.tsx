@@ -22,7 +22,6 @@ function Calendar() {
             plugins={[timeGridPlugin, iCalendarPlugin]}
             initialView="timeGridWeek"
             locale={"de"}
-            timeZone={"Europe/Berlin"}
             headerToolbar={false}
             allDayText={"24 Std."}
             dayHeaderFormat={{
