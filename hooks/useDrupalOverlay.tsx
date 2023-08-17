@@ -1,3 +1,4 @@
+import { REQUEST_URL } from "utils/constants";
 // IMPORT - BUILTINS
 import useSWR from "swr";
 import { fetcher } from "utils/basicFetcher";
@@ -5,7 +6,7 @@ import { fetcher } from "utils/basicFetcher";
 // IMPORTS - ASSETS
 import { Overlay } from "types/Drupal";
 
-const url = "https://ps-housetech.uni-muenster.de:444/api/drupal/overlay";
+const url = `${REQUEST_URL}/api/drupal/overlay`;
 const options = { refreshInterval: 60 * 1000 };
 
 export default function useDrupalOverlay(locale?: string) {

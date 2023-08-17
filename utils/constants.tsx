@@ -5,6 +5,8 @@ import { MapState } from "types/Map";
 
 export const INSTAGRAM_TAG = "wirtschaftsinformatik_wwu"; // Also changes the qr-code linking to the account -> Needs to be the specific tag from insta-account
 
+export const REQUEST_URL = "https://ps-housetech.uni-muenster.de:444";
+
 // Global timeout duration -> When no interaction for the specified time, the site is resetted to the specified base-states
 export const TIMEOUT_DURATION = 60; // seconds
 
@@ -19,7 +21,6 @@ export const FUZZY_SEARCH_WEIGHTS = {
   distance: 100,
   maxPatternLength: 32,
   minMatchCharLength: 1,
-
   keys: [
     {
       name: "cfFullName",
@@ -34,7 +35,7 @@ export const FUZZY_SEARCH_WEIGHTS = {
       weight: 0.7
     },
     {
-      name: "chair",
+      name: "chairs",
       weight: 0.5
     }
   ]
