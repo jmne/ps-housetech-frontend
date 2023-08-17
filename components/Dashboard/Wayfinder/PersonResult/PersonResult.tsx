@@ -29,7 +29,10 @@ interface props {
 
 export const SEARCH_RESULT_COLLAPSED = styles.person;
 export const SEARCH_RESULT_EXPANDED = [styles.person, styles.expanded].join(" ");
-const url = `${REQUEST_URL}/api/picture/`;
+const url =
+  process.env.NODE_ENV === "development"
+    ? `${REQUEST_URL}/api/picture/`
+    : "https://ps-housetech.uni-muenster.de/api/picture/";
 const PersonResult = memo(({ person }: props) => {
   const { t } = useTranslation("index");
   const [overlayOpen, setOverlayOpen] = useState(false);
