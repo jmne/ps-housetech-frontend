@@ -1,0 +1,184 @@
+@use "/assets/scss/constants.scss" as g;
+
+$small-icon: g.$icon-sm;
+
+.container {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  grid-template-rows: 2fr 1fr;
+
+  padding: g.$margin-base;
+  gap: g.$margin-small;
+
+  overflow: hidden;
+
+  > div {
+    background-color: transparent;
+    border-radius: g.$border-radius-base;
+    box-shadow: g.$shadow-outer__light;
+    padding: g.$margin-sm;
+  }
+
+  .forecastToday {
+    grid-area: 1 / 1 / 3 / 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    flex-wrap: nowrap;
+
+    padding-inline-end: g.$margin-medium;
+
+    // contain the forecasts for each hour
+    > div {
+      width: 100%;
+      height: fit-content;
+
+      display: grid;
+      grid-template-columns: 3rem 1fr g.$icon-small;
+      gap: g.$margin-small;
+      align-items: center;
+
+      .time {
+        grid-column: 1;
+        justify-self: flex-start;
+      }
+
+      .data {
+        grid-column: 2;
+
+        display: flex;
+        justify-content: center;
+        gap: g.$margin-small;
+      }
+
+      .iconSmall {
+        grid-column: 3;
+        margin-inline-end: g.$margin-small;
+      }
+    }
+  }
+
+  .forecastNextDays {
+    grid-area: 2 / 2 / 3 / 3;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+
+    > div {
+      position: relative;
+
+      width: fit-content;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      align-items: center;
+      column-gap: g.$margin-small;
+      overflow: hidden;
+
+      .day {
+        grid-area: 1 / 1 / 2 / 3;
+        justify-self: center;
+      }
+
+      .bottom {
+        position: relative;
+
+        grid-area: 2 / 1 / 3 / 3;
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+        gap: g.$margin-small;
+
+        padding-inline-end: calc(g.$margin-small + $small-icon);
+
+        .iconSmall {
+          position: absolute;
+          right: 0px;
+        }
+      }
+    }
+  }
+
+  .message {
+    grid-template-columns: 1fr;
+  }
+
+  .currentWeather {
+    display: grid;
+    grid-template-columns: 1fr 30%;
+    grid-template-rows: 1fr;
+
+    grid-area: 1 / 2 / 2 / 3;
+
+    overflow: hidden;
+
+    .information {
+      grid-area: 1 / 1 / 2 / 2;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: g.$text-medium;
+
+      .time {
+        display: inline-flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: g.$margin-small;
+
+        font-size: g.$text-medium;
+      }
+
+      .weather {
+        display: inline-flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: g.$margin-small;
+      }
+    }
+
+    .fallback {
+      grid-area: 1 / 1 / 2 / 3;
+    }
+
+    img {
+      grid-area: 1 / 2 / 3 / 3;
+
+      height: 100%;
+      width: 100%;
+      max-height: 100%;
+      max-width: 100%;
+
+      object-fit: contain;
+
+      filter: drop-shadow(0 2px 2px g.$text-secondary);
+    }
+  }
+
+  .precipitation {
+    color: #2361d4;
+  }
+
+  .muted {
+    color: g.$text-secondary;
+  }
+}
+
+.iconSmall {
+  height: $small-icon;
+  width: $small-icon;
+
+  object-fit: contain;
+
+  filter: drop-shadow(0 2px 2px g.$text-secondary);
+}

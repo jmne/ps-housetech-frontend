@@ -1,0 +1,8 @@
+print-info:
+  stage: build
+  needs: []
+  script:
+    - echo "Running info..."
+    - node -v
+    - npm -v
+    - echo "Info successfully printed."
