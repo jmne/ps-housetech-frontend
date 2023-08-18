@@ -22,7 +22,7 @@ function Calendar() {
           <FullCalendar
             plugins={[timeGridPlugin, iCalendarPlugin]}
             initialView="timeGridWeek"
-            timeZone={"Europe/Berlin"}
+            //timeZone={"Europe/Berlin"}
             locale={"de"}
             headerToolbar={{
               left: "",
