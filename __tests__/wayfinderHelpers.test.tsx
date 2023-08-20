@@ -1,7 +1,7 @@
 import {
-  validateRoomNumber,
   getFloor,
-  getFloorNumber
+  getFloorNumber,
+  validateRoomNumber
 } from "utils/wayfinderAnimation/mapValidations";
 
 describe("Map transformation helpers", () => {

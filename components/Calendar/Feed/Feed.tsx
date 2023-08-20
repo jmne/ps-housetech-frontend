@@ -1,10 +1,9 @@
 import styles from "@/components/Calendar/Feed/Feed.module.scss";
 import { ErrorBoundary } from "@/components/UI/Card";
 
-import React, { useState, useEffect, PropsWithChildren } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
-import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography, { TypographyProps } from "@mui/material/Typography";
@@ -12,12 +11,13 @@ import ProgressBar from "@mui/material/LinearProgress";
 
 import QRCode from "react-qr-code";
 
-import { Pagination, Autoplay } from "swiper";
+import { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 
 import { parseDate } from "./util";
+
 const mediumRssFeed = "https://www.tagesschau.de/api2u/homepage";
 
 function ErrorTypography({ children, ...props }: TypographyProps) {
@@ -91,7 +91,11 @@ function Feed() {
                       >
                         <CardMedia
                           className={styles.media}
-                          image={item?.teaserImage?.imageVariants["1x1-840"]}
+                          image={
+                            item?.teaserImage?.imageVariants["1x1-840"] !== undefined
+                              ? item?.teaserImage?.imageVariants["1x1-840"]
+                              : "/news.svg"
+                          }
                           title={item?.teaserImage?.alttext}
                         />
                         <div className={styles.textContainer}>

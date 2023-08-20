@@ -1,6 +1,6 @@
 import { MapData, useMapContext } from "context/MapContext";
 import styles from "@/components/Dashboard/Wayfinder/Map/Map.module.scss";
-import { CampusBuilding, buildingNames } from "types/Campus";
+import { buildingNames, CampusBuilding } from "types/Campus";
 import { PersonData, usePersonSearchContext } from "context/PersonContext";
 import { handleExpansion } from "utils/wayfinderAnimation/personCardsTransformations";
 import { useTranslation } from "next-i18next";

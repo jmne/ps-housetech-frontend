@@ -2,7 +2,7 @@ import { useSearchInputContext } from "context/SearchInputContext";
 import styles from "./Keyboard.module.scss";
 import React, { memo, useMemo } from "react";
 
-import { Backspace, Clear, Space, Letter } from "@/components/UI/Keyboard/Keys";
+import { Backspace, Clear, Letter, Space } from "@/components/UI/Keyboard/Keys";
 
 const KEYBOARD_KEYS = [
   ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ü"],

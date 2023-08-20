@@ -1,4 +1,4 @@
-import { RefObject, createRef, useEffect, useState } from "react";
+import { createRef, RefObject, useEffect, useState } from "react";
 import PillarPair from "./PillarPair";
 
 const PILLAR_INTERVAL = 2.5;

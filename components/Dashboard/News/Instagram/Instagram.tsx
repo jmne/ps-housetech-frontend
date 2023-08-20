@@ -1,7 +1,7 @@
 import { useTimeoutContext } from "context/TimeoutContext";
 import { useInstagram } from "hooks/useInstagram";
-import { useState, useEffect, memo } from "react";
-import { Virtual, Navigation, Autoplay } from "swiper";
+import { memo, useEffect, useState } from "react";
+import { Autoplay, Navigation, Virtual } from "swiper";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import { IdleHandler } from "utils/IdleHandling/IdleHandler";
 

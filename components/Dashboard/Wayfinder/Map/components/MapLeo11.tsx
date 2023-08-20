@@ -3,9 +3,9 @@ import styles from "@/components/Dashboard/Wayfinder/Map/Map.module.scss";
 import { Leo11_Floor0 } from "assets/map/floors_transformed";
 import { useMapContext } from "context/MapContext";
 import {
-  minimizeBuilding,
+  buildingClickHandler,
   maximizeBuilding,
-  buildingClickHandler
+  minimizeBuilding
 } from "utils/wayfinderAnimation/mapTransformations";
 import { buildingNames } from "types/Campus";
 import { useMapElements } from "context/MapElements";

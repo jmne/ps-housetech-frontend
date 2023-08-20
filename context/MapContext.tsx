@@ -1,11 +1,4 @@
-import {
-  MutableRefObject,
-  createContext,
-  useCallback,
-  useContext,
-  useRef,
-  useState
-} from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 import { MapState } from "types/Map";
 import { MAP_BASE_STATE } from "utils/constants";
 

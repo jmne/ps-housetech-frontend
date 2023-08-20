@@ -1,4 +1,4 @@
-import { RefObject, createContext, useContext, useRef } from "react";
+import { createContext, RefObject, useContext, useRef } from "react";
 
 export interface MapElements {
   leo3_elements: RefObject<SVGSVGElement>[];

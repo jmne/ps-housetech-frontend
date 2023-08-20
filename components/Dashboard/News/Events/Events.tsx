@@ -1,6 +1,5 @@
 import { Autoplay, Navigation, Virtual } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { SwiperClass } from "swiper/react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import { useEvents } from "hooks/useEvents";
 import { EventCard } from "./Event";

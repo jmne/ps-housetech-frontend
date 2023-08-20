@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, createContext, useContext, useState } from "react";
+import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
 
 interface InputData {
   input: string;

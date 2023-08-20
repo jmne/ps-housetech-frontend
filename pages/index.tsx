@@ -2,7 +2,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // IMPORTS - COMPONENTS
-
 // IMPORTS - ASSETS
 import styles from "@/pages/index.module.scss";
 
@@ -11,12 +10,12 @@ import "swiper/css/navigation";
 
 // IMPORTS - CONTEXT
 import {
-  Headline,
-  Wayfinder,
-  Weather,
+  Busplan,
   Cafeteriaplan,
+  Headline,
   News,
-  Busplan
+  Wayfinder,
+  Weather
 } from "@/components/Dashboard";
 
 export default function Index() {

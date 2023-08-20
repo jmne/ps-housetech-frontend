@@ -3,7 +3,7 @@ import { Employee } from "types/Employee";
 import { useMapContext } from "context/MapContext";
 import { usePersonSearchContext } from "context/PersonContext";
 import styles from "@/components/Dashboard/Wayfinder/Wayfinder.module.scss";
-import { Fragment, useEffect, useRef, useState, memo, useCallback } from "react";
+import { Fragment, memo, useCallback, useEffect, useRef, useState } from "react";
 import { handleClickOnPerson } from "utils/wayfinderAnimation/personCardsTransformations";
 import Image from "next/image";
 import * as Separator from "@radix-ui/react-separator";

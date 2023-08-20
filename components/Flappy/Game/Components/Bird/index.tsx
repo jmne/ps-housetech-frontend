@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useFlappyDataContext } from "../../Logic/flappyData";
-import { RedBird, BlueBird, YellowBird } from "./Colors";
+import { BlueBird, RedBird, YellowBird } from "./Colors";
 
 export function Bird() {
   const flappyDataContext = useFlappyDataContext();

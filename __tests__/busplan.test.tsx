@@ -4,13 +4,12 @@ import { render, screen } from "@testing-library/react";
 
 import { Busride } from "types/Busride";
 import { mockImage } from "__mocks__/mock_svgComponent";
+import Bus from "@/components/Dashboard/Busplan/BusCard";
 
 jest.mock("next/image", () => mockImage);
 jest.mock("assets/icons/search.svg", () => mockImage);
 jest.mock("assets/icons/city.svg", () => mockImage);
 jest.mock("assets/icons/forrest.svg", () => mockImage);
-
-import Bus from "@/components/Dashboard/Busplan/BusCard";
 
 const sample_ride: Busride = {
   station: "Leonardo-Campus",

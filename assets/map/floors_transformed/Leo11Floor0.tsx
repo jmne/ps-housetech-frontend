@@ -1,7 +1,8 @@
 import { useMapElements } from "context/MapElements";
-import * as React from "react";
 import type { SVGProps } from "react";
+import * as React from "react";
 import { COLOR } from "utils/constants";
+
 const SvgLeo11Floor0 = React.memo((props: SVGProps<SVGSVGElement>) => {
   const mapElements = useMapElements();
   return (

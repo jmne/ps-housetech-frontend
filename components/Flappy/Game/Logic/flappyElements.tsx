@@ -1,4 +1,4 @@
-import { PropsWithChildren, RefObject, createContext, useContext, useRef } from "react";
+import { createContext, PropsWithChildren, RefObject, useContext, useRef } from "react";
 
 export interface FlappyElements {
   bird: RefObject<HTMLDivElement> | undefined;

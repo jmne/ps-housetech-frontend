@@ -1,5 +1,5 @@
-import * as React from "react";
 import type { SVGProps } from "react";
+import * as React from "react";
 import { useMapElements } from "context/MapElements";
 import { COLOR } from "utils/constants";
 import { Endcard } from "./egg_endcard";

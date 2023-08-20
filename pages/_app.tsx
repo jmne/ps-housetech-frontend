@@ -7,6 +7,11 @@ import { ErrorBoundary } from "@/components/UI/Card";
 // IMPORTS - ASSETS
 import "/assets/scss/global.scss";
 import "@/components/Flappy/Game/Components/Pillars/pillars.scss";
+import { SearchInputProvider } from "context/SearchInputContext";
+import { TimeoutProvider } from "context/TimeoutContext";
+import { ToastProvider } from "@/components/UI/Toast/ToastProvider";
+import { ToastContextProvider } from "context/ToastContext";
+import Head from "next/head";
 
 const productSans = localFont({
   src: [
@@ -26,10 +31,6 @@ const productSans = localFont({
   preload: true,
   fallback: ["sans-serif"]
 });
-import { SearchInputProvider } from "context/SearchInputContext";
-import { TimeoutProvider } from "context/TimeoutContext";
-import { ToastProvider } from "@/components/UI/Toast/ToastProvider";
-import { ToastContextProvider } from "context/ToastContext";
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <ErrorBoundary>
@@ -38,6 +39,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
         <TimeoutProvider>
           <SearchInputProvider>
             <main className={productSans.className} id="app-wrapper">
+              <Head>
+                <meta
+                  name="viewport"
+                  content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
+                />
+                <title>PS HouseTech</title>
+              </Head>
               <style jsx global>{`
                 :root {
                   /* ... */

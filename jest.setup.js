@@ -5,11 +5,8 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom/extend-expect";
 
-import { Navigation, Pagination, Scrollbar, Virtual } from "swiper";
-
 // Mocks
 import { mockImage } from "__mocks__/mock_svgComponent";
-import { mockSwiper } from "__mocks__/mock_swiper.tsx";
 
 jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("next/image", () => mockImage);

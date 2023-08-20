@@ -3,7 +3,7 @@ import * as Select from "@radix-ui/react-select";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 import { AllCafeterias, Cafeteria } from "hooks/useCafeteriaplan";
 import { useTranslation } from "next-i18next";
-import { PropsWithChildren, Ref, forwardRef } from "react";
+import { forwardRef, PropsWithChildren, Ref } from "react";
 import stylesButton from "@/components/UI/Button/Button.module.scss";
 
 interface props {

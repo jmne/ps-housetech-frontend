@@ -15,7 +15,7 @@ import { setRoomHighlight } from "utils/wayfinderAnimation/mapTransformations";
 import { Employee } from "types/Employee";
 import { useMapElements } from "context/MapElements";
 
-import { MapLeo3, MapLeo11, MapLeonardoCampus, Controls, Title } from "./components";
+import { Controls, MapLeo11, MapLeo3, MapLeonardoCampus, Title } from "./components";
 
 export interface MapProps {
   allPersons: Employee[];

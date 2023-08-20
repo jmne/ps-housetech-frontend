@@ -2,7 +2,7 @@
 
 // IMPORTS - BUILTINS
 import useCafeteriaplan, { Cafeteria } from "hooks/useCafeteriaplan";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Swiper, { Navigation, Virtual } from "swiper";
 import { Swiper as SwiperElement, SwiperSlide } from "swiper/react";
 

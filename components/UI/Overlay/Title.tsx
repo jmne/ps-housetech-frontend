@@ -1,4 +1,4 @@
-import { Title as TitleElement, DialogTitleProps } from "@radix-ui/react-dialog";
+import { DialogTitleProps, Title as TitleElement } from "@radix-ui/react-dialog";
 
 export function Title({ children, className, ...props }: DialogTitleProps) {
   return (

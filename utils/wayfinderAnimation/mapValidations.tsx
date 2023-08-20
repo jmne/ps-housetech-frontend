@@ -1,11 +1,11 @@
 import { TFunction } from "next-i18next";
 import {
   BuildingFloor,
-  CampusBuilding,
   buildingNames,
+  CampusBuilding,
   isCampusBuilding
 } from "types/Campus";
-import { Employee, addressValue } from "types/Employee";
+import { addressValue, Employee } from "types/Employee";
 
 export function validateRoomNumber(room: string | number) {
   const roomStr = room.toString();
