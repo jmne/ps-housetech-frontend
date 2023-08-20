@@ -73,5 +73,6 @@ export enum COLOR {
   NON_MARKED_AREA_BUT_RELEVANT = "#fafafa", // Used for non-highlighted rooms in leo 3 & leo 11
   NORMAL_AREA = "#95989d", // used for e.g., floor and unimportant building
   TEXT_AND_BASIC_ELEMENTS = "#fafafa",
-  CONTRAST_STROKE = "#15171b"
+  CONTRAST_STROKE = "#15171b",
+  LEO_TEXT = "#fafafa"
 }

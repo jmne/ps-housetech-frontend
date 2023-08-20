@@ -28,7 +28,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
           id="rect1203"
           d="M0 1029h170.1v85H0z"
           style={{
-            fill: COLOR.MARKED_AREA,
+            fill: COLOR.LEO_TEXT,
             stroke: COLOR.CONTRAST_STROKE,
             strokeWidth: ".75px",
             strokeMiterlimit: 1
@@ -391,12 +391,12 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
       >
         {"Steinfurter Stra\xDFe"}
       </text>
-      <g id="campus-leo18-tag" transform="translate(-595 219.7)">
+      <g id="shape893751" transform="translate(-595 219.7)">
         <g id="shape1579-492" transform="translate(633 -617.5)">
           <use
             xlinkHref="#rect1203"
             style={{
-              fill: COLOR.MARKED_AREA,
+              fill: COLOR.LEO_TEXT,
               stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: ".75px",
               strokeMiterlimit: 1
@@ -407,7 +407,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
             style={{
               fontFamily: "&quot",
               fontSize: 18,
-              fill: COLOR.TEXT_AND_BASIC_ELEMENTS
+              fill: COLOR.CONTRAST_STROKE
             }}
             transform="translate(6.7 1076.3)"
           >
@@ -439,13 +439,13 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="campus-leo11-tag" transform="translate(153 410)">
+      <g id="shape97431" transform="translate(153 410)">
         <g id="shape1579-4921" transform="translate(675 -471.5)">
           <use
             xlinkHref="#rect1203"
             id="rect12031"
             style={{
-              fill: COLOR.MARKED_AREA,
+              fill: COLOR.LEO_TEXT,
               stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: ".75px",
               strokeMiterlimit: 1
@@ -456,7 +456,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
             style={{
               fontFamily: "&quot",
               fontSize: 18,
-              fill: COLOR.TEXT_AND_BASIC_ELEMENTS
+              fill: COLOR.CONTRAST_STROKE
             }}
             transform="translate(6.7 1076.3)"
           >
@@ -500,7 +500,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
             xlinkHref="#rect1203"
             id="rect12032"
             style={{
-              fill: COLOR.MARKED_AREA,
+              fill: COLOR.LEO_TEXT,
               stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: ".75px",
               strokeMiterlimit: 1
@@ -511,7 +511,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
             style={{
               fontFamily: "&quot",
               fontSize: 18,
-              fill: COLOR.TEXT_AND_BASIC_ELEMENTS
+              fill: COLOR.CONTRAST_STROKE
             }}
             transform="translate(6.7 1076.3)"
           >
@@ -541,13 +541,13 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="campus-leo3-tag">
+      <g id="shape12589">
         <g id="shape1579-4923" transform="translate(600 -965.5)">
           <use
             xlinkHref="#rect1203"
             id="rect12033"
             style={{
-              fill: COLOR.MARKED_AREA,
+              fill: COLOR.LEO_TEXT,
               stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: ".75px",
               strokeMiterlimit: 1
@@ -558,7 +558,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
             style={{
               fontFamily: "&quot",
               fontSize: 18,
-              fill: COLOR.TEXT_AND_BASIC_ELEMENTS
+              fill: COLOR.CONTRAST_STROKE
             }}
             transform="translate(6.9 1076.3)"
           >
@@ -594,13 +594,13 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
           }}
         />
       </g>
-      <g id="campus-leo1-tag" transform="translate(94 78)">
+      <g id="shape189414" transform="translate(94 78)">
         <g id="shape1579-4924" transform="translate(600 -965.5)">
           <use
             xlinkHref="#rect1203"
             id="rect12034"
             style={{
-              fill: COLOR.MARKED_AREA,
+              fill: COLOR.LEO_TEXT,
               stroke: COLOR.CONTRAST_STROKE,
               strokeWidth: ".75px",
               strokeMiterlimit: 1
@@ -611,7 +611,7 @@ const SvgLeonardocampus = (props: SVGProps<SVGSVGElement>) => {
             style={{
               fontFamily: "&quot",
               fontSize: 18,
-              fill: COLOR.TEXT_AND_BASIC_ELEMENTS
+              fill: COLOR.CONTRAST_STROKE
             }}
             transform="translate(6.9 1076.3)"
           >

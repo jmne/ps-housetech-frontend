@@ -9,7 +9,6 @@ import DrupalOverlayHandler from "@/components/Dashboard/DrupalOverlay";
 // IMPORTS - ASSETS
 import styles from "@/components/Dashboard/Headline/Headline.module.scss";
 import logoWWU from "assets/images/wwu-no-text.svg?url";
-import logoERCIS from "assets/images/ercis.svg?url";
 import { Title } from "./Title";
 
 /**
@@ -25,13 +24,6 @@ function Headline() {
           alt="WWU Logo"
           fill={false}
           className={[styles.logo, styles.wwu].join(" ")}
-          priority
-        />
-        <Image
-          src={logoERCIS}
-          alt="ERCIS Logo"
-          fill={false}
-          className={styles.logo}
           priority
         />
         <DrupalOverlayHandler />
