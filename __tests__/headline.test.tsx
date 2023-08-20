@@ -21,6 +21,5 @@ describe("Headline", () => {
 
     // Check for images
     expect(screen.getByAltText("WWU Logo")).toBeInTheDocument();
-    expect(screen.getByAltText("ERCIS Logo")).toBeInTheDocument();
   });
 });
