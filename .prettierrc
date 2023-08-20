@@ -4,5 +4,5 @@
   "semi": true,
   "singleQuote": false,
   "printWidth": 90,
-  "endOfLine": "crlf"
+  "endOfLine": "auto"
 }
